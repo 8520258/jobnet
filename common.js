@@ -19,7 +19,7 @@
   document.addEventListener('DOMContentLoaded', () => {
     const currentPath = window.location.pathname.replace(/\/$/, '') || '/';
 
-    // 2. הזרקת הדר עליון (אם לא קיים)
+    // 2. הזרקת הדר עליון כולל כלי ה-ATS
     if (!document.querySelector('header')) {
       const header = document.createElement('header');
       header.innerHTML = `
@@ -29,12 +29,13 @@
           <a href="/" class="${currentPath === '/' || currentPath === '/index.html' ? 'active' : ''}">מחשבון כללי</a>
           <a href="/tech-salary.html" class="${currentPath.includes('tech-salary') ? 'active' : ''}">מחשבון שכר הייטק</a>
           <a href="/minimum-wage.html" class="${currentPath.includes('minimum-wage') ? 'active' : ''}">שכר מינימום ושעות נוספות</a>
+          <a href="/cv-ats.html" class="${currentPath.includes('cv-ats') ? 'active' : ''}">בודק קורות חיים ל-ATS</a>
         </div>
       `;
       document.body.insertBefore(header, document.body.firstChild);
     }
 
-    // 3. הזרקת פוטר אחיד (אם לא קיים)
+    // 3. הזרקת פוטר אחיד
     if (!document.querySelector('footer')) {
       const footer = document.createElement('footer');
       footer.innerHTML = `
@@ -85,7 +86,6 @@
       `;
       document.body.appendChild(accWidget);
 
-      // לוגיקת סרגל הנגישות
       const accToggle = document.getElementById('accToggle');
       const accMenu = document.getElementById('accMenu');
       const accClose = document.getElementById('accClose');
