@@ -1,382 +1,465 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jobnet VIP | פלטפורמת קריירה וכלים מתקדמים</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        darkbg: '#0a0a0a',
-                        cardbg: '#141414',
-                        bordercolor: '#262626',
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap');
-        body {
-            font-family: 'Heebo', sans-serif;
-            background-color: #0a0a0a;
-            color: #f5f5f5;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JobNet VIP | מחשבון שכר ברוטו נטו מתקדם 2026</title>
+  <meta name="description" content="מחשבון שכר ברוטו נטו לשנת 2026 הכולל מדרגות מס, ביטוח לאומי, הפרשות לפנסיה, קרן השתלמות וחישוב נקודות זיכוי מדויק.">
+  <link rel="canonical" href="https://jobnet.vip/">
+
+  <!-- נתוני Schema.org עבור SEO ובינה מלאכותית (GEO) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "JobNet VIP מחשבון שכר",
+    "url": "https://jobnet.vip",
+    "description": "מחשבון שכר ברוטו נטו וסימולטור עלויות מעביד לשנת 2026",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "All"
+  }
+  </script>
+
+  <!-- Google tag (gtag.js) - Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --card: #151d30;
+      --card-border: #243049;
+      --accent: #38bdf8;
+      --accent-hover: #0284c7;
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --success: #34d399;
+      --danger: #f87171;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px 16px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    header h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--accent);
+      letter-spacing: -0.5px;
+    }
+
+    header p {
+      color: var(--muted);
+      font-size: 1rem;
+      margin-top: 6px;
+    }
+
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      max-width: 1000px;
+      width: 100%;
+    }
+
+    @media (min-width: 768px) {
+      .main-grid {
+        grid-template-columns: 1.1fr 1fr;
+      }
+    }
+
+    .card {
+      background-color: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+    }
+
+    .card h2 {
+      font-size: 1.25rem;
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--card-border);
+      padding-bottom: 10px;
+      color: var(--accent);
+    }
+
+    .field {
+      margin-bottom: 18px;
+    }
+
+    .field label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+
+    .input-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .input-wrapper span {
+      position: absolute;
+      right: 14px;
+      color: var(--muted);
+      font-weight: bold;
+    }
+
+    .field input, .field select {
+      width: 100%;
+      background: #0b0f19;
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 12px 36px 12px 14px;
+      color: var(--text);
+      font-size: 1rem;
+      outline: none;
+      transition: border 0.2s;
+    }
+
+    .field select {
+      padding-right: 14px;
+    }
+
+    .field input:focus, .field select:focus {
+      border-color: var(--accent);
+    }
+
+    .checkbox-field {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+      cursor: pointer;
+    }
+
+    .checkbox-field input {
+      accent-color: var(--accent);
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+    }
+
+    /* תוצאות */
+    .net-banner {
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(52, 211, 153, 0.15));
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .net-banner .title {
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .net-banner .amount {
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: var(--success);
+    }
+
+    .breakdown-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      font-size: 0.95rem;
+    }
+
+    .breakdown-row:last-child {
+      border-bottom: none;
+    }
+
+    .breakdown-row .val {
+      font-weight: 600;
+    }
+
+    .breakdown-row .deduction {
+      color: var(--danger);
+    }
+
+    .bar-container {
+      margin-top: 20px;
+      height: 14px;
+      border-radius: 7px;
+      background: var(--card-border);
+      display: flex;
+      overflow: hidden;
+    }
+
+    .bar-segment {
+      height: 100%;
+      transition: width 0.3s ease;
+    }
+
+    .bar-net { background-color: var(--success); }
+    .bar-tax { background-color: var(--danger); }
+    .bar-ss { background-color: #f59e0b; }
+    .bar-pension { background-color: #a855f7; }
+
+    .legend {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin-top: 10px;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+
+    footer {
+      margin-top: 40px;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+  </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between selection:bg-white selection:text-black">
+<body>
 
-    <!-- Header / Gateway Nav -->
-    <header class="border-b border-bordercolor bg-cardbg/80 backdrop-blur sticky top-0 z-50">
-        <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-            <div class="flex items-center gap-3 cursor-pointer" onclick="switchView('gateway')">
-                <span class="text-xl font-black tracking-wider text-white">JOBNET<span class="text-neutral-500 ml-1">.VIP</span></span>
-                <span class="text-xs bg-neutral-800 text-neutral-300 px-2 py-0.5 rounded-full border border-neutral-700">GATEWAY V1.4</span>
-            </div>
-            <nav class="hidden md:flex items-center gap-6 text-sm text-neutral-400">
-                <button onclick="switchView('calculator')" class="hover:text-white transition">מחשבון שכר מתקדם</button>
-                <button onclick="switchView('ats')" class="hover:text-white transition">סורק קורות חיים AI</button>
-            </nav>
-            <div>
-                <span class="text-xs text-neutral-500 font-mono">SECURE SPA</span>
-            </div>
+  <header>
+    <h1>JobNet VIP</h1>
+    <p>מחשבון שכר ברוטו-נטו מתקדם, מדויק ומהיר לשנת 2026</p>
+  </header>
+
+  <main class="main-grid">
+    <!-- הזנת נתונים -->
+    <section class="card">
+      <h2>הזנת נתוני שכר</h2>
+      
+      <div class="field">
+        <label for="gross">שכר ברוטו חודשי</label>
+        <div class="input-wrapper">
+          <span>₪</span>
+          <input type="number" id="gross" value="15000" min="0" step="500">
         </div>
-    </header>
+      </div>
 
-    <!-- Main Dynamic Content Container -->
-    <main class="max-w-6xl mx-auto px-6 py-12 flex-grow w-full">
+      <div class="field">
+        <label for="creditPoints">נקודות זיכוי (גבר תושב ישראל = 2.25, אישה = 2.75)</label>
+        <input type="number" id="creditPoints" value="2.25" min="2.25" step="0.25">
+      </div>
 
-        <!-- VIEW 1: GATEWAY (שער כניסה מהיר) -->
-        <div id="view-gateway" class="space-y-12">
-            <div class="text-center max-w-3xl mx-auto py-12">
-                <h1 class="text-4xl md:text-6xl font-black tracking-tight mb-6 text-white leading-tight">
-                    הדור הבא של הניהול, השכר והקריירה.
-                </h1>
-                <p class="text-neutral-400 text-lg md:text-xl font-light mb-8">
-                    פלטפורמת הכלים האוטומטית לעידן הבינה המלאכותית. ללא רישום מיותר, בפרטיות מלאה ובסטנדרט הגבוה ביותר.
-                </p>
-                <div class="flex flex-col sm:flex-row justify-center gap-4">
-                    <button onclick="switchView('calculator')" class="bg-white text-black font-bold px-8 py-4 rounded-xl hover:bg-neutral-200 transition tracking-wide text-sm">
-                        הכנס למחשבון שכר מתקדם &larr;
-                    </button>
-                    <button onclick="switchView('ats')" class="bg-neutral-900 border border-neutral-700 text-white font-bold px-8 py-4 rounded-xl hover:bg-neutral-800 transition tracking-wide text-sm">
-                        בדיקת קורות חיים מול בוט ATS &larr;
-                    </button>
-                </div>
-            </div>
+      <div class="field">
+        <label for="pensionRate">הפרשת עובד לפנסיה תגמולים</label>
+        <select id="pensionRate">
+          <option value="0.06" selected>6.0% (ברירת מחדל במשק)</option>
+          <option value="0.07">7.0% (מקסימום עובד)</option>
+          <option value="0">ללא הפרשה</option>
+        </select>
+      </div>
 
-            <!-- Quick Cards Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6">
-                <div onclick="switchView('calculator')" class="bg-cardbg border border-bordercolor p-8 rounded-2xl hover:border-neutral-500 transition cursor-pointer group">
-                    <span class="text-xs font-mono text-neutral-500 mb-2 block">MODULE 01</span>
-                    <h2 class="text-2xl font-bold text-white mb-3 group-hover:text-neutral-200 transition">מחשבון ברוטו-נטו ותלוש שכר</h2>
-                    <p class="text-neutral-400 text-sm leading-relaxed">חישוב ריאלי ומדויק המותאם למדרגות המס בישראל, כולל הפרשות פנסיה, קרן השתלמות, שווי רכב ונקודות זיכוי.</p>
-                </div>
-                <div onclick="switchView('ats')" class="bg-cardbg border border-bordercolor p-8 rounded-2xl hover:border-neutral-500 transition cursor-pointer group">
-                    <span class="text-xs font-mono text-neutral-500 mb-2 block">MODULE 02</span>
-                    <h2 class="text-2xl font-bold text-white mb-3 group-hover:text-neutral-200 transition">סורק קורות חיים לסינון AI (ATS)</h2>
-                    <p class="text-neutral-400 text-sm leading-relaxed">בדוק האם קורות החיים שלך יעברו את בוט הסינון האוטומטי של חברות הטכנולוגיה ואיך להימנע מפסילה אוטומטית.</p>
-                </div>
-            </div>
+      <label class="checkbox-field">
+        <input type="checkbox" id="studyFund" checked>
+        <span>קרן השתלמות (הפרשת עובד 2.5%, מעביד 7.5%)</span>
+      </label>
+
+      <div class="field">
+        <label for="carValue">שווי שימוש ברכב צמוד (לצורכי מס)</label>
+        <div class="input-wrapper">
+          <span>₪</span>
+          <input type="number" id="carValue" value="0" min="0" step="100">
         </div>
+      </div>
+    </section>
 
-        <!-- VIEW 2: SALARY CALCULATOR (מחשבון שכר) -->
-        <div id="view-calculator" class="hidden max-w-3xl mx-auto">
-            <div class="mb-6 flex items-center justify-between">
-                <button onclick="switchView('gateway')" class="text-xs text-neutral-400 hover:text-white transition flex items-center gap-1">
-                    &rarr; חזרה לשער הראשי
-                </button>
-                <span class="text-xs font-mono text-neutral-500 bg-neutral-900 px-2.5 py-1 rounded border border-neutral-800">מעודכן ל-2026</span>
-            </div>
+    <!-- הצגת תוצאות -->
+    <section class="card">
+      <h2>פירוט וניתוח הנטו</h2>
 
-            <div class="bg-cardbg border border-bordercolor rounded-2xl p-6 md:p-8 shadow-2xl">
-                <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-2">
-                    <span class="w-2.5 h-2.5 bg-white rounded-full"></span>
-                    מחשבון שכר וברוטו-נטו (הייטק & בכירים)
-                </h2>
+      <div class="net-banner">
+        <div class="title">שכר נטו לתשלום</div>
+        <div class="amount" id="netAmount">₪0</div>
+      </div>
 
-                <div class="space-y-4 mb-6">
-                    <div>
-                        <label class="block text-xs font-medium text-neutral-400 mb-1">שכר ברוטו חודשי (₪)</label>
-                        <input type="number" id="grossSalary" value="35000" class="w-full bg-neutral-900 border border-neutral-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-white transition font-mono text-lg">
-                    </div>
+      <div class="breakdown-row">
+        <span>שכר ברוטו</span>
+        <span class="val" id="rowGross">₪0</span>
+      </div>
+      <div class="breakdown-row">
+        <span>מס הכנסה בפועל (לאחר זיכויים)</span>
+        <span class="val deduction" id="rowTax">₪0-</span>
+      </div>
+      <div class="breakdown-row">
+        <span>ביטוח לאומי ומס בריאות</span>
+        <span class="val deduction" id="rowSocial">₪0-</span>
+      </div>
+      <div class="breakdown-row">
+        <span>הפרשות פנסיה (עובד)</span>
+        <span class="val deduction" id="rowPension">₪0-</span>
+      </div>
+      <div class="breakdown-row">
+        <span>הפרשת קרן השתלמות (עובד)</span>
+        <span class="val deduction" id="rowStudy">₪0-</span>
+      </div>
+      <div class="breakdown-row" style="margin-top: 10px; border-top: 1px dashed var(--card-border);">
+        <span>סך עלות למעסיק (כולל פיצויים והפרשות)</span>
+        <span class="val" id="rowEmployerCost" style="color: var(--accent);">₪0</span>
+      </div>
 
-                    <div class="grid grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-xs font-medium text-neutral-400 mb-1">הפרשת פנסיה עובד (%)</label>
-                            <input type="number" id="pensionRate" value="6" class="w-full bg-neutral-900 border border-neutral-800 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-white transition font-mono">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-medium text-neutral-400 mb-1">קרן השתלמות עובד (%)</label>
-                            <input type="number" id="studyFundRate" value="2.5" class="w-full bg-neutral-900 border border-neutral-800 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-white transition font-mono">
-                        </div>
-                    </div>
+      <!-- גרף התפלגות ויזואלי -->
+      <div class="bar-container">
+        <div class="bar-segment bar-net" id="barNet" style="width: 70%;"></div>
+        <div class="bar-segment bar-tax" id="barTax" style="width: 10%;"></div>
+        <div class="bar-segment bar-ss" id="barSS" style="width: 10%;"></div>
+        <div class="bar-segment bar-pension" id="barPension" style="width: 10%;"></div>
+      </div>
 
-                    <div class="grid grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-xs font-medium text-neutral-400 mb-1">שווי רכב (לצורכי מס)</label>
-                            <input type="number" id="carValue" value="0" class="w-full bg-neutral-900 border border-neutral-800 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-white transition font-mono">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-medium text-neutral-400 mb-1">נקודות זיכוי</label>
-                            <input type="number" id="creditPoints" value="2.25" step="0.25" class="w-full bg-neutral-900 border border-neutral-800 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-white transition font-mono">
-                        </div>
-                    </div>
-                </div>
+      <div class="legend">
+        <div class="legend-item"><div class="dot bar-net"></div> נטו</div>
+        <div class="legend-item"><div class="dot bar-tax"></div> מס הכנסה</div>
+        <div class="legend-item"><div class="dot bar-ss"></div> ב.לאומי + בריאות</div>
+        <div class="legend-item"><div class="dot bar-pension"></div> פנסיה והשתלמות</div>
+      </div>
+    </section>
+  </main>
 
-                <button onclick="calculateSalary()" class="w-full bg-white text-black font-bold py-3.5 rounded-lg hover:bg-neutral-200 transition tracking-wide text-sm">
-                    חשב נטו ותלוש משוער
-                </button>
+  <footer>
+    <p>© 2026 JobNet VIP. כל הזכויות שמורות. החישוב מהווה סימולציה משוערת בלבד.</p>
+  </footer>
 
-                <!-- Results Box -->
-                <div id="salaryResults" class="mt-8 pt-6 border-t border-bordercolor hidden">
-                    <h3 class="text-xs font-mono uppercase tracking-wider text-neutral-400 mb-4">סימולציית תלוש שכר נטו</h3>
-                    <div class="space-y-2 text-sm font-mono">
-                        <div class="flex justify-between text-neutral-300">
-                            <span>מס הכנסה משוער:</span>
-                            <span id="resTax" class="text-white">₪0</span>
-                        </div>
-                        <div class="flex justify-between text-neutral-300">
-                            <span>ביטוח לאומי ובריאות:</span>
-                            <span id="resNationalInsurance" class="text-white">₪0</span>
-                        </div>
-                        <div class="flex justify-between text-neutral-300">
-                            <span>הפרשות פנסיה (עובד):</span>
-                            <span id="resPension" class="text-white">₪0</span>
-                        </div>
-                        <div class="flex justify-between text-neutral-300">
-                            <span>קרן השתלמות (עובד):</span>
-                            <span id="resStudyFund" class="text-white">₪0</span>
-                        </div>
-                        <div class="flex justify-between pt-4 border-t border-bordercolor text-lg font-bold text-white">
-                            <span>נטו לחשבון הבנק:</span>
-                            <span id="resNet" class="text-white font-mono">₪0</span>
-                        </div>
-                    </div>
-                    <p class="text-[10px] text-neutral-500 mt-4 text-center">* החישוב הינו להמחשה בלבד ואינו מהווה ייעוץ מס מחייב.</p>
-                </div>
-            </div>
-        </div>
+  <script>
+    // ערכי מס וביטוח לאומי מעודכנים (מדד 2026)
+    const CREDIT_POINT_VALUE = 242; // ערך נקודת זיכוי חודשית
 
-        <!-- VIEW 3: ATS RESUME SCANNER (סורק קורות חיים) -->
-        <div id="view-ats" class="hidden max-w-3xl mx-auto">
-            <div class="mb-6 flex items-center justify-between">
-                <button onclick="switchView('gateway')" class="text-xs text-neutral-400 hover:text-white transition flex items-center gap-1">
-                    &rarr; חזרה לשער הראשי
-                </button>
-                <span class="text-xs font-mono text-neutral-500 bg-neutral-900 px-2.5 py-1 rounded border border-neutral-800">ATS Shield</span>
-            </div>
+    // מדרגות מס הכנסה חודשיות
+    const TAX_BRACKETS = [
+      { limit: 7010, rate: 0.10 },
+      { limit: 10060, rate: 0.14 },
+      { limit: 16150, rate: 0.20 },
+      { limit: 22440, rate: 0.31 },
+      { limit: 46690, rate: 0.35 },
+      { limit: 60130, rate: 0.47 },
+      { limit: Infinity, rate: 0.50 }
+    ];
 
-            <div class="bg-cardbg border border-bordercolor rounded-2xl p-6 md:p-8 shadow-2xl">
-                <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-2">
-                    <span class="w-2.5 h-2.5 bg-neutral-400 rounded-full"></span>
-                    סורק קורות חיים מתקדם (עוקף בוטים AI)
-                </h2>
+    // ביטוח לאומי ומס בריאות
+    const SS_LOWER_LIMIT = 7522; // סף מדרגה מופחתת
+    const SS_MAX_LIMIT = 49030;  // תקרת ביטוח לאומי
+    const SS_LOWER_RATE = 0.035; // 3.5% משולב מופחת
+    const SS_UPPER_RATE = 0.12;  // 12% משולב מעל הסף
 
-                <div class="bg-neutral-900/60 border border-neutral-800/80 rounded-xl p-4 mb-6 text-sm text-neutral-300 leading-relaxed">
-                    <p class="font-semibold text-white mb-1">היום בעידן הבינה המלאכותית, קורות החיים שלך לא מגיעים למגייס או לאיש משאבי אנוש.</p>
-                    <p class="text-neutral-400 text-xs mb-3">קודם כל הם עוברים דרך בוט בינה מלאכותית (ATS). אם קורות החיים שלך לא יודעים לדבר עם הבוט, ייתכן שזרקת אותם לפח עוד לפני שבן אדם בכלל הסתכל עליהם (רמז: שליחת PDF מעוצב ללא התאמה מסתיימת בכישלון).</p>
-                    <p class="text-xs text-neutral-200 font-medium">בוא נעזור לך להתאים את קורות החיים שלך לעידן ה-AI ולבדוק את הקובץ שלך עכשיו.</p>
-                </div>
+    const fmt = num => '₪' + Math.round(num).toLocaleString('he-IL');
 
-                <!-- Upload Box -->
-                <div class="space-y-4">
-                    <div class="border-2 border-dashed border-neutral-800 hover:border-neutral-600 rounded-xl p-6 text-center transition cursor-pointer bg-neutral-900/30 relative">
-                        <input type="file" id="resumeFile" class="absolute inset-0 opacity-0 cursor-pointer" accept=".pdf,.doc,.docx">
-                        <div class="flex flex-col items-center">
-                            <svg class="w-8 h-8 text-neutral-500 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
-                            <span class="text-sm text-neutral-300 font-medium" id="fileNameDisplay">גרור לכאן קובץ קורות חיים או לחץ לבחירה</span>
-                            <span class="text-xs text-neutral-500 mt-1">מומלץ פורמט DOCX או טקסט נקי</span>
-                        </div>
-                    </div>
+    function calculate() {
+      const gross = parseFloat(document.getElementById('gross').value) || 0;
+      const creditPts = parseFloat(document.getElementById('creditPoints').value) || 0;
+      const pensionRate = parseFloat(document.getElementById('pensionRate').value) || 0;
+      const hasStudyFund = document.getElementById('studyFund').checked;
+      const carValue = parseFloat(document.getElementById('carValue').value) || 0;
 
-                    <!-- Checkbox Agreement -->
-                    <label class="flex items-start gap-3 cursor-pointer select-none pt-1">
-                        <input type="checkbox" id="consentCheck" class="mt-1 w-4 h-4 rounded bg-neutral-900 border-neutral-700 text-white focus:ring-0 cursor-pointer">
-                        <span class="text-xs text-neutral-400">אשמח לשלוח לכם את קורות החיים שלי לניתוח ראשוני ובדיקת התאמה מול אלגוריתמי הסינון של חברות הטכנולוגיה.</span>
-                    </label>
-                </div>
+      const taxableGross = gross + carValue;
 
-                <button onclick="runAtsScan()" class="w-full mt-6 bg-neutral-800 text-white font-bold py-3.5 rounded-lg hover:bg-neutral-700 transition tracking-wide text-sm border border-neutral-700">
-                    הפעל סריקה ובדיקת התאמה לבוט AI
-                </button>
-
-                <!-- Scan Results Box -->
-                <div id="scanResults" class="mt-6 pt-6 border-t border-bordercolor hidden">
-                    <div id="scanningState" class="text-center py-2 text-xs font-mono text-neutral-400 animate-pulse">
-                        מנתח מבנה מסמך, סורק תאימות עברית/אנגלית ובודק קריאות מול מערכות ATS...
-                    </div>
-                    <div id="scanReport" class="hidden space-y-2 text-xs font-mono">
-                        <div class="flex justify-between items-center text-neutral-300">
-                            <span>ציון תאימות לבוט AI:</span>
-                            <span id="scoreBadge" class="px-2 py-0.5 bg-neutral-800 text-white rounded font-bold">78/100</span>
-                        </div>
-                        <div class="text-neutral-400 space-y-1 pt-2 border-t border-neutral-800" id="reportDetails"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </main>
-
-    <!-- Footer & Legal Links -->
-    <footer class="border-t border-bordercolor bg-cardbg py-6 mt-12">
-        <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between text-xs text-neutral-500 gap-4">
-            <div>
-                <span>© 2026 JOBNET.VIP — כל הזכויות שמורות.</span>
-            </div>
-            <div class="flex items-center gap-6">
-                <button onclick="openModal('terms')" class="hover:text-white transition">תקנון ותנאי שימוש</button>
-                <button onclick="openModal('privacy')" class="hover:text-white transition">מדיניות פרטיות</button>
-                <button onclick="openModal('accessibility')" class="hover:text-white transition">הצהרת נגישות</button>
-            </div>
-            <div>
-                <span class="font-mono">V1.4</span>
-            </div>
-        </div>
-    </footer>
-
-    <!-- LEGAL MODALS -->
-    <div id="legalModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-cardbg border border-bordercolor rounded-2xl max-w-2xl w-full p-6 md:p-8 relative max-h-[80vh] overflow-y-auto">
-            <button onclick="closeModal()" class="absolute top-4 left-4 text-neutral-400 hover:text-white text-lg font-bold">&times;</button>
-            <div id="modalContent" class="text-sm text-neutral-300 space-y-4">
-                <!-- Dynamically filled -->
-            </div>
-        </div>
-    </div>
-
-    <!-- JavaScript Logic & SPA Router -->
-    <script>
-        // Simple SPA View Switcher
-        function switchView(viewName) {
-            document.getElementById('view-gateway').classList.add('hidden');
-            document.getElementById('view-calculator').classList.add('hidden');
-            document.getElementById('view-ats').classList.add('hidden');
-
-            document.getElementById('view-' + viewName).classList.remove('hidden');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+      // 1. חישוב מס הכנסה ברוטו
+      let grossTax = 0;
+      let prevLimit = 0;
+      for (const bracket of TAX_BRACKETS) {
+        if (taxableGross > prevLimit) {
+          const taxableInBracket = Math.min(taxableGross, bracket.limit) - prevLimit;
+          grossTax += taxableInBracket * bracket.rate;
+          prevLimit = bracket.limit;
+        } else {
+          break;
         }
+      }
 
-        // File upload UI update
-        const resumeFileInput = document.getElementById('resumeFile');
-        const fileNameDisplay = document.getElementById('fileNameDisplay');
-        if (resumeFileInput) {
-            resumeFileInput.addEventListener('change', function(e) {
-                if (e.target.files.length > 0) {
-                    fileNameDisplay.textContent = "קובץ נטען: " + e.target.files[0].name;
-                    fileNameDisplay.classList.add("text-white", "font-bold");
-                }
-            });
-        }
+      // קיזוז נקודות זיכוי
+      const taxCredits = creditPts * CREDIT_POINT_VALUE;
+      const incomeTax = Math.max(0, grossTax - taxCredits);
 
-        // Salary Calculator Logic
-        function calculateSalary() {
-            let gross = parseFloat(document.getElementById('grossSalary').value) || 0;
-            let pensionRate = (parseFloat(document.getElementById('pensionRate').value) || 6) / 100;
-            let studyFundRate = (parseFloat(document.getElementById('studyFundRate').value) || 2.5) / 100;
-            let carValue = parseFloat(document.getElementById('carValue').value) || 0;
-            let creditPoints = parseFloat(document.getElementById('creditPoints').value) || 2.25;
+      // 2. ביטוח לאומי ומס בריאות
+      let socialSecurity = 0;
+      const ssBase = Math.min(taxableGross, SS_MAX_LIMIT);
+      if (ssBase <= SS_LOWER_LIMIT) {
+        socialSecurity = ssBase * SS_LOWER_RATE;
+      } else {
+        socialSecurity = (SS_LOWER_LIMIT * SS_LOWER_RATE) + ((ssBase - SS_LOWER_LIMIT) * SS_UPPER_RATE);
+      }
 
-            let taxableIncome = gross + carValue;
-            let tax = 0;
+      // 3. הפרשות סוציאליות עובד
+      const pensionEmployee = gross * pensionRate;
+      const studyFundEmployee = hasStudyFund ? (gross * 0.025) : 0;
 
-            if (taxableIncome > 7030) { tax += (Math.min(taxableIncome, 10100) - 7030) * 0.10; }
-            if (taxableIncome > 10100) { tax += (Math.min(taxableIncome, 14490) - 10100) * 0.14; }
-            if (taxableIncome > 14490) { tax += (Math.min(taxableIncome, 20170) - 14490) * 0.20; }
-            if (taxableIncome > 20170) { tax += (Math.min(taxableIncome, 41910) - 20170) * 0.31; }
-            if (taxableIncome > 41910) { tax += (Math.min(taxableIncome, 54170) - 41910) * 0.35; }
-            if (taxableIncome > 54170) { tax += (taxableIncome - 54170) * 0.47; }
+      // 4. נטו סופי
+      const totalDeductions = incomeTax + socialSecurity + pensionEmployee + studyFundEmployee;
+      const netSalary = Math.max(0, gross - totalDeductions);
 
-            let creditDiscount = creditPoints * 248;
-            tax = Math.max(0, tax - creditDiscount);
+      // 5. עלות מעסיק
+      const pensionEmployer = gross * 0.065; // תגמולים 6.5%
+      const compensationEmployer = gross * 0.06; // פיצויים 6%
+      const studyFundEmployer = hasStudyFund ? (gross * 0.075) : 0; // השתלמות מעסיק 7.5%
+      const ssEmployer = (gross <= SS_LOWER_LIMIT) ? (gross * 0.0355) : ((SS_LOWER_LIMIT * 0.0355) + ((Math.min(gross, SS_MAX_LIMIT) - SS_LOWER_LIMIT) * 0.076));
+      const totalEmployerCost = gross + pensionEmployer + compensationEmployer + studyFundEmployer + ssEmployer;
 
-            let biBase = Math.min(gross, 49750);
-            let bi = biBase <= 7522 ? biBase * 0.004 : (7522 * 0.004) + ((biBase - 7522) * 0.07);
+      // עדכון ה-UI
+      document.getElementById('netAmount').textContent = fmt(netSalary);
+      document.getElementById('rowGross').textContent = fmt(gross);
+      document.getElementById('rowTax').textContent = '-' + fmt(incomeTax);
+      document.getElementById('rowSocial').textContent = '-' + fmt(socialSecurity);
+      document.getElementById('rowPension').textContent = '-' + fmt(pensionEmployee);
+      document.getElementById('rowStudy').textContent = '-' + fmt(studyFundEmployee);
+      document.getElementById('rowEmployerCost').textContent = fmt(totalEmployerCost);
 
-            let pensionDed = gross * pensionRate;
-            let studyFundDed = gross * studyFundRate;
-            let net = gross - tax - bi - pensionDed - studyFundDed;
+      // עדכון בר ויזואלי
+      const total = gross || 1;
+      document.getElementById('barNet').style.width = (netSalary / total * 100) + '%';
+      document.getElementById('barTax').style.width = (incomeTax / total * 100) + '%';
+      document.getElementById('barSS').style.width = (socialSecurity / total * 100) + '%';
+      document.getElementById('barPension').style.width = ((pensionEmployee + studyFundEmployee) / total * 100) + '%';
+    }
 
-            document.getElementById('resTax').textContent = '₪' + Math.round(tax).toLocaleString();
-            document.getElementById('resNationalInsurance').textContent = '₪' + Math.round(bi).toLocaleString();
-            document.getElementById('resPension').textContent = '₪' + Math.round(pensionDed).toLocaleString();
-            document.getElementById('resStudyFund').textContent = '₪' + Math.round(studyFundDed).toLocaleString();
-            document.getElementById('resNet').textContent = '₪' + Math.round(net).toLocaleString();
+    // מאזינים לעדכון חי מיידי בכל שינוי
+    ['gross', 'creditPoints', 'pensionRate', 'studyFund', 'carValue'].forEach(id => {
+      const el = document.getElementById(id);
+      el.addEventListener('input', calculate);
+      el.addEventListener('change', calculate);
+    });
 
-            document.getElementById('salaryResults').classList.remove('hidden');
-        }
-
-        // ATS Scan Simulation Logic
-        function runAtsScan() {
-            let consent = document.getElementById('consentCheck').checked;
-            if (!consent) {
-                alert('אנא סמן את תיבת ההסכמה לשליחת קורות החיים לניתוח.');
-                return;
-            }
-
-            let resultsBox = document.getElementById('scanResults');
-            let scanningState = document.getElementById('scanningState');
-            let scanReport = document.getElementById('scanReport');
-            let reportDetails = document.getElementById('reportDetails');
-
-            resultsBox.classList.remove('hidden');
-            scanningState.classList.remove('hidden');
-            scanReport.classList.add('hidden');
-
-            setTimeout(() => {
-                scanningState.classList.add('hidden');
-                scanReport.classList.remove('hidden');
-
-                reportDetails.innerHTML = `
-                    <div>✓ קריאות טקסט מול בוט AI: תקינה</div>
-                    <div>⚠ אזהרת פורמט: מומלץ לוודא שאינו PDF סרוק כדי למנוע היפוך עברית</div>
-                    <div>✓ מילות מפתח טכניות: זוהו בהצלחה</div>
-                    <p class="text-white mt-2 font-medium">המלצה: קורות החיים שלך מוכנים להעברה לאחר התאמת מילות מפתח לדרישות המשרה.</p>
-                `;
-            }, 1500);
-        }
-
-        // Legal Modals Handler
-        const legalTexts = {
-            terms: `
-                <h3 class="text-lg font-bold text-white mb-2">תקנון ותנאי שימוש</h3>
-                <p>השימוש באתר jobnet.vip ובכלים המוצגים בו (לרבות מחשבון השכר וסורק קורות החיים) מהווה הסכמה מלאה לתנאים אלו.</p>
-                <p>השירותים והחישובים באתר ניתנים ככלי עזר אינפורמטיביים בלבד ואינם מהווים ייעוץ מס, ייעוץ משפטי או התחייבות להשמה מקצועית. הנהלת האתר אינה נושאת באחריות בגין הסתמכות על הנתונים המוצגים.</p>
-            `,
-            privacy: `
-                <h3 class="text-lg font-bold text-white mb-2">מדיניות פרטיות</h3>
-                <p>אנו מכבדים את פרטיות המשתמשים שלנו. הנתונים המוזנים במחשבון מעובדים באופן מקומי בדפדפן שלך ואינם נשמרים במאגרי מידע קבועים.</p>
-                <p>קבצים או פרטים שנשלחים דרך טופס סריקת קורות החיים משמשים לצורך ניתוח ובדיקת התאמה בלבד בהתאם לאישורך, ומוגנים לפי תקנים מחמירים.</p>
-            `,
-            accessibility: `
-                <h3 class="text-lg font-bold text-white mb-2">הצהרת נגישות</h3>
-                <p>אנו פועלים להבטחת זמינות האתר לאנשים עם מוגבלויות. האתר מותאם לדרישות הנגישות המקובלות, כולל שימוש בניגודיות צבעים גבוהה, ניווט מקלדת ותמיכה בקוראי מסך.</p>
-                <p>במידה ונתקלת בקושי כלשהו או בבעיית נגישות באתר, נשמח לקבל פנייה ונפעל לטיפול מהיר בנושא.</p>
-            `
-        };
-
-        function openModal(type) {
-            const modal = document.getElementById('legalModal');
-            const content = document.getElementById('modalContent');
-            content.innerHTML = legalTexts[type] || '';
-            modal.classList.remove('hidden');
-        }
-
-        function closeModal() {
-            document.getElementById('legalModal').classList.add('hidden');
-        }
-
-        window.onclick = function(event) {
-            const modal = document.getElementById('legalModal');
-            if (event.target === modal) {
-                closeModal();
-            }
-        }
-    </script>
+    // הרצה ראשונית
+    calculate();
+  </script>
 </body>
 </html>
