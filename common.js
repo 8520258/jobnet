@@ -1,6 +1,6 @@
 /* ==========================================================================
    JobNet VIP - קוד משותף לכל עמודי האתר
-   מזריק אוטומטית: הדר עליון, פוטר אחיד, סרגל נגישות צף ואנליטיקס
+   מזריק אוטומטית: הדר עליון, פוטר אחיד (כולל v2.4), סרגל נגישות צף ואנליטיקס
    ========================================================================== */
 
 (function () {
@@ -35,7 +35,7 @@
       document.body.insertBefore(header, document.body.firstChild);
     }
 
-    // 3. הזרקת פוטר אחיד
+    // 3. הזרקת פוטר אחיד כולל סימון גרסה דיסקרטי
     if (!document.querySelector('footer')) {
       const footer = document.createElement('footer');
       footer.innerHTML = `
@@ -52,7 +52,7 @@
           <span>•</span>
           <a href="/contact.html" class="${currentPath.includes('contact') ? 'active' : ''}">יצירת קשר</a>
         </div>
-        <p>© 2026 JobNet VIP. כל הזכויות שמורות. החישוב מהווה סימולציה משוערת בלבד ואינו מהווה ייעוץ פנסיוני, פיננסי או מס מוסמך.</p>
+        <p>© 2026 JobNet VIP. כל הזכויות שמורות. החישוב מהווה סימולציה משוערת בלבד ואינו מהווה ייעוץ פנסיוני, פיננסי או מס מוסמך. <span style="opacity: 0.5; font-size: 0.75rem; margin-right: 6px;">v2.4</span></p>
       `;
       document.body.appendChild(footer);
     }
