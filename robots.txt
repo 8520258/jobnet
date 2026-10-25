@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jobnet.vip/sitemap.xml
