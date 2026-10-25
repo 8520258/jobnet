@@ -43,6 +43,7 @@
     .link-card:hover { border-color: var(--accent); }
     .link-title { font-weight: 700; color: var(--accent); font-size: 1.05rem; margin-bottom: 4px; }
     .link-desc { font-size: 0.9rem; color: var(--muted); margin: 0; }
+    
     footer { margin-top: 40px; text-align: center; font-size: 0.85rem; color: var(--muted); width: 100%; border-top: 1px solid var(--card-border); padding-top: 20px; }
     .legal-links { display: flex; justify-content: center; gap: 16px; margin-bottom: 10px; flex-wrap: wrap; }
     .legal-links a { color: var(--muted); text-decoration: none; }
@@ -51,117 +52,4 @@
     /* רכיב נגישות */
     .acc-widget { position: fixed; bottom: 24px; left: 24px; z-index: 9999; }
     .acc-btn { width: 48px; height: 48px; border-radius: 50%; background: #00e699; color: #07090e; border: 2px solid #1b2436; cursor: pointer; display: flex; align-items: center; justify-content: center; }
-    .acc-btn svg { width: 26px; height: 26px; fill: currentColor; }
-    .acc-menu { display: none; position: absolute; bottom: 60px; left: 0; width: 280px; background: #0f141f; border: 1px solid #1b2436; border-radius: 14px; padding: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.6); text-align: right; }
-    .acc-menu.active { display: block; }
-    .acc-menu-header { font-size: 1rem; font-weight: 700; color: #00e699; margin-bottom: 12px; display: flex; justify-content: space-between; border-bottom: 1px solid #1b2436; padding-bottom: 8px; }
-    .acc-close { background: none; border: none; color: #8b9bb4; font-size: 1.2rem; cursor: pointer; }
-    .acc-options { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-    .acc-opt-btn { background: #07090e; border: 1px solid #1b2436; color: #f8fafc; padding: 8px 6px; border-radius: 8px; font-size: 0.8rem; font-weight: 600; cursor: pointer; text-align: center; }
-    .acc-opt-btn:hover, .acc-opt-btn.active-opt { border-color: #00e699; color: #00e699; }
-    .acc-reset-btn { grid-column: span 2; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #fca5a5; padding: 8px; border-radius: 8px; font-size: 0.8rem; font-weight: 700; cursor: pointer; margin-top: 4px; }
-  </style>
-</head>
-<body>
-
-  <!-- כפתור נגישות צף -->
-  <div class="acc-widget">
-    <button class="acc-btn" id="accToggle" aria-label="פתח תפריט נגישות" title="תפריט נגישות">
-      <svg viewBox="0 0 24 24"><path d="M12 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm9 7h-6v13h-2v-6h-2v6H9V9H3V7h18v2z"/></svg>
-    </button>
-    <div class="acc-menu" id="accMenu" role="dialog" aria-modal="true">
-      <div class="acc-menu-header">
-        <span>התאמות נגישות</span>
-        <button class="acc-close" id="accClose">&times;</button>
-      </div>
-      <div class="acc-options">
-        <button class="acc-opt-btn" id="btnFontPlus">הגדל טקסט (+)</button>
-        <button class="acc-opt-btn" id="btnFontMinus">הקטן טקסט (-)</button>
-        <button class="acc-opt-btn" id="btnGrayscale">גווני אפור</button>
-        <button class="acc-opt-btn" id="btnInvert">ניגודיות הפוכה</button>
-        <button class="acc-opt-btn" id="btnLinks">הדגש קישורים</button>
-        <button class="acc-opt-btn" id="btnReadable">גופן קריא</button>
-        <button class="acc-reset-btn" id="btnReset">איפוס התאמות</button>
-      </div>
-    </div>
-  </div>
-
-  <header>
-    <h1>JobNet VIP</h1>
-    <p>מחשבון שכר ברוטו-נטו וסימולטור עלויות מעביד מעודכן לשנת 2026</p>
-    <div class="sub-nav">
-      <a href="/">מחשבון כללי</a>
-      <a href="/tech-salary.html">מחשבון שכר הייטק</a>
-      <a href="/minimum-wage.html">שכר מינימום ושעות נוספות</a>
-    </div>
-  </header>
-
-  <main class="container">
-    <div class="card">
-      <h2>מקורות מידע רשמיים וזכויות עובדים בישראל</h2>
-      <p>לצורך קבלת מידע מעמיק, בירור זכויות אישיות ובדיקת זכאות להטבות מס או פנסיה, ריכזנו עבורכם קישורים ישירים לאתרים הממשלתיים והציבוריים המוסמכים בישראל:</p>
-
-      <div class="links-list">
-        <a href="https://www.gov.il/he/departments/israel_tax_authority" target="_blank" rel="noopener noreferrer" class="link-card">
-          <div class="link-title">רשות המסים בישראל ↗</div>
-          <div class="link-desc">לוחות ניכויי מס הכנסה, טפסי 101 מקוונים, סימולטור תיאום מס ומידע על נקודות זיכוי.</div>
-        </a>
-
-        <a href="https://www.btl.gov.il/" target="_blank" rel="noopener noreferrer" class="link-card">
-          <div class="link-title">המוסד לביטוח לאומי ↗</div>
-          <div class="link-desc">שיעורי דמי ביטוח לאומי ומס בריאות לעובדים שכירים, תקרות תשלום וזכויות בדמי לידה, מילואים ואבטלה.</div>
-        </a>
-
-        <a href="https://www.kolzchut.org.il/" target="_blank" rel="noopener noreferrer" class="link-card">
-          <div class="link-title">כל-זכות (מאגר המידע המקיף לזכויות) ↗</div>
-          <div class="link-desc">מדריכים מפורטים על חוק שעות עבודה ומנוחה, פנסיית חובה, ימי חופשה, הבראה ופיצויי פיטורים.</div>
-        </a>
-
-        <a href="https://www.gov.il/he/departments/ministry_of_economy" target="_blank" rel="noopener noreferrer" class="link-card">
-          <div class="link-title">זרוע העבודה – משרד הכלכלה ↗</div>
-          <div class="link-desc">אכיפת חוקי עבודה, צווי הרחבה ענפיים וזכויות עובדים מול מעסיקים.</div>
-        </a>
-      </div>
-    </div>
-  </main>
-
-  <footer>
-    <div class="legal-links">
-      <a href="/about.html">אודות המיזם</a>
-      <span>•</span>
-      <a href="/resources.html" class="active">זכויות עובדים ומקורות מידע</a>
-      <span>•</span>
-      <a href="/terms.html">תנאי שימוש</a>
-      <span>•</span>
-      <a href="/privacy.html">מדיניות פרטיות</a>
-      <span>•</span>
-      <a href="/accessibility.html">הצהרת נגישות</a>
-      <span>•</span>
-      <a href="mailto:support@jobnet.vip">יצירת קשר</a>
-    </div>
-    <p>© 2026 JobNet VIP. כל הזכויות שמורות. החישוב מהווה סימולציה משוערת בלבד.</p>
-  </footer>
-
-  <script>
-    const accToggle = document.getElementById('accToggle');
-    const accMenu = document.getElementById('accMenu');
-    const accClose = document.getElementById('accClose');
-    accToggle.addEventListener('click', () => accMenu.classList.toggle('active'));
-    accClose.addEventListener('click', () => accMenu.classList.remove('active'));
-
-    let currentFontSize = 16;
-    document.getElementById('btnFontPlus').addEventListener('click', () => { if (currentFontSize < 22) { currentFontSize += 2; document.documentElement.style.fontSize = currentFontSize + 'px'; } });
-    document.getElementById('btnFontMinus').addEventListener('click', () => { if (currentFontSize > 14) { currentFontSize -= 2; document.documentElement.style.fontSize = currentFontSize + 'px'; } });
-    document.getElementById('btnGrayscale').addEventListener('click', e => { document.body.classList.toggle('acc-grayscale'); e.target.classList.toggle('active-opt'); });
-    document.getElementById('btnInvert').addEventListener('click', e => { document.body.classList.toggle('acc-invert'); e.target.classList.toggle('active-opt'); });
-    document.getElementById('btnLinks').addEventListener('click', e => { document.body.classList.toggle('acc-highlight-links'); e.target.classList.toggle('active-opt'); });
-    document.getElementById('btnReadable').addEventListener('click', e => { document.body.classList.toggle('acc-readable-font'); e.target.classList.toggle('active-opt'); });
-    document.getElementById('btnReset').addEventListener('click', () => {
-      currentFontSize = 16;
-      document.documentElement.style.fontSize = '16px';
-      document.body.classList.remove('acc-grayscale', 'acc-invert', 'acc-highlight-links', 'acc-readable-font');
-      document.querySelectorAll('.acc-opt-btn').forEach(b => b.classList.remove('active-opt'));
-    });
-  </script>
-</body>
-</html>
+    .acc-btn svg { width: 26px; height: 2
