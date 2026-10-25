@@ -81,6 +81,7 @@
       --muted: #8b9bb4;
       --success: #00e699;
       --danger: #ef4444;
+      --font-base: 16px;
     }
 
     * {
@@ -88,6 +89,10 @@
       margin: 0;
       padding: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    html {
+      font-size: var(--font-base);
     }
 
     body {
@@ -99,7 +104,14 @@
       align-items: center;
       padding: 24px 16px;
       line-height: 1.6;
+      transition: filter 0.2s, background-color 0.2s;
     }
+
+    /* מחלקות נגישות מיוחדות */
+    body.acc-grayscale { filter: grayscale(100%); }
+    body.acc-invert { filter: invert(100%) hue-rotate(180deg); }
+    body.acc-highlight-links a { text-decoration: underline !important; background-color: #ffff00 !important; color: #000 !important; }
+    body.acc-readable-font * { font-family: Arial, Tahoma, sans-serif !important; letter-spacing: 0.5px !important; }
 
     header {
       text-align: center;
@@ -119,7 +131,6 @@
       margin-top: 6px;
     }
 
-    /* קישורי ניווט עליונים */
     .sub-nav {
       display: flex;
       gap: 12px;
@@ -132,17 +143,23 @@
       color: var(--text);
       background: var(--card);
       border: 1px solid var(--card-border);
-      padding: 6px 14px;
+      padding: 8px 18px;
       border-radius: 20px;
       text-decoration: none;
-      font-size: 0.85rem;
+      font-size: 0.9rem;
       font-weight: 600;
       transition: all 0.2s;
     }
 
-    .sub-nav a:hover, .sub-nav a.active {
+    .sub-nav a:hover {
       border-color: var(--accent);
       color: var(--accent);
+    }
+
+    .sub-nav a.active {
+      border: 2px solid var(--accent);
+      color: var(--accent);
+      background: rgba(0, 230, 153, 0.08);
     }
 
     .main-grid {
@@ -235,7 +252,6 @@
       cursor: pointer;
     }
 
-    /* תוצאות חישוב */
     .net-banner {
       background: linear-gradient(135deg, rgba(0, 230, 153, 0.12), rgba(11, 15, 25, 0.4));
       border: 1px solid rgba(0, 230, 153, 0.35);
@@ -318,7 +334,6 @@
       border-radius: 50%;
     }
 
-    /* תוכן SEO ו-GEO */
     .content-section {
       max-width: 1020px;
       width: 100%;
@@ -410,10 +425,168 @@
       text-align: center;
       font-size: 0.85rem;
       color: var(--muted);
+      width: 100%;
+      border-top: 1px solid var(--card-border);
+      padding-top: 20px;
+    }
+
+    .legal-links {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    .legal-links a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .legal-links a:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+
+    /* =========================================
+       רכיב נגישות צף מודרני (Accessibility Widget)
+       ========================================= */
+    .acc-widget {
+      position: fixed;
+      bottom: 24px;
+      left: 24px;
+      z-index: 9999;
+    }
+
+    .acc-btn {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #00e699;
+      color: #07090e;
+      border: 2px solid #1b2436;
+      box-shadow: 0 4px 15px rgba(0, 230, 153, 0.4);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s, background-color 0.2s;
+    }
+
+    .acc-btn:hover {
+      transform: scale(1.08);
+      background: #0ac18e;
+    }
+
+    .acc-btn svg {
+      width: 26px;
+      height: 26px;
+      fill: currentColor;
+    }
+
+    .acc-menu {
+      display: none;
+      position: absolute;
+      bottom: 60px;
+      left: 0;
+      width: 280px;
+      background: #0f141f;
+      border: 1px solid #1b2436;
+      border-radius: 14px;
+      padding: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      text-align: right;
+    }
+
+    .acc-menu.active {
+      display: block;
+    }
+
+    .acc-menu-header {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #00e699;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #1b2436;
+      padding-bottom: 8px;
+    }
+
+    .acc-close {
+      background: none;
+      border: none;
+      color: #8b9bb4;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    .acc-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .acc-opt-btn {
+      background: #07090e;
+      border: 1px solid #1b2436;
+      color: #f8fafc;
+      padding: 8px 6px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+      text-align: center;
+    }
+
+    .acc-opt-btn:hover, .acc-opt-btn.active-opt {
+      border-color: #00e699;
+      color: #00e699;
+    }
+
+    .acc-reset-btn {
+      grid-column: span 2;
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: #fca5a5;
+      padding: 8px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 4px;
     }
   </style>
 </head>
 <body>
+
+  <!-- כפתור ותפריט נגישות צף -->
+  <div class="acc-widget">
+    <button class="acc-btn" id="accToggle" aria-label="פתח תפריט נגישות" title="תפריט נגישות">
+      <svg viewBox="0 0 24 24"><path d="M12 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm9 7h-6v13h-2v-6h-2v6H9V9H3V7h18v2z"/></svg>
+    </button>
+    <div class="acc-menu" id="accMenu" role="dialog" aria-modal="true" aria-label="הגדרות נגישות">
+      <div class="acc-menu-header">
+        <span>התאמות נגישות</span>
+        <button class="acc-close" id="accClose" aria-label="סגור תפריט">&times;</button>
+      </div>
+      <div class="acc-options">
+        <button class="acc-opt-btn" id="btnFontPlus">הגדל טקסט (+)</button>
+        <button class="acc-opt-btn" id="btnFontMinus">הקטן טקסט (-)</button>
+        <button class="acc-opt-btn" id="btnGrayscale">גווני אפור</button>
+        <button class="acc-opt-btn" id="btnInvert">ניגודיות הפוכה</button>
+        <button class="acc-opt-btn" id="btnLinks">הדגש קישורים</button>
+        <button class="acc-opt-btn" id="btnReadable">גופן קריא</button>
+        <button class="acc-reset-btn" id="btnReset">איפוס התאמות</button>
+      </div>
+      <div style="margin-top: 10px; text-align: center; font-size: 0.75rem;">
+        <a href="/accessibility.html" style="color: var(--muted); text-decoration: underline;">לקריאת הצהרת הנגישות המלאה</a>
+      </div>
+    </div>
+  </div>
 
   <header>
     <h1>JobNet VIP</h1>
@@ -591,12 +764,23 @@
   </article>
 
   <footer>
-    <p>© 2026 JobNet VIP. כל הזכויות שמורות. החישוב מהווה סימולציה משוערת בלבד.</p>
+    <div class="legal-links">
+      <a href="/terms.html">תנאי שימוש</a>
+      <span>•</span>
+      <a href="/privacy.html">מדיניות פרטיות</a>
+      <span>•</span>
+      <a href="/accessibility.html">הצהרת נגישות</a>
+      <span>•</span>
+      <a href="mailto:support@jobnet.vip">יצירת קשר</a>
+    </div>
+    <p>© 2026 JobNet VIP. כל הזכויות שמורות. החישוב מהווה סימולציה משוערת בלבד ואינו מהווה ייעוץ פנסיוני, פיננסי או מס מוסמך.</p>
   </footer>
 
   <script>
+    /* =====================
+       מחשבון שכר 2026
+       ===================== */
     const CREDIT_POINT_VALUE = 242;
-
     const TAX_BRACKETS = [
       { limit: 7010, rate: 0.10 },
       { limit: 10060, rate: 0.14 },
@@ -606,7 +790,6 @@
       { limit: 60130, rate: 0.47 },
       { limit: Infinity, rate: 0.50 }
     ];
-
     const SS_LOWER_LIMIT = 7522;
     const SS_MAX_LIMIT = 49030;
     const SS_LOWER_RATE = 0.035;
@@ -623,7 +806,6 @@
 
       const taxableGross = gross + carValue;
 
-      // 1. מס הכנסה
       let grossTax = 0;
       let prevLimit = 0;
       for (const bracket of TAX_BRACKETS) {
@@ -631,15 +813,12 @@
           const taxableInBracket = Math.min(taxableGross, bracket.limit) - prevLimit;
           grossTax += taxableInBracket * bracket.rate;
           prevLimit = bracket.limit;
-        } else {
-          break;
-        }
+        } else break;
       }
 
       const taxCredits = creditPts * CREDIT_POINT_VALUE;
       const incomeTax = Math.max(0, grossTax - taxCredits);
 
-      // 2. ביטוח לאומי ומס בריאות
       let socialSecurity = 0;
       const ssBase = Math.min(taxableGross, SS_MAX_LIMIT);
       if (ssBase <= SS_LOWER_LIMIT) {
@@ -648,22 +827,18 @@
         socialSecurity = (SS_LOWER_LIMIT * SS_LOWER_RATE) + ((ssBase - SS_LOWER_LIMIT) * SS_UPPER_RATE);
       }
 
-      // 3. הפרשות עובד
       const pensionEmployee = gross * pensionRate;
       const studyFundEmployee = hasStudyFund ? (gross * 0.025) : 0;
 
-      // 4. שכר נטו
       const totalDeductions = incomeTax + socialSecurity + pensionEmployee + studyFundEmployee;
       const netSalary = Math.max(0, gross - totalDeductions);
 
-      // 5. עלות מעסיק
       const pensionEmployer = gross * 0.065;
       const compensationEmployer = gross * 0.06;
       const studyFundEmployer = hasStudyFund ? (gross * 0.075) : 0;
       const ssEmployer = (gross <= SS_LOWER_LIMIT) ? (gross * 0.0355) : ((SS_LOWER_LIMIT * 0.0355) + ((Math.min(gross, SS_MAX_LIMIT) - SS_LOWER_LIMIT) * 0.076));
       const totalEmployerCost = gross + pensionEmployer + compensationEmployer + studyFundEmployer + ssEmployer;
 
-      // עדכון ה-UI
       document.getElementById('netAmount').textContent = fmt(netSalary);
       document.getElementById('rowGross').textContent = fmt(gross);
       document.getElementById('rowTax').textContent = '-' + fmt(incomeTax);
@@ -672,7 +847,6 @@
       document.getElementById('rowStudy').textContent = '-' + fmt(studyFundEmployee);
       document.getElementById('rowEmployerCost').textContent = fmt(totalEmployerCost);
 
-      // עדכון בר התפלגות
       const total = gross || 1;
       document.getElementById('barNet').style.width = (netSalary / total * 100) + '%';
       document.getElementById('barTax').style.width = (incomeTax / total * 100) + '%';
@@ -685,8 +859,67 @@
       el.addEventListener('input', calculate);
       el.addEventListener('change', calculate);
     });
-
     calculate();
+
+    /* =====================
+       מנגנון סרגל נגישות עצמאי
+       ===================== */
+    const accToggle = document.getElementById('accToggle');
+    const accMenu = document.getElementById('accMenu');
+    const accClose = document.getElementById('accClose');
+
+    accToggle.addEventListener('click', () => accMenu.classList.toggle('active'));
+    accClose.addEventListener('click', () => accMenu.classList.remove('active'));
+
+    let currentFontSize = 16;
+    const btnFontPlus = document.getElementById('btnFontPlus');
+    const btnFontMinus = document.getElementById('btnFontMinus');
+    const btnGrayscale = document.getElementById('btnGrayscale');
+    const btnInvert = document.getElementById('btnInvert');
+    const btnLinks = document.getElementById('btnLinks');
+    const btnReadable = document.getElementById('btnReadable');
+    const btnReset = document.getElementById('btnReset');
+
+    btnFontPlus.addEventListener('click', () => {
+      if (currentFontSize < 22) {
+        currentFontSize += 2;
+        document.documentElement.style.fontSize = currentFontSize + 'px';
+      }
+    });
+
+    btnFontMinus.addEventListener('click', () => {
+      if (currentFontSize > 14) {
+        currentFontSize -= 2;
+        document.documentElement.style.fontSize = currentFontSize + 'px';
+      }
+    });
+
+    btnGrayscale.addEventListener('click', () => {
+      document.body.classList.toggle('acc-grayscale');
+      btnGrayscale.classList.toggle('active-opt');
+    });
+
+    btnInvert.addEventListener('click', () => {
+      document.body.classList.toggle('acc-invert');
+      btnInvert.classList.toggle('active-opt');
+    });
+
+    btnLinks.addEventListener('click', () => {
+      document.body.classList.toggle('acc-highlight-links');
+      btnLinks.classList.toggle('active-opt');
+    });
+
+    btnReadable.addEventListener('click', () => {
+      document.body.classList.toggle('acc-readable-font');
+      btnReadable.classList.toggle('active-opt');
+    });
+
+    btnReset.addEventListener('click', () => {
+      currentFontSize = 16;
+      document.documentElement.style.fontSize = '16px';
+      document.body.classList.remove('acc-grayscale', 'acc-invert', 'acc-highlight-links', 'acc-readable-font');
+      document.querySelectorAll('.acc-opt-btn').forEach(b => b.classList.remove('active-opt'));
+    });
   </script>
 </body>
 </html>
