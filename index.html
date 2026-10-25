@@ -4,19 +4,60 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JobNet VIP | מחשבון שכר ברוטו נטו מתקדם 2026</title>
-  <meta name="description" content="מחשבון שכר ברוטו נטו לשנת 2026 הכולל מדרגות מס, ביטוח לאומי, הפרשות לפנסיה, קרן השתלמות וחישוב נקודות זיכוי מדויק.">
+  <meta name="description" content="מחשבון שכר ברוטו נטו לשנת 2026. סימולטור שכר מדויק הכולל מדרגות מס הכנסה, ביטוח לאומי ומס בריאות, נקודות זיכוי, פנסיה, קרן השתלמות ועלות מעסיק מלאה.">
   <link rel="canonical" href="https://jobnet.vip/">
 
   <!-- נתוני Schema.org עבור SEO ומנועי בינה מלאכותית (GEO) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "JobNet VIP מחשבון שכר",
-    "url": "https://jobnet.vip",
-    "description": "מחשבון שכר ברוטו נטו וסימולטור עלויות מעביד לשנת 2026",
-    "applicationCategory": "FinanceApplication",
-    "operatingSystem": "All"
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "JobNet VIP מחשבון שכר",
+        "url": "https://jobnet.vip/",
+        "description": "מחשבון שכר ברוטו נטו וסימולטור עלויות מעביד מעודכן לשנת 2026",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "All"
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "מהו שווי נקודת זיכוי ממס הכנסה בשנת 2026?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "שווי נקודת זיכוי שנתית בשנת 2026 עומד על 2,904 ₪, שהם 242 ₪ לחודש עבור כל נקודת זיכוי. תושב ישראל זכאי ל-2.25 נקודות בסיס, ותושבת ישראל זכאית ל-2.75 נקודות בסיס."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "מהן חובות ההפרשה לפנסיה על פי חוק?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "צו הרחבה לפנסיית חובה קובע הפרשת מינימום כוללת של 18.5% משכר הבסיס: 6.0% הפרשת עובד לתגמולים, 6.5% הפרשת מעסיק לתגמולים, ו-6.0% הפרשת מעסיק לרכיב פיצויים."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "איך מחושב ביטוח לאומי ומס בריאות לשכיר?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "החישוב נעשה בשתי מדרגות: על חלק השכר שעד 7,522 ₪ לחודש משולם שיעור מופחת של 3.5% (ביטוח לאומי ובריאות יחד). על חלק השכר שמעל סכום זה ועד לתקרה של 49,030 ₪ משולם שיעור מלא של 12%."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "מה ההבדל בין שכר ברוטו לעלות מעסיק כוללת?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "שכר ברוטו הוא הסכום שמוסכם בין העובד למעסיק לפני ניכויי חובה. עלות מעסיק כוללת בנוסף לשכר הברוטו גם את הפרשות המעסיק לפנסיה (6.5%), פיצויים (6%), דמי ביטוח לאומי מעסיק, ולעיתים קרן השתלמות (7.5%), מה שמוסיף בין 16% ל-25% מעבר לשכר הברוטו."
+            }
+          }
+        ]
+      }
+    ]
   }
   </script>
 
@@ -26,7 +67,6 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-EKGZK9D1J6');
   </script>
 
@@ -58,6 +98,7 @@
       flex-direction: column;
       align-items: center;
       padding: 24px 16px;
+      line-height: 1.6;
     }
 
     header {
@@ -74,7 +115,7 @@
 
     header p {
       color: var(--muted);
-      font-size: 1rem;
+      font-size: 1.05rem;
       margin-top: 6px;
     }
 
@@ -82,11 +123,11 @@
       display: grid;
       grid-template-columns: 1fr;
       gap: 24px;
-      max-width: 1000px;
+      max-width: 1020px;
       width: 100%;
     }
 
-    @media (min-width: 768px) {
+    @media (min-width: 820px) {
       .main-grid {
         grid-template-columns: 1.1fr 1fr;
       }
@@ -168,7 +209,7 @@
       cursor: pointer;
     }
 
-    /* תוצאות */
+    /* תוצאות חישוב */
     .net-banner {
       background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(52, 211, 153, 0.15));
       border: 1px solid rgba(56, 189, 248, 0.3);
@@ -185,7 +226,7 @@
     }
 
     .net-banner .amount {
-      font-size: 2.4rem;
+      font-size: 2.5rem;
       font-weight: 800;
       color: var(--success);
     }
@@ -251,6 +292,93 @@
       border-radius: 50%;
     }
 
+    /* בלוק תוכן מורחב עבור SEO ו-GEO */
+    .content-section {
+      max-width: 1020px;
+      width: 100%;
+      margin-top: 36px;
+    }
+
+    .content-card {
+      background-color: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 24px;
+    }
+
+    .content-card h2 {
+      color: var(--accent);
+      font-size: 1.5rem;
+      margin-bottom: 16px;
+    }
+
+    .content-card h3 {
+      color: var(--text);
+      font-size: 1.2rem;
+      margin: 20px 0 10px 0;
+    }
+
+    .content-card p {
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      text-align: right;
+    }
+
+    .data-table th, .data-table td {
+      padding: 12px 14px;
+      border: 1px solid var(--card-border);
+      font-size: 0.95rem;
+    }
+
+    .data-table th {
+      background: #0f172a;
+      color: var(--accent);
+    }
+
+    .data-table tr:nth-child(even) {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--card-border);
+      padding: 16px 0;
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
+    .faq-q {
+      font-weight: 700;
+      color: var(--text);
+      font-size: 1.05rem;
+      margin-bottom: 8px;
+    }
+
+    .faq-a {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .embed-box {
+      background: #0b0f19;
+      border: 1px dashed var(--card-border);
+      border-radius: 8px;
+      padding: 14px;
+      font-family: monospace;
+      font-size: 0.85rem;
+      color: var(--accent);
+      word-break: break-all;
+      user-select: all;
+    }
+
     footer {
       margin-top: 40px;
       text-align: center;
@@ -263,7 +391,7 @@
 
   <header>
     <h1>JobNet VIP</h1>
-    <p>מחשבון שכר ברוטו-נטו מתקדם, מדויק ומהיר לשנת 2026</p>
+    <p>מחשבון שכר ברוטו-נטו וסימולטור עלויות מעביד מעודכן לשנת 2026</p>
   </header>
 
   <main class="main-grid">
@@ -307,7 +435,7 @@
       </div>
     </section>
 
-    <!-- הצגת תוצאות -->
+    <!-- תוצאות חישוב -->
     <section class="card">
       <h2>פירוט וניתוח הנטו</h2>
 
@@ -358,12 +486,88 @@
     </section>
   </main>
 
+  <!-- בלוק תוכן ל-SEO ו-GEO -->
+  <article class="content-section">
+    <div class="content-card">
+      <h2>איך מחושב השכר בישראל בשנת 2026?</h2>
+      <p>חישוב שכר נטו משכר ברוטו מורכב משלושה רכיבי ניכוי עיקריים שנקבעו בחוק: מס הכנסה ישיר, דמי ביטוח לאומי ומס בריאות, והפרשות לפנסיה סוציאלית וקרן השתלמות. הבנת המדרגות מאפשרת לעובדים לנהל מו״מ מדויק על חוזה העבודה ולדעת כמה כסף יישאר בבנק בפועל בסוף כל חודש.</p>
+
+      <h3>מדרגות מס הכנסה חודשיות לשנת 2026</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>מדרגת שכר (ברוטו חודשי)</th>
+            <th>שיעור מס</th>
+            <th>מס מקסימלי במדרגה</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>עד 7,010 ₪</td>
+            <td>10%</td>
+            <td>701 ₪</td>
+          </tr>
+          <tr>
+            <td>7,011 ₪ עד 10,060 ₪</td>
+            <td>14%</td>
+            <td>427 ₪</td>
+          </tr>
+          <tr>
+            <td>10,061 ₪ עד 16,150 ₪</td>
+            <td>20%</td>
+            <td>1,218 ₪</td>
+          </tr>
+          <tr>
+            <td>16,151 ₪ עד 22,440 ₪</td>
+            <td>31%</td>
+            <td>1,950 ₪</td>
+          </tr>
+          <tr>
+            <td>22,441 ₪ עד 46,690 ₪</td>
+            <td>35%</td>
+            <td>8,487 ₪</td>
+          </tr>
+          <tr>
+            <td>46,691 ₪ עד 60,130 ₪</td>
+            <td>47%</td>
+            <td>6,317 ₪</td>
+          </tr>
+          <tr>
+            <td>מעל 60,130 ₪</td>
+            <td>50%</td>
+            <td>לפי גובה השכר</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>שאלות נפוצות ותשובות מובנות</h3>
+      <div class="faq-item">
+        <div class="faq-q">כמה שווה נקודת זיכוי בשנת 2026?</div>
+        <div class="faq-a">שווי נקודת זיכוי חודשית עומד על 242 ₪ (2,904 ₪ בשנה). תושב ישראל זכאי אוטומטית ל-2.25 נקודות (הפחתה של 544.5 ₪ מהמס החודשי), ותושבת ישראל זכאית ל-2.75 נקודות (הפחתה של 665.5 ₪). הורים לילדים זכאים לנקודות זיכוי נוספות המפחיתות משמעותית את תשלום המס.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">מהן חובות ההפרשה לפנסיה וקרן השתלמות?</div>
+        <div class="faq-a">על פי צו הרחבה לפנסיית חובה, שיעור ההפרשה הכולל הוא 18.5%: 6% חלק העובד, 6.5% תגמולי מעסיק ו-6% פיצויי מעסיק. קרן השתלמות אינה חובה על פי חוק אלא אם נקבעה בהסכם קיבוצי או אישי, והשיעור המקובל הוא 2.5% הפרשת עובד ו-7.5% הפרשת מעסיק הפטורים ממס עד לתקרה.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">איך מחושב שווי שימוש ברכב צמוד?</div>
+        <div class="faq-a">עובד המקבל רכב צמוד מהמעסיק מחויב בזקיפת הטבה הנקראת 'שווי שימוש ברכב'. סכום זה (בדרך כלל 2.48% מעלות הרכב החדש) מתווסף לשכר הברוטו לצורכי חישוב מס הכנסה וביטוח לאומי, אך אינו משולם לעובד במזומן, מה שמקטין את שכר הנטו בפועל.</div>
+      </div>
+
+      <h3 style="margin-top: 28px;">הטמעת המחשבון באתרים חיצוניים (Backlinks Generator)</h3>
+      <p>בעלי אתרים, בלוגים כלכליים ומנהלי פורומים מוזמנים להטמיע את המחשבון באתר שלהם בחינם באמצעות העתקת הקוד הבא:</p>
+      <div class="embed-box">
+        &lt;iframe src="https://jobnet.vip/" width="100%" height="700" frameborder="0" title="JobNet VIP מחשבון שכר"&gt;&lt;/iframe&gt;
+        &lt;p style="font-size:12px;text-align:center;"&gt;מחשבון שכר באדיבות &lt;a href="https://jobnet.vip/" target="_blank" rel="noopener"&gt;JobNet VIP&lt;/a&gt;&lt;/p&gt;
+      </div>
+    </div>
+  </article>
+
   <footer>
     <p>© 2026 JobNet VIP. כל הזכויות שמורות. החישוב מהווה סימולציה משוערת בלבד.</p>
   </footer>
 
   <script>
-    // ערכי מס וביטוח לאומי מעודכנים (2026)
     const CREDIT_POINT_VALUE = 242;
 
     const TAX_BRACKETS = [
@@ -417,11 +621,11 @@
         socialSecurity = (SS_LOWER_LIMIT * SS_LOWER_RATE) + ((ssBase - SS_LOWER_LIMIT) * SS_UPPER_RATE);
       }
 
-      // 3. הפרשות סוציאליות
+      // 3. הפרשות עובד
       const pensionEmployee = gross * pensionRate;
       const studyFundEmployee = hasStudyFund ? (gross * 0.025) : 0;
 
-      // 4. נטו סופי
+      // 4. שכר נטו
       const totalDeductions = incomeTax + socialSecurity + pensionEmployee + studyFundEmployee;
       const netSalary = Math.max(0, gross - totalDeductions);
 
@@ -432,7 +636,7 @@
       const ssEmployer = (gross <= SS_LOWER_LIMIT) ? (gross * 0.0355) : ((SS_LOWER_LIMIT * 0.0355) + ((Math.min(gross, SS_MAX_LIMIT) - SS_LOWER_LIMIT) * 0.076));
       const totalEmployerCost = gross + pensionEmployer + compensationEmployer + studyFundEmployer + ssEmployer;
 
-      // עדכון הנתונים בעמוד
+      // עדכון ה-UI
       document.getElementById('netAmount').textContent = fmt(netSalary);
       document.getElementById('rowGross').textContent = fmt(gross);
       document.getElementById('rowTax').textContent = '-' + fmt(incomeTax);
