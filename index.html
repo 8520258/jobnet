@@ -7,7 +7,7 @@
   <meta name="description" content="מחשבון שכר ברוטו נטו לשנת 2026 הכולל מדרגות מס, ביטוח לאומי, הפרשות לפנסיה, קרן השתלמות וחישוב נקודות זיכוי מדויק.">
   <link rel="canonical" href="https://jobnet.vip/">
 
-  <!-- נתוני Schema.org עבור SEO ובינה מלאכותית (GEO) -->
+  <!-- נתוני Schema.org עבור SEO ומנועי בינה מלאכותית (GEO) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -21,12 +21,13 @@
   </script>
 
   <!-- Google tag (gtag.js) - Google Analytics 4 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EKGZK9D1J6"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-XXXXXXXXXX');
+
+    gtag('config', 'G-EKGZK9D1J6');
   </script>
 
   <style>
@@ -362,10 +363,9 @@
   </footer>
 
   <script>
-    // ערכי מס וביטוח לאומי מעודכנים (מדד 2026)
-    const CREDIT_POINT_VALUE = 242; // ערך נקודת זיכוי חודשית
+    // ערכי מס וביטוח לאומי מעודכנים (2026)
+    const CREDIT_POINT_VALUE = 242;
 
-    // מדרגות מס הכנסה חודשיות
     const TAX_BRACKETS = [
       { limit: 7010, rate: 0.10 },
       { limit: 10060, rate: 0.14 },
@@ -376,11 +376,10 @@
       { limit: Infinity, rate: 0.50 }
     ];
 
-    // ביטוח לאומי ומס בריאות
-    const SS_LOWER_LIMIT = 7522; // סף מדרגה מופחתת
-    const SS_MAX_LIMIT = 49030;  // תקרת ביטוח לאומי
-    const SS_LOWER_RATE = 0.035; // 3.5% משולב מופחת
-    const SS_UPPER_RATE = 0.12;  // 12% משולב מעל הסף
+    const SS_LOWER_LIMIT = 7522;
+    const SS_MAX_LIMIT = 49030;
+    const SS_LOWER_RATE = 0.035;
+    const SS_UPPER_RATE = 0.12;
 
     const fmt = num => '₪' + Math.round(num).toLocaleString('he-IL');
 
@@ -393,7 +392,7 @@
 
       const taxableGross = gross + carValue;
 
-      // 1. חישוב מס הכנסה ברוטו
+      // 1. מס הכנסה
       let grossTax = 0;
       let prevLimit = 0;
       for (const bracket of TAX_BRACKETS) {
@@ -406,7 +405,6 @@
         }
       }
 
-      // קיזוז נקודות זיכוי
       const taxCredits = creditPts * CREDIT_POINT_VALUE;
       const incomeTax = Math.max(0, grossTax - taxCredits);
 
@@ -419,7 +417,7 @@
         socialSecurity = (SS_LOWER_LIMIT * SS_LOWER_RATE) + ((ssBase - SS_LOWER_LIMIT) * SS_UPPER_RATE);
       }
 
-      // 3. הפרשות סוציאליות עובד
+      // 3. הפרשות סוציאליות
       const pensionEmployee = gross * pensionRate;
       const studyFundEmployee = hasStudyFund ? (gross * 0.025) : 0;
 
@@ -428,13 +426,13 @@
       const netSalary = Math.max(0, gross - totalDeductions);
 
       // 5. עלות מעסיק
-      const pensionEmployer = gross * 0.065; // תגמולים 6.5%
-      const compensationEmployer = gross * 0.06; // פיצויים 6%
-      const studyFundEmployer = hasStudyFund ? (gross * 0.075) : 0; // השתלמות מעסיק 7.5%
+      const pensionEmployer = gross * 0.065;
+      const compensationEmployer = gross * 0.06;
+      const studyFundEmployer = hasStudyFund ? (gross * 0.075) : 0;
       const ssEmployer = (gross <= SS_LOWER_LIMIT) ? (gross * 0.0355) : ((SS_LOWER_LIMIT * 0.0355) + ((Math.min(gross, SS_MAX_LIMIT) - SS_LOWER_LIMIT) * 0.076));
       const totalEmployerCost = gross + pensionEmployer + compensationEmployer + studyFundEmployer + ssEmployer;
 
-      // עדכון ה-UI
+      // עדכון הנתונים בעמוד
       document.getElementById('netAmount').textContent = fmt(netSalary);
       document.getElementById('rowGross').textContent = fmt(gross);
       document.getElementById('rowTax').textContent = '-' + fmt(incomeTax);
@@ -443,7 +441,7 @@
       document.getElementById('rowStudy').textContent = '-' + fmt(studyFundEmployee);
       document.getElementById('rowEmployerCost').textContent = fmt(totalEmployerCost);
 
-      // עדכון בר ויזואלי
+      // עדכון בר התפלגות
       const total = gross || 1;
       document.getElementById('barNet').style.width = (netSalary / total * 100) + '%';
       document.getElementById('barTax').style.width = (incomeTax / total * 100) + '%';
@@ -451,14 +449,12 @@
       document.getElementById('barPension').style.width = ((pensionEmployee + studyFundEmployee) / total * 100) + '%';
     }
 
-    // מאזינים לעדכון חי מיידי בכל שינוי
     ['gross', 'creditPoints', 'pensionRate', 'studyFund', 'carValue'].forEach(id => {
       const el = document.getElementById(id);
       el.addEventListener('input', calculate);
       el.addEventListener('change', calculate);
     });
 
-    // הרצה ראשונית
     calculate();
   </script>
 </body>
