@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>יצירת קשר | JobNet VIP מחשבון שכר</title>
+  <meta name="description" content="יצירת קשר עם צוות JobNet VIP. פניות בנושאי דיוק חישובים, הצעות לשיפור, נגישות ושיתופי פעולה.">
+  <link rel="canonical" href="https://jobnet.vip/contact.html">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EKGZK9D1J6"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-EKGZK9D1J6');
+  </script>
+  <style>
+    :root {
+      --bg: #07090e; --card: #0f141f; --card-border: #1b2436;
+      --accent: #00e699; --accent-hover: #0ac18e; --text: #f8fafc; --muted: #8b9bb4;
+      --font-base: 16px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, sans-serif; }
+    html { font-size: var(--font-base); }
+    body { background-color: var(--bg); color: var(--text); min-height: 100vh; padding: 24px 16px; line-height: 1.7; display: flex; flex-direction: column; align-items: center; transition: filter 0.2s; }
+    body.acc-grayscale { filter: grayscale(100%); }
+    body.acc-invert { filter: invert(100%) hue-rotate(180deg); }
+    body.acc-highlight-links a { text-decoration: underline !important; background-color: #ffff00 !important; color: #000 !important; }
+    body.acc-readable-font * { font-family: Arial, Tahoma, sans-serif !important; }
+
+    header { text-align: center; margin-bottom: 24px; }
+    header h1 { font-size: 2.3rem; font-weight: 800; color: var(--accent); }
+    header p { color: var(--muted); font-size: 1.05rem; margin-top: 6px; }
+    .sub-nav { display: flex; gap: 12px; justify-content: center; margin-top: 14px; flex-wrap: wrap; }
+    .sub-nav a { color: var(--text); background: var(--card); border: 1px solid var(--card-border); padding: 8px 18px; border-radius: 20px; text-decoration: none; font-size: 0.9rem; font-weight: 600; }
+    .sub-nav a:hover { border-color: var(--accent); color: var(--accent); }
+    .container { max-width: 700px; width: 100%; }
+    .card { background-color: var(--card); border: 1px solid var(--card-border); border-radius: 16px; padding: 32px; margin-bottom: 24px; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4); }
+    h2 { font-size: 1.4rem; color: var(--accent); margin-bottom: 12px; border-bottom: 1px solid var(--card-border); padding-bottom: 6px; }
+    p { color: var(--muted); margin-bottom: 20px; }
+
+    .form-group { margin-bottom: 18px; }
+    .form-group label { display: block; font-size: 0.9rem; font-weight: 600; margin-bottom: 6px; color: var(--text); }
+    .form-group input, .form-group textarea, .form-group select {
+      width: 100%; background: #07090e; border: 1px solid var(--card-border); border-radius: 8px;
+      padding: 12px 14px; color: #fff; font-size: 1rem; outline: none; transition: border-color 0.2s;
+    }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+      border-color: var(--accent);
+    }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+
+    .submit-btn {
+      width: 100%; background: var(--accent); color: #07090e; border: none; border-radius: 8px;
+      padding: 14px; font-size: 1.05rem; font-weight: 700; cursor: pointer; transition: background-color 0.2s, transform 0.1s;
+    }
+    .submit-btn:hover { background: var(--accent-hover); }
+    .submit-btn:active { transform: scale(0.99); }
+
+    .status-msg { margin-top: 14px; text-align: center; font-size: 0.95rem; font-weight: 600; display: none; }
+    .status-msg.success { color: #00e699; display: block; }
+    .status-msg.error { color: #ef4444; display: block; }
+
+    footer { margin-top: 40px; text-align: center; font-size: 0.85rem; color: var(--muted); width: 100%; border-top: 1px solid var(--card-border); padding-top: 20px; }
+    .legal-links { display: flex; justify-content: center; gap: 16px; margin-bottom: 10px; flex-wrap: wrap; }
+    .legal-links a { color: var(--muted); text-decoration: none; }
+    .legal-links a:hover, .legal-links a.active { color: var(--accent); text-decoration: underline; }
+
+    /* רכיב נגישות */
+    .acc-widget { position: fixed; bottom: 24px; left: 24px; z-index: 9999; }
+    .acc-btn { width: 48px; height: 48px; border-radius: 50%; background: #00e699; color: #07090e; border: 2px solid #1b2436; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+    .acc-btn svg { width: 26px; height: 26px; fill: currentColor; }
+    .acc-menu { display: none; position: absolute; bottom: 60px; left: 0; width: 280px; background: #0f141f; border: 1px solid #1b2436; border-radius: 14px; padding: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.6); text-align: right; }
+    .acc-menu.active { display: block; }
+    .acc-menu-header { font-size: 1rem; font-weight: 700; color: #00e699; margin-bottom: 12px; display: flex; justify-content: space-between; border-bottom: 1px solid #1b2436; padding-bottom: 8px; }
+    .acc-close { background: none; border: none; color: #8b9bb4; font-size: 1.2rem; cursor: pointer; }
+    .acc-options { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .acc-opt-btn { background: #07090e; border: 1px solid #1b2436; color: #f8fafc; padding: 8px 6px; border-radius: 8px; font-size: 0.8rem; font-weight: 600; cursor: pointer; text-align: center; }
+    .acc-opt-btn:hover, .acc-opt-btn.active-opt { border-color: #00e699; color: #00e699; }
+    .acc-reset-btn { grid-column: span 2; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #fca5a5; padding: 8px; border-radius: 8px; font-size: 0.8rem; font-weight: 700; cursor: pointer; margin-top: 4px; }
+  </style>
+</head>
+<body>
+
+  <!-- כפתור נגישות צף -->
+  <div class="acc-widget">
+    <button class="acc-btn" id="accToggle" aria-label="פתח תפריט נגישות" title="תפריט נגישות">
+      <svg viewBox="0 0 24 24"><path d="M12 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm9 7h-6v13h-2v-6h-2v6H9V9H3V7h18v2z"/></svg>
+    </button>
+    <div class="acc-menu" id="accMenu" role="dialog" aria-modal="true">
+      <div class="acc-menu-header">
+        <span>התאמות נגישות</span>
+        <button class="acc-close" id="accClose">&times;</button>
+      </div>
+      <div class="acc-options">
+        <button class="acc-opt-btn" id="btnFontPlus">הגדל טקסט (+)</button>
+        <button class="acc-opt-btn" id="btnFontMinus">הקטן טקסט (-)</button>
+        <button class="acc-opt-btn" id="btnGrayscale">גווני אפור</button>
+        <button class="acc-opt-btn" id="btnInvert">ניגודיות הפוכה</button>
+        <button class="acc-opt-btn" id="btnLinks">הדגש קישורים</button>
+        <button class="acc-opt-btn" id="btnReadable">גופן קריא</button>
+        <button class="acc-reset-btn" id="btnReset">איפוס התאמות</button>
+      </div>
+    </div>
+  </div>
+
+  <header>
+    <h1>JobNet VIP</h1>
+    <p>מחשבון שכר ברוטו-נטו וסימולטור עלויות מעביד מעודכן לשנת 2026</p>
+    <div class="sub-nav">
+      <a href="/">מחשבון כללי</a>
+      <a href="/tech-salary.html">מחשבון שכר הייטק</a>
+      <a href="/minimum-wage.html">שכר מינימום ושעות נוספות</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="card">
+      <h2>טופס יצירת קשר</h2>
+      <p>מצאתם אי-דיוק בחישוב? יש לכם הצעה לשיפור הסימולטור או פנייה בנושא נגישות? מלאו את הטופס ונחזור אליכם בהקדם.</p>
+
+      <form id="contactForm" action="https://formspree.io/f/jobnet" method="POST">
+        <div class="form-group">
+          <label for="name">שם מלא / כינוי</label>
+          <input type="text" id="name" name="name" required placeholder="ישראל ישראלי">
+        </div>
+
+        <div class="form-group">
+          <label for="email">כתובת אימייל למענה</label>
+          <input type="email" id="email" name="email" required placeholder="yourname@example.com">
+        </div>
+
+        <div class="form-group">
+          <label for="subject">נושא הפנייה</label>
+          <select id="subject" name="subject">
+            <option value="משוב על המחשבון">משוב / דיוק חישוב שכר</option>
+            <option value="פנייה בנושא נגישות">פנייה לרכז הנגישות</option>
+            <option value="הצעת שיתוף פעולה">שיתוף פעולה / הטמעת מחשבון</option>
+            <option value="אחר">אחר</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="message">תוכן ההודעה</label>
+          <textarea id="message" name="message" required placeholder="כתבו כאן את פרטי פנייתכם..."></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn" id="submitBtn">שליחת הודעה</button>
+        <div class="status-msg" id="statusMsg"></div>
+      </form>
+    </div>
+  </main>
+
+  <footer>
+    <div class="legal-links">
+      <a href="/about.html">אודות המיזם</a>
+      <span>•</span>
+      <a href="/resources.html">זכויות עובדים ומקורות מידע</a>
+      <span>•</span>
+      <a href="/terms.html">תנאי שימוש</a>
+      <span>•</span>
+      <a href="/privacy.html">מדיניות פרטיות</a>
+      <span>•</span>
+      <a href="/accessibility.html">הצהרת נגישות</a>
+      <span>•</span>
+      <a href="/contact.html" class="active">יצירת קשר</a>
+    </div>
+    <p>© 2026 JobNet VIP. כל הזכויות שמורות. החישוב מהווה סימולציה משוערת בלבד.</p>
+  </footer>
+
+  <script>
+    // שליחת טופס דרך AJAX
+    const form = document.getElementById('contactForm');
+    const statusMsg = document.getElementById('statusMsg');
+    const submitBtn = document.getElementById('submitBtn');
+
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'שולח...';
+      statusMsg.className = 'status-msg';
+
+      const data = new FormData(form);
+      try {
+        const response = await fetch('https://formsubmit.co/ajax/jobnet@gmail.com', {
+          method: 'POST',
+          body: data,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+        if (response.ok) {
+          statusMsg.textContent = 'תודה! הודעתך נשלחה בהצלחה ונענה בהקדם.';
+          statusMsg.classList.add('success');
+          form.reset();
+        } else {
+          statusMsg.textContent = 'חלה שגיאה בשליחה. אנא נסה שוב מאוחר יותר.';
+          statusMsg.classList.add('error');
+        }
+      } catch (err) {
+        statusMsg.textContent = 'שגיאת תקשורת. אנא בדוק את החיבור לרשת ונסה שוב.';
+        statusMsg.classList.add('error');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'שליחת הודעה';
+      }
+    });
+
+    // רכיב נגישות
+    const accToggle = document.getElementById('accToggle');
+    const accMenu = document.getElementById('accMenu');
+    const accClose = document.getElementById('accClose');
+    accToggle.addEventListener('click', () => accMenu.classList.toggle('active'));
+    accClose.addEventListener('click', () => accMenu.classList.remove('active'));
+
+    let currentFontSize = 16;
+    document.getElementById('btnFontPlus').addEventListener('click', () => { if (currentFontSize < 22) { currentFontSize += 2; document.documentElement.style.fontSize = currentFontSize + 'px'; } });
+    document.getElementById('btnFontMinus').addEventListener('click', () => { if (currentFontSize > 14) { currentFontSize -= 2; document.documentElement.style.fontSize = currentFontSize + 'px'; } });
+    document.getElementById('btnGrayscale').addEventListener('click', e => { document.body.classList.toggle('acc-grayscale'); e.target.classList.toggle('active-opt'); });
+    document.getElementById('btnInvert').addEventListener('click', e => { document.body.classList.toggle('acc-invert'); e.target.classList.toggle('active-opt'); });
+    document.getElementById('btnLinks').addEventListener('click', e => { document.body.classList.toggle('acc-highlight-links'); e.target.classList.toggle('active-opt'); });
+    document.getElementById('btnReadable').addEventListener('click', e => { document.body.classList.toggle('acc-readable-font'); e.target.classList.toggle('active-opt'); });
+    document.getElementById('btnReset').addEventListener('click', () => {
+      currentFontSize = 16;
+      document.documentElement.style.fontSize = '16px';
+      document.body.classList.remove('acc-grayscale', 'acc-invert', 'acc-highlight-links', 'acc-readable-font');
+      document.querySelectorAll('.acc-opt-btn').forEach(b => b.classList.remove('active-opt'));
+    });
+  </script>
+</body>
+</html>
