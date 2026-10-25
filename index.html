@@ -107,7 +107,6 @@
       transition: filter 0.2s, background-color 0.2s;
     }
 
-    /* מחלקות נגישות מיוחדות */
     body.acc-grayscale { filter: grayscale(100%); }
     body.acc-invert { filter: invert(100%) hue-rotate(180deg); }
     body.acc-highlight-links a { text-decoration: underline !important; background-color: #ffff00 !important; color: #000 !important; }
@@ -444,14 +443,12 @@
       transition: color 0.2s;
     }
 
-    .legal-links a:hover {
+    .legal-links a:hover, .legal-links a.active {
       color: var(--accent);
       text-decoration: underline;
     }
 
-    /* =========================================
-       רכיב נגישות צף מודרני (Accessibility Widget)
-       ========================================= */
+    /* רכיב נגישות */
     .acc-widget {
       position: fixed;
       bottom: 24px;
@@ -765,21 +762,22 @@
 
   <footer>
     <div class="legal-links">
+      <a href="/about.html">אודות המיזם</a>
+      <span>•</span>
+      <a href="/resources.html">זכויות עובדים ומקורות מידע</a>
+      <span>•</span>
       <a href="/terms.html">תנאי שימוש</a>
       <span>•</span>
       <a href="/privacy.html">מדיניות פרטיות</a>
       <span>•</span>
       <a href="/accessibility.html">הצהרת נגישות</a>
       <span>•</span>
-      <a href="mailto:support@jobnet.vip">יצירת קשר</a>
+      <a href="/contact.html">יצירת קשר</a>
     </div>
     <p>© 2026 JobNet VIP. כל הזכויות שמורות. החישוב מהווה סימולציה משוערת בלבד ואינו מהווה ייעוץ פנסיוני, פיננסי או מס מוסמך.</p>
   </footer>
 
   <script>
-    /* =====================
-       מחשבון שכר 2026
-       ===================== */
     const CREDIT_POINT_VALUE = 242;
     const TAX_BRACKETS = [
       { limit: 7010, rate: 0.10 },
@@ -861,9 +859,6 @@
     });
     calculate();
 
-    /* =====================
-       מנגנון סרגל נגישות עצמאי
-       ===================== */
     const accToggle = document.getElementById('accToggle');
     const accMenu = document.getElementById('accMenu');
     const accClose = document.getElementById('accClose');
