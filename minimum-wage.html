@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>מחשבון שכר מינימום ושעות נוספות 2026 | JobNet VIP</title>
+  <meta name="description" content="מחשבון שכר מינימום שעתי וחודשי לשנת 2026 בישראל. חישוב מדויק של שעות נוספות (125%, 150%), שעות שבת וחג לפי חוק שעות עבודה ומנוחה.">
+  <link rel="canonical" href="https://jobnet.vip/minimum-wage.html">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "מחשבון שכר מינימום ושעות נוספות JobNet VIP",
+    "url": "https://jobnet.vip/minimum-wage.html",
+    "description": "סימולטור שכר מינימום שעתי וחישוב תעריפי שעות נוספות",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "All"
+  }
+  </script>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EKGZK9D1J6"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-EKGZK9D1J6');
+  </script>
+
+  <style>
+    :root {
+      --bg: #07090e;
+      --card: #0f141f;
+      --border: #1b2436;
+      --accent: #00e699;
+      --text: #f8fafc;
+      --muted: #8b9bb4;
+      --highlight: #38bdf8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, sans-serif; }
+    body { background-color: var(--bg); color: var(--text); min-height: 100vh; padding: 24px 16px; line-height: 1.6; display: flex; flex-direction: column; align-items: center; }
+    .nav { width: 100%; max-width: 900px; margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center; }
+    .nav a { color: var(--accent); text-decoration: none; font-weight: 700; font-size: 1.05rem; }
+    .container { max-width: 900px; width: 100%; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 28px; margin-bottom: 24px; }
+    h1 { font-size: 2rem; color: var(--accent); margin-bottom: 8px; }
+    h2 { font-size: 1.3rem; margin: 20px 0 10px 0; color: #fff; }
+    p { color: var(--muted); margin-bottom: 14px; }
+    .rate-banner { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 20px 0; }
+    .rate-box { background: #07090e; border: 1px solid var(--border); border-radius: 10px; padding: 16px; text-align: center; }
+    .rate-title { font-size: 0.85rem; color: var(--muted); }
+    .rate-val { font-size: 1.6rem; font-weight: 800; color: var(--accent); margin-top: 4px; }
+    .field { margin-bottom: 16px; }
+    .field label { display: block; font-size: 0.9rem; margin-bottom: 6px; font-weight: 600; }
+    .field input { width: 100%; background: #07090e; border: 1px solid var(--border); border-radius: 8px; padding: 12px; color: #fff; font-size: 1rem; outline: none; }
+    .field input:focus { border-color: var(--accent); }
+    .result-box { background: rgba(0, 230, 153, 0.08); border: 1px solid rgba(0, 230, 153, 0.3); border-radius: 12px; padding: 20px; text-align: center; margin-top: 20px; }
+    .result-val { font-size: 2.2rem; font-weight: 800; color: var(--accent); }
+    .breakdown-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05); font-size: 0.95rem; }
+    .back-link { display: inline-block; margin-top: 10px; color: var(--accent); text-decoration: none; font-weight: bold; }
+    .back-link:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <div class="nav">
+    <a href="/">← חזרה למחשבון השכר הראשי (JobNet VIP)</a>
+  </div>
+
+  <main class="container">
+    <div class="card">
+      <h1>מחשבון שכר מינימום ושעות נוספות 2026</h1>
+      <p>סימולטור לחישוב שכר עבודה שעתי, גמול שעות נוספות (125% ו-150%) לפי היקף השעות החודשי המעודכן.</p>
+
+      <div class="rate-banner">
+        <div class="rate-box">
+          <div class="rate-title">שכר מינימום חודשי (משרה מלאה)</div>
+          <div class="rate-val">₪5,880</div>
+        </div>
+        <div class="rate-box">
+          <div class="rate-title">שכר מינימום שעתי (בסיס 182 שעות)</div>
+          <div class="rate-val">₪32.31</div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="hourlyRate">שכר שעתי בפועל (₪ לשעה)</label>
+        <input type="number" id="hourlyRate" value="32.31" step="0.5">
+      </div>
+
+      <div class="field">
+        <label for="regularHours">שעות רגילות בחודש (עד 182 שעות)</label>
+        <input type="number" id="regularHours" value="182" step="1">
+      </div>
+
+      <div class="field">
+        <label for="ot125">שעות נוספות בתעריף 125% (שעתיים ראשונות ליום)</label>
+        <input type="number" id="ot125" value="10" step="1">
+      </div>
+
+      <div class="field">
+        <label for="ot150">שעות נוספות בתעריף 150% (מעבר לשעתיים / שבת וחג)</label>
+        <input type="number" id="ot150" value="5" step="1">
+      </div>
+
+      <div class="result-box">
+        <div style="font-size:0.95rem; color:var(--muted);">סך שכר ברוטו לתשלום (כולל שעות נוספות):</div>
+        <div class="result-val" id="totalWage">₪0</div>
+      </div>
+
+      <div style="margin-top: 16px;">
+        <div class="breakdown-row"><span>שכר שעות רגילות:</span><span id="basePay">₪0</span></div>
+        <div class="breakdown-row"><span>תוספת שעות 125%:</span><span id="ot125Pay">₪0</span></div>
+        <div class="breakdown-row"><span>תוספת שעות 150%:</span><span id="ot150Pay">₪0</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>חוק שעות עבודה ומנוחה – עיקרי הכללים לשנת 2026</h2>
+      <p><strong>חלוקת שעות העבודה:</strong> שבוע העבודה בישראל עומד על 42 שעות שבועיות, והיקף שעות חודשי מלא למשרה מלאה מחושב לפי 182 שעות בחודש.</p>
+      
+      <p><strong>חישוב שעות נוספות:</strong> עבור שתי השעות הנוספות הראשונות ביום עבודה זכאי העובד לתוספת של 25% (סך הכל 125% משכרו השעתי הרגיל). החל מהשעה הנוספת השלישית ואילך, זכאי העובד לתוספת של 50% (סך הכל 150%).</p>
+
+      <p><strong>עבודה בשבתות ובחגים:</strong> עובד המועסק במנוחה השבועית זכאי לתשלום של לפחות 150% משכרו עבור שעות הבסיס, ושעות נוספות בשבת מחושבות בשיעור של 175% ו-200%.</p>
+
+      <p>רוצים לדעת כמה יישאר לכם בנטו לאחר ניכויי מס והפרשות פנסיה? היכנסו ל<a class="back-link" href="/">מחשבון השכר המרכזי של JobNet VIP</a>.</p>
+    </div>
+  </main>
+
+  <script>
+    function calcWage() {
+      const rate = parseFloat(document.getElementById('hourlyRate').value) || 0;
+      const regH = parseFloat(document.getElementById('regularHours').value) || 0;
+      const ot125H = parseFloat(document.getElementById('ot125').value) || 0;
+      const ot150H = parseFloat(document.getElementById('ot150').value) || 0;
+
+      const base = regH * rate;
+      const p125 = ot125H * rate * 1.25;
+      const p150 = ot150H * rate * 1.50;
+      const total = base + p125 + p150;
+
+      const fmt = n => '₪' + Math.round(n).toLocaleString('he-IL');
+      document.getElementById('totalWage').textContent = fmt(total);
+      document.getElementById('basePay').textContent = fmt(base);
+      document.getElementById('ot125Pay').textContent = fmt(p125);
+      document.getElementById('ot150Pay').textContent = fmt(p150);
+    }
+
+    ['hourlyRate', 'regularHours', 'ot125', 'ot150'].forEach(id => {
+      document.getElementById(id).addEventListener('input', calcWage);
+    });
+    calcWage();
+  </script>
+</body>
+</html>
