@@ -1,10 +1,11 @@
 /* ==========================================================================
    JobNet VIP - קוד משותף לכל עמודי האתר
-   מזריק אוטומטית: הדר עליון, פוטר אחיד (כולל v2.4), סרגל נגישות צף ואנליטיקס
+   עיצוב פינטק עשיר ומודרני (בהשראת Bitcoin.com)
+   מזריק: הדר עם אייקונים ובאדג'ים, פוטר אחיד (כולל v2.4), סרגל נגישות ואנליטיקס
    ========================================================================== */
 
 (function () {
-  // 1. Google Analytics 4 טעינה דינמית
+  // 1. Google Analytics 4
   const gaId = 'G-EKGZK9D1J6';
   const gaScript = document.createElement('script');
   gaScript.async = true;
@@ -19,23 +20,39 @@
   document.addEventListener('DOMContentLoaded', () => {
     const currentPath = window.location.pathname.replace(/\/$/, '') || '/';
 
-    // 2. הזרקת הדר עליון כולל כלי ה-ATS
+    // 2. הזרקת הדר מעוצב עשיר עם אייקונים צבעוניים
     if (!document.querySelector('header')) {
       const header = document.createElement('header');
       header.innerHTML = `
+        <div class="brand-badge">
+          <span class="pill">חדש</span>
+          <span>מערכת חישוב שכר ודיני עבודה 2026</span>
+        </div>
         <h1>JobNet VIP</h1>
-        <p>מחשבון שכר ברוטו-נטו וסימולטור עלויות מעביד מעודכן לשנת 2026</p>
+        <p>פלטפורמת הפינטק המובילה בישראל לחישוב שכר נטו, עלויות מעביד וסריקת קורות חיים</p>
         <div class="sub-nav">
-          <a href="/" class="${currentPath === '/' || currentPath === '/index.html' ? 'active' : ''}">מחשבון כללי</a>
-          <a href="/tech-salary.html" class="${currentPath.includes('tech-salary') ? 'active' : ''}">מחשבון שכר הייטק</a>
-          <a href="/minimum-wage.html" class="${currentPath.includes('minimum-wage') ? 'active' : ''}">שכר מינימום ושעות נוספות</a>
-          <a href="/cv-ats.html" class="${currentPath.includes('cv-ats') ? 'active' : ''}">בודק קורות חיים ל-ATS</a>
+          <a href="/" class="${currentPath === '/' || currentPath === '/index.html' ? 'active' : ''}">
+            <span class="nav-icon" style="background: rgba(0, 82, 255, 0.2); color: #3b82f6;">📊</span>
+            <span>מחשבון כללי</span>
+          </a>
+          <a href="/tech-salary.html" class="${currentPath.includes('tech-salary') ? 'active' : ''}">
+            <span class="nav-icon" style="background: rgba(168, 85, 247, 0.2); color: #c084fc;">⚡</span>
+            <span>שכר הייטק</span>
+          </a>
+          <a href="/minimum-wage.html" class="${currentPath.includes('minimum-wage') ? 'active' : ''}">
+            <span class="nav-icon" style="background: rgba(247, 147, 26, 0.2); color: #f7931a;">⏱️</span>
+            <span>שכר מינימום ושעות</span>
+          </a>
+          <a href="/cv-ats.html" class="${currentPath.includes('cv-ats') ? 'active' : ''}">
+            <span class="nav-icon" style="background: rgba(5, 177, 105, 0.2); color: #34d399;">🤖</span>
+            <span>בודק קורות חיים ל-ATS</span>
+          </a>
         </div>
       `;
       document.body.insertBefore(header, document.body.firstChild);
     }
 
-    // 3. הזרקת פוטר אחיד כולל סימון גרסה דיסקרטי
+    // 3. הזרקת פוטר מרכזי עם v2.4
     if (!document.querySelector('footer')) {
       const footer = document.createElement('footer');
       footer.innerHTML = `
@@ -52,12 +69,12 @@
           <span>•</span>
           <a href="/contact.html" class="${currentPath.includes('contact') ? 'active' : ''}">יצירת קשר</a>
         </div>
-        <p>© 2026 JobNet VIP. כל הזכויות שמורות. החישוב מהווה סימולציה משוערת בלבד ואינו מהווה ייעוץ פנסיוני, פיננסי או מס מוסמך. <span style="opacity: 0.5; font-size: 0.75rem; margin-right: 6px;">v2.4</span></p>
+        <p>© 2026 JobNet VIP. כל הזכויות שמורות. החישוב מהווה סימולציה משוערת בלבד. <span style="opacity: 0.4; font-size: 0.75rem; margin-right: 6px;">v2.4</span></p>
       `;
       document.body.appendChild(footer);
     }
 
-    // 4. הזרקת רכיב נגישות צף מובנה
+    // 4. סרגל נגישות צף מודרני
     if (!document.querySelector('.acc-widget')) {
       const accWidget = document.createElement('div');
       accWidget.className = 'acc-widget';
@@ -67,19 +84,19 @@
         </button>
         <div class="acc-menu" id="accMenu" role="dialog" aria-modal="true" aria-label="הגדרות נגישות">
           <div class="acc-menu-header">
-            <span>התאמות נגישות</span>
+            <span>⚙️ התאמות נגישות</span>
             <button class="acc-close" id="accClose" aria-label="סגור תפריט">&times;</button>
           </div>
           <div class="acc-options">
-            <button class="acc-opt-btn" id="btnFontPlus">הגדל טקסט (+)</button>
-            <button class="acc-opt-btn" id="btnFontMinus">הקטן טקסט (-)</button>
-            <button class="acc-opt-btn" id="btnGrayscale">גווני אפור</button>
-            <button class="acc-opt-btn" id="btnInvert">ניגודיות הפוכה</button>
-            <button class="acc-opt-btn" id="btnLinks">הדגש קישורים</button>
-            <button class="acc-opt-btn" id="btnReadable">גופן קריא</button>
-            <button class="acc-reset-btn" id="btnReset">איפוס התאמות</button>
+            <button class="acc-opt-btn" id="btnFontPlus">🔍 הגדל טקסט (+)</button>
+            <button class="acc-opt-btn" id="btnFontMinus">🔍 הקטן טקסט (-)</button>
+            <button class="acc-opt-btn" id="btnGrayscale">🌓 גווני אפור</button>
+            <button class="acc-opt-btn" id="btnInvert">🔄 ניגודיות הפוכה</button>
+            <button class="acc-opt-btn" id="btnLinks">🔗 הדגש קישורים</button>
+            <button class="acc-opt-btn" id="btnReadable">🔤 גופן קריא</button>
+            <button class="acc-reset-btn" id="btnReset">↺ איפוס כל ההתאמות</button>
           </div>
-          <div style="margin-top: 10px; text-align: center; font-size: 0.75rem;">
+          <div style="margin-top: 14px; text-align: center; font-size: 0.78rem;">
             <a href="/accessibility.html" style="color: var(--muted); text-decoration: underline;">לקריאת הצהרת הנגישות המלאה</a>
           </div>
         </div>
