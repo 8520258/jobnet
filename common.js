@@ -1,6 +1,6 @@
 /* ==========================================================================
    jobnet.vip - Core Framework & Global Scripts
-   Version: 2.4
+   Version: 2.5 (Clean URLs Enabled)
    ========================================================================== */
 
 (function () {
@@ -17,6 +17,12 @@
   gtag('config', gaId);
 
   function initLayout() {
+    // הסרת סיומת .html משורת הכתובת לתצוגת פרימיום נקייה
+    if (window.location.pathname.endsWith('.html')) {
+      const cleanPath = window.location.pathname.replace(/\.html$/, '');
+      window.history.replaceState(null, '', cleanPath + window.location.search + window.location.hash);
+    }
+
     const currentPath = window.location.pathname;
 
     // 2. הזרקת הדר עליון
@@ -68,7 +74,7 @@
           <span>•</span>
           <a href="./contact.html">יצירת קשר</a>
         </div>
-        <p>© 2026 jobnet.vip. כל הזכויות שמורות. החישוב מהווה סימולציה משוערת בלבד. <span style="opacity: 0.4; font-size: 0.75rem; margin-right: 6px;">v2.4</span></p>
+        <p>© 2026 jobnet.vip. כל הזכויות שמורות. החישוב מהווה סימולציה משוערת בלבד. <span style="opacity: 0.4; font-size: 0.75rem; margin-right: 6px;">v2.5</span></p>
       `;
       document.body.appendChild(footer);
     }
