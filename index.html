@@ -7,6 +7,9 @@
   <meta name="description" content="מחשבון שכר ברוטו נטו ונטו לברוטו לשנת 2026. סימולטור שכר מדויק, חישוב עלות מעסיק מלאה, ייצוא דוח PDF ובדיקת זכאות להחזרי מס.">
   <link rel="canonical" href="https://jobnet.vip/">
 
+  <!-- תג אימות גוגל Search Console -->
+  <meta name="google-site-verification" content="rm1-LDc9zJ0kZJq9lzs7UA4Bt9GHq43-EXa1nMW1ylc" />
+
   <link rel="stylesheet" href="./style.css">
   <script src="./common.js" defer></script>
 
@@ -93,7 +96,7 @@
       </div>
 
       <div class="breakdown-row">
-        <span id="labelRowGross">שכר ברוטו מחושב</span>
+        <span id="labelRowGross">שכר ברוטו חודשי</span>
         <span class="val" id="rowGross">₪0</span>
       </div>
       <div class="breakdown-row">
@@ -265,9 +268,8 @@
 
     const fmt = num => '₪' + Math.round(num).toLocaleString('he-IL');
 
-    let currentMode = 'gross'; // 'gross' או 'net'
+    let currentMode = 'gross';
 
-    // פונקציית חישוב מתמטית טהורה מברוטו
     function computeFromGross(gross, creditPts, pensionRate, hasStudyFund, carValue) {
       const taxableGross = gross + carValue;
 
@@ -314,7 +316,6 @@
       };
     }
 
-    // היפוך חישוב מנטו לברוטו באמצעות חיפוש בינארי
     function findGrossFromNet(targetNet, creditPts, pensionRate, hasStudyFund, carValue) {
       if (targetNet <= 0) return 0;
       let low = targetNet;
@@ -327,14 +328,9 @@
         const res = computeFromGross(mid, creditPts, pensionRate, hasStudyFund, carValue);
         const diff = res.netSalary - targetNet;
 
-        if (Math.abs(diff) < 0.5) {
-          return mid;
-        }
-        if (diff < 0) {
-          low = mid;
-        } else {
-          high = mid;
-        }
+        if (Math.abs(diff) < 0.5) return mid;
+        if (diff < 0) low = mid;
+        else high = mid;
       }
       return (low + high) / 2;
     }
@@ -377,14 +373,12 @@
       document.getElementById('barPension').style.width = ((res.pensionEmployee + res.studyFundEmployee) / total * 100) + '%';
     }
 
-    // מאזינים לשינויי קלט
     ['salaryInput', 'creditPoints', 'pensionRate', 'studyFund', 'carValue'].forEach(id => {
       const el = document.getElementById(id);
       el.addEventListener('input', calculate);
       el.addEventListener('change', calculate);
     });
 
-    // מעבר בין מצבי חישוב (ברוטו/נטו)
     const btnGross = document.getElementById('modeGross');
     const btnNet = document.getElementById('modeNet');
     const salaryLabel = document.getElementById('salaryLabel');
@@ -405,13 +399,11 @@
       calculate();
     });
 
-    // כפתור הדפסה וייצוא PDF
     document.getElementById('btnPrintPdf').addEventListener('click', () => {
       document.getElementById('printDate').textContent = new Date().toLocaleDateString('he-IL');
       window.print();
     });
 
-    // כפתור שיתוף קישור
     document.getElementById('btnShare').addEventListener('click', () => {
       const val = document.getElementById('salaryInput').value;
       const cp = document.getElementById('creditPoints').value;
@@ -425,7 +417,6 @@
       });
     });
 
-    // טעינת נתונים מ-URL בעת פתיחה
     const params = new URLSearchParams(window.location.search);
     if (params.has('val')) {
       document.getElementById('salaryInput').value = params.get('val');
@@ -436,7 +427,6 @@
       if (params.has('sf')) document.getElementById('studyFund').checked = params.get('sf') === '1';
     }
 
-    // כפתור הצגת קוד הטמעה
     const btnEmbed = document.getElementById('btnToggleEmbed');
     const embedBox = document.getElementById('embedContainer');
     btnEmbed.addEventListener('click', () => {
@@ -445,7 +435,6 @@
       btnEmbed.textContent = isHidden ? '✕ הסתר קוד הטמעה' : '⚙️ מעוניינים להטמיע את המחשבון באתר שלכם? לחצו כאן לקוד ההטמעה';
     });
 
-    // בדיקת החזרי מס
     const checks = document.querySelectorAll('.tax-check');
     checks.forEach(c => c.addEventListener('change', () => {
       const checkedCount = document.querySelectorAll('.tax-check:checked').length;
