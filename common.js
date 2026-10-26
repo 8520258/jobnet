@@ -1,5 +1,5 @@
 /* ==========================================================================
-   JobNet VIP - Core Framework & Global Scripts
+   jobnet.vip - Core Framework & Global Scripts
    Version: 2.4
    ========================================================================== */
 
@@ -19,7 +19,7 @@
   function initLayout() {
     const currentPath = window.location.pathname;
 
-    // 2. הזרקת הדר עליון עשיר עם אייקונים ובאדג'ים
+    // 2. הזרקת הדר עליון מעודכן
     if (!document.querySelector('header')) {
       const header = document.createElement('header');
       header.innerHTML = `
@@ -27,7 +27,7 @@
           <span class="pill">חדש</span>
           <span>מערכת חישוב שכר ודיני עבודה 2026</span>
         </div>
-        <h1>JobNet VIP</h1>
+        <h1>jobnet.vip</h1>
         <p>פלטפורמת הפינטק המובילה בישראל לחישוב שכר נטו, עלויות מעביד וסריקת קורות חיים</p>
         <div class="sub-nav">
           <a href="./index.html" class="${currentPath.endsWith('index.html') || currentPath.endsWith('/') || currentPath === '' ? 'active' : ''}">
@@ -51,29 +51,29 @@
       document.body.insertBefore(header, document.body.firstChild);
     }
 
-    // 3. הזרקת פוטר מרכזי עם גרסה v2.4
+    // 3. הזרקת פוטר מרכזי עם jobnet.vip
     if (!document.querySelector('footer')) {
       const footer = document.createElement('footer');
       footer.innerHTML = `
         <div class="legal-links">
-          <a href="./about.html">אודות המיזם</a>
+          <a href="./about.html" class="${currentPath.includes('about') ? 'active' : ''}">אודות המיזם</a>
           <span>•</span>
-          <a href="./resources.html">זכויות עובדים ומקורות מידע</a>
+          <a href="./resources.html" class="${currentPath.includes('resources') ? 'active' : ''}">זכויות עובדים ומקורות מידע</a>
           <span>•</span>
-          <a href="./terms.html">תנאי שימוש</a>
+          <a href="./terms.html" class="${currentPath.includes('terms') ? 'active' : ''}">תנאי שימוש</a>
           <span>•</span>
-          <a href="./privacy.html">מדיניות פרטיות</a>
+          <a href="./privacy.html" class="${currentPath.includes('privacy') ? 'active' : ''}">מדיניות פרטיות</a>
           <span>•</span>
-          <a href="./accessibility.html">הצהרת נגישות</a>
+          <a href="./accessibility.html" class="${currentPath.includes('accessibility') ? 'active' : ''}">הצהרת נגישות</a>
           <span>•</span>
-          <a href="./contact.html">יצירת קשר</a>
+          <a href="./contact.html" class="${currentPath.includes('contact') ? 'active' : ''}">יצירת קשר</a>
         </div>
-        <p>© 2026 JobNet VIP. כל הזכויות שמורות. החישוב מהווה סימולציה משוערת בלבד. <span style="opacity: 0.4; font-size: 0.75rem; margin-right: 6px;">v2.4</span></p>
+        <p>© 2026 jobnet.vip. כל הזכויות שמורות. החישוב מהווה סימולציה משוערת בלבד. <span style="opacity: 0.4; font-size: 0.75rem; margin-right: 6px;">v2.4</span></p>
       `;
       document.body.appendChild(footer);
     }
 
-    // 4. סרגל נגישות צף
+    // 4. סרגל נגישות צף מובנה
     if (!document.querySelector('.acc-widget')) {
       const accWidget = document.createElement('div');
       accWidget.className = 'acc-widget';
