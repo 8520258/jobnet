@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>יצירת קשר | JobNet VIP מחשבון שכר</title>
-  <meta name="description" content="יצירת קשר עם צוות JobNet VIP. פניות בנושאי דיוק חישובים, הצעות לשיפור, נגישות ושיתופי פעולה.">
+  <title>יצירת קשר | jobnet.vip מחשבון שכר</title>
+  <meta name="description" content="יצירת קשר עם צוות jobnet.vip. פניות בנושאי דיוק חישובים, הצעות לשיפור, נגישות ושיתופי פעולה.">
   <link rel="canonical" href="https://jobnet.vip/contact.html">
 
   <!-- חיבור לתשתית המרכזית -->
-  <link rel="stylesheet" href="/style.css">
-  <script src="/common.js" defer></script>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./common.js" defer></script>
 </head>
 <body>
 
@@ -41,10 +41,10 @@
 
         <div class="field">
           <label for="message">תוכן ההודעה</label>
-          <textarea id="message" name="message" required placeholder="כתבו כאן את פרטי פנייתכם..." style="min-height: 120px;"></textarea>
+          <textarea id="message" name="message" required placeholder="כתבו כאן את פרטי פנייתכם..." style="width: 100%; min-height: 140px; background: #090a0f; border: 1px solid var(--card-border); border-radius: 14px; padding: 14px 16px; color: #ffffff; font-size: 1.05rem; outline: none; box-sizing: border-box; resize: vertical; display: block;"></textarea>
         </div>
 
-        <button type="submit" id="submitBtn" style="width: 100%; background: var(--accent); color: #07090e; border: none; border-radius: 8px; padding: 14px; font-size: 1.05rem; font-weight: 700; cursor: pointer; transition: background-color 0.2s;">שליחת הודעה</button>
+        <button type="submit" id="submitBtn" class="btn-action" style="width: 100%;">שליחת הודעה</button>
         <div id="statusMsg" style="margin-top: 14px; text-align: center; font-size: 0.95rem; font-weight: 600; display: none;"></div>
       </form>
     </div>
@@ -72,17 +72,17 @@
         });
         if (response.ok) {
           statusMsg.textContent = 'תודה! הודעתך נשלחה בהצלחה ונענה בהקדם.';
-          statusMsg.style.color = '#00e699';
+          statusMsg.style.color = 'var(--success)';
           statusMsg.style.display = 'block';
           form.reset();
         } else {
           statusMsg.textContent = 'חלה שגיאה בשליחה. אנא נסה שוב מאוחר יותר.';
-          statusMsg.style.color = '#ef4444';
+          statusMsg.style.color = 'var(--danger)';
           statusMsg.style.display = 'block';
         }
       } catch (err) {
         statusMsg.textContent = 'שגיאת תקשורת. אנא בדוק את החיבור לרשת ונסה שוב.';
-        statusMsg.style.color = '#ef4444';
+        statusMsg.style.color = 'var(--danger)';
         statusMsg.style.display = 'block';
       } finally {
         submitBtn.disabled = false;
