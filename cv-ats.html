@@ -3,235 +3,133 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>בודק ומתקן קורות חיים למערכות ATS (בוטים) | JobNet VIP</title>
-  <meta name="description" content="כלי חינמי לבדיקת קורות חיים והתאמתם למערכות סינון אוטומטיות (ATS). התאמת מילות מפתח למשרה, זיהוי ליקויי מבנה ושיפור הסיכוי לעבור את הסינון הראשוני. 100% פרטיות צד-לקוח.">
+  <title>בדיקת קורות חיים והתאמה לבינה מלאכותית (ATS) | jobnet.vip</title>
+  <meta name="description" content="סריקה ובדיקת קורות חיים להתאמה לבינה מלאכותית ולמערכות סינון אוטומטיות (ATS). התאמת מילות מפתח, שיפור הציון ועקיפת סינון הבוטים ללא שמירת מידע.">
   <link rel="canonical" href="https://jobnet.vip/cv-ats.html">
 
-  <!-- חיבור לתשתית המרכזית -->
-  <link rel="stylesheet" href="/style.css">
-  <script src="/common.js" defer></script>
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "מתקן קורות חיים ל-ATS - JobNet VIP",
-    "url": "https://jobnet.vip/cv-ats.html",
-    "description": "סימולטור לבדיקת קורות חיים והתאמתם למערכות סינון בוטים וגיוס עובדים",
-    "applicationCategory": "BusinessApplication",
-    "operatingSystem": "All"
-  }
-  </script>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./common.js" defer></script>
 </head>
 <body>
 
   <main class="container">
     <div class="card">
-      <h2>בודק קורות חיים למערכות סינון אוטומטיות (ATS)</h2>
-      <p>למעלה מ-75% מקורות החיים נפסלים על ידי מערכות מעקב מועמדים (ATS) עוד לפני שעין אנושית קוראת אותם. הדביקו את תוכן קורות החיים ואת תיאור המשרה כדי לקבל ציון התאמה ורשימת תיקונים מיידית.</p>
+      <h2>בדיקת קורות חיים והתאמה לבינה מלאכותית (ATS)</h2>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: #d1d5db;">
+        בלמעלה מ-<strong>75% מהמקרים</strong>, קורות החיים נסרקים ומדורגים על ידי <strong>מערכות בינה מלאכותית ובוטים מסוג ATS</strong> (מערכות מעקב מועמדים) עוד לפני שעין אנושית פותחת אותם.
+        הדביקו את קורות החיים ותיאור המשרה כדי לקבל ציון התאמה מיידי ורשימת מילות מפתח לתיקון.
+      </p>
 
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 20px;">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; margin-top: 24px;">
+        <!-- עמודת קורות חיים -->
         <div class="field">
-          <label for="cvText">הדביקו כאן את תוכן קורות החיים (טקסט בלבד):</label>
-          <textarea id="cvText" placeholder="הדביקו לכאן את כל הטקסט מתוך קובץ קורות החיים שלכם..." style="height: 220px;"></textarea>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+            <label for="cvText" style="margin-bottom: 0;">הדביקו את תוכן קורות החיים:</label>
+            <!-- כפתור העלאת קובץ מקומי -->
+            <label for="fileInput" style="font-size: 0.82rem; color: var(--accent); cursor: pointer; text-decoration: underline; margin-bottom: 0;">
+              📁 או טענו קובץ טקסט
+            </label>
+            <input type="file" id="fileInput" accept=".txt" style="display: none;">
+          </div>
+          <textarea id="cvText" placeholder="הדביקו כאן את הטקסט מתוך קובץ קורות החיים שלכם..."></textarea>
         </div>
 
+        <!-- עמודת תיאור משרה -->
         <div class="field">
           <label for="jobText">הדביקו את תיאור המשרה / דרישות התפקיד (מומלץ):</label>
-          <textarea id="jobText" placeholder="הדביקו לכאן את דרישות המשרה, תחומי אחריות וכישורים נדרשים מתוך מודעת הדרושים..." style="height: 220px;"></textarea>
+          <textarea id="jobText" placeholder="הדביקו כאן את דרישות המשרה, תחומי אחריות וכישורים נדרשים מתוך מודעת הדרושים..."></textarea>
         </div>
       </div>
 
-      <button type="button" id="analyzeBtn" style="width: 100%; background: var(--accent); color: #07090e; border: none; border-radius: 10px; padding: 14px; font-size: 1.1rem; font-weight: 800; cursor: pointer; transition: background-color 0.2s;">בצע בדיקת התאמה ל-ATS</button>
+      <button id="scanBtn" class="btn-action" style="width: 100%; margin-top: 10px;">
+        בצע בדיקת התאמה לבינה מלאכותית
+      </button>
 
-      <div id="resultsPanel" style="display: none; margin-top: 24px;">
-        <div style="display: flex; align-items: center; justify-content: space-around; background: linear-gradient(135deg, rgba(0, 230, 153, 0.1), rgba(11, 15, 25, 0.6)); border: 1px solid rgba(0, 230, 153, 0.3); border-radius: 14px; padding: 24px; margin-bottom: 24px; flex-wrap: wrap; gap: 16px; text-align: center;">
-          <div style="width: 110px; height: 110px; border-radius: 50%; border: 4px solid var(--accent); display: flex; flex-direction: column; align-items: center; justify-content: center; background: #07090e;">
-            <div id="scoreVal" style="font-size: 2.2rem; font-weight: 800; color: var(--accent); line-height: 1;">0</div>
-            <div style="font-size: 0.75rem; color: var(--muted); margin-top: 4px;">ציון ATS</div>
-          </div>
-          <div style="max-width: 500px; text-align: right;">
-            <h3 id="scoreTitle" style="font-size: 1.3rem; margin-bottom: 6px; color: #fff;">בדיקה הושלמה</h3>
-            <p id="scoreFeedback" style="font-size: 0.95rem; margin: 0; color: var(--muted);">פירוט הממצאים להלן.</p>
-          </div>
+      <!-- תיבת תוצאות -->
+      <div id="resultsCard" style="display: none; margin-top: 32px; border-top: 1px solid var(--card-border); padding-top: 24px;">
+        <div class="net-banner">
+          <div class="title">ציון התאמה משוער לבינה מלאכותית (ATS Score)</div>
+          <div class="amount" id="scoreVal">0%</div>
         </div>
 
-        <h3 style="color:#fff; margin-bottom:10px; font-size: 1.15rem;">דו״ח מבנה קורות חיים וקריאות לבוטים:</h3>
-        <ul id="checklist" style="list-style: none; margin: 16px 0; padding-right: 0;"></ul>
-
-        <div id="keywordsBox" style="display:none; margin-top: 16px; background: #07090e; border: 1px solid var(--card-border); border-radius: 10px; padding: 16px;">
-          <h3 style="color:var(--accent); font-size:1.1rem; margin-bottom: 6px;">התאמת מילות מפתח מול דרישות המשרה:</h3>
-          <p style="font-size:0.9rem; margin: 0 0 12px 0; color: var(--muted);">מילים שנמצאו בקורות החיים שלכם ומחזקות את הדירוג, לעומת מילים חסרות שכדאי לשלב:</p>
-          
-          <div style="margin-top:12px;">
-            <strong style="color:var(--success); font-size:0.9rem;">✓ מילות מפתח תואמות שנמצאו:</strong>
-            <div id="matchedTags" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px;"></div>
-          </div>
-
-          <div style="margin-top:14px;">
-            <strong style="color:#fca5a5; font-size:0.9rem;">✗ מילות מפתח מהותיות שחסרות בקורות החיים:</strong>
-            <div id="missingTags" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px;"></div>
-          </div>
-        </div>
+        <div id="feedbackBox" style="margin-top: 20px;"></div>
       </div>
     </div>
 
-    <div class="card">
-      <h2>איך עובדות מערכות סינון בוטים (ATS) ואיך לעבור אותן?</h2>
-      <p>מערכות ATS (כמו Comeet, Greenhouse, Workday וכו') משמשות כיום כמעט כל חברת הייטק, בנק או ארגון גדול. המערכת מפרקת את קובץ ה-PDF או ה-Word לטקסט גולמי ומנסה לזהות מידע מובנה:</p>
+    <!-- מדריך הסבר מובנה -->
+    <article class="card">
+      <h2>איך מערכות בינה מלאכותית ובוטי סינון סורקים אתכם?</h2>
+      <p>מערכות גיוס מודרניות מפרקות את קורות החיים לטקסט גולמי ומחפשות התאמה מדויקת לדרישות המגייס. אלו 4 הדגשים שיעזרו לכם לעבור את הסינון:</p>
       
-      <p><strong>1. הימנעו מטבלאות ועמודות:</strong> בוטים קוראים טקסט משמאל לימין או מימין לשמאל באופן רציף. טבלאות ועמודות גורמות לטקסט להתערבב, ולעיתים הניסיון התעסוקתי שלכם מופיע בתוך תא שלא מזוהה כלל.</p>
-
-      <p><strong>2. השתמשו בכותרות סטנדרטיות:</strong> אל תתחכמו עם שמות סעיפים. השתמשו בביטויים מוכרים כמו "ניסיון תעסוקתי", "השכלה", "כישורים מקצועיים", ו"פרטי קשר".</p>
-
-      <p><strong>3. מילות מפתח מדויקות:</strong> אם במודעת הדרושים כתוב "ניהול תקציב" או "Python", ודאו שמונחים אלה מופיעים בדיוק בצורה זו בקורות החיים, ולא בניסוחים עקיפים שהבוט אינו יודע להסיק.</p>
-
-      <p><strong>4. פרטיות מלאה:</strong> בדיקה זו מתבצעת כולה במכשיר שלכם (Client-Side). קורות החיים שלכם לעולם אינם נשמרים בשרת כלשהו.</p>
-    </div>
+      <ul>
+        <li><strong>הימנעו מטבלאות ועמודות כפולות:</strong> רוב מנועי ה-ATS קוראים טקסט מימין לשמאל באופן רציף. טבלאות עלולות לערבב בין תאריכים לשמות חברות ולפסול את הקובץ.</li>
+        <li><strong>השתמשו בכותרות סטנדרטיות:</strong> בינה מלאכותית מחפשת עוגנים קבועים כגון "ניסיון תעסוקתי", "השכלה", "כישורים ומיומנויות" ו"פרטי קשר".</li>
+        <li><strong>התאמת מילות מפתח (Keywords):</strong> אם המודעה דורשת "ניהול תקציב" או "Python", ודאו שהביטויים מופיעים בדיוק בצורה הזו ולא בניסוחים עקיפים שהבוט יחמיץ.</li>
+        <li><strong>פרטיות מלאה ב-jobnet.vip:</strong> הבדיקה מתבצעת כולה במכשיר שלכם בלבד (Client-Side). קורות החיים שלכם לעולם אינם נשמרים בשרת או מועברים לצד שלישי.</li>
+      </ul>
+    </article>
   </main>
 
   <script>
-    document.getElementById('analyzeBtn').addEventListener('click', function() {
+    // טעינת קובץ טקסט ישירות לתוך ה-Textarea
+    document.getElementById('fileInput').addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        document.getElementById('cvText').value = evt.target.result;
+      };
+      reader.readAsText(file);
+    });
+
+    // סריקת התאמה ומילות מפתח
+    document.getElementById('scanBtn').addEventListener('click', function() {
       const cv = document.getElementById('cvText').value.trim();
       const job = document.getElementById('jobText').value.trim();
 
       if (!cv) {
-        alert('אנא הדביקו את טקסט קורות החיים לפני הבדיקה.');
+        alert('אנא הדביקו את תוכן קורות החיים לפני תחילת הבדיקה.');
         return;
       }
 
       let score = 50;
-      const checklistEl = document.getElementById('checklist');
-      checklistEl.innerHTML = '';
+      const feedback = [];
 
-      function addCheck(passed, text) {
-        const li = document.createElement('li');
-        li.style.display = 'flex';
-        li.style.alignItems = 'center';
-        li.style.gap = '10px';
-        li.style.padding = '10px 0';
-        li.style.borderBottom = '1px solid rgba(255, 255, 255, 0.05)';
-        li.style.fontSize = '0.95rem';
+      // בדיקת מבנה כללית
+      const hasExperience = /ניסיון|תעסוקה|עבודה/i.test(cv);
+      const hasEducation = /השכלה|לימודים|תואר|קורס/i.test(cv);
+      const hasContact = /מייל|דוא"ל|טלפון|טלפוני|gmail|phone|mail/i.test(cv);
 
-        const icon = document.createElement('span');
-        icon.style.fontWeight = 'bold';
-        icon.style.width = '22px';
-        icon.style.height = '22px';
-        icon.style.display = 'inline-flex';
-        icon.style.alignItems = 'center';
-        icon.style.justifyContent = 'center';
-        icon.style.borderRadius = '50%';
-        icon.style.fontSize = '0.85rem';
-        icon.style.background = passed ? 'rgba(0, 230, 153, 0.15)' : 'rgba(239, 68, 68, 0.15)';
-        icon.style.color = passed ? 'var(--success)' : 'var(--danger)';
-        icon.textContent = passed ? '✓' : '✗';
-        li.appendChild(icon);
+      if (hasExperience) score += 15; else feedback.push('⚠️ לא זוהה פרק ניסיון תעסוקתי מובהק.');
+      if (hasEducation) score += 15; else feedback.push('⚠️ לא זוהה פרק השכלה / לימודים.');
+      if (hasContact) score += 10; else feedback.push('⚠️ ודאו שפרטי ההתקשרות (טלפון ומייל) מופיעים באופן קריא.');
 
-        const span = document.createElement('span');
-        span.textContent = text;
-        li.appendChild(span);
-        checklistEl.appendChild(li);
-
-        if (passed) score += 10;
-        else score -= 5;
-      }
-
-      // 1. בדיקת אורך ומילים
-      const wordCount = cv.split(/\s+/).filter(Boolean).length;
-      addCheck(wordCount >= 180 && wordCount <= 750, `אורך קורות חיים: ${wordCount} מילים (${wordCount < 180 ? 'קצר מדי, חסר פירוט' : wordCount > 750 ? 'ארוך מדי, מומלץ לקצר לעמוד אחד/שניים' : 'באורך אידיאלי למערכות ATS'})`);
-
-      // 2. זיהוי אימייל
-      const hasEmail = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/.test(cv);
-      addCheck(hasEmail, hasEmail ? 'זוהתה כתובת אימייל תקינה ליצירת קשר' : 'לא זוהתה כתובת אימייל ברורה בטקסט');
-
-      // 3. זיהוי טלפון
-      const hasPhone = /(05\d-?\d{7}|0[23489]-?\d{7})/.test(cv);
-      addCheck(hasPhone, hasPhone ? 'זוהה מספר טלפון ישראלי תקין' : 'לא זוהה מספר טלפון בפורמט ברור');
-
-      // 4. סעיפי חובה
-      const hasExperience = /(ניסיון|תעסוקה|עבודה|ניסיון תעסוקתי|employment|experience)/i.test(cv);
-      addCheck(hasExperience, hasExperience ? 'זוהה סעיף ניסיון תעסוקתי עם כותרת מוכרת' : 'חסר סעיף ברור של ניסיון תעסוקתי');
-
-      const hasEducation = /(השכלה|לימודים|תואר|בגרות|קורסים|education)/i.test(cv);
-      addCheck(hasEducation, hasEducation ? 'זוהה סעיף השכלה ולימודים' : 'לא זוהה סעיף השכלה מוגדר');
-
-      const hasSkills = /(כישורים|מיומנויות|טכנולוגיות|כלים|skills)/i.test(cv);
-      addCheck(hasSkills, hasSkills ? 'זוהה סעיף כישורים מקצועיים / טכנולוגיות' : 'מומלץ להוסיף סעיף כישורים מרוכז עבור מנוע החיפוש של הבוט');
-
-      // 5. ניתוח מילות מפתח מול משרה
-      const kwBox = document.getElementById('keywordsBox');
-      const matchedBox = document.getElementById('matchedTags');
-      const missingBox = document.getElementById('missingTags');
-      matchedBox.innerHTML = '';
-      missingBox.innerHTML = '';
-
+      // בדיקת התאמה לדרישות המשרה
       if (job) {
-        kwBox.style.display = 'block';
-        const stopWords = new Set(['את','של','על','עם','כל','גם','או','זה','אם','הוא','היא','הם','הן','כי','לא','כן','יש','אין','בין','כדי','יותר','לפי','ידי','רק','זהו','אנו','לנו','אבל','אלא','היה','היו','יהיה','עבור','אל','מול','דרישות','תפקיד','משרה','חברה','יתרון','חובה','ניסיון','שנים']);
-        
-        const jobWords = job.toLowerCase()
-          .replace(/[^a-zA-Z0-9א-ת\s]/g, ' ')
-          .split(/\s+/)
-          .filter(w => w.length > 2 && !stopWords.has(w));
+        const words = job.split(/[\s,.-]+/).filter(w => w.length > 3);
+        const uniqueWords = [...new Set(words)];
+        let matches = 0;
 
-        const freq = {};
-        jobWords.forEach(w => { freq[w] = (freq[w] || 0) + 1; });
-
-        const topKeywords = Object.keys(freq).sort((a,b) => freq[b] - freq[a]).slice(0, 15);
-        const cvLower = cv.toLowerCase();
-
-        let matchedCount = 0;
-        topKeywords.forEach(kw => {
-          const found = cvLower.includes(kw);
-          const tag = document.createElement('span');
-          tag.style.padding = '4px 10px';
-          tag.style.borderRadius = '6px';
-          tag.style.fontSize = '0.85rem';
-          tag.style.fontWeight = '600';
-
-          if (found) {
-            tag.style.background = 'rgba(0, 230, 153, 0.15)';
-            tag.style.color = 'var(--success)';
-            tag.style.border = '1px solid rgba(0, 230, 153, 0.3)';
-            matchedBox.appendChild(tag);
-            matchedCount++;
-          } else {
-            tag.style.background = 'rgba(239, 68, 68, 0.12)';
-            tag.style.color = '#fca5a5';
-            tag.style.border = '1px solid rgba(239, 68, 68, 0.3)';
-            missingBox.appendChild(tag);
-          }
-          tag.textContent = kw;
+        uniqueWords.forEach(w => {
+          if (cv.includes(w)) matches++;
         });
 
-        if (matchedBox.children.length === 0) matchedBox.innerHTML = '<span style="color:var(--muted); font-size:0.85rem;">לא זוהו מילות מפתח חופפות</span>';
-        if (missingBox.children.length === 0) missingBox.innerHTML = '<span style="color:var(--success); font-size:0.85rem;">כל מילות המפתח המרכזיות זוהו בקורות החיים!</span>';
-
-        const matchRatio = topKeywords.length ? (matchedCount / topKeywords.length) : 0;
-        score += Math.round(matchRatio * 20);
+        const matchRatio = uniqueWords.length ? (matches / uniqueWords.length) : 0;
+        score = Math.min(100, Math.round(score * 0.4 + (matchRatio * 100) * 0.6));
+        feedback.push(`🎯 מילות מפתח מתוך המשרה: זוהתה התאמה של כ-${Math.round(matchRatio * 100)}% מביטויי המפתח.`);
       } else {
-        kwBox.style.display = 'none';
+        feedback.push('💡 מומלץ להדביק גם את תיאור המשרה לקבלת בדיקת התאמת מילות מפתח מדויקת.');
       }
 
-      score = Math.max(25, Math.min(98, score));
-      document.getElementById('scoreVal').textContent = score;
+      score = Math.min(100, Math.max(20, score));
 
-      const titleEl = document.getElementById('scoreTitle');
-      const feedEl = document.getElementById('scoreFeedback');
-
-      if (score >= 80) {
-        titleEl.textContent = 'קורות חיים מותאמים מצוין ל-ATS!';
-        feedEl.textContent = 'המבנה קריא, זוהו כל סעיפי החובה ומילות המפתח המרכזיות נמצאות במקומן.';
-      } else if (score >= 60) {
-        titleEl.textContent = 'התאמה בינונית – נדרשים שיפורים קלים';
-        feedEl.textContent = 'חלק מהסעיפים או מילות המפתח חסרים. תקנו את הנקודות המסומנות באדום כדי להבטיח מעבר סינון.';
-      } else {
-        titleEl.textContent = 'סיכון גבוה לפסילה אוטומטית ע״י בוטים';
-        feedEl.textContent = 'מבנה קורות החיים חסר מרכיבי יסוד או שחסרות מילות מפתח רבות מדרישות המשרה.';
-      }
-
-      document.getElementById('resultsPanel').style.display = 'block';
-      document.getElementById('resultsPanel').scrollIntoView({ behavior: 'smooth' });
+      document.getElementById('resultsCard').style.display = 'block';
+      document.getElementById('scoreVal').textContent = score + '%';
+      
+      const fbBox = document.getElementById('feedbackBox');
+      fbBox.innerHTML = feedback.map(item => `<div style="padding: 10px 0; border-bottom: 1px solid var(--card-border); color: #e5e7eb; font-size: 0.95rem;">${item}</div>`).join('');
+      
+      document.getElementById('resultsCard').scrollIntoView({ behavior: 'smooth' });
     });
   </script>
 </body>
