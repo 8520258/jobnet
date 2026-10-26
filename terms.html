@@ -6,97 +6,12 @@
   <title>תנאי שימוש ותקנון האתר | JobNet VIP</title>
   <meta name="description" content="תנאי השימוש והתקנון המשפטי של מחשבון השכר JobNet VIP. הבהרה משפטית והגבלת אחריות.">
   <link rel="canonical" href="https://jobnet.vip/terms.html">
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EKGZK9D1J6"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-EKGZK9D1J6');
-  </script>
-  <style>
-    :root {
-      --bg: #07090e; --card: #0f141f; --card-border: #1b2436;
-      --accent: #00e699; --text: #f8fafc; --muted: #8b9bb4;
-      --font-base: 16px;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, sans-serif; }
-    html { font-size: var(--font-base); }
-    body { background-color: var(--bg); color: var(--text); min-height: 100vh; padding: 24px 16px; line-height: 1.7; display: flex; flex-direction: column; align-items: center; transition: filter 0.2s; }
-    body.acc-grayscale { filter: grayscale(100%); }
-    body.acc-invert { filter: invert(100%) hue-rotate(180deg); }
-    body.acc-highlight-links a { text-decoration: underline !important; background-color: #ffff00 !important; color: #000 !important; }
-    body.acc-readable-font * { font-family: Arial, Tahoma, sans-serif !important; }
 
-    header { text-align: center; margin-bottom: 24px; }
-    header h1 { font-size: 2.3rem; font-weight: 800; color: var(--accent); }
-    header p { color: var(--muted); font-size: 1.05rem; margin-top: 6px; }
-    .sub-nav { display: flex; gap: 12px; justify-content: center; margin-top: 14px; flex-wrap: wrap; }
-    .sub-nav a { color: var(--text); background: var(--card); border: 1px solid var(--card-border); padding: 8px 18px; border-radius: 20px; text-decoration: none; font-size: 0.9rem; font-weight: 600; }
-    .sub-nav a:hover { border-color: var(--accent); color: var(--accent); }
-    .container { max-width: 900px; width: 100%; }
-    .card { background-color: var(--card); border: 1px solid var(--card-border); border-radius: 16px; padding: 32px; margin-bottom: 24px; }
-    h2 { font-size: 1.4rem; color: var(--accent); margin: 24px 0 12px 0; border-bottom: 1px solid var(--card-border); padding-bottom: 6px; }
-    h2:first-of-type { margin-top: 0; }
-    p, ul { color: var(--muted); margin-bottom: 14px; }
-    ul { padding-right: 20px; }
-    li { margin-bottom: 8px; }
-    .warning-box { background: rgba(239, 68, 68, 0.08); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 8px; padding: 16px; color: #fca5a5; margin: 16px 0; font-size: 0.95rem; }
-    
-    footer { margin-top: 40px; text-align: center; font-size: 0.85rem; color: var(--muted); width: 100%; border-top: 1px solid var(--card-border); padding-top: 20px; }
-    .legal-links { display: flex; justify-content: center; gap: 16px; margin-bottom: 10px; flex-wrap: wrap; }
-    .legal-links a { color: var(--muted); text-decoration: none; }
-    .legal-links a:hover, .legal-links a.active { color: var(--accent); text-decoration: underline; }
-
-    /* רכיב נגישות */
-    .acc-widget { position: fixed; bottom: 24px; left: 24px; z-index: 9999; }
-    .acc-btn { width: 48px; height: 48px; border-radius: 50%; background: #00e699; color: #07090e; border: 2px solid #1b2436; cursor: pointer; display: flex; align-items: center; justify-content: center; }
-    .acc-btn svg { width: 26px; height: 26px; fill: currentColor; }
-    .acc-menu { display: none; position: absolute; bottom: 60px; left: 0; width: 280px; background: #0f141f; border: 1px solid #1b2436; border-radius: 14px; padding: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.6); text-align: right; }
-    .acc-menu.active { display: block; }
-    .acc-menu-header { font-size: 1rem; font-weight: 700; color: #00e699; margin-bottom: 12px; display: flex; justify-content: space-between; border-bottom: 1px solid #1b2436; padding-bottom: 8px; }
-    .acc-close { background: none; border: none; color: #8b9bb4; font-size: 1.2rem; cursor: pointer; }
-    .acc-options { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-    .acc-opt-btn { background: #07090e; border: 1px solid #1b2436; color: #f8fafc; padding: 8px 6px; border-radius: 8px; font-size: 0.8rem; font-weight: 600; cursor: pointer; text-align: center; }
-    .acc-opt-btn:hover, .acc-opt-btn.active-opt { border-color: #00e699; color: #00e699; }
-    .acc-reset-btn { grid-column: span 2; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #fca5a5; padding: 8px; border-radius: 8px; font-size: 0.8rem; font-weight: 700; cursor: pointer; margin-top: 4px; }
-  </style>
+  <!-- חיבור לתשתית המרכזית -->
+  <link rel="stylesheet" href="/style.css">
+  <script src="/common.js" defer></script>
 </head>
 <body>
-
-  <!-- כפתור נגישות צף -->
-  <div class="acc-widget">
-    <button class="acc-btn" id="accToggle" aria-label="פתח תפריט נגישות" title="תפריט נגישות">
-      <svg viewBox="0 0 24 24"><path d="M12 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm9 7h-6v13h-2v-6h-2v6H9V9H3V7h18v2z"/></svg>
-    </button>
-    <div class="acc-menu" id="accMenu" role="dialog" aria-modal="true">
-      <div class="acc-menu-header">
-        <span>התאמות נגישות</span>
-        <button class="acc-close" id="accClose">&times;</button>
-      </div>
-      <div class="acc-options">
-        <button class="acc-opt-btn" id="btnFontPlus">הגדל טקסט (+)</button>
-        <button class="acc-opt-btn" id="btnFontMinus">הקטן טקסט (-)</button>
-        <button class="acc-opt-btn" id="btnGrayscale">גווני אפור</button>
-        <button class="acc-opt-btn" id="btnInvert">ניגודיות הפוכה</button>
-        <button class="acc-opt-btn" id="btnLinks">הדגש קישורים</button>
-        <button class="acc-opt-btn" id="btnReadable">גופן קריא</button>
-        <button class="acc-reset-btn" id="btnReset">איפוס התאמות</button>
-      </div>
-      <div style="margin-top: 10px; text-align: center; font-size: 0.75rem;">
-        <a href="/accessibility.html" style="color: var(--muted); text-decoration: underline;">לקריאת הצהרת הנגישות המלאה</a>
-      </div>
-    </div>
-  </div>
-
-  <header>
-    <h1>JobNet VIP</h1>
-    <p>מחשבון שכר ברוטו-נטו וסימולטור עלויות מעביד מעודכן לשנת 2026</p>
-    <div class="sub-nav">
-      <a href="/">מחשבון כללי</a>
-      <a href="/tech-salary.html">מחשבון שכר הייטק</a>
-      <a href="/minimum-wage.html">שכר מינימום ושעות נוספות</a>
-    </div>
-  </header>
 
   <main class="container">
     <div class="card">
@@ -104,7 +19,7 @@
       <p>ברוכים הבאים לאתר <strong>JobNet VIP</strong> (להלן: "האתר"). השימוש באתר, בכלים הממוחשבים, במחשבוני השכר, בסימולטורים ובמידע המוצג בו כפוף לתנאים המפורטים להלן. גלישה באתר או שימוש במחשבון מהווים הסכמה מלאה, מפורשת ובלתי חוזרת לתנאים אלה. אם אינך מסכים לתנאי מתנאים אלה, הינך מתבקש שלא לעשות כל שימוש באתר.</p>
 
       <h2>2. הבהרה משפטית והיעדר ייעוץ מקצועי (Disclaimer)</h2>
-      <div class="warning-box">
+      <div style="background: rgba(239, 68, 68, 0.08); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 8px; padding: 16px; color: #fca5a5; margin: 16px 0; font-size: 0.95rem;">
         <strong>הבהרה דחופה:</strong> המחשבונים והכלים באתר מיועדים למתן אומדן וסימולציה כללית בלבד. אין לראות בתוצאות החישוב תלוש שכר, חוות דעת משפטית, ייעוץ מס, ייעוץ פנסיוני או ייעוץ פיננסי מכל סוג שהוא.
       </div>
       <p>חישובי השכר, הפרשות המעסיק, ניכויי מס הכנסה, דמי ביטוח לאומי ומס בריאות מבוססים על מדרגות החוק ונוסחאות כלליות הידועות לשנת 2026. בפועל, תלוש שכר של עובד מושפע מפרמטרים אישיים, הסכמים קיבוציים, צווי הרחבה ענפיים, ותק, שעות בפועל, זיכויים מיוחדים ושיקולים פרטניים שאינם מקבלים ביטוי מלא בסימולטור אינטרנטי.</p>
@@ -121,43 +36,5 @@
     </div>
   </main>
 
-  <footer>
-    <div class="legal-links">
-      <a href="/about.html">אודות המיזם</a>
-      <span>•</span>
-      <a href="/resources.html">זכויות עובדים ומקורות מידע</a>
-      <span>•</span>
-      <a href="/terms.html" class="active">תנאי שימוש</a>
-      <span>•</span>
-      <a href="/privacy.html">מדיניות פרטיות</a>
-      <span>•</span>
-      <a href="/accessibility.html">הצהרת נגישות</a>
-      <span>•</span>
-      <a href="/contact.html">יצירת קשר</a>
-    </div>
-    <p>© 2026 JobNet VIP. כל הזכויות שמורות. החישוב מהווה סימולציה משוערת בלבד.</p>
-  </footer>
-
-  <script>
-    const accToggle = document.getElementById('accToggle');
-    const accMenu = document.getElementById('accMenu');
-    const accClose = document.getElementById('accClose');
-    accToggle.addEventListener('click', () => accMenu.classList.toggle('active'));
-    accClose.addEventListener('click', () => accMenu.classList.remove('active'));
-
-    let currentFontSize = 16;
-    document.getElementById('btnFontPlus').addEventListener('click', () => { if (currentFontSize < 22) { currentFontSize += 2; document.documentElement.style.fontSize = currentFontSize + 'px'; } });
-    document.getElementById('btnFontMinus').addEventListener('click', () => { if (currentFontSize > 14) { currentFontSize -= 2; document.documentElement.style.fontSize = currentFontSize + 'px'; } });
-    document.getElementById('btnGrayscale').addEventListener('click', e => { document.body.classList.toggle('acc-grayscale'); e.target.classList.toggle('active-opt'); });
-    document.getElementById('btnInvert').addEventListener('click', e => { document.body.classList.toggle('acc-invert'); e.target.classList.toggle('active-opt'); });
-    document.getElementById('btnLinks').addEventListener('click', e => { document.body.classList.toggle('acc-highlight-links'); e.target.classList.toggle('active-opt'); });
-    document.getElementById('btnReadable').addEventListener('click', e => { document.body.classList.toggle('acc-readable-font'); e.target.classList.toggle('active-opt'); });
-    document.getElementById('btnReset').addEventListener('click', () => {
-      currentFontSize = 16;
-      document.documentElement.style.fontSize = '16px';
-      document.body.classList.remove('acc-grayscale', 'acc-invert', 'acc-highlight-links', 'acc-readable-font');
-      document.querySelectorAll('.acc-opt-btn').forEach(b => b.classList.remove('active-opt'));
-    });
-  </script>
 </body>
 </html>
