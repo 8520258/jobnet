@@ -19,7 +19,7 @@
   function initLayout() {
     const currentPath = window.location.pathname;
 
-    // 2. הזרקת הדר עליון מעודכן
+    // 2. הזרקת הדר עליון
     if (!document.querySelector('header')) {
       const header = document.createElement('header');
       header.innerHTML = `
@@ -31,7 +31,7 @@
         <p>פלטפורמת הפינטק המובילה בישראל לחישוב שכר נטו, עלויות מעביד וסריקת קורות חיים</p>
         <div class="sub-nav">
           <a href="./index.html" class="${currentPath.endsWith('index.html') || currentPath.endsWith('/') || currentPath === '' ? 'active' : ''}">
-            <span class="nav-icon" style="background: rgba(0, 82, 255, 0.2); color: #3b82f6;">📊</span>
+            <span class="nav-icon" style="background: rgba(247, 147, 26, 0.2); color: #f7931a;">📊</span>
             <span>מחשבון כללי</span>
           </a>
           <a href="./tech-salary.html" class="${currentPath.includes('tech-salary') ? 'active' : ''}">
@@ -39,11 +39,11 @@
             <span>שכר הייטק</span>
           </a>
           <a href="./minimum-wage.html" class="${currentPath.includes('minimum-wage') ? 'active' : ''}">
-            <span class="nav-icon" style="background: rgba(247, 147, 26, 0.2); color: #f7931a;">⏱️</span>
+            <span class="nav-icon" style="background: rgba(255, 85, 0, 0.2); color: #ff5500;">⏱️</span>
             <span>שכר מינימום ושעות</span>
           </a>
           <a href="./cv-ats.html" class="${currentPath.includes('cv-ats') ? 'active' : ''}">
-            <span class="nav-icon" style="background: rgba(5, 177, 105, 0.2); color: #34d399;">🤖</span>
+            <span class="nav-icon" style="background: rgba(0, 230, 153, 0.2); color: #00e699;">🤖</span>
             <span>בודק קורות חיים ל-ATS</span>
           </a>
         </div>
@@ -51,29 +51,29 @@
       document.body.insertBefore(header, document.body.firstChild);
     }
 
-    // 3. הזרקת פוטר מרכזי עם jobnet.vip
+    // 3. הזרקת פוטר
     if (!document.querySelector('footer')) {
       const footer = document.createElement('footer');
       footer.innerHTML = `
         <div class="legal-links">
-          <a href="./about.html" class="${currentPath.includes('about') ? 'active' : ''}">אודות המיזם</a>
+          <a href="./about.html">אודות המיזם</a>
           <span>•</span>
-          <a href="./resources.html" class="${currentPath.includes('resources') ? 'active' : ''}">זכויות עובדים ומקורות מידע</a>
+          <a href="./resources.html">זכויות עובדים ומקורות מידע</a>
           <span>•</span>
-          <a href="./terms.html" class="${currentPath.includes('terms') ? 'active' : ''}">תנאי שימוש</a>
+          <a href="./terms.html">תנאי שימוש</a>
           <span>•</span>
-          <a href="./privacy.html" class="${currentPath.includes('privacy') ? 'active' : ''}">מדיניות פרטיות</a>
+          <a href="./privacy.html">מדיניות פרטיות</a>
           <span>•</span>
-          <a href="./accessibility.html" class="${currentPath.includes('accessibility') ? 'active' : ''}">הצהרת נגישות</a>
+          <a href="./accessibility.html">הצהרת נגישות</a>
           <span>•</span>
-          <a href="./contact.html" class="${currentPath.includes('contact') ? 'active' : ''}">יצירת קשר</a>
+          <a href="./contact.html">יצירת קשר</a>
         </div>
         <p>© 2026 jobnet.vip. כל הזכויות שמורות. החישוב מהווה סימולציה משוערת בלבד. <span style="opacity: 0.4; font-size: 0.75rem; margin-right: 6px;">v2.4</span></p>
       `;
       document.body.appendChild(footer);
     }
 
-    // 4. סרגל נגישות צף מובנה
+    // 4. הזרקת כפתור וסרגל נגישות ירוק
     if (!document.querySelector('.acc-widget')) {
       const accWidget = document.createElement('div');
       accWidget.className = 'acc-widget';
