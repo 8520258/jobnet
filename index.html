@@ -1,725 +1,452 @@
-:root {
-  --bg: #090a0f;
-  --card: #12141c;
-  --card-border: rgba(255, 255, 255, 0.08);
-  --card-hover-border: rgba(247, 147, 26, 0.4);
-  --card-hover: #171a24;
-  
-  --accent: #f7931a;
-  --accent-hover: #e07f0b;
-  --accent-gradient: linear-gradient(135deg, #f7931a 0%, #ff5500 100%);
-  --accent-subtle: rgba(247, 147, 26, 0.15);
-  
-  --gold-gradient: linear-gradient(135deg, #f7931a 0%, #ffb74d 100%);
-  --cyan-gradient: linear-gradient(135deg, #00d2ff 0%, #0052ff 100%);
-  --green-gradient: linear-gradient(135deg, #05b169 0%, #00e699 100%);
-  
-  --acc-btn-color: #00e699;
-  --acc-btn-hover: #00c784;
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>jobnet.vip | מחשבון שכר ברוטו נטו מתקדם 2026</title>
+  <meta name="description" content="מחשבון שכר ברוטו נטו ונטו לברוטו לשנת 2026. סימולטור שכר מדויק, חישוב עלות מעסיק מלאה, ייצוא דוח PDF ובדיקת זכאות להחזרי מס.">
+  <link rel="canonical" href="https://jobnet.vip/">
 
-  --text: #ffffff;
-  --muted: #8a91a8;
-  --success: #00e699;
-  --danger: #ef4444;
-  --font-base: 16px;
-}
+  <!-- תג אימות גוגל Search Console -->
+  <meta name="google-site-verification" content="rm1-LDc9zJ0kZJq9lzs7UA4Bt9GHq43-EXa1nMW1ylc" />
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, system-ui, sans-serif;
-  -webkit-font-smoothing: antialiased;
-}
+  <link rel="stylesheet" href="./style.css">
+  <script src="./common.js" defer></script>
 
-html {
-  font-size: var(--font-base);
-}
-
-body {
-  background-color: var(--bg);
-  background-image: 
-    radial-gradient(at 0% 0%, rgba(247, 147, 26, 0.1) 0px, transparent 50%),
-    radial-gradient(at 100% 10%, rgba(255, 85, 0, 0.06) 0px, transparent 40%),
-    radial-gradient(at 50% 100%, rgba(0, 230, 153, 0.05) 0px, transparent 50%);
-  background-attachment: fixed;
-  color: var(--text);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 36px 16px;
-  line-height: 1.6;
-}
-
-/* נגישות */
-body.acc-grayscale { filter: grayscale(100%); }
-body.acc-invert { filter: invert(100%) hue-rotate(180deg); }
-body.acc-highlight-links a { text-decoration: underline !important; background-color: #ffff00 !important; color: #000 !important; }
-body.acc-readable-font * { font-family: Arial, Tahoma, sans-serif !important; }
-
-/* הדר עליון */
-header {
-  text-align: center;
-  margin-bottom: 36px;
-  max-width: 860px;
-  width: 100%;
-}
-
-.brand-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--card-border);
-  padding: 6px 16px;
-  border-radius: 999px;
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: #d1d5db;
-  margin-bottom: 16px;
-  backdrop-filter: blur(10px);
-}
-
-.brand-badge .pill {
-  background: var(--gold-gradient);
-  color: #000;
-  font-size: 0.72rem;
-  padding: 2px 8px;
-  border-radius: 20px;
-  font-weight: 800;
-}
-
-header h1 {
-  font-size: 2.8rem;
-  font-weight: 900;
-  letter-spacing: -1px;
-  line-height: 1.15;
-  background: linear-gradient(180deg, #ffffff 30%, #9ca3af 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-header p {
-  color: var(--muted);
-  font-size: 1.12rem;
-  margin-top: 10px;
-  max-width: 650px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* תפריט עליון */
-.sub-nav {
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-  margin-top: 24px;
-  flex-wrap: wrap;
-}
-
-.sub-nav a {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  color: #9ca3af;
-  background: rgba(18, 20, 28, 0.7);
-  border: 1px solid var(--card-border);
-  padding: 10px 20px;
-  border-radius: 30px;
-  text-decoration: none;
-  font-size: 0.92rem;
-  font-weight: 600;
-  backdrop-filter: blur(8px);
-  transition: all 0.25s ease;
-}
-
-.sub-nav a .nav-icon {
-  width: 22px;
-  height: 22px;
-  border-radius: 6px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.85rem;
-}
-
-.sub-nav a:hover {
-  border-color: rgba(255, 255, 255, 0.2);
-  color: #ffffff;
-  background: var(--card-hover);
-  transform: translateY(-2px);
-}
-
-.sub-nav a.active {
-  border-color: var(--accent);
-  color: #ffffff;
-  background: var(--accent-subtle);
-  box-shadow: 0 0 25px -5px rgba(247, 147, 26, 0.35);
-}
-
-/* גריד וכרטיסים */
-.container {
-  max-width: 900px;
-  width: 100%;
-}
-
-.main-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 24px;
-  max-width: 1060px;
-  width: 100%;
-}
-
-@media (min-width: 860px) {
-  .main-grid {
-    grid-template-columns: 1.15fr 1fr;
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "jobnet.vip מחשבון שכר",
+        "url": "https://jobnet.vip/",
+        "description": "מחשבון שכר ברוטו נטו, נטו לברוטו ועלויות מעביד לשנת 2026",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "All"
+      }
+    ]
   }
-}
+  </script>
+</head>
+<body>
 
-.card {
-  background: var(--card);
-  border: 1px solid var(--card-border);
-  border-radius: 24px;
-  padding: 32px;
-  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7);
-  margin-bottom: 24px;
-  position: relative;
-  overflow: hidden;
-  transition: border-color 0.25s;
-}
+  <!-- תצוגת הדפסה ממותגת -->
+  <div class="print-header">
+    <div class="print-logo">jobnet.vip</div>
+    <div class="print-tagline">פלטפורמת הפינטק המובילה בישראל לחישוב שכר, מיסוי וזכויות עובדים לשנת 2026</div>
+    <div class="print-meta">דוח סימולציית שכר רשמי | הופק בתאריך: <span id="printDate"></span></div>
+  </div>
 
-.card:hover {
-  border-color: var(--card-hover-border);
-}
+  <main class="main-grid no-print">
+    <!-- כרטיס הזנת נתונים -->
+    <section class="card">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; border-bottom: 1px solid var(--card-border); padding-bottom: 12px;">
+        <h2 style="border-bottom: none; margin-bottom: 0; padding-bottom: 0;">הזנת נתונים</h2>
+        <div class="calc-mode-toggle">
+          <button type="button" class="mode-btn active" id="modeGross">ברוטו ➔ נטו</button>
+          <button type="button" class="mode-btn" id="modeNet">נטו ➔ ברוטו</button>
+        </div>
+      </div>
+      
+      <div class="field">
+        <label for="salaryInput" id="salaryLabel">שכר ברוטו חודשי</label>
+        <div class="input-wrapper">
+          <span>₪</span>
+          <input type="number" id="salaryInput" value="15000" min="0" step="500">
+        </div>
+      </div>
 
-.card h2 {
-  font-size: 1.4rem;
-  font-weight: 800;
-  margin-bottom: 20px;
-  border-bottom: 1px solid var(--card-border);
-  padding-bottom: 14px;
-  color: #ffffff;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
+      <div class="field">
+        <label for="creditPoints">נקודות זיכוי (גבר = 2.25, אישה = 2.75)</label>
+        <input type="number" id="creditPoints" value="2.25" min="2.25" step="0.25">
+      </div>
 
-.card h3 {
-  font-size: 1.18rem;
-  font-weight: 700;
-  margin: 24px 0 12px 0;
-  color: #ffffff;
-}
+      <div class="field">
+        <label for="pensionRate">הפרשת עובד לפנסיה (תגמולים)</label>
+        <select id="pensionRate">
+          <option value="0.06" selected>6.0% (ברירת מחדל במשק)</option>
+          <option value="0.07">7.0% (מקסימום עובד)</option>
+          <option value="0">ללא הפרשה</option>
+        </select>
+      </div>
 
-.card p, .card ul {
-  color: var(--muted);
-  margin-bottom: 14px;
-  font-size: 0.98rem;
-}
+      <label class="checkbox-field">
+        <input type="checkbox" id="studyFund" checked>
+        <span>קרן השתלמות (עובד 2.5%, מעביד 7.5%)</span>
+      </label>
 
-.card ul { padding-right: 20px; }
-.card li { margin-bottom: 8px; }
+      <div class="field">
+        <label for="carValue">שווי שימוש ברכב צמוד (לצורכי מס בלבד)</label>
+        <div class="input-wrapper">
+          <span>₪</span>
+          <input type="number" id="carValue" value="0" min="0" step="100">
+        </div>
+      </div>
+    </section>
 
-/* שדות קלט */
-.field {
-  margin-bottom: 20px;
-}
+    <!-- כרטיס תוצאות וניתוח -->
+    <section class="card" id="resultsSection">
+      <h2>פירוט וניתוח השכר</h2>
 
-.field label {
-  display: block;
-  font-size: 0.92rem;
-  font-weight: 600;
-  margin-bottom: 8px;
-  color: #e5e7eb;
-}
+      <div class="net-banner">
+        <div class="title" id="primaryResultTitle">שכר נטו לתשלום בבנק</div>
+        <div class="amount" id="primaryResultVal">₪0</div>
+      </div>
 
-.input-wrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
-  width: 100%;
-}
+      <div class="breakdown-row">
+        <span id="labelRowGross">שכר ברוטו חודשי</span>
+        <span class="val" id="rowGross">₪0</span>
+      </div>
+      <div class="breakdown-row">
+        <span>מס הכנסה בפועל (לאחר נקודות זיכוי)</span>
+        <span class="val deduction" id="rowTax">₪0-</span>
+      </div>
+      <div class="breakdown-row">
+        <span>ביטוח לאומי ומס בריאות</span>
+        <span class="val deduction" id="rowSocial">₪0-</span>
+      </div>
+      <div class="breakdown-row">
+        <span>הפרשות פנסיה (עובד)</span>
+        <span class="val deduction" id="rowPension">₪0-</span>
+      </div>
+      <div class="breakdown-row">
+        <span>הפרשת קרן השתלמות (עובד)</span>
+        <span class="val deduction" id="rowStudy">₪0-</span>
+      </div>
+      <div class="breakdown-row" style="margin-top: 10px; border-top: 1px dashed var(--card-border);">
+        <span>סך עלות למעסיק (כולל פיצויים והפרשות)</span>
+        <span class="val" id="rowEmployerCost" style="color: var(--accent);">₪0</span>
+      </div>
 
-.input-wrapper span {
-  position: absolute;
-  left: 16px;
-  right: auto;
-  color: #6b7280;
-  font-weight: 700;
-  pointer-events: none;
-}
+      <div class="bar-container">
+        <div class="bar-segment bar-net" id="barNet" style="width: 70%;"></div>
+        <div class="bar-segment bar-tax" id="barTax" style="width: 10%;"></div>
+        <div class="bar-segment bar-ss" id="barSS" style="width: 10%;"></div>
+        <div class="bar-segment bar-pension" id="barPension" style="width: 10%;"></div>
+      </div>
 
-.field input, .field select, textarea {
-  width: 100%;
-  background: #090a0f !important;
-  border: 1px solid var(--card-border) !important;
-  border-radius: 14px !important;
-  padding: 14px 16px !important;
-  color: #ffffff !important;
-  font-size: 1.05rem !important;
-  outline: none !important;
-  transition: all 0.2s ease !important;
-  display: block;
-  box-sizing: border-box;
-}
+      <div class="legend">
+        <div class="legend-item"><div class="dot bar-net"></div> נטו</div>
+        <div class="legend-item"><div class="dot bar-tax"></div> מס הכנסה</div>
+        <div class="legend-item"><div class="dot bar-ss"></div> ב.לאומי + בריאות</div>
+        <div class="legend-item"><div class="dot bar-pension"></div> פנסיה והשתלמות</div>
+      </div>
 
-.field input[type="number"], .input-wrapper input {
-  padding-left: 42px !important;
-  direction: ltr;
-  text-align: right;
-}
+      <div class="action-buttons-grid">
+        <button type="button" id="btnPrintPdf" class="btn-secondary">
+          📄 הורד סיכום שכר / שמור כ-PDF
+        </button>
+        <button type="button" id="btnShare" class="btn-secondary">
+          🔗 העתק קישור לסימולציה זו
+        </button>
+      </div>
+      <div id="shareAlert" class="share-toast">הקישור הועתק ללוח!</div>
+    </section>
+  </main>
 
-.field input:focus, .field select:focus, textarea:focus {
-  border-color: var(--accent) !important;
-  box-shadow: 0 0 0 4px rgba(247, 147, 26, 0.2) !important;
-  background: #0d0f17 !important;
-}
+  <!-- פוטר להדפסה בלבד -->
+  <div class="print-footer">
+    <hr style="border: 0; border-top: 1px solid #ddd; margin: 15px 0;">
+    <div><strong>jobnet.vip</strong> - סימולציית שכר חכמה ומדויקת לשנת 2026. לחישובים מקוונים, שכר הייטק וסריקת קורות חיים ב-AI: <strong>https://jobnet.vip</strong></div>
+  </div>
 
-.checkbox-field {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 18px;
-  cursor: pointer;
-  color: #e5e7eb;
-  font-size: 0.95rem;
-}
+  <div class="container no-print" style="max-width: 1060px; width: 100%; margin-top: 10px;">
+    <!-- בדיקת החזרי מס -->
+    <section class="card" style="background: linear-gradient(180deg, rgba(247, 147, 26, 0.05) 0%, rgba(18, 20, 28, 1) 100%);">
+      <h2>💡 בדיקת זכאות מהירה להחזרי מס לשנת 2026</h2>
+      <p>שכירים רבים משלמים מס עודף במהלך השנה מבלי לדעת. סמנו את המצבים שחלו עליכם בשנה האחרונה:</p>
 
-.checkbox-field input {
-  accent-color: var(--accent);
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
-}
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; margin: 20px 0;">
+        <label class="checkbox-field">
+          <input type="checkbox" id="taxRefJob" class="tax-check">
+          <span>החלפתי מקום עבודה או עבדתי בחלק מהשנה</span>
+        </label>
+        <label class="checkbox-field">
+          <input type="checkbox" id="taxRefKid" class="tax-check">
+          <span>נולד לי ילד / שינוי במצב משפחתי</span>
+        </label>
+        <label class="checkbox-field">
+          <input type="checkbox" id="taxRefDegree" class="tax-check">
+          <span>סיימתי תואר אקדמי או לימודי מקצוע</span>
+        </label>
+      </div>
 
-/* באנר תוצאות */
-.net-banner {
-  background: linear-gradient(180deg, rgba(247, 147, 26, 0.15) 0%, rgba(18, 20, 28, 0.8) 100%);
-  border: 1px solid rgba(247, 147, 26, 0.4);
-  border-radius: 20px;
-  padding: 26px;
-  text-align: center;
-  margin-bottom: 24px;
-  position: relative;
-  box-shadow: 0 10px 30px -10px rgba(247, 147, 26, 0.25);
-}
+      <div id="taxRefBox" style="display: none; background: #090a0f; border: 1px solid var(--accent); border-radius: 14px; padding: 18px; margin-top: 10px;">
+        <div style="font-weight: 700; color: var(--accent); margin-bottom: 6px;" id="taxRefTitle">סבירות גבוהה לזכאות להחזר מס!</div>
+        <p style="margin: 0; font-size: 0.93rem; color: #d1d5db;" id="taxRefDesc"></p>
+      </div>
+    </section>
 
-.net-banner .title {
-  font-size: 0.95rem;
-  color: #ffb74d;
-  margin-bottom: 6px;
-  font-weight: 600;
-}
+    <!-- מדרגות מס -->
+    <article class="card">
+      <h2>איך מחושב השכר בישראל בשנת 2026?</h2>
+      <p>חישוב שכר נטו משכר ברוטו מורכב משלושה רכיבי ניכוי עיקריים שנקבעו בחוק: מס הכנסה ישיר, דמי ביטוח לאומי ומס בריאות, והפרשות לפנסיה סוציאלית וקרן השתלמות.</p>
 
-.net-banner .amount {
-  font-size: 2.85rem;
-  font-weight: 900;
-  color: #ffffff;
-  letter-spacing: -1.5px;
-}
+      <h3>מדרגות מס הכנסה חודשיות לשנת 2026</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>מדרגת שכר (ברוטו חודשי)</th>
+            <th>שיעור מס</th>
+            <th>מס מקסימלי במדרגה</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>עד 7,010 ₪</td>
+            <td>10%</td>
+            <td>701 ₪</td>
+          </tr>
+          <tr>
+            <td>7,011 ₪ עד 10,060 ₪</td>
+            <td>14%</td>
+            <td>427 ₪</td>
+          </tr>
+          <tr>
+            <td>10,061 ₪ עד 16,150 ₪</td>
+            <td>20%</td>
+            <td>1,218 ₪</td>
+          </tr>
+          <tr>
+            <td>16,151 ₪ עד 22,440 ₪</td>
+            <td>31%</td>
+            <td>1,950 ₪</td>
+          </tr>
+          <tr>
+            <td>22,441 ₪ עד 46,690 ₪</td>
+            <td>35%</td>
+            <td>8,487 ₪</td>
+          </tr>
+          <tr>
+            <td>46,691 ₪ עד 60,130 ₪</td>
+            <td>47%</td>
+            <td>6,317 ₪</td>
+          </tr>
+          <tr>
+            <td>מעל 60,130 ₪</td>
+            <td>50%</td>
+            <td>לפי גובה השכר</td>
+          </tr>
+        </tbody>
+      </table>
 
-.breakdown-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  font-size: 0.96rem;
-}
+      <!-- כפתור הטמעה -->
+      <div style="margin-top: 36px; border-top: 1px solid var(--card-border); padding-top: 24px;">
+        <button type="button" id="btnToggleEmbed" class="btn-outline">
+          ⚙️ מעוניינים להטמיע את המחשבון באתר שלכם? לחצו כאן לקוד ההטמעה
+        </button>
 
-.breakdown-row:last-child { border-bottom: none; }
-.breakdown-row .val { font-weight: 700; color: #ffffff; }
-.breakdown-row .deduction { color: var(--danger); }
+        <div id="embedContainer" style="display: none; margin-top: 18px;">
+          <p style="font-size: 0.9rem; color: var(--muted); margin-bottom: 8px;">העתיקו את קוד ה-HTML הבא והדביקו אותו בכל עמוד באתר שלכם:</p>
+          <div class="embed-box">
+            &lt;iframe src="https://jobnet.vip/" width="100%" height="750" frameborder="0" title="jobnet.vip מחשבון שכר"&gt;&lt;/iframe&gt;
+            &lt;p style="font-size:12px;text-align:center;"&gt;מחשבון שכר באדיבות &lt;a href="https://jobnet.vip/" target="_blank" rel="noopener"&gt;jobnet.vip&lt;/a&gt;&lt;/p&gt;
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
 
-/* גרף התפלגות */
-.bar-container {
-  margin-top: 24px;
-  height: 12px;
-  border-radius: 6px;
-  background: #1f2433;
-  display: flex;
-  overflow: hidden;
-}
+  <script>
+    const CREDIT_POINT_VALUE = 242;
+    const TAX_BRACKETS = [
+      { limit: 7010, rate: 0.10 },
+      { limit: 10060, rate: 0.14 },
+      { limit: 16150, rate: 0.20 },
+      { limit: 22440, rate: 0.31 },
+      { limit: 46690, rate: 0.35 },
+      { limit: 60130, rate: 0.47 },
+      { limit: Infinity, rate: 0.50 }
+    ];
+    const SS_LOWER_LIMIT = 7522;
+    const SS_MAX_LIMIT = 49030;
+    const SS_LOWER_RATE = 0.035;
+    const SS_UPPER_RATE = 0.12;
 
-.bar-segment { height: 100%; transition: width 0.35s ease; }
-.bar-net { background: var(--accent-gradient); }
-.bar-tax { background-color: var(--danger); }
-.bar-ss { background: var(--cyan-gradient); }
-.bar-pension { background: linear-gradient(135deg, #a855f7, #ec4899); }
+    const fmt = num => '₪' + Math.round(num).toLocaleString('he-IL');
 
-.legend {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  margin-top: 14px;
-  font-size: 0.82rem;
-  color: var(--muted);
-}
+    let currentMode = 'gross';
 
-.legend-item { display: flex; align-items: center; gap: 6px; margin-top: 4px; }
-.dot { width: 10px; height: 10px; border-radius: 50%; }
+    function computeFromGross(gross, creditPts, pensionRate, hasStudyFund, carValue) {
+      const taxableGross = gross + carValue;
 
-/* מתג ברוטו/נטו */
-.calc-mode-toggle {
-  display: flex;
-  background: #090a0f;
-  border: 1px solid var(--card-border);
-  border-radius: 30px;
-  padding: 3px;
-  gap: 4px;
-}
+      let grossTax = 0;
+      let prevLimit = 0;
+      for (const bracket of TAX_BRACKETS) {
+        if (taxableGross > prevLimit) {
+          const taxableInBracket = Math.min(taxableGross, bracket.limit) - prevLimit;
+          grossTax += taxableInBracket * bracket.rate;
+          prevLimit = bracket.limit;
+        } else break;
+      }
 
-.mode-btn {
-  background: none;
-  border: none;
-  color: var(--muted);
-  font-size: 0.84rem;
-  font-weight: 700;
-  padding: 6px 14px;
-  border-radius: 20px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
+      const taxCredits = creditPts * CREDIT_POINT_VALUE;
+      const incomeTax = Math.max(0, grossTax - taxCredits);
 
-.mode-btn.active {
-  background: var(--accent);
-  color: #ffffff;
-  box-shadow: 0 2px 10px rgba(247, 147, 26, 0.4);
-}
+      let socialSecurity = 0;
+      const ssBase = Math.min(taxableGross, SS_MAX_LIMIT);
+      if (ssBase <= SS_LOWER_LIMIT) {
+        socialSecurity = ssBase * SS_LOWER_RATE;
+      } else {
+        socialSecurity = (SS_LOWER_LIMIT * SS_LOWER_RATE) + ((ssBase - SS_LOWER_LIMIT) * SS_UPPER_RATE);
+      }
 
-/* כפתורי פעולה */
-.action-buttons-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-top: 20px;
-}
+      const pensionEmployee = gross * pensionRate;
+      const studyFundEmployee = hasStudyFund ? (gross * 0.025) : 0;
+      const totalDeductions = incomeTax + socialSecurity + pensionEmployee + studyFundEmployee;
+      const netSalary = Math.max(0, gross - totalDeductions);
 
-@media (max-width: 600px) {
-  .action-buttons-grid {
-    grid-template-columns: 1fr;
-  }
-}
+      const pensionEmployer = gross * 0.065;
+      const compensationEmployer = gross * 0.06;
+      const studyFundEmployer = hasStudyFund ? (gross * 0.075) : 0;
+      const ssEmployer = (gross <= SS_LOWER_LIMIT) ? (gross * 0.0355) : ((SS_LOWER_LIMIT * 0.0355) + ((Math.min(gross, SS_MAX_LIMIT) - SS_LOWER_LIMIT) * 0.076));
+      const totalEmployerCost = gross + pensionEmployer + compensationEmployer + studyFundEmployer + ssEmployer;
 
-.btn-secondary {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--card-border);
-  color: #ffffff;
-  padding: 12px 14px;
-  border-radius: 12px;
-  font-size: 0.88rem;
-  font-weight: 700;
-  cursor: pointer;
-  text-align: center;
-  transition: all 0.2s ease;
-}
+      return {
+        gross,
+        netSalary,
+        incomeTax,
+        socialSecurity,
+        pensionEmployee,
+        studyFundEmployee,
+        totalEmployerCost
+      };
+    }
 
-.btn-secondary:hover {
-  background: rgba(247, 147, 26, 0.15);
-  border-color: var(--accent);
-  color: var(--accent);
-}
+    function findGrossFromNet(targetNet, creditPts, pensionRate, hasStudyFund, carValue) {
+      if (targetNet <= 0) return 0;
+      let low = targetNet;
+      let high = targetNet * 3.5;
+      let iterations = 0;
 
-.btn-outline {
-  width: 100%;
-  background: none;
-  border: 1px dashed var(--card-border);
-  color: var(--muted);
-  padding: 12px;
-  border-radius: 12px;
-  font-size: 0.92rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s;
-}
+      while (low <= high && iterations < 45) {
+        iterations++;
+        const mid = (low + high) / 2;
+        const res = computeFromGross(mid, creditPts, pensionRate, hasStudyFund, carValue);
+        const diff = res.netSalary - targetNet;
 
-.btn-outline:hover {
-  border-color: var(--accent);
-  color: #ffffff;
-}
+        if (Math.abs(diff) < 0.5) return mid;
+        if (diff < 0) low = mid;
+        else high = mid;
+      }
+      return (low + high) / 2;
+    }
 
-.share-toast {
-  display: none;
-  text-align: center;
-  background: rgba(0, 230, 153, 0.15);
-  border: 1px solid var(--success);
-  color: var(--success);
-  padding: 10px;
-  border-radius: 10px;
-  font-size: 0.88rem;
-  font-weight: 700;
-  margin-top: 10px;
-}
+    function calculate() {
+      const inputVal = parseFloat(document.getElementById('salaryInput').value) || 0;
+      const creditPts = parseFloat(document.getElementById('creditPoints').value) || 0;
+      const pensionRate = parseFloat(document.getElementById('pensionRate').value) || 0;
+      const hasStudyFund = document.getElementById('studyFund').checked;
+      const carValue = parseFloat(document.getElementById('carValue').value) || 0;
 
-/* כפתור אקשן ראשי */
-.btn-action {
-  background: var(--accent-gradient);
-  border: none;
-  color: #ffffff;
-  padding: 14px 20px;
-  border-radius: 14px;
-  font-size: 1.05rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: 0 4px 15px rgba(247, 147, 26, 0.3);
-}
+      let effectiveGross = inputVal;
+      if (currentMode === 'net') {
+        effectiveGross = findGrossFromNet(inputVal, creditPts, pensionRate, hasStudyFund, carValue);
+      }
 
-.btn-action:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(247, 147, 26, 0.45);
-}
+      const res = computeFromGross(effectiveGross, creditPts, pensionRate, hasStudyFund, carValue);
 
-/* טבלאות והטמעה */
-.data-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 24px 0;
-  text-align: right;
-  border-radius: 12px;
-  overflow: hidden;
-}
+      if (currentMode === 'gross') {
+        document.getElementById('primaryResultTitle').textContent = 'שכר נטו לתשלום בבנק';
+        document.getElementById('primaryResultVal').textContent = fmt(res.netSalary);
+        document.getElementById('labelRowGross').textContent = 'שכר ברוטו חודשי';
+      } else {
+        document.getElementById('primaryResultTitle').textContent = 'שכר ברוטו נדרש בחוזה';
+        document.getElementById('primaryResultVal').textContent = fmt(res.gross);
+        document.getElementById('labelRowGross').textContent = 'שכר ברוטו שחושב';
+      }
 
-.data-table th, .data-table td {
-  padding: 14px 16px;
-  border: 1px solid var(--card-border);
-  font-size: 0.95rem;
-}
+      document.getElementById('rowGross').textContent = fmt(res.gross);
+      document.getElementById('rowTax').textContent = '-' + fmt(res.incomeTax);
+      document.getElementById('rowSocial').textContent = '-' + fmt(res.socialSecurity);
+      document.getElementById('rowPension').textContent = '-' + fmt(res.pensionEmployee);
+      document.getElementById('rowStudy').textContent = '-' + fmt(res.studyFundEmployee);
+      document.getElementById('rowEmployerCost').textContent = fmt(res.totalEmployerCost);
 
-.data-table th { background: #0c0e15; color: #ffffff; font-weight: 700; }
-.data-table tr:nth-child(even) { background: rgba(255, 255, 255, 0.02); }
+      const total = res.gross || 1;
+      document.getElementById('barNet').style.width = (res.netSalary / total * 100) + '%';
+      document.getElementById('barTax').style.width = (res.incomeTax / total * 100) + '%';
+      document.getElementById('barSS').style.width = (res.socialSecurity / total * 100) + '%';
+      document.getElementById('barPension').style.width = ((res.pensionEmployee + res.studyFundEmployee) / total * 100) + '%';
+    }
 
-.embed-box {
-  background: #090a0f;
-  border: 1px dashed rgba(255, 255, 255, 0.15);
-  border-radius: 12px;
-  padding: 16px;
-  font-family: monospace;
-  font-size: 0.88rem;
-  color: #ffb74d;
-  word-break: break-all;
-  user-select: all;
-}
+    ['salaryInput', 'creditPoints', 'pensionRate', 'studyFund', 'carValue'].forEach(id => {
+      const el = document.getElementById(id);
+      el.addEventListener('input', calculate);
+      el.addEventListener('change', calculate);
+    });
 
-/* פוטר */
-footer {
-  margin-top: 56px;
-  text-align: center;
-  font-size: 0.88rem;
-  color: var(--muted);
-  width: 100%;
-  border-top: 1px solid var(--card-border);
-  padding-top: 28px;
-}
+    const btnGross = document.getElementById('modeGross');
+    const btnNet = document.getElementById('modeNet');
+    const salaryLabel = document.getElementById('salaryLabel');
 
-.legal-links {
-  display: flex;
-  justify-content: center;
-  gap: 18px;
-  margin-bottom: 12px;
-  flex-wrap: wrap;
-}
+    btnGross.addEventListener('click', () => {
+      currentMode = 'gross';
+      btnGross.classList.add('active');
+      btnNet.classList.remove('active');
+      salaryLabel.textContent = 'שכר ברוטו חודשי';
+      calculate();
+    });
 
-.legal-links a {
-  color: var(--muted);
-  text-decoration: none;
-  transition: color 0.2s;
-}
+    btnNet.addEventListener('click', () => {
+      currentMode = 'net';
+      btnNet.classList.add('active');
+      btnGross.classList.remove('active');
+      salaryLabel.textContent = 'שכר נטו מבוקש לחשבון הבנק';
+      calculate();
+    });
 
-.legal-links a:hover {
-  color: #ffffff;
-}
+    document.getElementById('btnPrintPdf').addEventListener('click', () => {
+      document.getElementById('printDate').textContent = new Date().toLocaleDateString('he-IL');
+      window.print();
+    });
 
-/* שורת עוגיות דו-לשונית עדינה */
-.cookie-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  background: rgba(255, 255, 255, 0.02);
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  padding: 10px 16px;
-  margin: 18px auto 14px auto;
-  max-width: 960px;
-  font-size: 0.8rem;
-  font-weight: 300;
-  color: #717688;
-  line-height: 1.4;
-}
+    document.getElementById('btnShare').addEventListener('click', () => {
+      const val = document.getElementById('salaryInput').value;
+      const cp = document.getElementById('creditPoints').value;
+      const sf = document.getElementById('studyFund').checked ? 1 : 0;
+      const shareUrl = `${window.location.origin}${window.location.pathname}?mode=${currentMode}&val=${val}&cp=${cp}&sf=${sf}`;
+      
+      navigator.clipboard.writeText(shareUrl).then(() => {
+        const toast = document.getElementById('shareAlert');
+        toast.style.display = 'block';
+        setTimeout(() => toast.style.display = 'none', 3000);
+      });
+    });
 
-.cookie-col.he { text-align: right; direction: rtl; flex: 1; }
-.cookie-col.en { text-align: left; direction: ltr; flex: 1; }
-.cookie-bar a { color: #8b92a5; text-decoration: underline; margin-inline-start: 4px; }
-.cookie-bar a:hover { color: #ffffff; }
+    const params = new URLSearchParams(window.location.search);
+    if (params.has('val')) {
+      document.getElementById('salaryInput').value = params.get('val');
+      if (params.get('mode') === 'net') {
+        btnNet.click();
+      }
+      if (params.has('cp')) document.getElementById('creditPoints').value = params.get('cp');
+      if (params.has('sf')) document.getElementById('studyFund').checked = params.get('sf') === '1';
+    }
 
-.cookie-btn {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: #d1d5db;
-  border-radius: 6px;
-  padding: 4px 12px;
-  font-size: 0.76rem;
-  font-weight: 500;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: all 0.2s ease;
-}
+    const btnEmbed = document.getElementById('btnToggleEmbed');
+    const embedBox = document.getElementById('embedContainer');
+    btnEmbed.addEventListener('click', () => {
+      const isHidden = embedBox.style.display === 'none';
+      embedBox.style.display = isHidden ? 'block' : 'none';
+      btnEmbed.textContent = isHidden ? '✕ הסתר קוד הטמעה' : '⚙️ מעוניינים להטמיע את המחשבון באתר שלכם? לחצו כאן לקוד ההטמעה';
+    });
 
-.cookie-btn:hover {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: #ffffff;
-}
+    const checks = document.querySelectorAll('.tax-check');
+    checks.forEach(c => c.addEventListener('change', () => {
+      const checkedCount = document.querySelectorAll('.tax-check:checked').length;
+      const box = document.getElementById('taxRefBox');
+      const desc = document.getElementById('taxRefDesc');
+      if (checkedCount > 0) {
+        box.style.display = 'block';
+        desc.textContent = `סימנת ${checkedCount} פרמטרים המעידים על שינוי במדרגות המס או אי-ניצול נקודות זיכוי במהלך השנה. מומלץ לבצע בדיקת החזר מס מול רשות המסים (טופס 135) עבור שנת 2026.`;
+      } else {
+        box.style.display = 'none';
+      }
+    }));
 
-@media (max-width: 768px) {
-  .cookie-bar {
-    flex-direction: column;
-    text-align: center;
-    gap: 8px;
-  }
-  .cookie-col.he, .cookie-col.en { text-align: center; }
-}
-
-/* כפתור נגישות ירוק */
-.acc-widget {
-  position: fixed;
-  bottom: 24px;
-  left: 24px;
-  z-index: 99999;
-}
-
-.acc-btn {
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  background: var(--acc-btn-color) !important;
-  border: 2px solid rgba(255, 255, 255, 0.2) !important;
-  box-shadow: 0 8px 25px rgba(0, 230, 153, 0.5) !important;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.2s;
-}
-
-.acc-btn:hover {
-  transform: scale(1.12);
-  background: var(--acc-btn-hover) !important;
-}
-
-.acc-btn svg {
-  width: 28px;
-  height: 28px;
-  fill: #090a0f !important;
-}
-
-.acc-menu {
-  display: none;
-  position: absolute;
-  bottom: 66px;
-  left: 0;
-  width: 300px;
-  background: #141722;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 20px;
-  padding: 20px;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85);
-  text-align: right;
-  backdrop-filter: blur(16px);
-}
-
-.acc-menu.active { display: block; }
-
-.acc-menu-header {
-  font-size: 1.05rem;
-  font-weight: 800;
-  color: #ffffff;
-  margin-bottom: 14px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid var(--card-border);
-  padding-bottom: 10px;
-}
-
-.acc-close {
-  background: none;
-  border: none;
-  color: var(--muted);
-  font-size: 1.3rem;
-  cursor: pointer;
-}
-
-.acc-options {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-}
-
-.acc-opt-btn {
-  background: #090a0f;
-  border: 1px solid var(--card-border);
-  color: #f3f4f6;
-  padding: 10px 8px;
-  border-radius: 12px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  text-align: center;
-}
-
-.acc-opt-btn:hover, .acc-opt-btn.active-opt {
-  border-color: var(--accent);
-  color: #ffffff;
-  background: var(--accent-subtle);
-}
-
-.acc-reset-btn {
-  grid-column: span 2;
-  background: rgba(239, 68, 68, 0.12);
-  border: 1px solid rgba(239, 68, 68, 0.3);
-  color: #fca5a5;
-  padding: 11px;
-  border-radius: 12px;
-  font-size: 0.85rem;
-  font-weight: 700;
-  cursor: pointer;
-  margin-top: 6px;
-}
-
-/* אלמנטים של הדפסה - מוסתרים לחלוטין במסך */
-.print-header, .print-footer {
-  display: none !important;
-}
-
-@media print {
-  body {
-    background: #ffffff !important;
-    color: #111111 !important;
-    padding: 0 !important;
-  }
-  .no-print, header, footer, .acc-widget, .sub-nav, .brand-badge {
-    display: none !important;
-  }
-  .print-header {
-    display: block !important;
-    text-align: center;
-    border-bottom: 2px solid #f7931a;
-    padding-bottom: 12px;
-    margin-bottom: 24px;
-  }
-  .print-logo { font-size: 2rem; font-weight: 900; color: #f7931a; }
-  .print-tagline { font-size: 0.9rem; color: #555; margin-top: 4px; }
-  .print-meta { font-size: 0.8rem; color: #777; margin-top: 6px; }
-  .print-footer { display: block !important; margin-top: 30px; text-align: center; font-size: 0.82rem; color: #666; }
-  #resultsSection { background: #ffffff !important; border: 1px solid #ddd !important; box-shadow: none !important; color: #111 !important; width: 100% !important; max-width: 100% !important; }
-  .net-banner { background: #fdf6ec !important; border: 2px solid #f7931a !important; color: #000 !important; }
-  .net-banner .amount { color: #f7931a !important; }
-  .breakdown-row { border-bottom: 1px solid #eee !important; color: #222 !important; }
-  .breakdown-row .val { color: #000 !important; }
-  .bar-container, .action-buttons-grid, .share-toast { display: none !important; }
-}
+    calculate();
+  </script>
+</body>
+</html>
