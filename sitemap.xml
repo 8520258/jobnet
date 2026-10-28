@@ -1,67 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- עמודי כלים ומחשבונים מרכזיים -->
+  <!-- עמוד הבית ומחשבון שכר כללי -->
   <url>
     <loc>https://jobnet.vip/</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
+
+  <!-- שכר הייטק -->
   <url>
     <loc>https://jobnet.vip/tech-salary.html</loc>
-    <lastmod>2026-10-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://jobnet.vip/minimum-wage.html</loc>
-    <lastmod>2026-10-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://jobnet.vip/cv-ats.html</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
-  <!-- עמודי מידע ויצירת קשר -->
+  <!-- שכר מינימום ושעות נוספות -->
+  <url>
+    <loc>https://jobnet.vip/minimum-wage.html</loc>
+    <lastmod>2026-10-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- סריקת קורות חיים והתאמה ל-AI -->
+  <url>
+    <loc>https://jobnet.vip/cv-ats.html</loc>
+    <lastmod>2026-10-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- עמודי מידע ותשתית -->
   <url>
     <loc>https://jobnet.vip/about.html</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-29</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://jobnet.vip/resources.html</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://jobnet.vip/contact.html</loc>
-    <lastmod>2026-10-25</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
+    <lastmod>2026-10-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
-
-  <!-- מסמכים משפטיים ונגישות -->
   <url>
-    <loc>https://jobnet.vip/terms.html</loc>
-    <lastmod>2026-10-25</lastmod>
+    <loc>https://jobnet.vip/privacy.html</loc>
+    <lastmod>2026-10-29</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://jobnet.vip/privacy.html</loc>
-    <lastmod>2026-10-25</lastmod>
+    <loc>https://jobnet.vip/terms.html</loc>
+    <lastmod>2026-10-29</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://jobnet.vip/accessibility.html</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-29</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
