@@ -1,6 +1,6 @@
 /* ==========================================================================
    jobnet.vip - Core Single Architecture Engine
-   Version: 3.6 (Single Line Clean Cookie Bar & Clean URLs)
+   Version: 3.7 (Full Suite: 6 Calculators, Guides Portal & Clean Layout)
    ========================================================================== */
 
 (function () {
@@ -14,14 +14,17 @@
 
   function getActiveSlug() {
     const path = window.location.pathname.toLowerCase();
+    if (path.includes('options-rsu')) return 'options';
+    if (path.includes('severance-pay')) return 'severance';
     if (path.includes('tech-salary')) return 'tech';
     if (path.includes('minimum-wage')) return 'min';
     if (path.includes('cv-ats')) return 'cv';
+    if (path.includes('guides')) return 'guides';
     if (path.endsWith('/') || path.endsWith('index') || path === '') return 'calc';
     return '';
   }
 
-  // 2. כותרת עליונה ותפריט ניווט
+  // 2. כותרת עליונה ותפריט ניווט מלא ומותאם
   function buildHeader() {
     const slug = getActiveSlug();
     let header = document.querySelector('header');
@@ -34,10 +37,10 @@
     header.innerHTML = `
       <div class="brand-badge">
         <span class="pill">חדש</span>
-        <span>מערכת חישוב שכר ודיני עבודה 2026</span>
+        <span>מערכת חישוב שכר, אופציות ודיני עבודה 2026</span>
       </div>
       <h1>jobnet.vip</h1>
-      <p>פלטפורמת הפינטק המובילה בישראל לחישוב שכר נטו, עלויות מעביד וסריקת קורות חיים</p>
+      <p>פלטפורמת הפינטק המובילה בישראל לחישוב שכר נטו, אופציות RSU, פיצויי פיטורים וסריקת קורות חיים</p>
       <nav class="sub-nav">
         <a href="./index.html" class="${slug === 'calc' ? 'active' : ''}">
           <span class="nav-icon" style="background: rgba(247, 147, 26, 0.2); color: #f7931a;">📊</span>
@@ -47,19 +50,27 @@
           <span class="nav-icon" style="background: rgba(168, 85, 247, 0.2); color: #c084fc;">⚡</span>
           <span>שכר הייטק</span>
         </a>
+        <a href="./options-rsu.html" class="${slug === 'options' ? 'active' : ''}">
+          <span class="nav-icon" style="background: rgba(59, 130, 246, 0.2); color: #60a5fa;">📈</span>
+          <span>אופציות ו-RSU</span>
+        </a>
+        <a href="./severance-pay.html" class="${slug === 'severance' ? 'active' : ''}">
+          <span class="nav-icon" style="background: rgba(236, 72, 153, 0.2); color: #f472b6;">🛡️</span>
+          <span>פיצויי פיטורים</span>
+        </a>
         <a href="./minimum-wage.html" class="${slug === 'min' ? 'active' : ''}">
           <span class="nav-icon" style="background: rgba(255, 85, 0, 0.2); color: #ff5500;">⏱️</span>
-          <span>שכר מינימום ושעות</span>
+          <span>שכר מינימום</span>
         </a>
         <a href="./cv-ats.html" class="${slug === 'cv' ? 'active' : ''}">
           <span class="nav-icon" style="background: rgba(0, 230, 153, 0.2); color: #00e699;">🤖</span>
-          <span>סריקת קו"ח ב-AI</span>
+          <span>סריקת קו"ח</span>
         </a>
       </nav>
     `;
   }
 
-  // 3. פוטר מלא: קישורים, שורת עוגיות אחודה בשורה אחת, וזכויות יוצרים
+  // 3. פוטר מלא כולל שורת עוגיות אחודה וקישורי עמודים
   function buildFooter() {
     let footer = document.querySelector('footer');
     if (!footer) {
@@ -70,6 +81,8 @@
     footer.innerHTML = `
       <div class="legal-links">
         <a href="./about.html">אודות המיזם</a>
+        <span>•</span>
+        <a href="./guides.html">מדריכים ושאלות נפוצות</a>
         <span>•</span>
         <a href="./resources.html">זכויות עובדים ומקורות מידע</a>
         <span>•</span>
@@ -82,7 +95,6 @@
         <a href="./contact.html">יצירת קשר</a>
       </div>
 
-      <!-- שורת עוגיות מיושרת בשורה אחת רציפה -->
       <div class="cookie-bar" style="display: flex; align-items: center; justify-content: center; flex-wrap: nowrap; gap: 12px; background: rgba(255, 255, 255, 0.02); border-top: 1px solid rgba(255, 255, 255, 0.05); border-bottom: 1px solid rgba(255, 255, 255, 0.05); padding: 8px 16px; margin: 18px auto 14px auto; max-width: 1040px; font-size: 0.77rem; font-weight: 300; color: #717688; white-space: nowrap;">
         <span>אתר זה עושה שימוש בעוגיות לתפעול, מדידה ושיפור השירות.</span>
         <a href="./privacy.html" style="color: #8b92a5; text-decoration: underline;">למידע ומדיניות</a>
@@ -90,7 +102,7 @@
         <span style="direction: ltr; font-size: 0.75rem;">This website uses cookies for operational, analytics, and marketing purposes.</span>
       </div>
 
-      <p>© 2026 jobnet.vip. כל הזכויות שמורות. החישוב מהווה סימולציה משוערת בלבד ואינו מהווה ייעוץ פנסיוני או פיננסי. <span style="opacity: 0.4; font-size: 0.75rem; margin-right: 6px;">v3.6</span></p>
+      <p>© 2026 jobnet.vip. כל הזכויות שמורות. החישוב מהווה סימולציה משוערת בלבד ואינו מהווה ייעוץ פנסיוני או פיננסי. <span style="opacity: 0.4; font-size: 0.75rem; margin-right: 6px;">v3.7</span></p>
     `;
   }
 
