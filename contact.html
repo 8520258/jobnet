@@ -3,11 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>יצירת קשר | jobnet.vip מחשבון שכר</title>
-  <meta name="description" content="יצירת קשר עם צוות jobnet.vip. פניות בנושאי דיוק חישובים, הצעות לשיפור, נגישות ושיתופי פעולה.">
-  <link rel="canonical" href="https://jobnet.vip/contact.html">
+  <title>יצירת קשר | jobnet.vip</title>
+  <meta name="description" content="יצירת קשר עם צוות jobnet.vip בכל שאלה, הצעה לשיתוף פעולה או משוב על מערכות חישוב השכר.">
+  <link rel="canonical" href="https://jobnet.vip/contact">
 
-  <!-- חיבור לתשתית המרכזית -->
   <link rel="stylesheet" href="./style.css">
   <script src="./common.js" defer></script>
 </head>
@@ -15,79 +14,85 @@
 
   <main class="container">
     <div class="card">
-      <h2>טופס יצירת קשר</h2>
-      <p>מצאתם אי-דיוק בחישוב? יש לכם הצעה לשיפור הסימולטור או פנייה בנושא נגישות? מלאו את הטופס ונחזור אליכם בהקדם.</p>
+      <h2>📬 יצירת קשר עם צוות המיזם</h2>
+      <p>יש לכם שאלה מקצועית, הערה לגבי סימולציות השכר או הצעה לשיפור הכלים? נשמח לשמוע מכם.</p>
 
-      <form id="contactForm">
+      <form id="contactForm" style="margin-top: 24px;">
         <div class="field">
-          <label for="name">שם מלא / כינוי</label>
-          <input type="text" id="name" name="name" required placeholder="ישראל ישראלי">
+          <label for="contactName">שם מלא:</label>
+          <input type="text" id="contactName" name="name" required placeholder="השם שלכם">
         </div>
 
         <div class="field">
-          <label for="email">כתובת אימייל למענה</label>
-          <input type="email" id="email" name="email" required placeholder="yourname@example.com">
+          <label for="contactEmail">כתובת אימייל לתשובה:</label>
+          <input type="email" id="contactEmail" name="email" required placeholder="yourname@domain.com">
         </div>
 
         <div class="field">
-          <label for="subject">נושא הפנייה</label>
-          <select id="subject" name="subject">
-            <option value="משוב על המחשבון">משוב / דיוק חישוב שכר</option>
-            <option value="פנייה בנושא נגישות">פנייה לרכז הנגישות</option>
-            <option value="הצעת שיתוף פעולה">שיתוף פעולה / הטמעת מחשבון</option>
+          <label for="contactSubject">נושא הפנייה:</label>
+          <select id="contactSubject" name="subject">
+            <option value="משוב כללי">משוב כללי על המחשבונים</option>
+            <option value="הצעת שיתוף פעולה">הצעת שיתוף פעולה / הטמעה</option>
+            <option value="דיווח על אי-דיוק">דיווח על אי-דיוק בחישוב</option>
+            <option value="סריקת קורות חיים">סריקת קו"ח ב-AI</option>
             <option value="אחר">אחר</option>
           </select>
         </div>
 
         <div class="field">
-          <label for="message">תוכן ההודעה</label>
-          <textarea id="message" name="message" required placeholder="כתבו כאן את פרטי פנייתכם..." style="width: 100%; min-height: 140px; background: #090a0f; border: 1px solid var(--card-border); border-radius: 14px; padding: 14px 16px; color: #ffffff; font-size: 1.05rem; outline: none; box-sizing: border-box; resize: vertical; display: block;"></textarea>
+          <label for="contactMsg">תוכן ההודעה:</label>
+          <textarea id="contactMsg" name="message" required placeholder="כתבו כאן את פנייתכם בפירוט..."></textarea>
         </div>
 
-        <button type="submit" id="submitBtn" class="btn-action" style="width: 100%;">שליחת הודעה</button>
-        <div id="statusMsg" style="margin-top: 14px; text-align: center; font-size: 0.95rem; font-weight: 600; display: none;"></div>
+        <button type="submit" id="btnSubmitContact" class="btn-action" style="width: 100%;">
+          ✉️ שליחת הודעה
+        </button>
       </form>
+
+      <div id="contactSuccess" style="display: none; background: rgba(0, 230, 153, 0.12); border: 1px solid var(--success); color: var(--success); padding: 18px; border-radius: 14px; text-align: center; margin-top: 20px; font-weight: 700;">
+        ✓ פנייתך נשלחה בהצלחה! נחזור אליך בהקדם האפשרי.
+      </div>
+      <div id="contactError" style="display: none; background: rgba(239, 68, 68, 0.12); border: 1px solid var(--danger); color: #fca5a5; padding: 18px; border-radius: 14px; text-align: center; margin-top: 20px; font-weight: 700;">
+        ⚠️ אירעה שגיאה בשליחת הטופס. אנא פנו ישירות לכתובת: jobnet@gmail.com
+      </div>
     </div>
   </main>
 
   <script>
-    const form = document.getElementById('contactForm');
-    const statusMsg = document.getElementById('statusMsg');
-    const submitBtn = document.getElementById('submitBtn');
-
-    form.addEventListener('submit', async function(e) {
+    document.getElementById('contactForm').addEventListener('submit', function (e) {
       e.preventDefault();
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'שולח...';
-      statusMsg.style.display = 'none';
+      const btn = document.getElementById('btnSubmitContact');
+      btn.disabled = true;
+      btn.textContent = 'שולח...';
 
-      const data = new FormData(form);
-      try {
-        const response = await fetch('https://formsubmit.co/ajax/jobnet@gmail.com', {
-          method: 'POST',
-          body: data,
-          headers: {
-            'Accept': 'application/json'
-          }
-        });
-        if (response.ok) {
-          statusMsg.textContent = 'תודה! הודעתך נשלחה בהצלחה ונענה בהקדם.';
-          statusMsg.style.color = 'var(--success)';
-          statusMsg.style.display = 'block';
-          form.reset();
+      const formData = {
+        name: document.getElementById('contactName').value,
+        email: document.getElementById('contactEmail').value,
+        subject: document.getElementById('contactSubject').value,
+        message: document.getElementById('contactMsg').value
+      };
+
+      fetch('https://formsubmit.co/ajax/jobnet@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      })
+      .then(res => {
+        if (res.ok) {
+          document.getElementById('contactForm').style.display = 'none';
+          document.getElementById('contactSuccess').style.display = 'block';
         } else {
-          statusMsg.textContent = 'חלה שגיאה בשליחה. אנא נסה שוב מאוחר יותר.';
-          statusMsg.style.color = 'var(--danger)';
-          statusMsg.style.display = 'block';
+          throw new Error('Network error');
         }
-      } catch (err) {
-        statusMsg.textContent = 'שגיאת תקשורת. אנא בדוק את החיבור לרשת ונסה שוב.';
-        statusMsg.style.color = 'var(--danger)';
-        statusMsg.style.display = 'block';
-      } finally {
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'שליחת הודעה';
-      }
+      })
+      .catch(() => {
+        btn.disabled = false;
+        btn.textContent = '✉️ שליחת הודעה';
+        document.getElementById('contactError').style.display = 'block';
+      });
     });
   </script>
 </body>
