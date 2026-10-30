@@ -1,6 +1,6 @@
 /* ==========================================================================
    jobnet.vip - Core Single Architecture Engine
-   Version: 3.7 (Full Suite: 6 Calculators, Guides Portal & Clean Layout)
+   Version: 3.8 (Mobile-Ready Single Row Nav, No-Wrap & Full Layout)
    ========================================================================== */
 
 (function () {
@@ -24,7 +24,7 @@
     return '';
   }
 
-  // 2. כותרת עליונה ותפריט ניווט מלא ומותאם
+  // 2. כותרת עליונה ותפריט ניווט מותאם מובייל ודסקטופ
   function buildHeader() {
     const slug = getActiveSlug();
     let header = document.querySelector('header');
@@ -35,6 +35,48 @@
     }
 
     header.innerHTML = `
+      <style>
+        .sub-nav {
+          display: flex !important;
+          flex-wrap: nowrap !important;
+          justify-content: center !important;
+          align-items: center !important;
+          gap: 6px !important;
+          overflow-x: auto !important;
+          -webkit-overflow-scrolling: touch !important;
+          padding: 8px 12px 14px 12px !important;
+          margin: 0 auto !important;
+          max-width: 100% !important;
+          scrollbar-width: none !important;
+        }
+        .sub-nav::-webkit-scrollbar {
+          display: none !important;
+        }
+        .sub-nav a {
+          white-space: nowrap !important;
+          flex-shrink: 0 !important;
+          padding: 6px 11px !important;
+          font-size: 0.8rem !important;
+          gap: 5px !important;
+          border-radius: 999px !important;
+        }
+        .sub-nav .nav-icon {
+          width: 18px !important;
+          height: 18px !important;
+          font-size: 0.75rem !important;
+        }
+        @media (max-width: 768px) {
+          .sub-nav {
+            justify-content: flex-start !important;
+            padding-left: 16px !important;
+            padding-right: 16px !important;
+          }
+          .sub-nav a {
+            padding: 6px 10px !important;
+            font-size: 0.76rem !important;
+          }
+        }
+      </style>
       <div class="brand-badge">
         <span class="pill">חדש</span>
         <span>מערכת חישוב שכר, אופציות ודיני עבודה 2026</span>
@@ -70,7 +112,7 @@
     `;
   }
 
-  // 3. פוטר מלא כולל שורת עוגיות אחודה וקישורי עמודים
+  // 3. פוטר מלא כולל שורת עוגיות אחודה
   function buildFooter() {
     let footer = document.querySelector('footer');
     if (!footer) {
@@ -95,14 +137,14 @@
         <a href="./contact.html">יצירת קשר</a>
       </div>
 
-      <div class="cookie-bar" style="display: flex; align-items: center; justify-content: center; flex-wrap: nowrap; gap: 12px; background: rgba(255, 255, 255, 0.02); border-top: 1px solid rgba(255, 255, 255, 0.05); border-bottom: 1px solid rgba(255, 255, 255, 0.05); padding: 8px 16px; margin: 18px auto 14px auto; max-width: 1040px; font-size: 0.77rem; font-weight: 300; color: #717688; white-space: nowrap;">
+      <div class="cookie-bar" style="display: flex; align-items: center; justify-content: center; flex-wrap: nowrap; gap: 12px; background: rgba(255, 255, 255, 0.02); border-top: 1px solid rgba(255, 255, 255, 0.05); border-bottom: 1px solid rgba(255, 255, 255, 0.05); padding: 8px 16px; margin: 18px auto 14px auto; max-width: 1040px; font-size: 0.77rem; font-weight: 300; color: #717688; white-space: nowrap; overflow-x: auto;">
         <span>אתר זה עושה שימוש בעוגיות לתפעול, מדידה ושיפור השירות.</span>
         <a href="./privacy.html" style="color: #8b92a5; text-decoration: underline;">למידע ומדיניות</a>
         <span style="opacity: 0.35;">|</span>
         <span style="direction: ltr; font-size: 0.75rem;">This website uses cookies for operational, analytics, and marketing purposes.</span>
       </div>
 
-      <p>© 2026 jobnet.vip. כל הזכויות שמורות. החישוב מהווה סימולציה משוערת בלבד ואינו מהווה ייעוץ פנסיוני או פיננסי. <span style="opacity: 0.4; font-size: 0.75rem; margin-right: 6px;">v3.7</span></p>
+      <p>© 2026 jobnet.vip. כל הזכויות שמורות. החישוב מהווה סימולציה משוערת בלבד ואינו מהווה ייעוץ פנסיוני או פיננסי. <span style="opacity: 0.4; font-size: 0.75rem; margin-right: 6px;">v3.8</span></p>
     `;
   }
 
@@ -153,65 +195,4 @@
     });
 
     document.getElementById('btnFontMinus').addEventListener('click', () => {
-      if (currentFontSize > 14) {
-        currentFontSize -= 2;
-        document.documentElement.style.fontSize = currentFontSize + 'px';
-      }
-    });
-
-    document.getElementById('btnGrayscale').addEventListener('click', e => {
-      document.body.classList.toggle('acc-grayscale');
-      e.target.classList.toggle('active-opt');
-    });
-
-    document.getElementById('btnInvert').addEventListener('click', e => {
-      document.body.classList.toggle('acc-invert');
-      e.target.classList.toggle('active-opt');
-    });
-
-    document.getElementById('btnLinks').addEventListener('click', e => {
-      document.body.classList.toggle('acc-highlight-links');
-      e.target.classList.toggle('active-opt');
-    });
-
-    document.getElementById('btnReadable').addEventListener('click', e => {
-      document.body.classList.toggle('acc-readable-font');
-      e.target.classList.toggle('active-opt');
-    });
-
-    document.getElementById('btnReset').addEventListener('click', () => {
-      currentFontSize = 16;
-      document.documentElement.style.fontSize = '16px';
-      document.body.classList.remove('acc-grayscale', 'acc-invert', 'acc-highlight-links', 'acc-readable-font');
-      document.querySelectorAll('.acc-opt-btn').forEach(b => b.classList.remove('active-opt'));
-    });
-  }
-
-  function initLayout() {
-    buildHeader();
-    buildFooter();
-    buildAccessibilityWidget();
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initLayout);
-  } else {
-    initLayout();
-  }
-
-  // 5. גוגל אנליטיקס מבודד
-  try {
-    const gaId = 'G-EKGZK9D1J6';
-    const s = document.createElement('script');
-    s.async = true;
-    s.src = `https://www.googletagmanager.com/gtag/js?id=${gaId}`;
-    document.head.appendChild(s);
-
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', gaId);
-  } catch (e) {
-    // Analytics safe fail
-  }
-})();
+      if (currentFontSize >
