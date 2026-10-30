@@ -1,6 +1,6 @@
 /* ==========================================================================
    jobnet.vip - Core Single Architecture Engine
-   Version: 3.4 (Permanent Bilingual Cookie Row & Clean URLs)
+   Version: 3.5 (Permanent Bilingual Cookie Row & Clean URLs)
    ========================================================================== */
 
 (function () {
@@ -82,17 +82,17 @@
         <a href="./contact.html">יצירת קשר</a>
       </div>
 
-      <!-- שורת עוגיות אירופאית דו-לשונית קבועה וניטרלית -->
+      <!-- שורת עוגיות אירופאית דו-לשונית (הפניה בעברית בלבד) -->
       <div class="cookie-bar" style="display: flex; align-items: center; justify-content: space-between; gap: 16px; background: rgba(255, 255, 255, 0.02); border-top: 1px solid rgba(255, 255, 255, 0.05); border-bottom: 1px solid rgba(255, 255, 255, 0.05); padding: 10px 16px; margin: 18px auto 14px auto; max-width: 960px; font-size: 0.78rem; font-weight: 300; color: #717688; line-height: 1.4;">
         <div style="text-align: right; direction: rtl; flex: 1;">
           אתר זה עושה שימוש בעוגיות לצורכי תפעול, מדידה, שיווק ושיפור חוויית המשתמש. <a href="./privacy.html" style="color: #8b92a5; text-decoration: underline;">למידע ומדיניות</a>
         </div>
         <div style="text-align: left; direction: ltr; flex: 1;">
-          This website uses cookies for operational, analytics, and marketing purposes. <a href="./privacy.html" style="color: #8b92a5; text-decoration: underline;">Privacy Policy</a>
+          This website uses cookies for operational, analytics, and marketing purposes.
         </div>
       </div>
 
-      <p>© 2026 jobnet.vip. כל הזכויות שמורות. החישוב מהווה סימולציה משוערת בלבד ואינו מהווה ייעוץ פנסיוני או פיננסי. <span style="opacity: 0.4; font-size: 0.75rem; margin-right: 6px;">v3.4</span></p>
+      <p>© 2026 jobnet.vip. כל הזכויות שמורות. החישוב מהווה סימולציה משוערת בלבד ואינו מהווה ייעוץ פנסיוני או פיננסי. <span style="opacity: 0.4; font-size: 0.75rem; margin-right: 6px;">v3.5</span></p>
     `;
   }
 
