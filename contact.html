@@ -20,28 +20,28 @@
       <form id="contactForm" style="margin-top: 24px;">
         <div class="field">
           <label for="contactName">שם מלא:</label>
-          <input type="text" id="contactName" name="name" required placeholder="השם שלכם">
+          <input type="text" id="contactName" name="שם מלא" required placeholder="השם שלכם">
         </div>
 
         <div class="field">
           <label for="contactEmail">כתובת אימייל לתשובה:</label>
-          <input type="email" id="contactEmail" name="email" required placeholder="yourname@domain.com">
+          <input type="email" id="contactEmail" name="כתובת אימייל לתשובה" required placeholder="yourname@domain.com">
         </div>
 
         <div class="field">
           <label for="contactSubject">נושא הפנייה:</label>
-          <select id="contactSubject" name="subject">
-            <option value="משוב כללי">משוב כללי על המחשבונים</option>
-            <option value="הצעת שיתוף פעולה">הצעת שיתוף פעולה / הטמעה</option>
-            <option value="דיווח על אי-דיוק">דיווח על אי-דיוק בחישוב</option>
-            <option value="סריקת קורות חיים">סריקת קו"ח ב-AI</option>
+          <select id="contactSubject" name="נושא הפנייה">
+            <option value="משוב כללי על המחשבונים">משוב כללי על המחשבונים</option>
+            <option value="הצעת שיתוף פעולה / הטמעה">הצעת שיתוף פעולה / הטמעה</option>
+            <option value="דיווח על אי-דיוק בחישוב">דיווח על אי-דיוק בחישוב</option>
+            <option value="סריקת קו&quot;ח ב-AI">סריקת קו"ח ב-AI</option>
             <option value="אחר">אחר</option>
           </select>
         </div>
 
         <div class="field">
           <label for="contactMsg">תוכן ההודעה:</label>
-          <textarea id="contactMsg" name="message" required placeholder="כתבו כאן את פנייתכם בפירוט..."></textarea>
+          <textarea id="contactMsg" name="תוכן ההודעה" required placeholder="כתבו כאן את פנייתכם בפירוט..."></textarea>
         </div>
 
         <button type="submit" id="btnSubmitContact" class="btn-action" style="width: 100%;">
@@ -53,7 +53,7 @@
         ✓ פנייתך נשלחה בהצלחה! נחזור אליך בהקדם האפשרי.
       </div>
       <div id="contactError" style="display: none; background: rgba(239, 68, 68, 0.12); border: 1px solid var(--danger); color: #fca5a5; padding: 18px; border-radius: 14px; text-align: center; margin-top: 20px; font-weight: 700;">
-        ⚠️ אירעה שגיאה בשליחת הטופס. אנא פנו ישירות לכתובת: jobnet@gmail.com
+        ⚠️ אירעה שגיאה בשליחת הטופס. אנא פנו ישירות לכתובת המייל של האתר.
       </div>
     </div>
   </main>
@@ -65,11 +65,15 @@
       btn.disabled = true;
       btn.textContent = 'שולח...';
 
+      const selectedSubject = document.getElementById('contactSubject').value;
+
       const formData = {
-        name: document.getElementById('contactName').value,
-        email: document.getElementById('contactEmail').value,
-        subject: document.getElementById('contactSubject').value,
-        message: document.getElementById('contactMsg').value
+        "_subject": `************* הודעה לצוות JOBNET [${selectedSubject}] *************`,
+        "_template": "table",
+        "שם מלא": document.getElementById('contactName').value,
+        "כתובת אימייל לתשובה": document.getElementById('contactEmail').value,
+        "נושא הפנייה": selectedSubject,
+        "תוכן ההודעה": document.getElementById('contactMsg').value
       };
 
       fetch('https://formsubmit.co/ajax/jobnet@gmail.com', {
