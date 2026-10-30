@@ -3,112 +3,236 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>מחשבון שכר מינימום ושעות נוספות 2026 | JobNet VIP</title>
-  <meta name="description" content="מחשבון שכר מינימום שעתי וחודשי לשנת 2026 בישראל. חישוב מדויק של שעות נוספות (125%, 150%), שעות שבת וחג לפי חוק שעות עבודה ומנוחה.">
-  <link rel="canonical" href="https://jobnet.vip/minimum-wage.html">
+  <title>מחשבון שכר מינימום מעודכן: חישוב שעתי וחודשי | jobnet.vip</title>
+  <meta name="description" content="מחשבון שכר מינימום עדכני בישראל: חישוב תעריף שעה, שכר חודשי למשרה מלאה וחלקית, זכויות עובדים לפי חוק שכר מינימום.">
+  <link rel="canonical" href="https://jobnet.vip/minimum-wage">
 
-  <!-- חיבור לתשתית המרכזית -->
-  <link rel="stylesheet" href="/style.css">
-  <script src="/common.js" defer></script>
+  <meta property="og:title" content="מחשבון שכר מינימום מעודכן | jobnet.vip">
+  <meta property="og:description" content="חישוב תעריפי שכר מינימום שעתי וחודשי לפי חוק.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jobnet.vip/minimum-wage">
+
+  <link rel="stylesheet" href="./style.css">
+  <script src="./common.js" defer></script>
+
+  <style>
+    .table-container {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin-top: 14px;
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+    }
+    .table-container table {
+      margin: 0;
+      min-width: 480px;
+    }
+    .source-meta {
+      font-size: 0.8rem;
+      color: #9ca3af;
+      margin-top: 18px;
+      padding-top: 12px;
+      border-top: 1px dashed rgba(255, 255, 255, 0.1);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+  </style>
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "מחשבון שכר מינימום ושעות נוספות JobNet VIP",
-    "url": "https://jobnet.vip/minimum-wage.html",
-    "description": "סימולטור שכר מינימום שעתי וחישוב תעריפי שעות נוספות",
+    "name": "jobnet.vip מחשבון שכר מינימום",
+    "url": "https://jobnet.vip/minimum-wage",
     "applicationCategory": "FinanceApplication",
-    "operatingSystem": "All"
+    "operatingSystem": "All",
+    "description": "מחשבון לחישוב שכר מינימום חודשי ושעתי לפי היקף משרה."
   }
   </script>
 </head>
 <body>
 
-  <main class="container">
-    <div class="card">
-      <h2>הזנת נתוני שכר שעתי ושעות נוספות</h2>
-      <p>סימולטור לחישוב שכר עבודה שעתי, גמול שעות נוספות (125% ו-150%) לפי היקף השעות החודשי המעודכן.</p>
+  <main class="main-grid no-print">
+    <!-- כרטיס הזנת נתונים -->
+    <section class="card">
+      <h2>חישוב שכר מינימום לפי משרה</h2>
 
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 20px 0;">
-        <div style="background: #07090e; border: 1px solid var(--card-border); border-radius: 10px; padding: 16px; text-align: center;">
-          <div style="font-size: 0.85rem; color: var(--muted);">שכר מינימום חודשי (משרה מלאה)</div>
-          <div style="font-size: 1.6rem; font-weight: 800; color: var(--accent); margin-top: 4px;">₪5,880</div>
+      <div class="field">
+        <label for="calcType">אופן החישוב המבוקש</label>
+        <select id="calcType">
+          <option value="monthly" selected>חישוב חודשי (לפי אחוזי משרה)</option>
+          <option value="hourly">חישוב שעות (לפי שעות עבודה בפועל)</option>
+        </select>
+      </div>
+
+      <div class="field" id="boxJobScope">
+        <label for="jobScope">היקף משרה באחוזים (100% = 182 שעות)</label>
+        <div class="input-wrapper">
+          <span>%</span>
+          <input type="number" id="jobScope" value="100" min="1" max="150" step="5">
         </div>
-        <div style="background: #07090e; border: 1px solid var(--card-border); border-radius: 10px; padding: 16px; text-align: center;">
-          <div style="font-size: 0.85rem; color: var(--muted);">שכר מינימום שעתי (בסיס 182 שעות)</div>
-          <div style="font-size: 1.6rem; font-weight: 800; color: var(--accent); margin-top: 4px;">₪32.31</div>
+      </div>
+
+      <div class="field" id="boxHoursWorked" style="display: none;">
+        <label for="hoursWorked">מספר שעות עבודה בחודש</label>
+        <div class="input-wrapper">
+          <span>שעות</span>
+          <input type="number" id="hoursWorked" value="182" min="1" max="350" step="1">
         </div>
       </div>
 
       <div class="field">
-        <label for="hourlyRate">שכר שעתי בפועל (₪ לשעה)</label>
-        <div class="input-wrapper">
-          <span>₪</span>
-          <input type="number" id="hourlyRate" value="32.31" step="0.5">
-        </div>
+        <label for="workerAge">קטגוריית גיל (קובע תעריף מינימום)</label>
+        <select id="workerAge">
+          <option value="adult" selected>בגיר (גיל 18 ומעלה - 100%)</option>
+          <option value="teen17">נוער גיל 17-18 (83%)</option>
+          <option value="teen16">נוער גיל 16-17 (75%)</option>
+          <option value="teen14">נוער עד גיל 16 (70%)</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- תוצאות שכר מינימום -->
+    <section class="card">
+      <h2>שכר המינימום החוקי לתשלום</h2>
+
+      <div class="net-banner">
+        <div class="title">שכר מינימום ברוטו לחודש</div>
+        <div class="amount" id="valMinTotal">₪5,880</div>
+        <div style="font-size: 0.9rem; opacity: 0.8; margin-top: 4px;" id="valMinSubtitle">תעריף לשעה: ₪32.30</div>
       </div>
 
-      <div class="field">
-        <label for="regularHours">שעות רגילות בחודש (עד 182 שעות למשרה מלאה)</label>
-        <div class="input-wrapper">
-          <span>ש'</span>
-          <input type="number" id="regularHours" value="182" step="1">
-        </div>
+      <div class="breakdown-row">
+        <span>שכר מינימום חודשי למשרה מלאה</span>
+        <span class="val" id="valFullBase">₪5,880</span>
+      </div>
+      <div class="breakdown-row">
+        <span>תעריף מינימום לשעה רגילה</span>
+        <span class="val" id="valHourlyRate">₪32.30</span>
+      </div>
+      <div class="breakdown-row">
+        <span>תעריף שעה נוספת 125% (שעתיים ראשונות)</span>
+        <span class="val" id="valOvertime125">₪40.38</span>
+      </div>
+      <div class="breakdown-row">
+        <span>תעריף שעה נוספת 150% / שבת וחג</span>
+        <span class="val" id="valOvertime150">₪48.45</span>
       </div>
 
-      <div class="field">
-        <label for="ot125">שעות נוספות בתעריף 125% (שעתיים ראשונות ליום)</label>
-        <div class="input-wrapper">
-          <span>ש'</span>
-          <input type="number" id="ot125" value="10" step="1">
-        </div>
+      <div class="source-meta">
+        <span>מקור: חוק שכר מינימום וצווי ההרחבה (בסיס 182 שעות)</span>
+        <span>סטטוס: מעודכן לפי החוק בתוקף</span>
       </div>
-
-      <div class="field">
-        <label for="ot150">שעות נוספות בתעריף 150% (מעבר לשעתיים / שבת וחג)</label>
-        <div class="input-wrapper">
-          <span>ש'</span>
-          <input type="number" id="ot150" value="5" step="1">
-        </div>
-      </div>
-
-      <div class="result-box">
-        <div class="title">סך שכר ברוטו לתשלום (כולל שעות נוספות):</div>
-        <div class="result-val" id="totalWage">₪0</div>
-      </div>
-
-      <div style="margin-top: 16px;">
-        <div class="breakdown-row"><span>שכר שעות רגילות:</span><span id="basePay">₪0</span></div>
-        <div class="breakdown-row"><span>תוספת שעות 125%:</span><span id="ot125Pay">₪0</span></div>
-        <div class="breakdown-row"><span>תוספת שעות 150%:</span><span id="ot150Pay">₪0</span></div>
-      </div>
-    </div>
-
-    <div class="card">
-      <h2>חוק שעות עבודה ומנוחה – עיקרי הכללים לשנת 2026</h2>
-      <p><strong>חלוקת שעות העבודה:</strong> שבוע העבודה בישראל עומד על 42 שעות שבועיות, והיקף שעות חודשי למשרה מלאה מחושב לפי 182 שעות בחודש.</p>
-      
-      <p><strong>חישוב שעות נוספות:</strong> עבור שתי השעות הנוספות הראשונות ביום עבודה זכאי העובד לתוספת של 25% (125% סך הכל). החל מהשעה הנוספת השלישית ואילך, זכאי העובד לתוספת של 50% (150% סך הכל).</p>
-
-      <p><strong>עבודה בשבתות ובחגים:</strong> עובד המועסק במנוחה השבועית זכאי לתשלום של לפחות 150% משכרו עבור שעות הבסיס, ושעות נוספות בשבת מחושבות בשיעור של 175% ו-200%.</p>
-    </div>
+    </section>
   </main>
 
+  <div class="container no-print" style="max-width: 1060px; width: 100%; margin-top: 10px;">
+    <article class="card">
+      <h2>חוק שכר מינימום בישראל – דגשים חשובים</h2>
+      <p>שכר המינימום בישראל למבוגר (מעל גיל 18) עומד על <strong>5,880.02 ₪ לחודש</strong>, או <strong>32.30 ₪ לשעה</strong> (מחושב לפי חלוקה ב-182 שעות עבודה חודשיות עבור משרה מלאה).</p>
+
+      <div class="table-container">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>קבוצת גיל</th>
+              <th>אחוז משכר מינימום</th>
+              <th>שכר חודשי מלא</th>
+              <th>שכר שעתי</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>בוגר (מגיל 18 ומעלה)</td>
+              <td>100%</td>
+              <td>5,880.02 ₪</td>
+              <td>32.30 ₪</td>
+            </tr>
+            <tr>
+              <td>בני נוער (17 עד 18)</td>
+              <td>83%</td>
+              <td>4,880.42 ₪</td>
+              <td>26.81 ₪</td>
+            </tr>
+            <tr>
+              <td>בני נוער (16 עד 17)</td>
+              <td>75%</td>
+              <td>4,410.02 ₪</td>
+              <td>24.23 ₪</td>
+            </tr>
+            <tr>
+              <td>בני נוער (עד גיל 16)</td>
+              <td>70%</td>
+              <td>4,116.01 ₪</td>
+              <td>22.61 ₪</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+  </div>
+
   <script>
-    function calcWage() {
-      const rate = parseFloat(document.getElementById('hourlyRate').value) || 0;
-      const regH = parseFloat(document.getElementById('regularHours').value) || 0;
-      const ot125H = parseFloat(document.getElementById('ot125').value) || 0;
-      const ot150H = parseFloat(document.getElementById('ot150').value) || 0;
+    const BASE_MONTHLY_ADULT = 5880.02;
+    const MONTH_HOURS = 182;
+    const BASE_HOURLY_ADULT = BASE_MONTHLY_ADULT / MONTH_HOURS; // 32.3078
 
-      const base = regH * rate;
-      const p125 = ot125H * rate * 1.25;
-      const p150 = ot150H * rate * 1.50;
-      const total = base + p125 + p150;
+    const AGE_RATES = {
+      adult: 1.0,
+      teen17: 0.83,
+      teen16: 0.75,
+      teen14: 0.70
+    };
 
-      const fmt = n => '₪' + Math.round(n).toLocaleString('he-IL');
-      document.getElementById('totalWage').textContent = fmt(total);
-      document.getElementById('basePay').textContent = fmt(base);
-      document.getElementById('ot125Pay').textContent = fmt(p125);
-      document.getElementById('ot150Pay').textContent = fmt
+    const fmt = n => '₪' + n.toLocaleString('he-IL', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+    function calcMinWage() {
+      const type = document.getElementById('calcType').value;
+      const ageKey = document.getElementById('workerAge').value;
+      const ageMultiplier = AGE_RATES[ageKey] || 1.0;
+
+      const hourlyBase = BASE_HOURLY_ADULT * ageMultiplier;
+      const fullMonthlyBase = BASE_MONTHLY_ADULT * ageMultiplier;
+
+      let totalMonthly = 0;
+
+      if (type === 'monthly') {
+        const scope = (parseFloat(document.getElementById('jobScope').value) || 0) / 100;
+        totalMonthly = fullMonthlyBase * scope;
+      } else {
+        const hours = parseFloat(document.getElementById('hoursWorked').value) || 0;
+        totalMonthly = hourlyBase * hours;
+      }
+
+      document.getElementById('valMinTotal').textContent = fmt(totalMonthly);
+      document.getElementById('valMinSubtitle').textContent = 'תעריף לשעה: ' + fmt(hourlyBase);
+      document.getElementById('valFullBase').textContent = fmt(fullMonthlyBase);
+      document.getElementById('valHourlyRate').textContent = fmt(hourlyBase);
+      document.getElementById('valOvertime125').textContent = fmt(hourlyBase * 1.25);
+      document.getElementById('valOvertime150').textContent = fmt(hourlyBase * 1.50);
+    }
+
+    document.getElementById('calcType').addEventListener('change', e => {
+      if (e.target.value === 'monthly') {
+        document.getElementById('boxJobScope').style.display = 'block';
+        document.getElementById('boxHoursWorked').style.display = 'none';
+      } else {
+        document.getElementById('boxJobScope').style.display = 'none';
+        document.getElementById('boxHoursWorked').style.display = 'block';
+      }
+      calcMinWage();
+    });
+
+    ['jobScope', 'hoursWorked', 'workerAge'].forEach(id => {
+      const el = document.getElementById(id);
+      el.addEventListener('input', calcMinWage);
+      el.addEventListener('change', calcMinWage);
+    });
+
+    calcMinWage();
+  </script>
+</body>
+</html>
