@@ -3,22 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>מחשבון שווי אופציות ו-RSU להייטק 2026 | jobnet.vip</title>
-  <meta name="description" content="סימולטור חישוב שווי מניות RSU ואופציות לעובדי הייטק לשנת 2026. חישוב מס רווחי הון לפי סעיף 102 (25%), לוח הבשלה (Vesting) ושווי נטו לחשבון הבנק.">
-  <link rel="canonical" href="https://jobnet.vip/options-rsu">
+  <title>מחשבון פיצויי פיטורים וסעיף 14: חישוב זכאות ופטור ממס | jobnet.vip</title>
+  <meta name="description" content="מחשבון פיצויי פיטורים מעודכן: חישוב פיצויים לפי ותק, השלמת פיצויים לפי סעיף 14, תקרת פטור ממס הכנסה (סעיף 9(7א)) וסכום נטו לתשלום.">
+  <link rel="canonical" href="https://jobnet.vip/severance-pay">
+
+  <meta property="og:title" content="מחשבון פיצויי פיטורים וסעיף 14 | jobnet.vip">
+  <meta property="og:description" content="חישוב גובה פיצויי הפיטורים, זכאות לפי סעיף 14 ותקרת הפטור ממס.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jobnet.vip/severance-pay">
 
   <link rel="stylesheet" href="./style.css">
   <script src="./common.js" defer></script>
+
+  <style>
+    .source-meta {
+      font-size: 0.8rem;
+      color: #9ca3af;
+      margin-top: 18px;
+      padding-top: 12px;
+      border-top: 1px dashed rgba(255, 255, 255, 0.1);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+  </style>
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "jobnet.vip מחשבון אופציות ו-RSU",
-    "url": "https://jobnet.vip/options-rsu",
-    "description": "סימולטור שווי אופציות ומניות חסומות RSU עם מיסוי סעיף 102 לעובדי הייטק",
+    "name": "jobnet.vip מחשבון פיצויי פיטורים",
+    "url": "https://jobnet.vip/severance-pay",
     "applicationCategory": "FinanceApplication",
-    "operatingSystem": "All"
+    "operatingSystem": "All",
+    "description": "סימולטור לחישוב פיצויי פיטורים, תקרת פטור ממס וזכאות לפי סעיף 14."
   }
   </script>
 </head>
@@ -27,199 +46,135 @@
   <main class="main-grid no-print">
     <!-- כרטיס הזנת נתונים -->
     <section class="card">
-      <h2>הגדרת מענק המניות והאופציות</h2>
+      <h2>הזנת נתוני העסקה וסיום עבודה</h2>
 
       <div class="field">
-        <label for="equityType">סוג המענק</label>
-        <select id="equityType">
-          <option value="rsu" selected>יחידות מניה חסומות (RSU - ללא עלות מימוש)</option>
-          <option value="options">אופציות למניות (Stock Options - עם מחיר מימוש)</option>
+        <label for="lastSalary">משכורת חודשית קובעת אחרונה (ברוטו)</label>
+        <div class="input-wrapper">
+          <span>₪</span>
+          <input type="number" id="lastSalary" value="15000" min="0" step="500">
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+        <div class="field">
+          <label for="workYears">שנות ותק מלאות</label>
+          <input type="number" id="workYears" value="3" min="0" max="60" step="1">
+        </div>
+        <div class="field">
+          <label for="workMonths">חודשים נוספים</label>
+          <input type="number" id="workMonths" value="6" min="0" max="11" step="1">
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="clause14">האם חל סעיף 14 לחוק פיצויי פיטורים?</label>
+        <select id="clause14">
+          <option value="yes" selected>כן (ההפרשות לקופה באות במקום פיצויים מלאים)</option>
+          <option value="partial">כן, אך הופרשו 6% בלבד (נדרשת השלמה ל-8.33%)</option>
+          <option value="no">לא (חל הדין הכללי - משכורת אחרונה לכל שנת עבודה)</option>
         </select>
       </div>
 
       <div class="field">
-        <label for="unitsCount">מספר יחידות / אופציות שהוענקו</label>
-        <div class="input-wrapper">
-          <span>#</span>
-          <input type="number" id="unitsCount" value="1000" min="1" step="50">
-        </div>
-      </div>
-
-      <div class="field">
-        <label for="currentPrice">מחיר מניה נוכחי בשוק ($ דולר)</label>
-        <div class="input-wrapper">
-          <span>$</span>
-          <input type="number" id="currentPrice" value="50" min="0.01" step="1">
-        </div>
-      </div>
-
-      <div class="field" id="strikeField" style="display: none;">
-        <label for="strikePrice">מחיר מימוש לאופציה ($ Strike Price)</label>
-        <div class="input-wrapper">
-          <span>$</span>
-          <input type="number" id="strikePrice" value="20" min="0" step="0.5">
-        </div>
-      </div>
-
-      <div class="field">
-        <label for="usdRate">שער חליפין דולר/שקל (USD/ILS)</label>
-        <div class="input-wrapper">
-          <span>₪</span>
-          <input type="number" id="usdRate" value="3.65" min="1" step="0.05">
-        </div>
-      </div>
-
-      <div class="field">
-        <label for="taxTrack">מסלול מיסוי (פקודת מס הכנסה)</label>
-        <select id="taxTrack">
-          <option value="0.25" selected>סעיף 102 - מסלול רווחי הון הוני (25% קבוע עם נאמן)</option>
-          <option value="0.47">מסלול פירותי / מס שולי מקסימלי (47%)</option>
+        <label for="endReason">נסיבות סיום ההעסקה</label>
+        <select id="endReason">
+          <option value="fired" selected>פיטורים ע"י המעסיק</option>
+          <option value="resigned">התפטרות יזומה של העובד/ת</option>
         </select>
       </div>
     </section>
 
-    <!-- תוצאות ופירוט שווי -->
+    <!-- תוצאות חישוב פיצויים -->
     <section class="card">
-      <h2>שווי המענק ורווח נטו צפוי</h2>
+      <h2>תוצאות חישוב פיצויי פיטורים</h2>
 
       <div class="net-banner">
-        <div class="title">שווי נטו כולל לחשבון הבנק (לאחר מס)</div>
-        <div class="amount" id="totalNetVal">₪0</div>
-        <div style="font-size: 0.9rem; opacity: 0.8; margin-top: 4px;" id="totalNetUsd">$0</div>
+        <div class="title">סך פיצויי פיטורים לתשלום/שחרור</div>
+        <div class="amount" id="valTotalSev">₪52,500</div>
+        <div style="font-size: 0.9rem; opacity: 0.8; margin-top: 4px;" id="valTenureText">ותק כולל: 3.5 שנים</div>
       </div>
 
       <div class="breakdown-row">
-        <span>שווי שוק ברוטו כולל</span>
-        <span class="val" id="rowGrossVal">₪0</span>
-      </div>
-      <div class="breakdown-row" id="rowStrikeDeduction" style="display: none;">
-        <span>עלות מימוש כוללת (Strike)</span>
-        <span class="val deduction" id="rowStrikeVal">₪0-</span>
+        <span>סך פיצויים ברוטו לפי חוק</span>
+        <span class="val" id="valGrossSev">₪52,500</span>
       </div>
       <div class="breakdown-row">
-        <span>רווח הוני חייב במס</span>
-        <span class="val" id="rowProfitVal">₪0</span>
+        <span>תקרת פטור ממס הכנסה לפיצויים (13,750 ₪ לשנה)</span>
+        <span class="val" id="valTaxExemptCap">₪48,125</span>
       </div>
       <div class="breakdown-row">
-        <span>ניכוי מס הכנסה משוער</span>
-        <span class="val deduction" id="rowTaxVal">₪0-</span>
+        <span>חלק הפיצויים הפטור ממס</span>
+        <span class="val" id="valExemptAmount" style="color: #10b981;">₪48,125</span>
+      </div>
+      <div class="breakdown-row">
+        <span>חלק הפיצויים החייב במס שולי</span>
+        <span class="val deduction" id="valTaxableSev">₪4,375</span>
       </div>
 
-      <h3 style="margin-top: 26px; margin-bottom: 12px; font-size: 1rem; border-bottom: 1px solid var(--card-border); padding-bottom: 8px;">
-        לוח הבשלה מודל 4 שנים (25% בשנה עם קליף)
-      </h3>
-
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th>תקופת הבשלה</th>
-            <th>יחידות</th>
-            <th>שווי ברוטו ($)</th>
-            <th>שווי נטו לחשבון (₪)</th>
-          </tr>
-        </thead>
-        <tbody id="vestingBody">
-          <!-- מוזרק דינמית -->
-        </tbody>
-      </table>
+      <div class="source-meta">
+        <span>מקור: חוק פיצויי פיטורים וסעיף 9(7א) לפקודת מס הכנסה</span>
+        <span>סטטוס: מעודכן לתקרת פקודת מס הכנסה הרשמית</span>
+      </div>
     </section>
   </main>
 
-  <!-- תיבת ידע והסבר SEO עשיר -->
   <div class="container no-print" style="max-width: 1060px; width: 100%; margin-top: 10px;">
     <article class="card">
-      <h2>איך מחושב מס על אופציות ומניות RSU בישראל לשנת 2026?</h2>
-      <p>הענקת מכשירים הוניים (Equity) הינה רכיב תגמול מקובל מאוד בענף ההייטק הישראלי. החוק בישראל מסדיר את אופן המיסוי תחת <strong>סעיף 102 לפקודת מס הכנסה</strong>, המבדיל בין שני מנגנונים עיקריים:</p>
+      <h2>כללי מפתח בפיצויי פיטורים ומיסוי כספי סיום עבודה</h2>
 
-      <h3>1. מסלול רווחי הון באמצעות נאמן (25% מס)</h3>
-      <p>במרבית החברות בישראל, תוכניות האופציות וה-RSU מאושרות תחת מסלול רווח הון באמצעות נאמן. במסלול זה, כל עוד המניות או האופציות מוחזקות אצל הנאמן לפחות 24 חודשים ממועד ההקצאה (תקופת החסימה), הרווח שנוצר ממוסה בשיעור מס רווחי הון קבוע של <strong>25% בלבד</strong>, ולא לפי מדרגות מס הכנסה פירותי (היכולות להגיע עד 50%).</p>
+      <h3>1. מהי הנוסחה הבסיסית לחישוב פיצויים?</h3>
+      <p>לפי חוק פיצויי פיטורים, גובה הפיצויים הבסיסי מחושב כמכפלה של <strong>שכר הברוטו החודשי האחרון במספר שנות העבודה</strong> אצל אותו מעסיק (כולל חלק יחסי עבור חודשי עבודה נוספים).</p>
 
-      <h3>2. מה ההבדל המעשי בין RSU לבין אופציות (Stock Options)?</h3>
-      <p><strong>RSU (Restricted Stock Units):</strong> יחידות מניה המוענקות ללא תשלום נוסף. במועד ההבשלה (Vesting), העובד מקבל את שווי המניה המלא כפי שנסחר בשוק.</p>
-      <p><strong>אופציות (Options):</strong> זכות לרכוש מניה במחיר קבוע מראש (Strike Price). הרווח של העובד הוא אך ורק ההפרש (Spread) שבין מחיר השוק לבין מחיר המימוש. אם מחיר המניה יורד מתחת למחיר המימוש, האופציות נמצאות מחוץ לכסף (Out of the Money) ואינן בעלות שווי כספי מיידי.</p>
+      <h3>2. משמעות סעיף 14 לחוק</h3>
+      <p>כאשר חל סעיף 14 והמעסיק הפריש 8.33% לקופת הפיצויים מדי חודש, הכספים שנצברו בקופה שייכים לעובד במלואם – גם אם העובד <strong>התפטר מרצונו</strong>. אם הופרשו 6% בלבד והעובד פוטר, המעסיק נדרש לבצע השלמת פיצויים של 2.33% לשנה לפי השכר האחרון.</p>
+
+      <h3>3. תקרת הפטור ממס (סעיף 9(7א))</h3>
+      <p>מענק פרישה ופיצויים פטורים ממס הכנסה עד לגובה המשכורת החודשית האחרונה לכל שנת ותק, אך לא יותר מ-<strong>13,750 ₪ לכל שנת עבודה</strong> (או חלק יחסי לחודשים). כל סכום שמתקבל מעבר לתקרה זו חייב במס הכנסה לפי המס השולי של העובד (או בפריסת מס קדימה/אחורה לפי סעיף 8(ג)).</p>
     </article>
   </div>
 
   <script>
-    const fmtILS = num => '₪' + Math.round(num).toLocaleString('he-IL');
-    const fmtUSD = num => '$' + Math.round(num).toLocaleString('en-US');
+    const EXEMPT_CAP_PER_YEAR = 13750;
+    const fmt = n => '₪' + Math.round(n).toLocaleString('he-IL');
 
-    function calculateEquity() {
-      const type = document.getElementById('equityType').value;
-      const count = parseFloat(document.getElementById('unitsCount').value) || 0;
-      const price = parseFloat(document.getElementById('currentPrice').value) || 0;
-      const strike = parseFloat(document.getElementById('strikePrice').value) || 0;
-      const rate = parseFloat(document.getElementById('usdRate').value) || 3.65;
-      const taxRate = parseFloat(document.getElementById('taxTrack').value) || 0.25;
+    function calcSeverance() {
+      const salary = parseFloat(document.getElementById('lastSalary').value) || 0;
+      const years = parseFloat(document.getElementById('workYears').value) || 0;
+      const months = parseFloat(document.getElementById('workMonths').value) || 0;
+      const clause14 = document.getElementById('clause14').value;
+      const reason = document.getElementById('endReason').value;
 
-      const strikeField = document.getElementById('strikeField');
-      const rowStrikeDeduction = document.getElementById('rowStrikeDeduction');
+      const totalTenureYears = years + (months / 12);
+      let grossSeverance = 0;
 
-      let grossUSD = 0;
-      let strikeCostUSD = 0;
-      let profitUSD = 0;
-
-      if (type === 'rsu') {
-        strikeField.style.display = 'none';
-        rowStrikeDeduction.style.display = 'none';
-        grossUSD = count * price;
-        profitUSD = grossUSD;
+      if (reason === 'resigned' && clause14 === 'no') {
+        // התפטרות ללא סעיף 14 - אין זכאות בדין הכללי
+        grossSeverance = 0;
       } else {
-        strikeField.style.display = 'block';
-        rowStrikeDeduction.style.display = 'flex';
-        grossUSD = count * price;
-        strikeCostUSD = count * strike;
-        profitUSD = Math.max(0, count * (price - strike));
+        grossSeverance = salary * totalTenureYears;
       }
 
-      const grossILS = grossUSD * rate;
-      const strikeCostILS = strikeCostUSD * rate;
-      const profitILS = profitUSD * rate;
-      const taxILS = profitILS * taxRate;
-      const netILS = profitILS - taxILS;
-      const netUSD = netILS / (rate || 1);
+      // תקרת פטור לפי סעיף 9(7א): המינימום בין השכר לתקרה, כפול הוותק
+      const maxExemptAllowed = EXEMPT_CAP_PER_YEAR * totalTenureYears;
+      const actualExempt = Math.min(grossSeverance, maxExemptAllowed);
+      const taxableAmount = Math.max(0, grossSeverance - actualExempt);
 
-      document.getElementById('totalNetVal').textContent = fmtILS(netILS);
-      document.getElementById('totalNetUsd').textContent = fmtUSD(netUSD);
-      document.getElementById('rowGrossVal').textContent = fmtILS(grossILS);
-      document.getElementById('rowStrikeVal').textContent = '-' + fmtILS(strikeCostILS);
-      document.getElementById('rowProfitVal').textContent = fmtILS(profitILS);
-      document.getElementById('rowTaxVal').textContent = '-' + fmtILS(taxILS);
-
-      // לוח הבשלה (4 שנים שוות - 25% לכל שנה)
-      const tbody = document.getElementById('vestingBody');
-      tbody.innerHTML = '';
-
-      const years = [
-        { name: 'שנה 1 (קליף ראשון 25%)', portion: 0.25 },
-        { name: 'שנה 2 (הבשלה שוטפת 25%)', portion: 0.25 },
-        { name: 'שנה 3 (הבשלה שוטפת 25%)', portion: 0.25 },
-        { name: 'שנה 4 (הבשלה מלאה 25%)', portion: 0.25 }
-      ];
-
-      years.forEach(yr => {
-        const tr = document.createElement('tr');
-        const yrUnits = Math.round(count * yr.portion);
-        const yrGrossUSD = yr.portion * grossUSD;
-        const yrNetILS = yr.portion * netILS;
-
-        tr.innerHTML = `
-          <td>${yr.name}</td>
-          <td>${yrUnits.toLocaleString('he-IL')}</td>
-          <td>${fmtUSD(yrGrossUSD)}</td>
-          <td style="color: var(--accent); font-weight: 700;">${fmtILS(yrNetILS)}</td>
-        `;
-        tbody.appendChild(tr);
-      });
+      document.getElementById('valTotalSev').textContent = fmt(grossSeverance);
+      document.getElementById('valTenureText').textContent = `ותק כולל: ${totalTenureYears.toFixed(1)} שנים`;
+      document.getElementById('valGrossSev').textContent = fmt(grossSeverance);
+      document.getElementById('valTaxExemptCap').textContent = fmt(maxExemptAllowed);
+      document.getElementById('valExemptAmount').textContent = fmt(actualExempt);
+      document.getElementById('valTaxableSev').textContent = fmt(taxableAmount);
     }
 
-    ['equityType', 'unitsCount', 'currentPrice', 'strikePrice', 'usdRate', 'taxTrack'].forEach(id => {
+    ['lastSalary', 'workYears', 'workMonths', 'clause14', 'endReason'].forEach(id => {
       const el = document.getElementById(id);
-      el.addEventListener('input', calculateEquity);
-      el.addEventListener('change', calculateEquity);
+      el.addEventListener('input', calcSeverance);
+      el.addEventListener('change', calcSeverance);
     });
 
-    calculateEquity();
+    calcSeverance();
   </script>
 </body>
 </html>
