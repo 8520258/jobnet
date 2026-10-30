@@ -1,6 +1,6 @@
 /* ==========================================================================
    jobnet.vip - Core Single Architecture Engine
-   Version: 3.0 (Zero-Dependency UI Injection & Clean URLs)
+   Version: 3.2 (Clean URLs, Cookie Consent, Accessibility & Safe Injection)
    ========================================================================== */
 
 (function () {
@@ -24,7 +24,7 @@
   function buildHeader() {
     const slug = getActiveSlug();
     const existing = document.querySelector('header');
-    if (existing) existing.remove(); // מניעת כפילויות
+    if (existing) existing.remove();
 
     const header = document.createElement('header');
     header.innerHTML = `
@@ -56,27 +56,20 @@
     document.body.insertBefore(header, document.body.firstChild);
   }
 
-  function buildFooter() {
-    const existing = document.querySelector('footer');
-    if (existing) existing.remove();
+  function enhanceFooter() {
+    let footer = document.querySelector('footer');
+    if (!footer) {
+      footer = document.createElement('footer');
+      document.body.appendChild(footer);
+    }
 
-    const footer = document.createElement('footer');
-    footer.innerHTML = `
-      <div class="legal-links">
-        <a href="./about.html">אודות המיזם</a>
-        <span>•</span>
-        <a href="./resources.html">זכויות עובדים ומקורות מידע</a>
-        <span>•</span>
-        <a href="./terms.html">תנאי שימוש</a>
-        <span>•</span>
-        <a href="./privacy.html">מדיניות פרטיות</a>
-        <span>•</span>
-        <a href="./accessibility.html">הצהרת נגישות</a>
-        <span>•</span>
-        <a href="./contact.html">יצירת קשר</a>
-      </div>
-
-      <div id="cookieBar" class="cookie-bar" style="display: none;">
+    // מוודא שהפוטר מכיל את שורת העוגיות הדו-לשונית אם היא טרם קיימת
+    if (!document.getElementById('cookieBar')) {
+      const cookieBar = document.createElement('div');
+      cookieBar.id = 'cookieBar';
+      cookieBar.className = 'cookie-bar';
+      cookieBar.style.display = 'none';
+      cookieBar.innerHTML = `
         <div class="cookie-col he">
           אתר זה עושה שימוש בקובצי עוגיות לצורך תפעול, מדידה סטטיסטית ושיפור השירות. 
           <a href="./privacy.html">למידע נוסף</a>
@@ -86,19 +79,14 @@
           This site uses cookies for functionality, analytics, and experience enhancement.
           <a href="./privacy.html">Privacy Policy</a>
         </div>
-      </div>
+      `;
+      footer.insertBefore(cookieBar, footer.firstChild);
 
-      <p>© 2026 jobnet.vip. כל הזכויות שמורות. החישוב מהווה סימולציה משוערת בלבד. <span style="opacity: 0.4; font-size: 0.75rem; margin-right: 6px;">v2.6</span></p>
-    `;
-    document.body.appendChild(footer);
-
-    if (!localStorage.getItem('cookies_accepted')) {
-      const bar = document.getElementById('cookieBar');
-      if (bar) {
-        bar.style.display = 'flex';
+      if (!localStorage.getItem('cookies_accepted')) {
+        cookieBar.style.display = 'flex';
         document.getElementById('btnAcceptCookies').addEventListener('click', function () {
           localStorage.setItem('cookies_accepted', 'true');
-          bar.style.display = 'none';
+          cookieBar.style.display = 'none';
         });
       }
     }
@@ -186,18 +174,17 @@
 
   function initUI() {
     buildHeader();
-    buildFooter();
+    enhanceFooter();
     buildAccessibilityWidget();
   }
 
-  // הפעלה מיידית בלתי-תלויה
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initUI);
   } else {
     initUI();
   }
 
-  // 2. Google Analytics בבידוד מוחלט
+  // 2. Google Analytics במצב מבודד
   try {
     const gaId = 'G-EKGZK9D1J6';
     const s = document.createElement('script');
@@ -210,6 +197,6 @@
     gtag('js', new Date());
     gtag('config', gaId);
   } catch (e) {
-    // Analytics failed silently
+    // Analytics failed silently without breaking layout
   }
 })();
