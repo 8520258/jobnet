@@ -3,7 +3,7 @@
    Version: 3.9 (Single Source of Truth, CLS Prevention & Clean Tone)
    ========================================================================== */
 
-// מנוע הגדרות מס וסוציאליות יחיד לכלל האתר (מתעדכן מקובץ זה בלבד)
+// מנוע הגדרות מס וסוציאליות יחיד לכלל האתר
 window.JOBNET_TAX_CONFIG = {
   version: "2026.1",
   lastUpdatedText: "מרץ 2026",
@@ -43,7 +43,7 @@ window.JOBNET_TAX_CONFIG = {
     return '';
   }
 
-  // 2. כותרת עליונה ותפריט ניווט מותאם עם מניעת קפיצות (CLS Prevention)
+  // 2. כותרת עליונה ותפריט ניווט עם כותרת לחיצה
   function buildHeader() {
     const slug = getActiveSlug();
     let header = document.querySelector('header');
@@ -56,7 +56,15 @@ window.JOBNET_TAX_CONFIG = {
     header.innerHTML = `
       <style>
         header {
-          min-height: 180px; /* שמירת מקום קבוע למניעת Layout Shift */
+          min-height: 180px;
+        }
+        .header-logo-link {
+          text-decoration: none;
+          color: inherit;
+          display: inline-block;
+        }
+        .header-logo-link:hover h1 {
+          opacity: 0.9;
         }
         .sub-nav {
           display: flex !important;
@@ -103,7 +111,9 @@ window.JOBNET_TAX_CONFIG = {
         <span class="pill">2026</span>
         <span>${window.JOBNET_TAX_CONFIG.sourceText}</span>
       </div>
-      <h1>jobnet.vip</h1>
+      <a href="./index.html" class="header-logo-link">
+        <h1>jobnet.vip</h1>
+      </a>
       <p>סימולטורים פיננסיים, חישוב שכר נטו, אופציות RSU, פיצויי פיטורים וזכויות עובדים</p>
       <nav class="sub-nav">
         <a href="./index.html" class="${slug === 'calc' ? 'active' : ''}">
@@ -134,7 +144,7 @@ window.JOBNET_TAX_CONFIG = {
     `;
   }
 
-  // 3. פוטר מלא כולל שורת עוגיות אחודה
+  // 3. פוטר מלא כולל שורת עוגיות וזכויות יוצרים לחיצות
   function buildFooter() {
     let footer = document.querySelector('footer');
     if (!footer) {
@@ -159,14 +169,25 @@ window.JOBNET_TAX_CONFIG = {
         <a href="./contact.html">יצירת קשר</a>
       </div>
 
-      <div class="cookie-bar" style="display: flex; align-items: center; justify-content: center; flex-wrap: nowrap; gap: 12px; background: rgba(255, 255, 255, 0.02); border-top: 1px solid rgba(255, 255, 255, 0.05); border-bottom: 1px solid rgba(255, 255, 255, 0.05); padding: 8px 16px; margin: 18px auto 14px auto; max-width: 1040px; font-size: 0.77rem; font-weight: 300; color: #717688; white-space: nowrap; overflow-x: auto;">
-        <span>אתר זה עושה שימוש בעוגיות לתפעול, מדידה ושיפור השירות.</span>
-        <a href="./privacy.html" style="color: #8b92a5; text-decoration: underline;">למידע ומדיניות</a>
-        <span style="opacity: 0.35;">|</span>
-        <span style="direction: ltr; font-size: 0.75rem;">This website uses cookies for operational, analytics, and marketing purposes.</span>
+      <div class="cookie-bar" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; background: rgba(255, 255, 255, 0.02); border-top: 1px solid rgba(255, 255, 255, 0.05); border-bottom: 1px solid rgba(255, 255, 255, 0.05); padding: 10px 16px; margin: 18px auto 14px auto; max-width: 1040px; font-size: 0.77rem; font-weight: 300; color: #717688; text-align: center;">
+        <div>
+          <span>אתר זה עושה שימוש בעוגיות לתפעול, מדידה ושיפור השירות.</span>
+          <a href="./privacy.html" style="color: #8b92a5; text-decoration: underline; margin-right: 4px;">למידע ומדיניות</a>
+        </div>
+        <div style="direction: ltr; font-size: 0.74rem; opacity: 0.7;">
+          This website uses cookies for operational, analytics, and marketing purposes.
+        </div>
       </div>
 
-      <p>© 2026 jobnet.vip. כל הזכויות שמורות. החישוב מהווה סימולציה משוערת בלבד ואינו מהווה ייעוץ פנסיוני, פיננסי או ייעוץ מס. <span style="opacity: 0.4; font-size: 0.75rem; margin-right: 6px;">v3.9</span></p>
+      <div style="text-align: center; margin-top: 10px; font-size: 0.82rem; color: var(--muted); line-height: 1.6;">
+        <p style="margin: 0 0 4px 0;">החישוב מהווה סימולציה משוערת בלבד ואינו מהווה ייעוץ פנסיוני, פיננסי או ייעוץ מס.</p>
+        <div style="direction: ltr; display: inline-block;">
+          <a href="./index.html" style="color: var(--muted); text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#f7931a'" onmouseout="this.style.color='var(--muted)'">
+            © 2026 jobnet.vip. All rights reserved.
+          </a>
+          <span style="opacity: 0.4; font-size: 0.75rem; margin-left: 6px;">v3.9</span>
+        </div>
+      </div>
     `;
   }
 
