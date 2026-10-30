@@ -13,17 +13,32 @@
   <link rel="stylesheet" href="./style.css">
   <script src="./common.js" defer></script>
 
+  <!-- סכמה מורחבת למנועי חיפוש ו-LLM (Financial & WebApp) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@graph": [
       {
         "@type": "WebApplication",
+        "@id": "https://jobnet.vip/#app",
         "name": "jobnet.vip מחשבון שכר",
         "url": "https://jobnet.vip/",
         "description": "מחשבון שכר ברוטו נטו, נטו לברוטו ועלויות מעביד לשנת 2026",
         "applicationCategory": "FinanceApplication",
-        "operatingSystem": "All"
+        "operatingSystem": "All",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "ILS"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://jobnet.vip/#org",
+        "name": "jobnet.vip",
+        "url": "https://jobnet.vip/",
+        "logo": "https://jobnet.vip/favicon.ico",
+        "sameAs": []
       }
     ]
   }
@@ -31,7 +46,7 @@
 </head>
 <body>
 
-  <!-- תצוגת הדפסה ממותגת (מוסתר במסך רגיל, מופיע ב-PDF בלבד) -->
+  <!-- תצוגת הדפסה ממותגת (מוסתר במסך, מופיע ב-PDF בלבד) -->
   <div class="print-header">
     <div class="print-logo">jobnet.vip</div>
     <div class="print-tagline">פלטפורמת הפינטק המובילה בישראל לחישוב שכר, מיסוי וזכויות עובדים לשנת 2026</div>
@@ -39,7 +54,7 @@
   </div>
 
   <main class="main-grid no-print">
-    <!-- כרטיס הזנת נתונים -->
+    <!-- הזנת נתונים -->
     <section class="card">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; border-bottom: 1px solid var(--card-border); padding-bottom: 12px;">
         <h2 style="border-bottom: none; margin-bottom: 0; padding-bottom: 0;">הזנת נתונים</h2>
@@ -85,7 +100,7 @@
       </div>
     </section>
 
-    <!-- כרטיס תוצאות וניתוח -->
+    <!-- תוצאות וניתוח -->
     <section class="card" id="resultsSection">
       <h2>פירוט וניתוח השכר</h2>
 
@@ -231,7 +246,7 @@
         </tbody>
       </table>
 
-      <!-- כפתור הטמעה -->
+      <!-- הטמעה -->
       <div style="margin-top: 36px; border-top: 1px solid var(--card-border); padding-top: 24px;">
         <button type="button" id="btnToggleEmbed" class="btn-outline">
           ⚙️ מעוניינים להטמיע את המחשבון באתר שלכם? לחצו כאן לקוד ההטמעה
@@ -247,6 +262,24 @@
       </div>
     </article>
   </div>
+
+  <!-- פוטר סטטי מובנה (גלוי לכל סורק AI ומנוע חיפוש גם ללא JS) -->
+  <footer>
+    <div class="legal-links">
+      <a href="./about.html">אודות המיזם</a>
+      <span>•</span>
+      <a href="./resources.html">זכויות עובדים ומקורות מידע</a>
+      <span>•</span>
+      <a href="./terms.html">תנאי שימוש</a>
+      <span>•</span>
+      <a href="./privacy.html">מדיניות פרטיות</a>
+      <span>•</span>
+      <a href="./accessibility.html">הצהרת נגישות</a>
+      <span>•</span>
+      <a href="./contact.html">יצירת קשר</a>
+    </div>
+    <p>© 2026 jobnet.vip. כל הזכויות שמורות. החישוב מהווה סימולציה משוערת בלבד ואינו מהווה ייעוץ פנסיוני או פיננסי. <span style="opacity: 0.4; font-size: 0.75rem; margin-right: 6px;">v3.2</span></p>
+  </footer>
 
   <script>
     const CREDIT_POINT_VALUE = 242;
