@@ -3,104 +3,306 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>מחשבון שכר הייטק 2026 | ברוטו לנטו לתעשיית הטכנולוגיה - JobNet VIP</title>
-  <meta name="description" content="מחשבון שכר ייעודי להייטק לשנת 2026. חישוב נטו מדויק למשכורות גבוהות, שווי רכב חברה, קרן השתלמות ותקרות ביטוח לאומי.">
-  <link rel="canonical" href="https://jobnet.vip/tech-salary.html">
+  <title>מחשבון שכר הייטק ועלות מעסיק 2026 | jobnet.vip</title>
+  <meta name="description" content="מחשבון שכר הייטק מעודכן לשנת 2026: חישוב שכר נטו, קרן השתלמות, הפרשות סוציאליות מלאות, שווי רכב צמוד ועלות מעביד כוללת לחברות טכנולוגיה.">
+  <link rel="canonical" href="https://jobnet.vip/tech-salary">
 
-  <!-- חיבור לתשתית המרכזית -->
-  <link rel="stylesheet" href="/style.css">
-  <script src="/common.js" defer></script>
+  <meta property="og:title" content="מחשבון שכר הייטק ועלות מעסיק 2026 | jobnet.vip">
+  <meta property="og:description" content="חישוב מדויק של שכר נטו ועלויות מעביד בהייטק לשנת 2026 לפי המדרגות החדשות.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jobnet.vip/tech-salary">
+
+  <link rel="stylesheet" href="./style.css">
+  <script src="./common.js" defer></script>
+
+  <style>
+    .table-container {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin-top: 14px;
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+    }
+    .table-container table {
+      margin: 0;
+      min-width: 520px;
+    }
+    .source-meta {
+      font-size: 0.8rem;
+      color: #9ca3af;
+      margin-top: 18px;
+      padding-top: 12px;
+      border-top: 1px dashed rgba(255, 255, 255, 0.1);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+  </style>
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "מחשבון שכר הייטק JobNet VIP",
-    "url": "https://jobnet.vip/tech-salary.html",
-    "description": "סימולטור שכר מתקדם לעובדי הייטק וטכנולוגיה",
+    "name": "jobnet.vip מחשבון שכר הייטק",
+    "url": "https://jobnet.vip/tech-salary",
     "applicationCategory": "FinanceApplication",
-    "operatingSystem": "All"
+    "operatingSystem": "All",
+    "description": "סימולטור שכר הייטק, קרנות השתלמות, שווי רכב ועלות מעביד לשנת 2026."
   }
   </script>
 </head>
 <body>
 
-  <main class="container">
-    <div class="card">
-      <h2>הזנת נתוני שכר הייטק</h2>
-      <p>סימולטור ממוקד למפתחים, מהנדסים ועובדי תעשיית ההייטק בישראל, עם דגש על שכר מעל תקרת הביטוח הלאומי וזקיפת שווי רכב חברה/ליסינג.</p>
+  <main class="main-grid no-print">
+    <!-- כרטיס הזנת נתונים -->
+    <section class="card">
+      <h2>הגדרות שכר ותנאים בהייטק</h2>
 
       <div class="field">
         <label for="techGross">שכר ברוטו חודשי (שכר בסיס)</label>
         <div class="input-wrapper">
           <span>₪</span>
-          <input type="number" id="techGross" value="32000" step="1000">
+          <input type="number" id="techGross" value="32000" min="0" step="500">
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+        <div class="field">
+          <label for="techGender">מין העובד/ת</label>
+          <select id="techGender">
+            <option value="male" selected>גבר (2.25 נק')</option>
+            <option value="female">אישה (2.75 נק')</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="techKids">ילדים מתחת לגיל 18</label>
+          <input type="number" id="techKids" value="0" min="0" max="15">
         </div>
       </div>
 
       <div class="field">
-        <label for="techCar">שווי שימוש ברכב צמוד (ליסינג / רכב חברה לצורכי מס)</label>
+        <label for="techCarValue">שווי שימוש ברכב חברה (אם יש)</label>
         <div class="input-wrapper">
           <span>₪</span>
-          <input type="number" id="techCar" value="3500" step="100">
+          <input type="number" id="techCarValue" value="0" min="0" step="100">
         </div>
       </div>
 
-      <div class="result-box">
-        <div class="title">נטו משוער לתשלום (כולל פנסיה וקרן השתלמות):</div>
-        <div class="result-val" id="techNet">₪0</div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+        <div class="field">
+          <label for="techPensionRate">הפרשת עובד לפנסיה</label>
+          <select id="techPensionRate">
+            <option value="0.06" selected>6.0% (סטנדרט)</option>
+            <option value="0.07">7.0% (מוגדל)</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="techStudyFund">קרן השתלמות (עובד 2.5% | מעביד 7.5%)</label>
+          <select id="techStudyFund">
+            <option value="yes" selected>כן (כולל עד התקרה)</option>
+            <option value="no">ללא קרן השתלמות</option>
+          </select>
+        </div>
       </div>
-    </div>
+    </section>
 
-    <div class="card">
-      <h2>איך מחושב שכר בהייטק ומדוע הנטו נמוך מהמצופה?</h2>
-      <p>שכר בהייטק חוצה לרוב את מדרגות המס של 31% ו-35%, ובמשכורות בכירות אף מגיע למדרגות של 47% ו-50%. בנוסף, ישנם שני גורמים ייחודיים שמשפיעים משמעותית על הנטו:</p>
-      
-      <p><strong>1. תקרת ביטוח לאומי ומס בריאות:</strong> עד שכר של 49,030 ₪ מנוכים דמי ביטוח לאומי ומס בריאות בשיעור מלא של 12%. כל שקל מעבר לתקרה זו פטור מביטוח לאומי, מה שמעלה מעט את היחס של הנטו ברמות שכר גבוהות במיוחד.</p>
+    <!-- תוצאות חישוב שכר הייטק -->
+    <section class="card">
+      <h2>סיכום נטו ועלויות שכר הייטק</h2>
 
-      <p><strong>2. זקיפת שווי רכב חברה:</strong> רכב צמוד מוסיף זקיפת מס (בד"כ סביב 3,000–4,500 ₪) לברוטו לצורכי מס בלבד. הדבר מעלה את מדרגת המס וגורם להפחתה ישירה של מאות שקלים מהנטו החודשי במזומן.</p>
-    </div>
+      <div class="net-banner">
+        <div class="title">שכר נטו משוער לבנק</div>
+        <div class="amount" id="techValNet">₪20,402</div>
+        <div style="font-size: 0.9rem; opacity: 0.8; margin-top: 4px;" id="techValGrossSubtitle">מתוך ברוטו: ₪32,000</div>
+      </div>
+
+      <div class="breakdown-row">
+        <span>מס הכנסה בפועל (לאחר זיכויים)</span>
+        <span class="val deduction" id="techValTax">₪6,402-</span>
+      </div>
+      <div class="breakdown-row">
+        <span>ביטוח לאומי ומס בריאות עובד</span>
+        <span class="val deduction" id="techValBtl">₪3,201-</span>
+      </div>
+      <div class="breakdown-row">
+        <span>הפרשת עובד לפנסיה</span>
+        <span class="val deduction" id="techValPension">₪1,920-</span>
+      </div>
+      <div class="breakdown-row" id="rowTechStudyFund">
+        <span>הפרשת עובד לקרן השתלמות (2.5%)</span>
+        <span class="val deduction" id="techValStudyFund">₪800-</span>
+      </div>
+
+      <h3 style="margin-top: 24px; margin-bottom: 8px; font-size: 0.95rem; border-bottom: 1px solid var(--card-border); padding-bottom: 6px;">
+        עלות מעסיק כוללת והפרשות סוציאליות
+      </h3>
+
+      <div class="table-container">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>רכיב סוציאלי</th>
+              <th>שיעור מעסיק</th>
+              <th>סכום חודשי</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>תגמולי פנסיה מעסיק</td>
+              <td>6.5%</td>
+              <td id="rowCostPension">₪2,080</td>
+            </tr>
+            <tr>
+              <td>פיצויי פיטורים (סעיף 14)</td>
+              <td>8.33%</td>
+              <td id="rowCostSeverance">₪2,666</td>
+            </tr>
+            <tr>
+              <td>קרן השתלמות מעסיק</td>
+              <td>7.5%</td>
+              <td id="rowCostStudyFund">₪2,400</td>
+            </tr>
+            <tr>
+              <td>ביטוח לאומי מעסיק</td>
+              <td>משוקלל</td>
+              <td id="rowCostBtlEmployer">₪2,127</td>
+            </tr>
+            <tr style="font-weight: 700; background: rgba(247, 147, 26, 0.08);">
+              <td>סך עלות מעסיק חודשית</td>
+              <td>—</td>
+              <td style="color: var(--accent);" id="techValTotalCost">₪41,273</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="source-meta">
+        <span>מקור: מדרגות מס הכנסה ותקרות 2026</span>
+        <span>עודכן לאחרונה: מרץ 2026</span>
+      </div>
+    </section>
   </main>
 
+  <!-- מאמר SEO עשיר -->
+  <div class="container no-print" style="max-width: 1060px; width: 100%; margin-top: 10px;">
+    <article class="card">
+      <h2>איך מורכבת חבילת השכר בהייטק הישראלי?</h2>
+      <p>בניגוד למגזר המסורתי, שכר בהייטק כולל לרוב תנאים נלווים משמעותיים המשפיעים ישירות הן על שכר הנטו והן על עלות המעביד.</p>
+
+      <h3>קרן השתלמות – מקלט המס האטרקטיבי ביותר</h3>
+      <p>בהייטק נהוג להפריש לקרן השתלמות החל מהיום הראשון: 2.5% על חשבון העובד ו-7.5% על חשבון המעסיק. הפקדות המעסיק עד תקרת השכר החודשית (15,712 ₪ נכון ל-2026) פטורות לחלוטין ממס הכנסה ואינן נחשבות כהכנסה חייבת, והרווחים שנצברים בקרן פטורים ממס רווחי הון לאחר 6 שנים.</p>
+
+      <h3>שווי שימוש ברכב צמוד (ליסינג)</h3>
+      <p>קבלת רכב חברה כרוכה בהוספת "שווי שימוש" (בדרך כלל 2.48% מעלות הרכב כחדש) לבסיס השכר החייב במס. תוספת זו מגדילה את המס השולי ואת הניכוי לביטוח לאומי, ולכן מפחיתה ישירות את שכר הנטו בבנק.</p>
+    </article>
+  </div>
+
   <script>
-    const CREDIT_VAL = 242 * 2.25;
+    const CREDIT_POINT_VALUE = 242;
+    const BTL_LOW_THRESHOLD = 7522;
+    const BTL_MAX_CEILING = 50140;
+
     const TAX_BRACKETS = [
-      { limit: 7010, rate: 0.10 },
-      { limit: 10060, rate: 0.14 },
-      { limit: 16150, rate: 0.20 },
-      { limit: 22440, rate: 0.31 },
-      { limit: 46690, rate: 0.35 },
-      { limit: 60130, rate: 0.47 },
-      { limit: Infinity, rate: 0.50 }
+      { max: 7010, rate: 0.10 },
+      { max: 10060, rate: 0.14 },
+      { max: 19000, rate: 0.20 },
+      { max: 25100, rate: 0.31 },
+      { max: 46690, rate: 0.35 },
+      { max: 60130, rate: 0.47 },
+      { max: Infinity, rate: 0.50 }
     ];
 
-    function calcTech() {
+    const fmt = n => '₪' + Math.round(n).toLocaleString('he-IL');
+
+    function calculateTechSalary() {
       const gross = parseFloat(document.getElementById('techGross').value) || 0;
-      const car = parseFloat(document.getElementById('techCar').value) || 0;
-      const taxable = gross + car;
+      const gender = document.getElementById('techGender').value;
+      const kids = parseFloat(document.getElementById('techKids').value) || 0;
+      const carValue = parseFloat(document.getElementById('techCarValue').value) || 0;
+      const pensionRate = parseFloat(document.getElementById('techPensionRate').value) || 0.06;
+      const hasStudyFund = document.getElementById('techStudyFund').value === 'yes';
 
-      let tax = 0, prev = 0;
-      for (const b of TAX_BRACKETS) {
-        if (taxable > prev) {
-          tax += (Math.min(taxable, b.limit) - prev) * b.rate;
-          prev = b.limit;
-        } else break;
+      // 1. נקודות זיכוי
+      const basePoints = gender === 'female' ? 2.75 : 2.25;
+      const totalPoints = basePoints + (kids * 1.5);
+      const creditDiscount = totalPoints * CREDIT_POINT_VALUE;
+
+      // 2. מס הכנסה (שכר ברוטו + שווי שימוש ברכב)
+      const taxableForIncomeTax = gross + carValue;
+      let remaining = taxableForIncomeTax;
+      let prevMax = 0;
+      let taxGross = 0;
+
+      for (const bracket of TAX_BRACKETS) {
+        if (remaining <= 0) break;
+        const bracketSize = bracket.max - prevMax;
+        const taxable = Math.min(remaining, bracketSize);
+        taxGross += taxable * bracket.rate;
+        remaining -= taxable;
+        prevMax = bracket.max;
       }
-      tax = Math.max(0, tax - CREDIT_VAL);
 
-      const ssBase = Math.min(taxable, 49030);
-      const ss = ssBase <= 7522 ? (ssBase * 0.035) : ((7522 * 0.035) + ((ssBase - 7522) * 0.12));
+      const taxFinal = Math.max(0, taxGross - creditDiscount);
 
-      const pension = gross * 0.06;
-      const study = gross * 0.025;
+      // 3. ביטוח לאומי ומס בריאות עובד (כולל אכיפת תקרה מקסימלית)
+      const btlGross = Math.min(taxableForIncomeTax, BTL_MAX_CEILING);
+      let btlDeduction = 0;
+      if (btlGross <= BTL_LOW_THRESHOLD) {
+        btlDeduction = btlGross * 0.035;
+      } else {
+        btlDeduction = (BTL_LOW_THRESHOLD * 0.035) + ((btlGross - BTL_LOW_THRESHOLD) * 0.12);
+      }
 
-      const net = Math.max(0, gross - (tax + ss + pension + study));
-      document.getElementById('techNet').textContent = '₪' + Math.round(net).toLocaleString('he-IL');
+      // 4. הפרשות עובד
+      const pensionDeduction = gross * pensionRate;
+      const studyFundDeduction = hasStudyFund ? (gross * 0.025) : 0;
+
+      // 5. שכר נטו
+      const netSalary = Math.max(0, gross - taxFinal - btlDeduction - pensionDeduction - studyFundDeduction);
+
+      // 6. עלויות מעסיק
+      const costPension = gross * 0.065;
+      const costSeverance = gross * 0.0833; // מקובל בהייטק 8.33% מלא
+      const costStudyFund = hasStudyFund ? (gross * 0.075) : 0;
+      const btlEmployerGross = Math.min(gross, BTL_MAX_CEILING);
+      const costBtlEmployer = btlEmployerGross <= BTL_LOW_THRESHOLD ? 
+        (btlEmployerGross * 0.0355) : 
+        ((BTL_LOW_THRESHOLD * 0.0355) + ((btlEmployerGross - BTL_LOW_THRESHOLD) * 0.076));
+
+      const totalEmployerAdditions = costPension + costSeverance + costStudyFund + costBtlEmployer;
+      const totalCompanyCost = gross + totalEmployerAdditions;
+
+      // עדכון ה-DOM
+      document.getElementById('techValNet').textContent = fmt(netSalary);
+      document.getElementById('techValGrossSubtitle').textContent = 'מתוך ברוטו: ' + fmt(gross);
+      document.getElementById('techValTax').textContent = '-' + fmt(taxFinal);
+      document.getElementById('techValBtl').textContent = '-' + fmt(btlDeduction);
+      document.getElementById('techValPension').textContent = '-' + fmt(pensionDeduction);
+
+      const rowStudy = document.getElementById('rowTechStudyFund');
+      if (hasStudyFund) {
+        rowStudy.style.display = 'flex';
+        document.getElementById('techValStudyFund').textContent = '-' + fmt(studyFundDeduction);
+      } else {
+        rowStudy.style.display = 'none';
+      }
+
+      document.getElementById('rowCostPension').textContent = fmt(costPension);
+      document.getElementById('rowCostSeverance').textContent = fmt(costSeverance);
+      document.getElementById('rowCostStudyFund').textContent = fmt(costStudyFund);
+      document.getElementById('rowCostBtlEmployer').textContent = fmt(costBtlEmployer);
+      document.getElementById('techValTotalCost').textContent = fmt(totalCompanyCost);
     }
 
-    document.getElementById('techGross').addEventListener('input', calcTech);
-    document.getElementById('techCar').addEventListener('input', calcTech);
-    calcTech();
+    ['techGross', 'techGender', 'techKids', 'techCarValue', 'techPensionRate', 'techStudyFund'].forEach(id => {
+      const el = document.getElementById(id);
+      el.addEventListener('input', calculateTechSalary);
+      el.addEventListener('change', calculateTechSalary);
+    });
+
+    calculateTechSalary();
   </script>
 </body>
 </html>
