@@ -1,49 +1,4 @@
-/* ==========================================================================
-   jobnet.vip - Core Single Architecture & Central Tax Engine
-   Version: 3.9 (Single Source of Truth, CLS Prevention & Clean Tone)
-   ========================================================================== */
-
-// מנוע הגדרות מס וסוציאליות יחיד לכלל האתר
-window.JOBNET_TAX_CONFIG = {
-  version: "2026.1",
-  lastUpdatedText: "מרץ 2026",
-  sourceText: "מבוסס על לוחות ניכויי רשות המסים והביטוח הלאומי לשנת 2026",
-  creditPointMonthly: 242,
-  btlLowThreshold: 7522,
-  btlMaxCeiling: 50140,
-  brackets: [
-    { max: 7010, rate: 0.10 },
-    { max: 10060, rate: 0.14 },
-    { max: 19000, rate: 0.20 },
-    { max: 25100, rate: 0.31 },
-    { max: 46690, rate: 0.35 },
-    { max: 60130, rate: 0.47 },
-    { max: Infinity, rate: 0.50 } // 47% + 3% מס יסף
-  ]
-};
-
-(function () {
-  'use strict';
-
-  // 1. הסרת סיומת .html משורת הכתובת בזמן אמת (Clean URLs)
-  if (window.location.pathname.endsWith('.html')) {
-    const cleanPath = window.location.pathname.replace(/\.html$/, '');
-    window.history.replaceState(null, '', cleanPath + window.location.search + window.location.hash);
-  }
-
-  function getActiveSlug() {
-    const path = window.location.pathname.toLowerCase();
-    if (path.includes('options-rsu')) return 'options';
-    if (path.includes('severance-pay')) return 'severance';
-    if (path.includes('tech-salary')) return 'tech';
-    if (path.includes('minimum-wage')) return 'min';
-    if (path.includes('cv-ats')) return 'cv';
-    if (path.includes('guides')) return 'guides';
-    if (path.endsWith('/') || path.endsWith('index') || path === '') return 'calc';
-    return '';
-  }
-
-  // 2. כותרת עליונה ותפריט ניווט עם כותרת לחיצה
+// 2. כותרת עליונה ותפריט ניווט עם קישור לחיץ ומיושר
   function buildHeader() {
     const slug = getActiveSlug();
     let header = document.querySelector('header');
@@ -55,16 +10,22 @@ window.JOBNET_TAX_CONFIG = {
 
     header.innerHTML = `
       <style>
-        header {
-          min-height: 180px;
-        }
-        .header-logo-link {
+        .header-top-link {
           text-decoration: none;
           color: inherit;
           display: inline-block;
+          margin-bottom: 4px;
         }
-        .header-logo-link:hover h1 {
+        .header-top-link:hover h1 {
           opacity: 0.9;
+        }
+        .header-brand-wrap {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 12px;
+          flex-wrap: wrap;
+          margin-bottom: 6px;
         }
         .sub-nav {
           display: flex !important;
@@ -101,20 +62,21 @@ window.JOBNET_TAX_CONFIG = {
             padding-left: 16px !important;
             padding-right: 16px !important;
           }
-          .sub-nav a {
-            padding: 6px 10px !important;
-            font-size: 0.76rem !important;
-          }
         }
       </style>
-      <div class="brand-badge">
-        <span class="pill">2026</span>
-        <span>${window.JOBNET_TAX_CONFIG.sourceText}</span>
+
+      <div class="header-brand-wrap">
+        <a href="./index.html" class="header-top-link">
+          <h1 style="margin: 0; line-height: 1;">jobnet.vip</h1>
+        </a>
+        <div class="brand-badge" style="margin: 0;">
+          <span class="pill">2026</span>
+          <span>${window.JOBNET_TAX_CONFIG.sourceText}</span>
+        </div>
       </div>
-      <a href="./index.html" class="header-logo-link">
-        <h1>jobnet.vip</h1>
-      </a>
-      <p>סימולטורים פיננסיים, חישוב שכר נטו, אופציות RSU, פיצויי פיטורים וזכויות עובדים</p>
+
+      <p style="margin-top: 6px;">סימולטורים פיננסיים, חישוב שכר נטו, אופציות RSU, פיצויי פיטורים וזכויות עובדים</p>
+      
       <nav class="sub-nav">
         <a href="./index.html" class="${slug === 'calc' ? 'active' : ''}">
           <span class="nav-icon" style="background: rgba(247, 147, 26, 0.2); color: #f7931a;">📊</span>
@@ -143,160 +105,3 @@ window.JOBNET_TAX_CONFIG = {
       </nav>
     `;
   }
-
-  // 3. פוטר מלא כולל שורת עוגיות וזכויות יוצרים לחיצות
-  function buildFooter() {
-    let footer = document.querySelector('footer');
-    if (!footer) {
-      footer = document.createElement('footer');
-      document.body.appendChild(footer);
-    }
-
-    footer.innerHTML = `
-      <div class="legal-links">
-        <a href="./about.html">אודות המיזם</a>
-        <span>•</span>
-        <a href="./guides.html">מדריכים ושאלות נפוצות</a>
-        <span>•</span>
-        <a href="./resources.html">זכויות עובדים ומקורות מידע</a>
-        <span>•</span>
-        <a href="./terms.html">תנאי שימוש</a>
-        <span>•</span>
-        <a href="./privacy.html">מדיניות פרטיות</a>
-        <span>•</span>
-        <a href="./accessibility.html">הצהרת נגישות</a>
-        <span>•</span>
-        <a href="./contact.html">יצירת קשר</a>
-      </div>
-
-      <div class="cookie-bar" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; background: rgba(255, 255, 255, 0.02); border-top: 1px solid rgba(255, 255, 255, 0.05); border-bottom: 1px solid rgba(255, 255, 255, 0.05); padding: 10px 16px; margin: 18px auto 14px auto; max-width: 1040px; font-size: 0.77rem; font-weight: 300; color: #717688; text-align: center;">
-        <div>
-          <span>אתר זה עושה שימוש בעוגיות לתפעול, מדידה ושיפור השירות.</span>
-          <a href="./privacy.html" style="color: #8b92a5; text-decoration: underline; margin-right: 4px;">למידע ומדיניות</a>
-        </div>
-        <div style="direction: ltr; font-size: 0.74rem; opacity: 0.7;">
-          This website uses cookies for operational, analytics, and marketing purposes.
-        </div>
-      </div>
-
-      <div style="text-align: center; margin-top: 10px; font-size: 0.82rem; color: var(--muted); line-height: 1.6;">
-        <p style="margin: 0 0 4px 0;">החישוב מהווה סימולציה משוערת בלבד ואינו מהווה ייעוץ פנסיוני, פיננסי או ייעוץ מס.</p>
-        <div style="direction: ltr; display: inline-block;">
-          <a href="./index.html" style="color: var(--muted); text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#f7931a'" onmouseout="this.style.color='var(--muted)'">
-            © 2026 jobnet.vip. All rights reserved.
-          </a>
-          <span style="opacity: 0.4; font-size: 0.75rem; margin-left: 6px;">v3.9</span>
-        </div>
-      </div>
-    `;
-  }
-
-  // 4. ווידג'ט נגישות
-  function buildAccessibilityWidget() {
-    if (document.querySelector('.acc-widget')) return;
-
-    const acc = document.createElement('div');
-    acc.className = 'acc-widget';
-    acc.innerHTML = `
-      <button class="acc-btn" id="accToggle" aria-label="תפריט נגישות" title="תפריט נגישות">
-        <svg viewBox="0 0 24 24"><path d="M12 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm9 7h-6v13h-2v-6h-2v6H9V9H3V7h18v2z"/></svg>
-      </button>
-      <div class="acc-menu" id="accMenu" role="dialog" aria-modal="true" aria-label="הגדרות נגישות">
-        <div class="acc-menu-header">
-          <span>⚙️ התאמות נגישות</span>
-          <button class="acc-close" id="accClose" aria-label="סגור תפריט">&times;</button>
-        </div>
-        <div class="acc-options">
-          <button class="acc-opt-btn" id="btnFontPlus">🔍 הגדל טקסט (+)</button>
-          <button class="acc-opt-btn" id="btnFontMinus">🔍 הקטן טקסט (-)</button>
-          <button class="acc-opt-btn" id="btnGrayscale">🌓 גווני אפור</button>
-          <button class="acc-opt-btn" id="btnInvert">🔄 ניגודיות הפוכה</button>
-          <button class="acc-opt-btn" id="btnLinks">🔗 הדגש קישורים</button>
-          <button class="acc-opt-btn" id="btnReadable">🔤 גופן קריא</button>
-          <button class="acc-reset-btn" id="btnReset">↺ איפוס כל ההתאמות</button>
-        </div>
-        <div style="margin-top: 14px; text-align: center; font-size: 0.78rem;">
-          <a href="./accessibility.html" style="color: var(--muted); text-decoration: underline;">לקריאת הצהרת הנגישות המלאה</a>
-        </div>
-      </div>
-    `;
-    document.body.appendChild(acc);
-
-    const toggle = document.getElementById('accToggle');
-    const menu = document.getElementById('accMenu');
-    const close = document.getElementById('accClose');
-
-    toggle.addEventListener('click', () => menu.classList.toggle('active'));
-    close.addEventListener('click', () => menu.classList.remove('active'));
-
-    let currentFontSize = 16;
-    document.getElementById('btnFontPlus').addEventListener('click', () => {
-      if (currentFontSize < 22) {
-        currentFontSize += 2;
-        document.documentElement.style.fontSize = currentFontSize + 'px';
-      }
-    });
-
-    document.getElementById('btnFontMinus').addEventListener('click', () => {
-      if (currentFontSize > 14) {
-        currentFontSize -= 2;
-        document.documentElement.style.fontSize = currentFontSize + 'px';
-      }
-    });
-
-    document.getElementById('btnGrayscale').addEventListener('click', e => {
-      document.body.classList.toggle('acc-grayscale');
-      e.target.classList.toggle('active-opt');
-    });
-
-    document.getElementById('btnInvert').addEventListener('click', e => {
-      document.body.classList.toggle('acc-invert');
-      e.target.classList.toggle('active-opt');
-    });
-
-    document.getElementById('btnLinks').addEventListener('click', e => {
-      document.body.classList.toggle('acc-highlight-links');
-      e.target.classList.toggle('active-opt');
-    });
-
-    document.getElementById('btnReadable').addEventListener('click', e => {
-      document.body.classList.toggle('acc-readable-font');
-      e.target.classList.toggle('active-opt');
-    });
-
-    document.getElementById('btnReset').addEventListener('click', () => {
-      currentFontSize = 16;
-      document.documentElement.style.fontSize = '16px';
-      document.body.classList.remove('acc-grayscale', 'acc-invert', 'acc-highlight-links', 'acc-readable-font');
-      document.querySelectorAll('.acc-opt-btn').forEach(b => b.classList.remove('active-opt'));
-    });
-  }
-
-  function initLayout() {
-    buildHeader();
-    buildFooter();
-    buildAccessibilityWidget();
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initLayout);
-  } else {
-    initLayout();
-  }
-
-  // 5. גוגל אנליטיקס מבודד
-  try {
-    const gaId = 'G-EKGZK9D1J6';
-    const s = document.createElement('script');
-    s.async = true;
-    s.src = `https://www.googletagmanager.com/gtag/js?id=${gaId}`;
-    document.head.appendChild(s);
-
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', gaId);
-  } catch (e) {
-    // Analytics safe fail
-  }
-})();
