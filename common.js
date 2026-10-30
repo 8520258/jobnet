@@ -1,6 +1,6 @@
 /* ==========================================================================
    jobnet.vip - Core Single Architecture Engine
-   Version: 3.5 (Permanent Bilingual Cookie Row & Clean URLs)
+   Version: 3.6 (Single Line Clean Cookie Bar & Clean URLs)
    ========================================================================== */
 
 (function () {
@@ -59,7 +59,7 @@
     `;
   }
 
-  // 3. פוטר מלא: קישורים, שורת עוגיות דו-לשונית קבועה, וזכויות יוצרים
+  // 3. פוטר מלא: קישורים, שורת עוגיות אחודה בשורה אחת, וזכויות יוצרים
   function buildFooter() {
     let footer = document.querySelector('footer');
     if (!footer) {
@@ -82,17 +82,15 @@
         <a href="./contact.html">יצירת קשר</a>
       </div>
 
-      <!-- שורת עוגיות אירופאית דו-לשונית (הפניה בעברית בלבד) -->
-      <div class="cookie-bar" style="display: flex; align-items: center; justify-content: space-between; gap: 16px; background: rgba(255, 255, 255, 0.02); border-top: 1px solid rgba(255, 255, 255, 0.05); border-bottom: 1px solid rgba(255, 255, 255, 0.05); padding: 10px 16px; margin: 18px auto 14px auto; max-width: 960px; font-size: 0.78rem; font-weight: 300; color: #717688; line-height: 1.4;">
-        <div style="text-align: right; direction: rtl; flex: 1;">
-          אתר זה עושה שימוש בעוגיות לצורכי תפעול, מדידה, שיווק ושיפור חוויית המשתמש. <a href="./privacy.html" style="color: #8b92a5; text-decoration: underline;">למידע ומדיניות</a>
-        </div>
-        <div style="text-align: left; direction: ltr; flex: 1;">
-          This website uses cookies for operational, analytics, and marketing purposes.
-        </div>
+      <!-- שורת עוגיות מיושרת בשורה אחת רציפה -->
+      <div class="cookie-bar" style="display: flex; align-items: center; justify-content: center; flex-wrap: nowrap; gap: 12px; background: rgba(255, 255, 255, 0.02); border-top: 1px solid rgba(255, 255, 255, 0.05); border-bottom: 1px solid rgba(255, 255, 255, 0.05); padding: 8px 16px; margin: 18px auto 14px auto; max-width: 1040px; font-size: 0.77rem; font-weight: 300; color: #717688; white-space: nowrap;">
+        <span>אתר זה עושה שימוש בעוגיות לתפעול, מדידה ושיפור השירות.</span>
+        <a href="./privacy.html" style="color: #8b92a5; text-decoration: underline;">למידע ומדיניות</a>
+        <span style="opacity: 0.35;">|</span>
+        <span style="direction: ltr; font-size: 0.75rem;">This website uses cookies for operational, analytics, and marketing purposes.</span>
       </div>
 
-      <p>© 2026 jobnet.vip. כל הזכויות שמורות. החישוב מהווה סימולציה משוערת בלבד ואינו מהווה ייעוץ פנסיוני או פיננסי. <span style="opacity: 0.4; font-size: 0.75rem; margin-right: 6px;">v3.5</span></p>
+      <p>© 2026 jobnet.vip. כל הזכויות שמורות. החישוב מהווה סימולציה משוערת בלבד ואינו מהווה ייעוץ פנסיוני או פיננסי. <span style="opacity: 0.4; font-size: 0.75rem; margin-right: 6px;">v3.6</span></p>
     `;
   }
 
