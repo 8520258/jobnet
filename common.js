@@ -1,7 +1,26 @@
 /* ==========================================================================
-   jobnet.vip - Core Single Architecture Engine
-   Version: 3.8 (Mobile-Ready Single Row Nav, No-Wrap & Full Layout)
+   jobnet.vip - Core Single Architecture & Central Tax Engine
+   Version: 3.9 (Single Source of Truth, CLS Prevention & Clean Tone)
    ========================================================================== */
+
+// מנוע הגדרות מס וסוציאליות יחיד לכלל האתר (מתעדכן מקובץ זה בלבד)
+window.JOBNET_TAX_CONFIG = {
+  version: "2026.1",
+  lastUpdatedText: "מרץ 2026",
+  sourceText: "מבוסס על לוחות ניכויי רשות המסים והביטוח הלאומי לשנת 2026",
+  creditPointMonthly: 242,
+  btlLowThreshold: 7522,
+  btlMaxCeiling: 50140,
+  brackets: [
+    { max: 7010, rate: 0.10 },
+    { max: 10060, rate: 0.14 },
+    { max: 19000, rate: 0.20 },
+    { max: 25100, rate: 0.31 },
+    { max: 46690, rate: 0.35 },
+    { max: 60130, rate: 0.47 },
+    { max: Infinity, rate: 0.50 } // 47% + 3% מס יסף
+  ]
+};
 
 (function () {
   'use strict';
@@ -24,7 +43,7 @@
     return '';
   }
 
-  // 2. כותרת עליונה ותפריט ניווט מותאם מובייל ודסקטופ
+  // 2. כותרת עליונה ותפריט ניווט מותאם עם מניעת קפיצות (CLS Prevention)
   function buildHeader() {
     const slug = getActiveSlug();
     let header = document.querySelector('header');
@@ -36,6 +55,9 @@
 
     header.innerHTML = `
       <style>
+        header {
+          min-height: 180px; /* שמירת מקום קבוע למניעת Layout Shift */
+        }
         .sub-nav {
           display: flex !important;
           flex-wrap: nowrap !important;
@@ -78,11 +100,11 @@
         }
       </style>
       <div class="brand-badge">
-        <span class="pill">חדש</span>
-        <span>מערכת חישוב שכר, אופציות ודיני עבודה 2026</span>
+        <span class="pill">2026</span>
+        <span>${window.JOBNET_TAX_CONFIG.sourceText}</span>
       </div>
       <h1>jobnet.vip</h1>
-      <p>פלטפורמת הפינטק המובילה בישראל לחישוב שכר נטו, אופציות RSU, פיצויי פיטורים וסריקת קורות חיים</p>
+      <p>סימולטורים פיננסיים, חישוב שכר נטו, אופציות RSU, פיצויי פיטורים וזכויות עובדים</p>
       <nav class="sub-nav">
         <a href="./index.html" class="${slug === 'calc' ? 'active' : ''}">
           <span class="nav-icon" style="background: rgba(247, 147, 26, 0.2); color: #f7931a;">📊</span>
@@ -144,7 +166,7 @@
         <span style="direction: ltr; font-size: 0.75rem;">This website uses cookies for operational, analytics, and marketing purposes.</span>
       </div>
 
-      <p>© 2026 jobnet.vip. כל הזכויות שמורות. החישוב מהווה סימולציה משוערת בלבד ואינו מהווה ייעוץ פנסיוני או פיננסי. <span style="opacity: 0.4; font-size: 0.75rem; margin-right: 6px;">v3.8</span></p>
+      <p>© 2026 jobnet.vip. כל הזכויות שמורות. החישוב מהווה סימולציה משוערת בלבד ואינו מהווה ייעוץ פנסיוני, פיננסי או ייעוץ מס. <span style="opacity: 0.4; font-size: 0.75rem; margin-right: 6px;">v3.9</span></p>
     `;
   }
 
@@ -195,4 +217,65 @@
     });
 
     document.getElementById('btnFontMinus').addEventListener('click', () => {
-      if (currentFontSize >
+      if (currentFontSize > 14) {
+        currentFontSize -= 2;
+        document.documentElement.style.fontSize = currentFontSize + 'px';
+      }
+    });
+
+    document.getElementById('btnGrayscale').addEventListener('click', e => {
+      document.body.classList.toggle('acc-grayscale');
+      e.target.classList.toggle('active-opt');
+    });
+
+    document.getElementById('btnInvert').addEventListener('click', e => {
+      document.body.classList.toggle('acc-invert');
+      e.target.classList.toggle('active-opt');
+    });
+
+    document.getElementById('btnLinks').addEventListener('click', e => {
+      document.body.classList.toggle('acc-highlight-links');
+      e.target.classList.toggle('active-opt');
+    });
+
+    document.getElementById('btnReadable').addEventListener('click', e => {
+      document.body.classList.toggle('acc-readable-font');
+      e.target.classList.toggle('active-opt');
+    });
+
+    document.getElementById('btnReset').addEventListener('click', () => {
+      currentFontSize = 16;
+      document.documentElement.style.fontSize = '16px';
+      document.body.classList.remove('acc-grayscale', 'acc-invert', 'acc-highlight-links', 'acc-readable-font');
+      document.querySelectorAll('.acc-opt-btn').forEach(b => b.classList.remove('active-opt'));
+    });
+  }
+
+  function initLayout() {
+    buildHeader();
+    buildFooter();
+    buildAccessibilityWidget();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initLayout);
+  } else {
+    initLayout();
+  }
+
+  // 5. גוגל אנליטיקס מבודד
+  try {
+    const gaId = 'G-EKGZK9D1J6';
+    const s = document.createElement('script');
+    s.async = true;
+    s.src = `https://www.googletagmanager.com/gtag/js?id=${gaId}`;
+    document.head.appendChild(s);
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', gaId);
+  } catch (e) {
+    // Analytics safe fail
+  }
+})();
