@@ -1,12 +1,12 @@
 /* ==========================================================================
    jobnet.vip - Core Single Architecture Engine
-   Version: 3.2 (Clean URLs, Cookie Consent, Accessibility & Safe Injection)
+   Version: 3.3 (Guaranteed Header & Complete Footer Injection)
    ========================================================================== */
 
 (function () {
   'use strict';
 
-  // 1. ניקוי מיידי של סיומת .html משורת הכתובת (Clean URLs)
+  // 1. ניקוי סיומת .html משורת הכתובת (Clean URLs)
   if (window.location.pathname.endsWith('.html')) {
     const cleanPath = window.location.pathname.replace(/\.html$/, '');
     window.history.replaceState(null, '', cleanPath + window.location.search + window.location.hash);
@@ -21,12 +21,16 @@
     return '';
   }
 
+  // 2. הזרקת כותרת ותפריט עליון
   function buildHeader() {
     const slug = getActiveSlug();
-    const existing = document.querySelector('header');
-    if (existing) existing.remove();
+    let header = document.querySelector('header');
+    
+    if (!header) {
+      header = document.createElement('header');
+      document.body.insertBefore(header, document.body.firstChild);
+    }
 
-    const header = document.createElement('header');
     header.innerHTML = `
       <div class="brand-badge">
         <span class="pill">חדש</span>
@@ -53,23 +57,32 @@
         </a>
       </nav>
     `;
-    document.body.insertBefore(header, document.body.firstChild);
   }
 
-  function enhanceFooter() {
+  // 3. הזרקת פוטר מלא (קישורים + עוגיות + זכויות יוצרים)
+  function buildFooter() {
     let footer = document.querySelector('footer');
     if (!footer) {
       footer = document.createElement('footer');
       document.body.appendChild(footer);
     }
 
-    // מוודא שהפוטר מכיל את שורת העוגיות הדו-לשונית אם היא טרם קיימת
-    if (!document.getElementById('cookieBar')) {
-      const cookieBar = document.createElement('div');
-      cookieBar.id = 'cookieBar';
-      cookieBar.className = 'cookie-bar';
-      cookieBar.style.display = 'none';
-      cookieBar.innerHTML = `
+    footer.innerHTML = `
+      <div class="legal-links">
+        <a href="./about.html">אודות המיזם</a>
+        <span>•</span>
+        <a href="./resources.html">זכויות עובדים ומקורות מידע</a>
+        <span>•</span>
+        <a href="./terms.html">תנאי שימוש</a>
+        <span>•</span>
+        <a href="./privacy.html">מדיניות פרטיות</a>
+        <span>•</span>
+        <a href="./accessibility.html">הצהרת נגישות</a>
+        <span>•</span>
+        <a href="./contact.html">יצירת קשר</a>
+      </div>
+
+      <div id="cookieBar" class="cookie-bar" style="display: none;">
         <div class="cookie-col he">
           אתר זה עושה שימוש בקובצי עוגיות לצורך תפעול, מדידה סטטיסטית ושיפור השירות. 
           <a href="./privacy.html">למידע נוסף</a>
@@ -79,10 +92,14 @@
           This site uses cookies for functionality, analytics, and experience enhancement.
           <a href="./privacy.html">Privacy Policy</a>
         </div>
-      `;
-      footer.insertBefore(cookieBar, footer.firstChild);
+      </div>
 
-      if (!localStorage.getItem('cookies_accepted')) {
+      <p>© 2026 jobnet.vip. כל הזכויות שמורות. החישוב מהווה סימולציה משוערת בלבד ואינו מהווה ייעוץ פנסיוני או פיננסי. <span style="opacity: 0.4; font-size: 0.75rem; margin-right: 6px;">v3.3</span></p>
+    `;
+
+    if (!localStorage.getItem('cookies_accepted')) {
+      const cookieBar = document.getElementById('cookieBar');
+      if (cookieBar) {
         cookieBar.style.display = 'flex';
         document.getElementById('btnAcceptCookies').addEventListener('click', function () {
           localStorage.setItem('cookies_accepted', 'true');
@@ -92,6 +109,7 @@
     }
   }
 
+  // 4. כפתור ותפריט נגישות
   function buildAccessibilityWidget() {
     if (document.querySelector('.acc-widget')) return;
 
@@ -172,19 +190,19 @@
     });
   }
 
-  function initUI() {
+  function initLayout() {
     buildHeader();
-    enhanceFooter();
+    buildFooter();
     buildAccessibilityWidget();
   }
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initUI);
+    document.addEventListener('DOMContentLoaded', initLayout);
   } else {
-    initUI();
+    initLayout();
   }
 
-  // 2. Google Analytics במצב מבודד
+  // 5. גוגל אנליטיקס בטעינה מבודדת
   try {
     const gaId = 'G-EKGZK9D1J6';
     const s = document.createElement('script');
@@ -197,6 +215,6 @@
     gtag('js', new Date());
     gtag('config', gaId);
   } catch (e) {
-    // Analytics failed silently without breaking layout
+    // Analytics safe fail
   }
 })();
