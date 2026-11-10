@@ -1,6 +1,6 @@
 /* ==========================================================================
    jobnet.vip - Core Architecture & Central Tax Engine
-   Version: 3.9.1 (Safari & Mobile Bulletproof Fix)
+   Version: 3.9.2 (Favicon, Dynamic Title & Mobile Bulletproof)
    ========================================================================== */
 
 window.JOBNET_TAX_CONFIG = {
@@ -24,7 +24,27 @@ window.JOBNET_TAX_CONFIG = {
 (function () {
   'use strict';
 
-  // 1. הסרת .html בטוחה ללא קריסה בספארי
+  // 1. הזרקת אייקון לשונית (Favicon SVG) וכותרת (Title) באופן אוטומטי
+  function setupMetaAndFavicon() {
+    try {
+      // עדכון כותרת הלשונית (מוצגת במעבר עכבר)
+      document.title = "jobnet.vip | מחשבוני שכר וזכויות עובדים";
+
+      // בדיקה אם קיים כבר Favicon
+      let favicon = document.querySelector('link[rel="icon"], link[rel="shortcut icon"]');
+      if (!favicon) {
+        favicon = document.createElement('link');
+        favicon.rel = 'icon';
+        document.head.appendChild(favicon);
+      }
+      favicon.type = 'image/svg+xml';
+      
+      // אייקון SVG מעוצב בגווני האתר (רקע כהה עם אייקון גרף/מטבע כתום זוהר)
+      favicon.href = `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="%230b0e14" stroke="%23f7931a" stroke-width="4"/><path d="M28 68 L28 50 M42 68 L42 36 M58 68 L58 42 M72 68 L72 26" stroke="%23f7931a" stroke-width="7" stroke-linecap="round"/><circle cx="72" cy="26" r="5" fill="%23ffffff"/></svg>`;
+    } catch (e) {}
+  }
+
+  // 2. הסרת .html בטוחה ללא תקיעת הדפדפן
   try {
     if (window.location.pathname.endsWith('.html')) {
       const cleanPath = window.location.pathname.replace(/\.html$/, '');
@@ -46,10 +66,10 @@ window.JOBNET_TAX_CONFIG = {
     return '';
   }
 
-  // 2. כותרת עליונה ותפריט ניווט ממורכז
+  // 3. כותרת עליונה ותפריט ניווט ממורכז
   function buildHeader() {
     try {
-      if (document.querySelector('header .sub-nav')) return; // מניעת שכפול
+      if (document.querySelector('header .sub-nav')) return;
 
       const slug = getActiveSlug();
       let header = document.querySelector('header');
@@ -155,15 +175,13 @@ window.JOBNET_TAX_CONFIG = {
           </a>
         </nav>
       `;
-    } catch (err) {
-      console.error('Header build error:', err);
-    }
+    } catch (err) {}
   }
 
-  // 3. פוטר מלא וממורכז
+  // 4. פוטר מלא וממורכז
   function buildFooter() {
     try {
-      if (document.querySelector('footer .legal-links')) return; // מניעת שכפול
+      if (document.querySelector('footer .legal-links')) return;
 
       let footer = document.querySelector('footer');
       if (!footer) {
@@ -208,12 +226,10 @@ window.JOBNET_TAX_CONFIG = {
           </div>
         </div>
       `;
-    } catch (err) {
-      console.error('Footer build error:', err);
-    }
+    } catch (err) {}
   }
 
-  // 4. ווידג'ט נגישות
+  // 5. ווידג'ט נגישות
   function buildAccessibilityWidget() {
     try {
       if (document.querySelector('.acc-widget')) return;
@@ -317,25 +333,23 @@ window.JOBNET_TAX_CONFIG = {
           document.querySelectorAll('.acc-opt-btn').forEach(b => b.classList.remove('active-opt'));
         });
       }
-    } catch (err) {
-      console.error('Accessibility build error:', err);
-    }
+    } catch (err) {}
   }
 
   function initLayout() {
+    setupMetaAndFavicon();
     buildHeader();
     buildFooter();
     buildAccessibilityWidget();
   }
 
-  // הפעלה מובטחת גם כשהדף כבר נטען או באמצע טעינה
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initLayout);
   } else {
     initLayout();
   }
 
-  // 5. גוגל אנליטיקס מוגן
+  // 6. גוגל אנליטיקס
   try {
     const gaId = 'G-EKGZK9D1J6';
     const s = document.createElement('script');
