@@ -1,6 +1,6 @@
 /* ==========================================================================
    jobnet.vip - Core Architecture, Smart Cross-Navigation & Tax Engine
-   Version: 4.0.0 (Friendly Header, Smart Recommendations & JobNet Title)
+   Version: 4.1.0 (Clean Bitcoin.com Inspired Palette, No Neon Green)
    ========================================================================== */
 
 window.JOBNET_TAX_CONFIG = {
@@ -24,7 +24,6 @@ window.JOBNET_TAX_CONFIG = {
 (function () {
   'use strict';
 
-  // 1. אייקון לשונית וכותרת קצרה
   function setupMetaAndFavicon() {
     try {
       document.title = "JobNet";
@@ -40,7 +39,6 @@ window.JOBNET_TAX_CONFIG = {
     } catch (e) {}
   }
 
-  // 2. הפניית קישורים ישנים וניקוי סיומת .html
   try {
     if (window.location.pathname.includes('cv-ats')) {
       window.location.replace('./');
@@ -64,7 +62,6 @@ window.JOBNET_TAX_CONFIG = {
     return '';
   }
 
-  // 3. כותרת עליונה ותפריט ניווט קליל
   function buildHeader() {
     try {
       if (document.querySelector('header .sub-nav')) return;
@@ -144,31 +141,31 @@ window.JOBNET_TAX_CONFIG = {
           </div>
         </div>
 
-        <p style="margin-top: 6px; font-size: 0.96rem; color: #cbd5e1;">כל הכלים לקריירה ולתלוש השכר במקום אחד</p>
+        <p style="margin-top: 6px; font-size: 0.95rem; color: #9ca3af;">כל הכלים לקריירה ולתלוש השכר במקום אחד</p>
         
         <nav class="sub-nav">
           <a href="./index.html" class="${slug === 'cv' ? 'active' : ''}">
-            <span class="nav-icon" style="background: rgba(0, 230, 153, 0.2); color: #00e699;">🤖</span>
+            <span class="nav-icon" style="background: rgba(247, 147, 26, 0.16); color: #f7931a;">📄</span>
             <span>סריקת קו"ח</span>
           </a>
           <a href="./general-calculator.html" class="${slug === 'calc' ? 'active' : ''}">
-            <span class="nav-icon" style="background: rgba(247, 147, 26, 0.2); color: #f7931a;">📊</span>
+            <span class="nav-icon" style="background: rgba(247, 147, 26, 0.16); color: #f7931a;">📊</span>
             <span>מחשבון כללי</span>
           </a>
           <a href="./tech-salary.html" class="${slug === 'tech' ? 'active' : ''}">
-            <span class="nav-icon" style="background: rgba(168, 85, 247, 0.2); color: #c084fc;">⚡</span>
+            <span class="nav-icon" style="background: rgba(247, 147, 26, 0.16); color: #f7931a;">⚡</span>
             <span>שכר הייטק</span>
           </a>
           <a href="./options-rsu.html" class="${slug === 'options' ? 'active' : ''}">
-            <span class="nav-icon" style="background: rgba(59, 130, 246, 0.2); color: #60a5fa;">📈</span>
+            <span class="nav-icon" style="background: rgba(247, 147, 26, 0.16); color: #f7931a;">📈</span>
             <span>אופציות ו-RSU</span>
           </a>
           <a href="./severance-pay.html" class="${slug === 'severance' ? 'active' : ''}">
-            <span class="nav-icon" style="background: rgba(236, 72, 153, 0.2); color: #f472b6;">🛡️</span>
+            <span class="nav-icon" style="background: rgba(247, 147, 26, 0.16); color: #f7931a;">🛡️</span>
             <span>פיצויי פיטורים</span>
           </a>
           <a href="./minimum-wage.html" class="${slug === 'min' ? 'active' : ''}">
-            <span class="nav-icon" style="background: rgba(255, 85, 0, 0.2); color: #ff5500;">⏱️</span>
+            <span class="nav-icon" style="background: rgba(247, 147, 26, 0.16); color: #f7931a;">⏱️</span>
             <span>שכר מינימום</span>
           </a>
         </nav>
@@ -176,11 +173,10 @@ window.JOBNET_TAX_CONFIG = {
     } catch (err) {}
   }
 
-  // 4. מנוע המלצות חכם למעבר טבעי בין כלי האתר (לכל הדפים הפנימיים)
   function buildSmartNextStep() {
     try {
       const slug = getActiveSlug();
-      if (!slug || slug === 'cv') return; // בדף הבית ההמלצות משולבות דינמית בתוך הדף
+      if (!slug || slug === 'cv') return;
       if (document.querySelector('.smart-next-step')) return;
 
       const recommendations = {
@@ -188,54 +184,54 @@ window.JOBNET_TAX_CONFIG = {
           tag: "הצעד הבא בקריירה",
           title: "רוצה לבדוק אם השכר שלך תואם למה שמחפשים בשוק?",
           desc: "אם אתה מתכונן לראיון או חושב על שדרוג במקום חדש, בדוק תוך שניות איך קורות החיים שלך עוברים סינון אוטומטי.",
-          primaryText: "🤖 לסריקת קורות חיים בחינם",
+          primaryText: "לסריקת קורות חיים בחינם",
           primaryHref: "./index.html",
-          secondaryText: "⚡ השוואה לשכר הייטק",
+          secondaryText: "השוואה לשכר הייטק",
           secondaryHref: "./tech-salary.html"
         },
         tech: {
           tag: "המשלים הטבעי לחוזה בהייטק",
           title: "קיבלת הצעה עם אופציות או מניות (RSU)?",
           desc: "בחברות טכנולוגיה חלק משמעותי מהתגמול נמצא בהון. חשב כמה באמת יישאר לך נטו אחרי מס רווחי הון ומסלול 102.",
-          primaryText: "📈 מחשבון אופציות ו-RSU",
+          primaryText: "מחשבון אופציות ו-RSU",
           primaryHref: "./options-rsu.html",
-          secondaryText: "🤖 בדיקת קו\"ח למשרות טק",
+          secondaryText: "בדיקת קו\"ח למשרות טק",
           secondaryHref: "./index.html"
         },
         options: {
           tag: "מתכננים את המהלך הבא?",
           title: "עוברים חברה או בודקים תנאי עזיבה?",
           desc: "בדקו כמה פיצויי פיטורים מגיעים לכם, מה פטור ממס ואיך להכין את קורות החיים לסיבוב הבא.",
-          primaryText: "🛡️ מחשבון פיצויי פיטורים",
+          primaryText: "מחשבון פיצויי פיטורים",
           primaryHref: "./severance-pay.html",
-          secondaryText: "🤖 רענון קורות חיים ל-ATS",
+          secondaryText: "רענון קורות חיים ל-ATS",
           secondaryHref: "./index.html"
         },
         severance: {
           tag: "ממשיכים קדימה",
           title: "סיימתם תפקיד ומתחילים לחפש את היעד הבא?",
           desc: "לפני ששולחים קורות חיים למעסיקים, ודאו שהקובץ שלכם עובר חלק את מערכות הסינון האוטומטיות.",
-          primaryText: "🤖 סריקת קורות חיים עכשיו",
+          primaryText: "סריקת קורות חיים עכשיו",
           primaryHref: "./index.html",
-          secondaryText: "📊 חישוב יעד שכר נטו חדש",
+          secondaryText: "חישוב יעד שכר נטו חדש",
           secondaryHref: "./general-calculator.html"
         },
         min: {
           tag: "מעבר לשכר הבסיס",
           title: "רוצים לראות כמה נשאר נטו אחרי נקודות זיכוי ופנסיה?",
           desc: "הכניסו את השכר החודשי או השעתי למחשבון המלא וקבלו פירוט מדויק של התלוש ועלות המעסיק.",
-          primaryText: "📊 למחשבון שכר ברוטו-נטו",
+          primaryText: "למחשבון שכר ברוטו-נטו",
           primaryHref: "./general-calculator.html",
-          secondaryText: "🤖 בדיקת קו\"ח לשיפור שכר",
+          secondaryText: "בדיקת קו\"ח לשיפור שכר",
           secondaryHref: "./index.html"
         },
         guides: {
           tag: "מוכנים ליישם?",
           title: "עברו ישר לכלים המעשיים של JobNet",
           desc: "בדקו את קורות החיים שלכם מול מערכות גיוס או חשבו את תלוש השכר נטו לשנת 2026.",
-          primaryText: "🤖 סריקת קורות חיים",
+          primaryText: "סריקת קורות חיים",
           primaryHref: "./index.html",
-          secondaryText: "📊 מחשבון שכר כללי",
+          secondaryText: "מחשבון שכר כללי",
           secondaryHref: "./general-calculator.html"
         }
       };
@@ -245,17 +241,17 @@ window.JOBNET_TAX_CONFIG = {
 
       const box = document.createElement('section');
       box.className = 'smart-next-step no-print';
-      box.style.cssText = 'max-width: 1060px; width: calc(100% - 32px); margin: 28px auto 10px auto; background: linear-gradient(135deg, rgba(247, 147, 26, 0.08), rgba(0, 230, 153, 0.06)); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 14px; padding: 22px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px; box-sizing: border-box;';
+      box.style.cssText = 'max-width: 1060px; width: calc(100% - 32px); margin: 28px auto 10px auto; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 22px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px; box-sizing: border-box;';
 
       box.innerHTML = `
         <div style="flex: 1 1 320px;">
-          <span style="display: inline-block; font-size: 0.75rem; font-weight: 700; color: #f7931a; background: rgba(247, 147, 26, 0.15); padding: 3px 10px; border-radius: 999px; margin-bottom: 8px;">${rec.tag}</span>
-          <h3 style="margin: 0 0 6px 0; font-size: 1.15rem; color: #ffffff;">${rec.title}</h3>
-          <p style="margin: 0; font-size: 0.88rem; color: #9ca3af; line-height: 1.55;">${rec.desc}</p>
+          <span style="display: inline-block; font-size: 0.74rem; font-weight: 700; color: #f7931a; background: rgba(247, 147, 26, 0.14); padding: 3px 10px; border-radius: 999px; margin-bottom: 8px;">${rec.tag}</span>
+          <h3 style="margin: 0 0 6px 0; font-size: 1.12rem; color: #ffffff;">${rec.title}</h3>
+          <p style="margin: 0; font-size: 0.87rem; color: #8b92a5; line-height: 1.55;">${rec.desc}</p>
         </div>
         <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-          <a href="${rec.primaryHref}" style="text-decoration: none; background: #00e699; color: #0b0e14; font-weight: 700; padding: 10px 18px; border-radius: 8px; font-size: 0.9rem; white-space: nowrap;">${rec.primaryText}</a>
-          <a href="${rec.secondaryHref}" style="text-decoration: none; background: rgba(255,255,255,0.06); color: #f3f4f6; border: 1px solid rgba(255,255,255,0.12); font-weight: 600; padding: 10px 16px; border-radius: 8px; font-size: 0.88rem; white-space: nowrap;">${rec.secondaryText}</a>
+          <a href="${rec.primaryHref}" style="text-decoration: none; background: #f7931a; color: #0b0e14; font-weight: 700; padding: 10px 20px; border-radius: 999px; font-size: 0.88rem; white-space: nowrap;">${rec.primaryText}</a>
+          <a href="${rec.secondaryHref}" style="text-decoration: none; background: rgba(255,255,255,0.05); color: #f3f4f6; border: 1px solid rgba(255,255,255,0.12); font-weight: 600; padding: 10px 18px; border-radius: 999px; font-size: 0.86rem; white-space: nowrap;">${rec.secondaryText}</a>
         </div>
       `;
 
@@ -268,7 +264,6 @@ window.JOBNET_TAX_CONFIG = {
     } catch (e) {}
   }
 
-  // 5. פוטר מלא וממורכז
   function buildFooter() {
     try {
       if (document.querySelector('footer .legal-links')) return;
@@ -312,14 +307,13 @@ window.JOBNET_TAX_CONFIG = {
             <a href="./index.html" style="color: var(--muted); text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#f7931a'" onmouseout="this.style.color='var(--muted)'">
               © 2026 jobnet.vip. All rights reserved.
             </a>
-            <span style="opacity: 0.4; font-size: 0.75rem; margin-left: 6px;">v4.0</span>
+            <span style="opacity: 0.4; font-size: 0.75rem; margin-left: 6px;">v4.1</span>
           </div>
         </div>
       `;
     } catch (err) {}
   }
 
-  // 6. ווידג'ט נגישות
   function buildAccessibilityWidget() {
     try {
       if (document.querySelector('.acc-widget')) return;
@@ -440,7 +434,6 @@ window.JOBNET_TAX_CONFIG = {
     initLayout();
   }
 
-  // 7. גוגל אנליטיקס
   try {
     const gaId = 'G-EKGZK9D1J6';
     const s = document.createElement('script');
