@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- עמוד השער וסורק קורות חיים -->
   <url>
     <loc>https://jobnet.vip/</loc>
     <lastmod>2026-11-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
-
-  <!-- עמודי מחשבונים מרכזיים -->
   <url>
     <loc>https://jobnet.vip/general-calculator</loc>
     <lastmod>2026-11-21</lastmod>
@@ -39,8 +36,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-
-  <!-- מרכז הידע והמדריכים -->
   <url>
     <loc>https://jobnet.vip/guides</loc>
     <lastmod>2026-11-21</lastmod>
@@ -59,6 +54,7 @@
   </url>
   <url>
     <loc>https://jobnet.vip/employer-cost</loc>
+    <lastmod>2026-11-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -69,13 +65,13 @@
   </url>
   <url>
     <loc>https://jobnet.vip/resources</loc>
+    <lastmod>2026-11-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
-  <!-- עמודי שירות ותשתית משפטית -->
   <url>
     <loc>https://jobnet.vip/about</loc>
+    <lastmod>2026-11-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -86,16 +82,19 @@
   </url>
   <url>
     <loc>https://jobnet.vip/privacy</loc>
+    <lastmod>2026-11-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://jobnet.vip/accessibility</loc>
+    <lastmod>2026-11-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://jobnet.vip/contact</loc>
+    <lastmod>2026-11-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
