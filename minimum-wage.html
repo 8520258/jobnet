@@ -3,17 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>מחשבון שכר מינימום מעודכן: חישוב שעתי וחודשי | jobnet.vip</title>
-  <meta name="description" content="מחשבון שכר מינימום עדכני בישראל: חישוב תעריף שעה, שכר חודשי למשרה מלאה וחלקית, זכויות עובדים לפי חוק שכר מינימום.">
+  <title>JobNet</title>
+  <meta name="description" content="מחשבון שכר מינימום עדכני בישראל: חישוב תעריף שעה, שכר חודשי למשרה מלאה וחלקית, שעות נוספות וזכויות עובדים לפי חוק שכר מינימום.">
   <link rel="canonical" href="https://jobnet.vip/minimum-wage">
 
-  <meta property="og:title" content="מחשבון שכר מינימום מעודכן | jobnet.vip">
+  <meta property="og:title" content="JobNet">
   <meta property="og:description" content="חישוב תעריפי שכר מינימום שעתי וחודשי לפי חוק.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://jobnet.vip/minimum-wage">
 
   <link rel="stylesheet" href="./style.css">
-  <script src="./common.js" defer></script>
+  <script src="./common.js?v=4.1.0" defer></script>
 
   <style>
     .table-container {
@@ -39,17 +39,107 @@
       flex-wrap: wrap;
       gap: 8px;
     }
+    .lazy-section {
+      content-visibility: auto;
+      contain-intrinsic-size: 600px;
+    }
+    .editorial-article {
+      margin-top: 24px;
+      padding: 32px 28px;
+      line-height: 1.78;
+      color: #cbd5e1;
+    }
+    @media (max-width: 768px) {
+      .editorial-article {
+        padding: 24px 18px;
+      }
+    }
+    .editorial-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+      font-size: 0.8rem;
+      color: #8b92a5;
+    }
+    .editorial-tag {
+      background: rgba(247, 147, 26, 0.14);
+      color: #f7931a;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-weight: 700;
+    }
+    .editorial-article h2 {
+      font-size: 1.5rem;
+      color: #ffffff;
+      margin: 0 0 14px 0;
+      line-height: 1.35;
+    }
+    .editorial-article h3 {
+      font-size: 1.15rem;
+      color: #f3f4f6;
+      margin: 26px 0 10px 0;
+      padding-bottom: 6px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    }
+    .editorial-article p {
+      margin: 0 0 14px 0;
+      font-size: 0.94rem;
+      color: #b0b7c6;
+    }
+    .editorial-article ul {
+      margin: 0 0 18px 0;
+      padding-right: 20px;
+    }
+    .editorial-article li {
+      margin-bottom: 8px;
+      font-size: 0.93rem;
+      color: #b0b7c6;
+    }
+    .editorial-article strong {
+      color: #f3f4f6;
+    }
+    .editorial-article a.inline-link {
+      color: #f7931a;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .editorial-callout {
+      background: rgba(247, 147, 26, 0.06);
+      border-right: 3px solid #f7931a;
+      border-radius: 8px;
+      padding: 16px 18px;
+      margin: 20px 0;
+      font-size: 0.91rem;
+      color: #e2e8f0;
+    }
   </style>
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "jobnet.vip מחשבון שכר מינימום",
-    "url": "https://jobnet.vip/minimum-wage",
-    "applicationCategory": "FinanceApplication",
-    "operatingSystem": "All",
-    "description": "מחשבון לחישוב שכר מינימום חודשי ושעתי לפי היקף משרה."
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "JobNet מחשבון שכר מינימום",
+        "url": "https://jobnet.vip/minimum-wage",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "All",
+        "description": "מחשבון לחישוב שכר מינימום חודשי ושעתי לפי היקף משרה."
+      },
+      {
+        "@type": "Article",
+        "headline": "זכויות עובדים בשכר מינימום ושעתי: שעות נוספות, נסיעות, חגים והפרשות חובה",
+        "author": {
+          "@type": "Organization",
+          "name": "JobNet"
+        },
+        "datePublished": "2026-03-01",
+        "dateModified": "2026-11-21",
+        "description": "המדריך המלא לעובדים בשכר מינימום ושכר שעתי בישראל: חישוב שעות נוספות, החזר נסיעות, חופשה, הבראה והפרשות פנסיה."
+      }
+    ]
   }
   </script>
 </head>
@@ -129,7 +219,7 @@
     </section>
   </main>
 
-  <div class="container no-print" style="max-width: 1060px; width: 100%; margin-top: 10px;">
+  <div class="container no-print lazy-section" style="max-width: 1060px; width: 100%; margin-top: 10px;">
     <article class="card">
       <h2>חוק שכר מינימום בישראל – דגשים חשובים</h2>
       <p>שכר המינימום בישראל למבוגר (מעל גיל 18) עומד על <strong>5,880.02 ₪ לחודש</strong>, או <strong>32.30 ₪ לשעה</strong> (מחושב לפי חלוקה ב-182 שעות עבודה חודשיות עבור משרה מלאה).</p>
@@ -173,12 +263,49 @@
         </table>
       </div>
     </article>
+
+    <!-- מאמר עומק מקצועי לקידום וערך לגולשים -->
+    <article class="card editorial-article">
+      <div class="editorial-meta">
+        <span class="editorial-tag">מדריך עומק • דיני עבודה וזכויות</span>
+        <span>זמן קריאה: כ-4 דקות</span>
+        <span>•</span>
+        <span>מעודכן לשנת 2026</span>
+      </div>
+
+      <h2>זכויות עובדים בשכר מינימום ושעתי: שעות נוספות, נסיעות, חגים והפרשות חובה</h2>
+
+      <p>
+        חוק שכר מינימום הוא חוק מגן (קוגנטי) — כלומר, גם אם עובד חתם על חוזה שבו הסכים לעבוד תמורת שכר נמוך מהמינימום הקבוע בחוק, להסכמה הזו אין תוקף משפטי והמעסיק מחויב להשלים את ההפרש. מעבר לשכר השעתי או החודשי הבסיסי, קיימת שורה של תוספות שהמעסיק חייב לשלם <strong>בנוסף</strong> לשכר המינימום, ואסור לו לכלול אותן בתוכו.
+      </p>
+
+      <h3>1. מה אסור לכלול בתוך שכר המינימום?</h3>
+      <ul>
+        <li><strong>החזר הוצאות נסיעה:</strong> כל עובד הזקוק לתחבורה כדי להגיע לעבודה זכאי להחזר נסיעות (עד לתקרה היומית הקבועה בצו ההרחבה או עלות חופשי-חודשי) <strong>מעבר</strong> לשכר המינימום.</li>
+        <li><strong>גמול שעות נוספות ועבודה בשבת:</strong> שעות נוספות (125% לשעתיים הראשונות ו-150% מהשעה השלישית) ועבודה במנוחה השבועית מחושבות על בסיס שכר המינימום ומשולמות כתוספת נפרדת.</li>
+        <li><strong>דמי הבראה ובונוסים:</strong> דמי הבראה שנתיים (המשולמים לאחר השלמת שנת עבודה ראשונה) אינם יכולים לבוא על חשבון שכר המינימום.</li>
+      </ul>
+
+      <h3>2. כללי שעות נוספות שחשוב להכיר</h3>
+      <p>
+        חישוב שעות נוספות נעשה קודם כול <strong>ברמה היומית</strong>, ורק לאחר מכן ברמה השבועית. בשבוע עבודה בן 5 ימים, יום עבודה רגיל הוא 8.6 שעות (ובשבוע בן 6 ימים — 8 שעות). כל עבודה מעבר למכסה היומית מזכה אוטומטית בתעריף שעות נוספות, גם אם באותו שבוע עבדתם פחות מ-42 שעות בסך הכול.
+      </p>
+
+      <div class="editorial-callout">
+        <strong>שכר שעתי ומשמרות לילה:</strong> בעבודת לילה (משמרת שלפחות שעתיים ממנה חלות בין 22:00 ל-06:00), יום עבודה רגיל מתקצר ל-<strong>7 שעות בלבד</strong> — כלומר כבר מהשעה השמינית למשמרת אתם זכאים לתוספת שעות נוספות של 125%!
+      </div>
+
+      <h3>3. פנסיה, חופשה ומעבר לתפקיד הבא</h3>
+      <p>
+        כל עובד (מגיל 21 לגבר ומגיל 20 לאישה) זכאי להפרשות לפנסיה לאחר 6 חודשי עבודה (או מיד מהיום הראשון אם הייתה לו קופת פנסיה פעילה קודמת). כדי לראות כמה נשאר נטו בבנק לאחר ניכוי פנסיה וביטוח לאומי, הזינו את השכר החודשי ב<a href="./general-calculator.html" class="inline-link">מחשבון שכר ברוטו לנטו</a>. ואם אתם מחפשים להתקדם למשרה מתגמלת יותר — בדקו ושפרו את קורות החיים שלכם דרך <a href="./index.html" class="inline-link">סורק ה-ATS</a> בעמוד הבית.
+      </p>
+    </article>
   </div>
 
   <script>
     const BASE_MONTHLY_ADULT = 5880.02;
     const MONTH_HOURS = 182;
-    const BASE_HOURLY_ADULT = BASE_MONTHLY_ADULT / MONTH_HOURS; // 32.3078
+    const BASE_HOURLY_ADULT = BASE_MONTHLY_ADULT / MONTH_HOURS;
 
     const AGE_RATES = {
       adult: 1.0,
