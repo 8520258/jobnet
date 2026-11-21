@@ -4,16 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JobNet</title>
-  <meta name="description" content="סימולטור חישוב שווי מניות RSU ואופציות לעובדי הייטק לשנת 2026. חישוב מס רווחי הון לפי סעיף 102 (25%), לוח הבשלה (Vesting) ושווי נטו לחשבון הבנק.">
+  <meta name="description" content="מחשבון לחישוב שווי מניות RSU ואופציות לעובדי הייטק. בדיקת מיסוי סעיף 102 (25%), לוח הבשלה ושווי נטו לחשבון הבנק.">
   <link rel="canonical" href="https://jobnet.vip/options-rsu">
 
   <meta property="og:title" content="JobNet">
-  <meta property="og:description" content="סימולטור שווי אופציות ומניות חסומות RSU עם מיסוי סעיף 102 לעובדי הייטק.">
+  <meta property="og:description" content="מחשבון שווי אופציות ומניות RSU עם מיסוי סעיף 102 לעובדי הייטק.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://jobnet.vip/options-rsu">
 
   <link rel="stylesheet" href="./style.css">
-  <script src="./common.js?v=4.1.0" defer></script>
+  <script src="./common.js?v=4.4.0" defer></script>
 
   <style>
     .table-container {
@@ -112,20 +112,20 @@
         "@type": "WebApplication",
         "name": "JobNet מחשבון אופציות ו-RSU",
         "url": "https://jobnet.vip/options-rsu",
-        "description": "סימולטור שווי אופציות ומניות חסומות RSU עם מיסוי סעיף 102 לעובדי הייטק",
+        "description": "מחשבון שווי אופציות ומניות RSU עם מיסוי סעיף 102 לעובדי הייטק",
         "applicationCategory": "FinanceApplication",
         "operatingSystem": "All"
       },
       {
         "@type": "Article",
-        "headline": "המדריך למיסוי אופציות ומניות (RSU): סעיף 102, תקופת הבשלה ומה קורה כשעוזבים חברה",
+        "headline": "מיסוי אופציות ומניות (RSU): סעיף 102, תקופת הבשלה ומה קורה כשעוזבים חברה",
         "author": {
           "@type": "Organization",
           "name": "JobNet"
         },
         "datePublished": "2026-03-01",
         "dateModified": "2026-11-21",
-        "description": "מדריך מקיף לעובדי הייטק על מיסוי אופציות ומניות RSU בישראל: ההבדל בין מסלול 102 הוני לפירותי, לוח Vesting ומימוש בעזיבת עבודה."
+        "description": "מדריך לעובדי הייטק על מיסוי אופציות ומניות RSU בישראל: ההבדל בין מסלול 102 הוני לפירותי, לוח הבשלה ומימוש בעזיבת עבודה."
       }
     ]
   }
@@ -134,20 +134,19 @@
 <body>
 
   <main class="main-grid no-print">
-    <!-- כרטיס הזנת נתונים -->
     <section class="card">
       <h2>הגדרת מענק המניות והאופציות</h2>
 
       <div class="field">
         <label for="equityType">סוג המענק</label>
         <select id="equityType">
-          <option value="rsu" selected>יחידות מניה חסומות (RSU - ללא עלות מימוש)</option>
-          <option value="options">אופציות למניות (Stock Options - עם מחיר מימוש)</option>
+          <option value="rsu" selected>יחידות מניה חסומות (RSU, ללא עלות מימוש)</option>
+          <option value="options">אופציות למניות (Stock Options, עם מחיר מימוש)</option>
         </select>
       </div>
 
       <div class="field">
-        <label for="unitsCount">מספר יחידות / אופציות שהוענקו</label>
+        <label for="unitsCount">מספר יחידות או אופציות שהוענקו</label>
         <div class="input-wrapper">
           <span>#</span>
           <input type="number" id="unitsCount" value="1000" min="1" step="50">
@@ -181,24 +180,23 @@
       <div class="field">
         <label for="taxTrack">מסלול מיסוי (פקודת מס הכנסה)</label>
         <select id="taxTrack">
-          <option value="0.25" selected>סעיף 102 - מסלול רווחי הון הוני (25% קבוע עם נאמן)</option>
+          <option value="0.25" selected>סעיף 102: מסלול רווחי הון הוני (25% קבוע עם נאמן)</option>
           <option value="0.47">מסלול פירותי / מס שולי מקסימלי (47%)</option>
         </select>
       </div>
     </section>
 
-    <!-- תוצאות ופירוט שווי -->
     <section class="card">
       <h2>שווי המענק ורווח נטו צפוי</h2>
 
       <div class="net-banner">
-        <div class="title">שווי נטו כולל לחשבון הבנק (לאחר מס)</div>
+        <div class="title">שווי נטו לחשבון הבנק (אחרי מס)</div>
         <div class="amount" id="totalNetVal">₪0</div>
         <div style="font-size: 0.9rem; opacity: 0.8; margin-top: 4px;" id="totalNetUsd">$0</div>
       </div>
 
       <div class="breakdown-row">
-        <span>שווי שוק ברוטו כולל</span>
+        <span>שווי שוק ברוטו</span>
         <span class="val" id="rowGrossVal">₪0</span>
       </div>
       <div class="breakdown-row" id="rowStrikeDeduction" style="display: none;">
@@ -234,44 +232,43 @@
     </section>
   </main>
 
-  <!-- מאמר עומק מקצועי לקידום וערך לגולשים -->
   <div class="container no-print lazy-section" style="max-width: 1060px; width: 100%; margin-top: 10px;">
     <article class="card editorial-article">
       <div class="editorial-meta">
-        <span class="editorial-tag">מדריך עומק • אופציות ומניות</span>
+        <span class="editorial-tag">אופציות ומניות</span>
         <span>זמן קריאה: כ-4 דקות</span>
         <span>•</span>
         <span>מעודכן לשנת 2026</span>
       </div>
 
-      <h2>המדריך למיסוי אופציות ומניות (RSU): סעיף 102, תקופת הבשלה ומה קורה כשעוזבים חברה</h2>
+      <h2>מיסוי אופציות ומניות (RSU): סעיף 102, תקופת הבשלה ומה קורה כשעוזבים חברה</h2>
 
       <p>
-        בחברות הייטק, סטארט-אפים וחברות ציבוריות, חבילת התגמול ההוני (Equity) היא לעיתים ההבדל בין משכורת טובה לבין סכום משנה חיים. עם זאת, עובדים רבים חותמים על מכתב ההענקה (Grant Letter) בלי להבין עד הסוף את לוחות הזמנים, את תקרת המס ואת ההשלכות של עזיבת החברה לפני מכירת המניות.
+        בחברות הייטק, סטארט-אפים וחברות ציבוריות, התגמול ההוני (Equity) יכול להוסיף סכום משמעותי מעבר למשכורת החודשית. בכל זאת, עובדים רבים חותמים על מכתב ההענקה בלי לבדוק את לוחות הזמנים, את שיעור המס ואת המשמעות של עזיבת החברה לפני מכירת המניות.
       </p>
 
-      <h3>1. RSU מול אופציות (Stock Options) — מה באמת מקבלים?</h3>
+      <h3>1. RSU מול אופציות (Stock Options): מה מקבלים?</h3>
       <ul>
-        <li><strong>RSU (מניות חסומות):</strong> מקובל בעיקר בחברות ציבוריות או חברות בוגרות. אתם מקבלים מניות של החברה בחינם, ללא צורך לשלם מכיסכם בעת המימוש. ברגע שהמניה הבשילה ונמכרה, התמורה כולה (בניכוי מס) עוברת אליכם.</li>
-        <li><strong>אופציות (Stock Options):</strong> נפוץ בעיקר בסטארט-אפים פרטיים. האופציה היא זכות לרכוש בעתיד מניה של החברה במחיר שנקבע ביום החתימה (<strong>Strike Price</strong>). הרווח שלכם הוא רק הפער שבין מחיר המכירה באקזיט לבין מחיר המימוש.</li>
+        <li><strong>RSU (מניות חסומות):</strong> נפוץ בעיקר בחברות ציבוריות או חברות בוגרות. מקבלים מניות של החברה בלי לשלם מכיסכם בעת המימוש, ואחרי שהמניה מבשילה ונמכרת התמורה (בניכוי מס) עוברת אליכם.</li>
+        <li><strong>אופציות (Stock Options):</strong> נפוץ בעיקר בסטארט-אפים פרטיים. אופציה היא זכות לרכוש בעתיד מניה במחיר שנקבע בחתימה (<strong>Strike Price</strong>), והרווח הוא ההפרש בין מחיר המכירה לבין מחיר המימוש.</li>
       </ul>
 
       <h3>2. לוח ההבשלה (Vesting) ו-Cliff של שנה</h3>
       <p>
-        המניות או האופציות אינן הופכות לשלכם ביום הראשון לעבודה. הסטנדרט בתעשייה הוא פריסה ל-<strong>4 שנים</strong> עם מנגנון <strong>Cliff של שנה אחת</strong>:
+        המניות או האופציות לא הופכות לשלכם ביום הראשון. לרוב מדובר בפריסה ל-<strong>4 שנים</strong> עם <strong>Cliff של שנה אחת</strong>:
       </p>
       <ul>
-        <li>אם תעזבו את החברה לפני שהשלמתם שנת עבודה מלאה — לא תקבלו אפילו מניה אחת.</li>
-        <li>ביום השנה הראשון מבשילות בבת אחת <strong>25%</strong> מהיחידות שהוקצו לכם, ולאחר מכן מדי רבעון (6.25%) או חודש לאורך 3 השנים הבאות.</li>
+        <li>אם עוזבים לפני השלמת שנת עבודה מלאה, לא מבשילה אף יחידה.</li>
+        <li>בסוף השנה הראשונה מבשילים <strong>25%</strong> מהמענק, ולאחר מכן בכל רבעון (6.25%) או חודש לאורך 3 השנים הבאות.</li>
       </ul>
 
       <div class="editorial-callout">
-        <strong>סעיף 102 (מסלול הוני עם נאמן):</strong> כדי ליהנות ממס רווחי הון מופחת של <strong>25% בלבד</strong> (במקום מס שולי של עד 47%–50% + ביטוח לאומי), המניות חייבות להיות מופקדות אצל נאמן למשך <strong>24 חודשים לפחות</strong> ממועד ההקצאה על ידי הדירקטוריון. מכירה מוקדמת לפני תום השנתיים תגרור מיסוי פירותי מלא בתלוש השכר.
+        <strong>סעיף 102 (מסלול הוני עם נאמן):</strong> במסלול זה שיעור המס הוא <strong>25%</strong> במקום מס שולי של עד 47% עד 50% וביטוח לאומי, בתנאי שהמניות מוחזקות אצל נאמן למשך <strong>24 חודשים לפחות</strong> ממועד ההקצאה. מכירה מוקדמת מובילה למיסוי פירותי דרך התלוש.
       </div>
 
       <h3>3. מה קורה לאופציות כשעוזבים את החברה?</h3>
       <p>
-        אם צברתם אופציות שהבשילו (Vested) בחברה פרטית והחלטתם לעזוב לתפקיד חדש, ברוב ההסכמים עומד לרשותכם חלון זמן קצר של <strong>90 יום בלבד</strong> לממש אותן (כלומר לשלם את מחיר ה-Strike מכיסכם) — אחרת האופציות פוקעות וחוזרות לחברה. לפני קבלת החלטה על עזיבה, בדקו את מכלול הזכויות הכספיות שלכם ב<a href="./severance-pay.html" class="inline-link">מחשבון פיצויי פיטורים</a>, השוו את חבילת השכר החדשה ב<a href="./tech-salary.html" class="inline-link">מחשבון שכר הייטק</a>, וודאו שקורות החיים שלכם מוכנים לשלב הבא דרך <a href="./index.html" class="inline-link">סורק ה-ATS</a>.
+        אם צברתם אופציות שהבשילו (Vested) בחברה פרטית ועוזבים לתפקיד אחר, ברוב ההסכמים יש חלון של <strong>90 יום</strong> לממש אותן (לשלם את מחיר ה-Strike מכיסכם), אחרת הן פוקעות וחוזרות לחברה. לפני שעוזבים תפקיד, אפשר לבדוק את הזכויות ב<a href="./severance-pay.html" class="inline-link">מחשבון פיצויי פיטורים</a>, להשוות שכר ב<a href="./tech-salary.html" class="inline-link">מחשבון שכר הייטק</a> ולבדוק את קורות החיים ב<a href="./index.html" class="inline-link">סורק קורות החיים</a>.
       </p>
     </article>
   </div>
