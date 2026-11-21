@@ -1,12 +1,12 @@
 /* ==========================================================================
    jobnet.vip - Core Architecture, Smart Cross-Navigation & Tax Engine
-   Version: 4.2.0 (Clean Bitcoin.com Inspired Palette + Smart Bottom Hub)
+   Version: 4.3.0 (Evergreen Header Badge + Dynamic Copyright + Smart Bottom Hub)
    ========================================================================== */
 
 window.JOBNET_TAX_CONFIG = {
   version: "2026.1",
   lastUpdatedText: "מרץ 2026",
-  sourceText: "מעודכן ל-2026 • חינם וללא הרשמה",
+  sourceText: "100% פרטיות בדפדפן • ללא הרשמה",
   creditPointMonthly: 242,
   btlLowThreshold: 7522,
   btlMaxCeiling: 50140,
@@ -136,7 +136,7 @@ window.JOBNET_TAX_CONFIG = {
             <h1 style="margin: 0; line-height: 1;">jobnet.vip</h1>
           </a>
           <div class="brand-badge" style="margin: 0;">
-            <span class="pill">2026</span>
+            <span class="pill">חינם</span>
             <span>${window.JOBNET_TAX_CONFIG.sourceText}</span>
           </div>
         </div>
@@ -182,7 +182,7 @@ window.JOBNET_TAX_CONFIG = {
         cv: {
           tag: "מוכנים לשלב הבא לפני הראיון?",
           title: "יודעים כבר איזה שכר ברוטו לבקש בשיחת הסינון?",
-          desc: "המירו מראש את ציפיות השכר שלכם לנטו בבנק כולל מדרגות מס 2026, נקודות זיכוי ופנסיה — בלי לגלול למעלה.",
+          desc: "המירו מראש את ציפיות השכר שלכם לנטו בבנק כולל מדרגות מס הכנסה, נקודות זיכוי ופנסיה — בלי לגלול למעלה.",
           primaryText: "למחשבון שכר ברוטו-נטו",
           primaryHref: "./general-calculator.html",
           secondaryText: "מחשבון שכר הייטק",
@@ -236,7 +236,7 @@ window.JOBNET_TAX_CONFIG = {
         guides: {
           tag: "מוכנים ליישם?",
           title: "עברו ישר לכלים המעשיים של JobNet",
-          desc: "בדקו את קורות החיים שלכם מול מערכות גיוס או חשבו את תלוש השכר נטו לשנת 2026.",
+          desc: "בדקו את קורות החיים שלכם מול מערכות גיוס או חשבו את תלוש השכר נטו.",
           primaryText: "סריקת קורות חיים",
           primaryHref: "./index.html",
           secondaryText: "מחשבון שכר כללי",
@@ -245,7 +245,7 @@ window.JOBNET_TAX_CONFIG = {
         other: {
           tag: "כלי JobNet לשירותך",
           title: "רוצים לבדוק קורות חיים או לחשב שכר נטו?",
-          desc: "כל הסימולטורים המעודכנים לשנת 2026 זמינים לשימוש חופשי וללא הרשמה.",
+          desc: "כל הסימולטורים זמינים לשימוש חופשי וללא הרשמה.",
           primaryText: "סריקת קורות חיים",
           primaryHref: "./index.html",
           secondaryText: "מחשבון שכר ברוטו-נטו",
@@ -405,6 +405,7 @@ window.JOBNET_TAX_CONFIG = {
     try {
       if (document.querySelector('footer .legal-links')) return;
 
+      const currentYear = new Date().getFullYear();
       let footer = document.querySelector('footer');
       if (!footer) {
         footer = document.createElement('footer');
@@ -442,9 +443,9 @@ window.JOBNET_TAX_CONFIG = {
           <p style="margin: 0 0 4px 0;">החישוב מהווה סימולציה משוערת בלבד ואינו מהווה ייעוץ פנסיוני, פיננסי או ייעוץ מס.</p>
           <div style="direction: ltr; display: inline-block;">
             <a href="./index.html" style="color: var(--muted); text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#f7931a'" onmouseout="this.style.color='var(--muted)'">
-              © 2026 jobnet.vip. All rights reserved.
+              © ${currentYear} jobnet.vip. All rights reserved.
             </a>
-            <span style="opacity: 0.4; font-size: 0.75rem; margin-left: 6px;">v4.2</span>
+            <span style="opacity: 0.4; font-size: 0.75rem; margin-left: 6px;">v4.3</span>
           </div>
         </div>
       `;
