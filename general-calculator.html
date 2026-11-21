@@ -13,7 +13,7 @@
   <meta property="og:url" content="https://jobnet.vip/general-calculator">
 
   <link rel="stylesheet" href="./style.css">
-  <script src="./common.js" defer></script>
+  <script src="./common.js?v=3.9.4" defer></script>
 
   <style>
     .table-container {
@@ -167,7 +167,7 @@
       </div>
     </section>
 
-    <!-- תוצאות חישוב שכר (עם ערכי ברירת מחדל סטטיים עבור 10,000 ₪) -->
+    <!-- תוצאות חישוב שכר -->
     <section class="card">
       <h2>תוצאות חישוב שכר נטו</h2>
 
@@ -310,12 +310,10 @@
   </div>
 
   <script>
-    // הגדרות חוקיות מעודכנות לשנת 2026
-    const CREDIT_POINT_VALUE = 242; // שווי נקודת זיכוי חודשית
-    const BTL_LOW_THRESHOLD = 7522; // סף מדרגה מופחתת ביטוח לאומי
-    const BTL_MAX_CEILING = 50140;  // תקרת מקסימום לביטוח לאומי
+    const CREDIT_POINT_VALUE = 242;
+    const BTL_LOW_THRESHOLD = 7522;
+    const BTL_MAX_CEILING = 50140;
 
-    // מדרגות מס הכנסה מעודכנות 2026 (כולל גבולות 19,000 ו-25,100 ומס יסף)
     const TAX_BRACKETS = [
       { max: 7010, rate: 0.10 },
       { max: 10060, rate: 0.14 },
@@ -323,7 +321,7 @@
       { max: 25100, rate: 0.31 },
       { max: 46690, rate: 0.35 },
       { max: 60130, rate: 0.47 },
-      { max: Infinity, rate: 0.50 } // 47% + 3% מס יסף
+      { max: Infinity, rate: 0.50 }
     ];
 
     const fmt = n => '₪' + Math.round(n).toLocaleString('he-IL');
@@ -336,12 +334,10 @@
       const pensionRate = parseFloat(document.getElementById('pensionRate').value) || 0;
       const studyFundRate = parseFloat(document.getElementById('studyFund').value) || 0;
 
-      // 1. נקודות זיכוי
       const basePoints = gender === 'female' ? 2.75 : 2.25;
       const totalPoints = basePoints + (kids * 1.5) + extraPoints;
       const creditDiscount = totalPoints * CREDIT_POINT_VALUE;
 
-      // 2. מס הכנסה ברוטו (חישוב מדרגות)
       let remaining = gross;
       let prevMax = 0;
       let taxGross = 0;
@@ -355,33 +351,27 @@
         prevMax = bracket.max;
       }
 
-      // מס סופי לתשלום (לא יורד מתחת ל-0)
       const taxFinal = Math.max(0, taxGross - creditDiscount);
 
-      // 3. ביטוח לאומי ומס בריאות עובד (כולל אכיפת תקרה מקסימלית)
       const btlGross = Math.min(gross, BTL_MAX_CEILING);
       let btlDeduction = 0;
       if (btlGross <= BTL_LOW_THRESHOLD) {
-        btlDeduction = btlGross * 0.035; // 0.4% ביטוח לאומי + 3.1% מס בריאות
+        btlDeduction = btlGross * 0.035;
       } else {
         btlDeduction = (BTL_LOW_THRESHOLD * 0.035) + ((btlGross - BTL_LOW_THRESHOLD) * 0.12);
       }
 
-      // 4. הפרשות סוציאליות
       const pensionDeduction = gross * pensionRate;
       const studyFundDeduction = gross * studyFundRate;
 
-      // 5. שכר נטו
       const netSalary = Math.max(0, gross - taxFinal - btlDeduction - pensionDeduction - studyFundDeduction);
 
-      // 6. עלויות מעסיק
       const employerPension = gross * 0.065;
       const employerSeverance = gross * 0.06;
       const employerBtl = gross <= BTL_LOW_THRESHOLD ? (gross * 0.0355) : ((BTL_LOW_THRESHOLD * 0.0355) + ((gross - BTL_LOW_THRESHOLD) * 0.076));
       const totalEmployerContrib = employerPension + employerSeverance + employerBtl;
       const totalCost = gross + totalEmployerContrib;
 
-      // עדכון ה-DOM
       document.getElementById('valNetSalary').textContent = fmt(netSalary);
       document.getElementById('valGrossSubtitle').textContent = 'מתוך ברוטו: ' + fmt(gross);
       document.getElementById('valTaxGross').textContent = fmt(taxGross);
@@ -403,7 +393,6 @@
       document.getElementById('valTotalCost').textContent = fmt(totalCost);
     }
 
-    // קריאת נתונים מ-Hash מוצנע בשורת הכתובת לשמירה על פרטיות
     function parseHashState() {
       try {
         const hash = window.location.hash.replace('#', '');
@@ -415,12 +404,9 @@
           if (data.k) document.getElementById('kidsCount').value = data.k;
           if (data.e) document.getElementById('extraCredit').value = data.e;
         }
-      } catch (err) {
-        // Hash תקין או ריק
-      }
+      } catch (err) {}
     }
 
-    // שיתוף באמצעות Hash Base64 מוגן פרטיות
     document.getElementById('btnShareLink').addEventListener('click', () => {
       const payload = {
         g: document.getElementById('grossSalary').value,
@@ -438,7 +424,6 @@
       });
     });
 
-    // קוד הטמעה רספונסיבי
     document.getElementById('btnEmbedCode').addEventListener('click', () => {
       const embedCode = `<iframe src="https://jobnet.vip/general-calculator" width="100%" height="850" frameborder="0" style="border:none; border-radius:14px; max-width:960px;" loading="lazy"></iframe>`;
       navigator.clipboard.writeText(embedCode).then(() => {
