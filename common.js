@@ -1,12 +1,12 @@
 /* ==========================================================================
    jobnet.vip - Core Architecture, Smart Cross-Navigation & Tax Engine
-   Version: 4.3.0 (Evergreen Header Badge + Dynamic Copyright + Smart Bottom Hub)
+   Version: 4.3.1 (Clean Readable Typography + Evergreen Header Badge)
    ========================================================================== */
 
 window.JOBNET_TAX_CONFIG = {
   version: "2026.1",
   lastUpdatedText: "מרץ 2026",
-  sourceText: "100% פרטיות בדפדפן • ללא הרשמה",
+  sourceText: "פרטי וללא הרשמה",
   creditPointMonthly: 242,
   btlLowThreshold: 7522,
   btlMaxCeiling: 50140,
@@ -89,9 +89,29 @@ window.JOBNET_TAX_CONFIG = {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
+            gap: 14px;
             flex-wrap: wrap;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
+          }
+          .header-clean-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 6px 15px;
+            border-radius: 999px;
+            font-size: 0.92rem;
+            color: #e5e7eb;
+            font-weight: 500;
+          }
+          .header-clean-badge .pill {
+            background: #f7931a;
+            color: #0b0e14;
+            font-weight: 700;
+            font-size: 0.82rem;
+            padding: 2px 10px;
+            border-radius: 999px;
           }
           .sub-nav {
             display: flex !important;
@@ -135,13 +155,13 @@ window.JOBNET_TAX_CONFIG = {
           <a href="./index.html" class="header-top-link">
             <h1 style="margin: 0; line-height: 1;">jobnet.vip</h1>
           </a>
-          <div class="brand-badge" style="margin: 0;">
+          <div class="header-clean-badge">
             <span class="pill">חינם</span>
             <span>${window.JOBNET_TAX_CONFIG.sourceText}</span>
           </div>
         </div>
 
-        <p style="margin-top: 6px; font-size: 0.95rem; color: #9ca3af;">כל הכלים לקריירה ולתלוש השכר במקום אחד</p>
+        <p style="margin-top: 6px; font-size: 0.98rem; color: #9ca3af;">כל הכלים לקריירה ולתלוש השכר במקום אחד</p>
         
         <nav class="sub-nav">
           <a href="./index.html" class="${slug === 'cv' ? 'active' : ''}">
