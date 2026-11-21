@@ -3,901 +3,446 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JobNet</title>
-  <meta name="description" content="שולחים קורות חיים ולא חוזרים אליכם? בדקו בחינם איך מערכות הסינון קוראות את קובץ קורות החיים שלכם לפני השליחה למעסיקים, בדיסקרטיות מלאה וללא הרשמה.">
+  <title>JobNet VIP | סריקת קורות חיים ומחשבוני שכר</title>
+  <meta name="description" content="בדקו קורות חיים מול מערכות סינון אוטומטיות (ATS) בדפדפן בלי לשמור קבצים בשרת, והיעזרו במחשבוני השכר והזכויות של JobNet VIP.">
   <link rel="canonical" href="https://jobnet.vip/">
 
-  <meta property="og:title" content="JobNet">
-  <meta property="og:description" content="בדקו בחינם איך מערכות הסינון קוראות את קורות החיים שלכם לפני השליחה, לצד מחשבוני שכר וזכויות עובדים.">
+  <meta property="og:title" content="JobNet VIP | סריקת קורות חיים ומחשבוני שכר">
+  <meta property="og:description" content="בדיקת התאמה לקורות חיים ועבודה עם מחשבוני שכר וזכויות בעיבוד מקומי בדפדפן.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://jobnet.vip/">
-
-  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 
   <link rel="stylesheet" href="./style.css">
   <script src="./common.js?v=4.4.0" defer></script>
 
   <style>
-    .home-container {
-      max-width: 980px;
-      margin: 0 auto;
-      width: 100%;
-    }
-
-    .hero-intro {
+    .ats-hero {
       text-align: center;
-      padding: 16px 12px 30px 12px;
+      max-width: 920px;
+      margin: 0 auto 24px auto;
     }
-    .hero-intro h2 {
-      font-size: 2rem;
-      font-weight: 700;
-      margin: 0 0 14px 0;
+    .ats-hero h2 {
+      border: none;
+      padding: 0;
+      margin: 0 0 12px 0;
+      font-size: clamp(1.45rem, 2.8vw, 2.05rem);
+      font-weight: 900;
+      justify-content: center;
       color: #ffffff;
-      letter-spacing: -0.2px;
     }
-    .hero-lead {
-      color: #cbd5e1;
-      max-width: 860px;
+    .ats-lead {
+      color: var(--muted);
+      font-size: clamp(0.95rem, 1.4vw, 1.08rem);
+      margin: 0 auto 12px auto;
+      max-width: 780px;
+      line-height: 1.65;
+    }
+    .hero-subline {
+      color: var(--accent);
+      font-weight: 700;
+      font-size: clamp(0.92rem, 1.3vw, 1.05rem);
+      max-width: min(920px, 100%);
       margin: 0 auto;
-      font-size: 1.06rem;
-      line-height: 1.72;
-      font-weight: 400;
+      line-height: 1.5;
+      text-wrap: balance;
     }
-    .hero-lead .hero-cta-line {
-      display: block;
-      margin-top: 10px;
-      color: #f7931a;
-      font-weight: 600;
-      font-size: 1.05rem;
+    .ats-card {
+      max-width: 920px;
+      margin: 0 auto 28px auto;
     }
-
-    .drop-zone {
-      border: 1.5px dashed rgba(247, 147, 26, 0.32);
-      background: rgba(255, 255, 255, 0.025);
-      border-radius: 14px;
-      padding: 30px 22px;
+    .dropzone {
+      border: 2px dashed rgba(247, 147, 26, 0.45);
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 18px;
+      padding: 28px 20px;
       text-align: center;
       cursor: pointer;
-      transition: border-color 0.2s ease, background 0.2s ease;
-      margin-bottom: 24px;
+      transition: all 0.2s ease;
+      margin-bottom: 20px;
     }
-    .drop-zone:hover, .drop-zone.drag-over {
-      border-color: rgba(247, 147, 26, 0.75);
-      background: rgba(247, 147, 26, 0.06);
+    .dropzone:hover,
+    .dropzone.dragover {
+      border-color: var(--accent);
+      background: rgba(247, 147, 26, 0.08);
     }
-    .drop-zone-icon {
+    .dropzone-icon {
       font-size: 2rem;
-      margin-bottom: 10px;
-      display: block;
-    }
-    .drop-zone-title {
-      font-size: 1.12rem;
-      font-weight: 700;
-      color: #ffffff;
       margin-bottom: 8px;
     }
-    .drop-zone-formats {
-      font-size: 0.94rem;
-      color: #cbd5e1;
-      margin-bottom: 12px;
+    .dropzone-title {
+      font-weight: 800;
+      font-size: 1.05rem;
+      color: #ffffff;
+      margin-bottom: 6px;
     }
-    .privacy-trust-line {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 7px;
-      font-size: 0.92rem;
-      font-weight: 500;
-      color: #f8b862;
-      margin-top: 2px;
+    .dropzone-sub {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 10px;
     }
-    .file-status-pill {
-      display: none;
-      margin-top: 14px;
-      background: rgba(247, 147, 26, 0.16);
-      color: #f7931a;
-      border: 1px solid rgba(247, 147, 26, 0.35);
-      padding: 6px 16px;
-      border-radius: 999px;
+    .privacy-note {
+      color: var(--accent);
       font-size: 0.88rem;
       font-weight: 600;
     }
-
-    .ats-grid {
+    .two-cols {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 20px;
-      margin-bottom: 22px;
+      gap: 16px;
+      margin-bottom: 18px;
     }
     @media (max-width: 768px) {
-      .ats-grid {
+      .two-cols {
         grid-template-columns: 1fr;
       }
-      .hero-intro h2 {
-        font-size: 1.62rem;
-      }
-      .hero-lead {
-        font-size: 0.98rem;
-      }
     }
-    .ats-label {
-      font-weight: 500;
-      display: block;
-      margin-bottom: 8px;
-      font-size: 0.92rem;
-      color: #d1d5db;
-    }
-    .ats-textarea {
-      width: 100%;
-      height: 185px;
-      background: rgba(0, 0, 0, 0.28);
-      border: 1px solid rgba(255, 255, 255, 0.09);
-      border-radius: 10px;
-      color: #f3f4f6;
-      padding: 14px;
-      font-family: inherit;
-      font-size: 0.92rem;
-      resize: vertical;
-      box-sizing: border-box;
-      line-height: 1.55;
-      transition: border-color 0.2s ease;
-    }
-    .ats-textarea:focus {
-      outline: none;
-      border-color: rgba(247, 147, 26, 0.65);
-    }
-
-    .btn-scan-clean {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      background: #f7931a;
-      color: #0b0e14;
-      font-weight: 700;
-      font-size: 1.02rem;
-      padding: 13px 36px;
-      border: none;
-      border-radius: 999px;
-      cursor: pointer;
-      transition: background 0.2s ease, transform 0.2s ease;
-      box-shadow: 0 4px 14px rgba(247, 147, 26, 0.22);
-    }
-    .btn-scan-clean:hover {
-      background: #ffa333;
-      transform: translateY(-1px);
-    }
-
-    .score-box {
-      display: none;
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 14px;
-      padding: 28px 22px;
-      margin-top: 26px;
-      text-align: center;
-    }
-    .score-circle {
-      width: 84px;
-      height: 84px;
-      border-radius: 50%;
-      background: #0b0e14;
-      border: 3px solid #f7931a;
-      color: #f7931a;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.65rem;
-      font-weight: 800;
-      margin: 0 auto 14px auto;
-    }
-    .format-warning-box {
-      display: none;
-      text-align: right;
-      background: rgba(247, 147, 26, 0.08);
-      border: 1px solid rgba(247, 147, 26, 0.35);
-      border-right: 4px solid #f7931a;
-      padding: 14px 16px;
-      border-radius: 10px;
+    .scan-status {
+      margin-top: 12px;
       font-size: 0.9rem;
-      color: #f3f4f6;
-      margin-bottom: 16px;
-      line-height: 1.65;
+      color: var(--muted);
+      min-height: 22px;
     }
-    .smart-cv-followup {
-      margin-top: 20px;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 12px;
-      padding: 18px 20px;
-      text-align: right;
+    .ats-results {
+      display: none;
+      margin-top: 24px;
+      padding-top: 22px;
+      border-top: 1px solid var(--card-border);
+    }
+    .score-box {
       display: flex;
-      flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
-      gap: 14px;
+      flex-wrap: wrap;
+      gap: 12px;
+      background: rgba(247, 147, 26, 0.08);
+      border: 1px solid rgba(247, 147, 26, 0.3);
+      border-radius: 14px;
+      padding: 16px 20px;
+      margin-bottom: 18px;
     }
-
-    .tools-hub, .editorial-article {
-      content-visibility: auto;
-      contain-intrinsic-size: 600px;
+    .score-num {
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--accent);
     }
-
-    .tools-hub {
-      margin-top: 36px;
+    .findings-list {
+      padding-right: 20px;
+      margin-bottom: 18px;
+      color: #cbd5e1;
+      font-size: 0.95rem;
     }
-    .tools-hub-header {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    .tools-hub-header h3 {
-      margin: 0 0 6px 0;
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: #ffffff;
-    }
-    .tools-hub-header p {
-      margin: 0;
-      font-size: 0.92rem;
-      color: #9ca3af;
+    .findings-list li {
+      margin-bottom: 8px;
     }
     .tools-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
       gap: 14px;
+      margin-top: 14px;
     }
     .tool-tile {
+      display: block;
+      background: rgba(255, 255, 255, 0.025);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 16px;
       text-decoration: none;
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.07);
-      border-radius: 12px;
-      padding: 20px;
-      transition: border-color 0.2s ease, background 0.2s ease;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      transition: all 0.2s ease;
     }
     .tool-tile:hover {
-      border-color: rgba(247, 147, 26, 0.45);
-      background: rgba(255, 255, 255, 0.035);
-    }
-    .tool-tile-top {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 10px;
-    }
-    .tool-tile-icon {
-      width: 34px;
-      height: 34px;
-      border-radius: 9px;
-      background: rgba(247, 147, 26, 0.12);
-      color: #f7931a;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.05rem;
-      flex-shrink: 0;
-    }
-    .tool-tile h4 {
-      margin: 0;
-      font-size: 1rem;
-      color: #f3f4f6;
-    }
-    .tool-tile p {
-      margin: 0 0 14px 0;
-      font-size: 0.87rem;
-      color: #9ca3af;
-      line-height: 1.55;
-    }
-    .tool-tile-cta {
-      font-size: 0.84rem;
-      font-weight: 600;
-      color: #f7931a;
-    }
-
-    .editorial-article {
-      margin-top: 38px;
-      padding: 32px 28px;
-      line-height: 1.78;
-      color: #cbd5e1;
-    }
-    @media (max-width: 768px) {
-      .editorial-article {
-        padding: 24px 18px;
-      }
-    }
-    .editorial-meta {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-bottom: 12px;
-      font-size: 0.82rem;
-      color: #9ca3af;
-    }
-    .editorial-tag {
-      background: rgba(247, 147, 26, 0.14);
-      color: #f7931a;
-      padding: 3px 10px;
-      border-radius: 999px;
-      font-weight: 700;
-    }
-    .editorial-article h2 {
-      font-size: 1.55rem;
-      color: #ffffff;
-      margin: 0 0 14px 0;
-      line-height: 1.35;
-    }
-    .editorial-article h3 {
-      font-size: 1.18rem;
-      color: #f3f4f6;
-      margin: 28px 0 10px 0;
-      padding-bottom: 6px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-    }
-    .editorial-article p {
-      margin: 0 0 14px 0;
-      font-size: 0.96rem;
-      color: #cbd5e1;
-    }
-    .editorial-article ul {
-      margin: 0 0 18px 0;
-      padding-right: 20px;
-    }
-    .editorial-article li {
-      margin-bottom: 8px;
-      font-size: 0.95rem;
-      color: #cbd5e1;
-    }
-    .editorial-article strong {
-      color: #f3f4f6;
-    }
-    .editorial-article a.inline-link {
-      color: #f7931a;
-      text-decoration: underline;
-      text-underline-offset: 3px;
-    }
-    .editorial-callout {
+      border-color: var(--accent);
       background: rgba(247, 147, 26, 0.06);
-      border-right: 3px solid #f7931a;
-      border-radius: 8px;
-      padding: 16px 18px;
-      margin: 20px 0;
-      font-size: 0.93rem;
-      color: #e2e8f0;
+      transform: translateY(-2px);
     }
-    .comparison-wrap {
-      width: 100%;
-      overflow-x: auto;
-      margin: 18px 0;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 10px;
-    }
-    .comparison-table {
-      width: 100%;
-      border-collapse: collapse;
-      min-width: 520px;
-      font-size: 0.9rem;
-    }
-    .comparison-table th {
-      background: rgba(255, 255, 255, 0.04);
+    .tool-tile strong {
+      display: block;
       color: #ffffff;
-      text-align: right;
-      padding: 12px 14px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 1rem;
+      margin-bottom: 4px;
     }
-    .comparison-table td {
-      padding: 12px 14px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-      color: #cbd5e1;
-      vertical-align: top;
-    }
-    .comparison-table tr:last-child td {
-      border-bottom: none;
+    .tool-tile span {
+      color: var(--muted);
+      font-size: 0.88rem;
     }
   </style>
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "WebApplication",
-        "name": "JobNet - בדיקת קורות חיים ומחשבוני שכר",
-        "url": "https://jobnet.vip/",
-        "applicationCategory": "BusinessApplication",
-        "operatingSystem": "All",
-        "description": "כלי חינמי לבדיקת קורות חיים (Word, PDF, טקסט) מול מערכות סינון אוטומטיות, לצד מחשבוני שכר וזכויות עובדים."
-      },
-      {
-        "@type": "Article",
-        "headline": "המדריך המלא למעבר סינון אוטומטי (ATS): איך מערכות הגיוס באמת קוראות את קורות החיים שלכם",
-        "author": {
-          "@type": "Organization",
-          "name": "JobNet"
-        },
-        "datePublished": "2026-03-01",
-        "dateModified": "2026-11-21",
-        "description": "מדריך מעשי לכתיבת קורות חיים שעוברים מערכות סינון אוטומטיות בישראל, כולל מבנה נכון, מילות מפתח והכנה לשיחת השכר."
-      }
-    ]
+    "@type": "WebApplication",
+    "name": "JobNet VIP סורק קורות חיים ומחשבוני שכר",
+    "url": "https://jobnet.vip/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "All",
+    "description": "כלי לבדיקת קריאות והתאמה של קורות חיים בעיבוד מקומי בדפדפן, לצד מחשבוני שכר וזכויות עובדים."
   }
   </script>
 </head>
 <body>
 
-  <main class="home-container">
-    <div class="hero-intro">
+  <main class="container" style="max-width: 1060px; width: 100%;">
+    <section class="ats-hero">
       <h2>שולחים קורות חיים ולא חוזרים אליכם?</h2>
-      <p class="hero-lead">
-        לפני שמגייס אנושי רואה את קורות החיים שלכם, מערכת סינון ממוחשבת סורקת אותם. אם הקובץ לא בנוי נכון טכנית, הוא נפסל אוטומטית והמשרה הולכת לאיבוד רק בגלל פורמט שגוי או מילים חסרות.
-        <span class="hero-cta-line">בדקו כאן בחינם איך המערכת קוראת את קורות החיים שלכם, בדיסקרטיות מלאה, ללא הרשמה וללא השארת פרטים אישיים:</span>
+      <p class="ats-lead">
+        לפני שמגייס אנושי קורא את קורות החיים, מערכות סינון ומיון סורקות אותם. אם הקובץ לא בנוי בצורה ברורה ונקייה מבחינת מבנה וטקסט, המועמדות עלולה ליפול בגלל פורמט בעייתי או מידע חסר.
       </p>
-    </div>
+      <p class="hero-subline">
+        בדקו כאן בחינם איך המערכת קוראת את קורות החיים, ללא הרשמה וללא שמירת פרטים אישיים:
+      </p>
+    </section>
 
-    <section class="card" style="padding: 28px;">
-      <div id="dropZone" class="drop-zone" role="button" tabindex="0" aria-label="העלאת קובץ קורות חיים">
-        <input type="file" id="cvFileInput" accept=".pdf,.docx,.txt" style="display: none;">
-        <span class="drop-zone-icon">📄</span>
-        <div class="drop-zone-title">גררו לכאן קובץ קורות חיים, או לחצו לבחירה מהמחשב / מהנייד</div>
-        <div class="drop-zone-formats">תומך בקובצי Word (.docx), PDF או טקסט</div>
-        <div class="privacy-trust-line">
-          <span>🔒</span>
-          <span>הסריקה מתבצעת בדפדפן שלכם בלבד, והקובץ לעולם לא נשמר בשום שרת</span>
-        </div>
-        <div id="fileStatusPill" class="file-status-pill"></div>
+    <section class="card ats-card">
+      <div class="dropzone" id="dropzone" role="button" tabindex="0" aria-label="העלאת קובץ קורות חיים">
+        <div class="dropzone-icon">📄</div>
+        <div class="dropzone-title">גררו לכאן קובץ קורות חיים, או לחצו לבחירה מהמחשב או הנייד</div>
+        <div class="dropzone-sub">תומך בקובצי Word (.docx), PDF או טקסט (.txt)</div>
+        <div class="privacy-note">🔒 הסריקה מתבצעת בדפדפן שלכם בלבד, והקובץ לא נשמר בשרת</div>
+        <input type="file" id="cvFileInput" accept=".docx,.pdf,.txt,text/plain,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document" style="display: none;">
       </div>
 
-      <div class="ats-grid">
-        <div>
-          <label for="cvText" class="ats-label">טקסט קורות החיים (מתמלא אוטומטית בהעלאה, או הדביקו כאן):</label>
-          <textarea id="cvText" class="ats-textarea" placeholder="העלו קובץ למעלה או הדביקו כאן את תוכן קורות החיים..."></textarea>
+      <div class="two-cols">
+        <div class="field" style="margin-bottom: 0;">
+          <label for="cvText">טקסט קורות החיים (מתמלא אוטומטית בהעלאה, או הדביקו כאן):</label>
+          <textarea id="cvText" placeholder="העלו קובץ למעלה או הדביקו כאן את תוכן קורות החיים..."></textarea>
         </div>
-        <div>
-          <label for="jobText" class="ats-label">תיאור המשרה (אופציונלי, לבדיקת התאמה מדויקת):</label>
-          <textarea id="jobText" class="ats-textarea" placeholder="הדביקו כאן את דרישות המשרה מהמודעה. אם תשאירו ריק, נבצע בדיקת מבנה כללית..."></textarea>
+        <div class="field" style="margin-bottom: 0;">
+          <label for="jobDesc">תיאור המשרה (אופציונלי, לבדיקת התאמה):</label>
+          <textarea id="jobDesc" placeholder="הדביקו כאן את דרישות המשרה מהמודעה. אם תאירו ריק, תתבצע בדיקת מבנה כללית."></textarea>
         </div>
       </div>
 
-      <div style="text-align: center;">
-        <button id="btnScan" class="btn-scan-clean">
-          <span>בדוק את קורות החיים</span>
-        </button>
-      </div>
+      <button type="button" id="analyzeCvBtn" class="btn-action" style="width: 100%;">בדוק את קורות החיים</button>
+      <div class="scan-status" id="scanStatus" aria-live="polite"></div>
 
-      <div id="resultBox" class="score-box">
-        <div id="scoreVal" class="score-circle">--</div>
-        <h3 id="scoreTitle" style="margin: 0 0 8px 0; font-size: 1.2rem; color: #ffffff;">ציון התאמה מחושב</h3>
-        <p id="scoreDesc" style="color: #9ca3af; font-size: 0.94rem; max-width: 580px; margin: 0 auto 18px auto; line-height: 1.6;"></p>
-
-        <div id="formatWarningBox" class="format-warning-box"></div>
-        
-        <div id="keywordsFound" style="text-align: right; background: rgba(0,0,0,0.25); padding: 14px 16px; border-radius: 10px; font-size: 0.88rem; color: #d1d5db;">
-          <strong>מילות מפתח ומונחים שזוהו:</strong>
-          <div id="keywordsList" style="margin-top: 8px; display: flex; flex-wrap: wrap; gap: 6px;"></div>
+      <div class="ats-results" id="atsResults">
+        <div class="score-box">
+          <div>
+            <div style="font-size: 0.9rem; color: var(--muted);">ציון מבנה וקריאות משוער</div>
+            <div id="scoreSummary" style="font-size: 0.95rem; color: #e5e7eb; margin-top: 4px;"></div>
+          </div>
+          <div class="score-num" id="scoreValue">0/100</div>
         </div>
-
-        <div id="smartCvFollowup" class="smart-cv-followup"></div>
+        <ul class="findings-list" id="findingsList"></ul>
       </div>
     </section>
 
-    <section class="tools-hub">
-      <div class="tools-hub-header">
-        <h3>כל הכלים לשכר ולזכויות שלך</h3>
-        <p>נכנסת לבדוק תלוש, פיצויים או הצעת שכר? בחר את המחשבון המתאים:</p>
-      </div>
-
+    <section class="card" style="max-width: 920px; margin: 0 auto 24px auto;">
+      <h2>מחשבונים וכלים נוספים באתר</h2>
+      <p>אחרי שבדקתם את קורות החיים, אפשר לעבור למחשבונים והמדריכים לבדיקת שכר, מיסוי וזכויות עבודה:</p>
       <div class="tools-grid">
         <a href="./general-calculator.html" class="tool-tile">
-          <div>
-            <div class="tool-tile-top">
-              <div class="tool-tile-icon">📊</div>
-              <h4>מחשבון שכר ברוטו לנטו</h4>
-            </div>
-            <p>חישוב מדויק של מדרגות מס 2026, נקודות זיכוי, ביטוח לאומי, פנסיה ועלות מעסיק.</p>
-          </div>
-          <span class="tool-tile-cta">לחישוב שכר נטו ←</span>
+          <strong>מחשבון שכר ברוטו לנטו</strong>
+          <span>חישוב מס הכנסה, ביטוח לאומי, פנסיה ונטו.</span>
         </a>
-
         <a href="./tech-salary.html" class="tool-tile">
-          <div>
-            <div class="tool-tile-top">
-              <div class="tool-tile-icon">⚡</div>
-              <h4>מחשבון שכר הייטק</h4>
-            </div>
-            <p>סימולטור מותאם לחוזי טכנולוגיה, תנאים סוציאליים מורחבים והפרשות מעל התקרה.</p>
-          </div>
-          <span class="tool-tile-cta">לבדיקת שכר הייטק ←</span>
+          <strong>מחשבון שכר הייטק</strong>
+          <span>קרן השתלמות, שווי רכב ועלות מעסיק.</span>
         </a>
-
         <a href="./options-rsu.html" class="tool-tile">
-          <div>
-            <div class="tool-tile-top">
-              <div class="tool-tile-icon">📈</div>
-              <h4>מחשבון אופציות ו-RSU</h4>
-            </div>
-            <p>כמה שוות המניות או האופציות שלך נטו אחרי מסלול 102 ומס רווחי הון?</p>
-          </div>
-          <span class="tool-tile-cta">לחישוב שווי אופציות ←</span>
+          <strong>מחשבון אופציות ו-RSU</strong>
+          <span>שווי מענק, הבשלה ומיסוי סעיף 102.</span>
         </a>
-
         <a href="./severance-pay.html" class="tool-tile">
-          <div>
-            <div class="tool-tile-top">
-              <div class="tool-tile-icon">🛡️</div>
-              <h4>מחשבון פיצויי פיטורים</h4>
-            </div>
-            <p>חישוב סכום הפיצויים לפי ותק ושכר, בדיקת תקרות פטור ממס וסעיף 14.</p>
-          </div>
-          <span class="tool-tile-cta">לבדיקת פיצויים ←</span>
+          <strong>מחשבון פיצויי פיטורים</strong>
+          <span>חישוב לפי ותק, סעיף 14 ותקרת פטור ממס.</span>
         </a>
-
         <a href="./minimum-wage.html" class="tool-tile">
-          <div>
-            <div class="tool-tile-top">
-              <div class="tool-tile-icon">⏱️</div>
-              <h4>מחשבון שכר מינימום</h4>
-            </div>
-            <p>תעריפי שכר מינימום חודשי ושעתי מעודכנים, חישוב משמרות ושעות נוספות.</p>
-          </div>
-          <span class="tool-tile-cta">לבדיקת שכר מינימום ←</span>
+          <strong>מחשבון שכר מינימום</strong>
+          <span>תעריף שעתי, חודשי, שעות נוספות וזכויות.</span>
         </a>
-
         <a href="./guides.html" class="tool-tile">
-          <div>
-            <div class="tool-tile-top">
-              <div class="tool-tile-icon">📚</div>
-              <h4>מדריכים וזכויות עובדים</h4>
-            </div>
-            <p>הסברים פשוטים על תלוש השכר, קרן השתלמות, נקודות זיכוי ודיני עבודה.</p>
-          </div>
-          <span class="tool-tile-cta">לעיון במדריכים ←</span>
+          <strong>מדריכים ומקורות מידע</strong>
+          <span>נקודות זיכוי, קרן השתלמות, החזרי מס וקישורים.</span>
         </a>
       </div>
     </section>
-
-    <article class="card editorial-article">
-      <div class="editorial-meta">
-        <span class="editorial-tag">מדריך קריירה וגיוס</span>
-        <span>זמן קריאה: כ-4 דקות</span>
-        <span>•</span>
-        <span>מעודכן לשנת 2026</span>
-      </div>
-
-      <h2>איך מערכות הגיוס באמת קוראות את קורות החיים שלכם</h2>
-
-      <p>
-        כמעט כל מועמד מכיר את התחושה הזו: מצאתם משרה שמתאימה בול לניסיון שלכם, השקעתם בעיצוב קורות החיים, לחצתם "שלח", וקיבלתם מייל דחייה אוטומטי כעבור יומיים או שבכלל לא חזרו אליכם. ברוב המקרים הסיבה היא לא חוסר התאמה לתפקיד, אלא העובדה שקורות החיים שלכם מעולם לא הגיעו לעיניים אנושיות.
-      </p>
-
-      <p>
-        בישראל ובעולם, רוב החברות הבינוניות והגדולות (מחברות הייטק וסטארט-אפים ועד בנקים, חברות ביטוח וגופים ציבוריים) מנהלות את הגיוסים דרך תוכנות סינון אוטומטיות (<strong>ATS - Applicant Tracking System</strong>) כמו Comeet, Greenhouse, Workday ו-Lever. התפקיד הראשון של המערכת הוא לקחת מאות קבצים שנשלחים לכל משרה, לפרק אותם לטקסט פשוט, ולדרג את המועמדים לפי מידת ההתאמה למודעה.
-      </p>
-
-      <h3>איך נראה קובץ קורות החיים שלכם בעיני המחשב?</h3>
-      <p>
-        כשרכזת גיוס פותחת קובץ Word, היא רואה כותרות, הדגשות ומבנה מסודר. מערכת סינון אוטומטית, לעומת זאת, מתרגמת את המסמך לרצף של טקסט שטוח בלי עיצוב. ברגע שהעיצוב מורכב מדי או שהקובץ נשמר כ-PDF מעוצב, המערכת עלולה לבלבל בין תאריכים, לדלג על שורות שלמות, או לא לקרוא את הקובץ כלל.
-      </p>
-
-      <div class="comparison-wrap">
-        <table class="comparison-table">
-          <thead>
-            <tr>
-              <th>רכיב בקורות החיים</th>
-              <th>מה עלול להכשיל את הסינון</th>
-              <th>איך נכון לכתוב כדי לעבור חלק</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>פורמט הקובץ</strong></td>
-              <td>קובץ PDF (במיוחד כזה שיוצא מ-Canva או מתוכנות גרפיקה) שמקשה על חילוץ הטקסט.</td>
-              <td>קובץ <strong>Word (.docx)</strong> תקני ונקי, הפורמט האמין ביותר למערכות סינון.</td>
-            </tr>
-            <tr>
-              <td><strong>מבנה העמוד</strong></td>
-              <td>חלוקה לשני טורים (עמודת צד צרה ועמודה ראשית) או טבלאות נסתרות.</td>
-              <td>מבנה טורי אחד מלמעלה למטה, עם כותרות אחידות ומרווחים ברורים.</td>
-            </tr>
-            <tr>
-              <td><strong>דירוג מיומנויות</strong></td>
-              <td>סרגלי התקדמות גרפיים, כוכבים או עיגולים (למשל "אנגלית: 4 מתוך 5 כוכבים").</td>
-              <td>טקסט מפורש וברור: <em>"אנגלית: רמת שפת אם"</em>, <em>"Excel: שליטה מתקדמת"</em>.</td>
-            </tr>
-            <tr>
-              <td><strong>תאריכי העסקה</strong></td>
-              <td>כתיבה לא אחידה כמו "קיץ 2023" או הסתרת חודשים.</td>
-              <td>פורמט מספרי אחיד מימין או משמאל: <strong>03/2023 - היום</strong> (או 2023-2026).</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <h3>סוד מילות המפתח: לא להעמיס, אלא לדייק</h3>
-      <p>
-        מערכות גיוס מחפשות התאמה ברורה בין דרישות המשרה לבין הניסיון שמתואר בקובץ. אם במודעה כתוב <em>"ניסיון בניהול תקציבי שיווק ובקרת ביצועים"</em> ובקורות החיים שלכם כתוב רק <em>"אחריות על פעילות הדיגיטל"</em>, המערכת עלולה לתת לכם ציון התאמה נמוך, אפילו אם עשיתם בדיוק את העבודה הזו.
-      </p>
-      <ul>
-        <li><strong>אמצו את השפה של המודעה:</strong> עברו על 4 עד 5 דרישות החובה הראשונות במשרה וודאו שהביטויים המדויקים מופיעים באופן טבעי תחת הניסיון התעסוקתי או בסעיף הכישורים.</li>
-        <li><strong>שלבו ראשי תיבות וגם שם מלא:</strong> כתבו למשל <em>"קידום אתרים אורגני (SEO)"</em> או <em>"ניהול קשרי לקוחות (CRM)"</em> כדי לתפוס את שני סוגי החיפוש.</li>
-        <li><strong>הימנעו מהעתקה עיוורת:</strong> אל תדביקו רשימת מילים נסתרת בצבע לבן. מערכות גיוס מזהות זאת מיד ופוסלות מועמדים על ניסיון הטעיה.</li>
-      </ul>
-
-      <div class="editorial-callout">
-        <strong>טיפ של מגייסים:</strong> אל תשלחו את אותו קובץ זהה ל-30 משרות שונות. החזיקו קובץ Word בסיסי ומסודר, והקדישו 3 דקות להתאמת הכותרת הראשית (תחת השם שלכם) ו-3 שורות מפתח בניסיון התעסוקתי לפני כל שליחה. ההבדל באחוזי החזרה לראיונות משמעותי מאוד.
-      </div>
-
-      <h3>השלב הבא אחרי שעברתם את הסינון: הכנה לשיחת השכר</h3>
-      <p>
-        עברתם את מערכת הסינון וקיבלתם טלפון לתיאום ראיון? השאלה הראשונה שתעלה כבר בשיחת הסינון הטלפונית היא <em>"מה ציפיות השכר שלך?"</em>. מועמדים רבים נוקבים במספר ברוטו בלי לבדוק כמה באמת יישאר להם בבנק לאחר ניכויי מס הכנסה, ביטוח לאומי והפרשות לפנסיה.
-      </p>
-      <p>
-        לפני שאתם נכנסים לשיחה, מומלץ לבדוק מראש את המספרים ב<a href="./general-calculator.html" class="inline-link">מחשבון שכר ברוטו לנטו</a> שלנו. אם אתם מתראיינים לחברות טכנולוגיה, בדקו גם את המשמעות של תנאים סוציאליים מורחבים ב<a href="./tech-salary.html" class="inline-link">מחשבון שכר הייטק</a>, ואם ההצעה כוללת מרכיב הוני, חשבו את השווי האמיתי שלו ב<a href="./options-rsu.html" class="inline-link">מחשבון אופציות ו-RSU</a>. וכשאתם עוזבים מקום עבודה קיים לטובת ההזדמנות החדשה, אל תשכחו לוודא שכל הזכויות והכספים שלכם מוגנים באמצעות <a href="./severance-pay.html" class="inline-link">מחשבון פיצויי פיטורים</a>.
-      </p>
-    </article>
   </main>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.8.0/mammoth.browser.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" defer></script>
+
   <script>
-    const dropZone = document.getElementById('dropZone');
+    const dropzone = document.getElementById('dropzone');
     const fileInput = document.getElementById('cvFileInput');
-    const fileStatusPill = document.getElementById('fileStatusPill');
-    const cvTextArea = document.getElementById('cvText');
-    let uploadedFileType = 'text';
+    const cvTextEl = document.getElementById('cvText');
+    const jobDescEl = document.getElementById('jobDesc');
+    const analyzeBtn = document.getElementById('analyzeCvBtn');
+    const statusEl = document.getElementById('scanStatus');
+    const resultsEl = document.getElementById('atsResults');
+    const scoreValueEl = document.getElementById('scoreValue');
+    const scoreSummaryEl = document.getElementById('scoreSummary');
+    const findingsListEl = document.getElementById('findingsList');
 
-    function trackGaEvent(eventName, params = {}) {
-      try {
-        window.dataLayer = window.dataLayer || [];
-        if (typeof window.gtag === 'function') {
-          window.gtag('event', eventName, params);
-        } else {
-          window.dataLayer.push(['event', eventName, params]);
-        }
-      } catch (e) {}
-    }
-
-    function loadScriptOnce(src) {
-      return new Promise((resolve, reject) => {
-        if (document.querySelector(`script[src="${src}"]`)) return resolve();
-        const s = document.createElement('script');
-        s.src = src;
-        s.async = true;
-        s.onload = resolve;
-        s.onerror = () => reject(new Error('שגיאה בטעינת רכיב קריאת הקובץ. בדקו חיבור לרשת או הדביקו טקסט ידנית.'));
-        document.head.appendChild(s);
-      });
-    }
-
-    function showFileStatus(msg, isError = false) {
-      fileStatusPill.style.display = 'inline-block';
-      fileStatusPill.textContent = msg;
-      fileStatusPill.style.background = isError ? 'rgba(239, 68, 68, 0.15)' : 'rgba(247, 147, 26, 0.16)';
-      fileStatusPill.style.color = isError ? '#f87171' : '#f7931a';
-      fileStatusPill.style.borderColor = isError ? 'rgba(239, 68, 68, 0.35)' : 'rgba(247, 147, 26, 0.35)';
-    }
-
-    async function handleFileUpload(file) {
-      if (!file) return;
-      const fileName = file.name.toLowerCase();
-      showFileStatus('קורא את הקובץ: ' + file.name + '...');
-
-      try {
-        if (fileName.endsWith('.txt')) {
-          uploadedFileType = 'txt';
-          const text = await file.text();
-          cvTextArea.value = text.trim();
-          showFileStatus('הקובץ נטען: ' + file.name);
-          trackGaEvent('cv_file_uploaded', { file_type: 'txt' });
-        } else if (fileName.endsWith('.docx')) {
-          uploadedFileType = 'docx';
-          await loadScriptOnce('https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js');
-          const arrayBuffer = await file.arrayBuffer();
-          const result = await mammoth.extractRawText({ arrayBuffer });
-          cvTextArea.value = (result.value || '').trim();
-          if (!cvTextArea.value) throw new Error('לא נמצא טקסט קריא בקובץ.');
-          showFileStatus('קובץ Word נטען: ' + file.name);
-          trackGaEvent('cv_file_uploaded', { file_type: 'docx' });
-        } else if (fileName.endsWith('.pdf')) {
-          uploadedFileType = 'pdf';
-          await loadScriptOnce('https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js');
-          pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-          const arrayBuffer = await file.arrayBuffer();
-          const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
-          let fullText = '';
-          for (let i = 1; i <= pdf.numPages; i++) {
-            const page = await pdf.getPage(i);
-            const content = await page.getTextContent();
-            const pageText = content.items.map(item => item.str).join(' ');
-            fullText += pageText + '\n';
-          }
-          cvTextArea.value = fullText.trim();
-          if (!cvTextArea.value) {
-            showFileStatus('שים לב: קובץ ה-PDF הזה סרוק כתמונה ללא טקסט. מערכות הסינון לא יצליחו לקרוא אותו, יש להמיר ל-Word (.docx).', true);
-            trackGaEvent('cv_file_uploaded', { file_type: 'pdf_image_only' });
-            return;
-          }
-          showFileStatus('קובץ PDF נטען: ' + file.name + ' (מומלץ להמיר ל-Word לפני שליחה למעסיק)');
-          trackGaEvent('cv_file_uploaded', { file_type: 'pdf' });
-        } else {
-          showFileStatus('פורמט לא נתמך. אנא העלו Word (.docx), PDF או TXT.', true);
-        }
-      } catch (err) {
-        showFileStatus(err.message || 'שגיאה בקריאת הקובץ. אפשר להדביק את הטקסט ידנית למטה.', true);
-      }
-    }
-
-    dropZone.addEventListener('click', () => fileInput.click());
-    dropZone.addEventListener('keydown', e => {
+    dropzone.addEventListener('click', () => fileInput.click());
+    dropzone.addEventListener('keydown', e => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
         fileInput.click();
       }
     });
-    fileInput.addEventListener('change', e => handleFileUpload(e.target.files[0]));
 
-    dropZone.addEventListener('dragover', e => {
-      e.preventDefault();
-      dropZone.classList.add('drag-over');
-    });
-    dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
-    dropZone.addEventListener('drop', e => {
-      e.preventDefault();
-      dropZone.classList.remove('drag-over');
-      if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-        handleFileUpload(e.dataTransfer.files[0]);
-      }
-    });
-
-    function showFormatAdviceIfNeeded() {
-      const box = document.getElementById('formatWarningBox');
-      if (uploadedFileType === 'pdf') {
-        box.style.display = 'block';
-        box.innerHTML = '<strong>המלצה חשובה לגבי פורמט הקובץ (PDF):</strong> העלית קובץ PDF. מערכות סינון אוטומטיות רבות מתקשות לפענח קבצי PDF (במיוחד כאלו שנוצרו בתוכנות עיצוב או כוללים טורים) ועלולות לפסול את המועמדות עוד לפני שמגייס ראה אותה. <strong>לשליחה בטוחה למעסיקים, שמרו ושלחו את קורות החיים כקובץ Word (.docx) תקני.</strong>';
-      } else {
-        box.style.display = 'none';
-      }
-    }
-
-    function renderSmartCvRecommendation(cvLower) {
-      const container = document.getElementById('smartCvFollowup');
-      const techTerms = ['react', 'node', 'python', 'java', 'sql', 'aws', 'devops', 'qa', 'product', 'rsu', 'פיתוח', 'הייטק', 'תוכנה', 'אוטומציה', 'מנהל מוצר', 'דאטה', 'סייבר', 'אבטחת מידע'];
-      const isTech = techTerms.some(term => cvLower.includes(term));
-
-      if (isTech) {
-        container.innerHTML = `
-          <div style="flex: 1 1 280px;">
-            <div style="font-size: 0.76rem; font-weight: 700; color: #f7931a; margin-bottom: 4px;">המלצה מותאמת לפרופיל שלך</div>
-            <div style="font-size: 0.98rem; font-weight: 700; color: #ffffff; margin-bottom: 4px;">זיהינו רקע מעולם ההייטק והטכנולוגיה</div>
-            <div style="font-size: 0.84rem; color: #9ca3af;">מתכונן לשיחת שכר? בדוק כמה שווה חבילת השכר והאופציות שלך נטו.</div>
-          </div>
-          <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-            <a href="./tech-salary.html" style="text-decoration: none; background: #f7931a; color: #0b0e14; font-weight: 700; padding: 9px 16px; border-radius: 999px; font-size: 0.84rem;">מחשבון שכר הייטק</a>
-            <a href="./options-rsu.html" style="text-decoration: none; background: rgba(255,255,255,0.06); color: #f3f4f6; border: 1px solid rgba(255,255,255,0.12); padding: 9px 15px; border-radius: 999px; font-size: 0.84rem;">אופציות ו-RSU</a>
-          </div>
-        `;
-      } else {
-        container.innerHTML = `
-          <div style="flex: 1 1 280px;">
-            <div style="font-size: 0.76rem; font-weight: 700; color: #f7931a; margin-bottom: 4px;">הצעד הבא לפני הראיון</div>
-            <div style="font-size: 0.98rem; font-weight: 700; color: #ffffff; margin-bottom: 4px;">יודע כבר איזה שכר ברוטו לבקש?</div>
-            <div style="font-size: 0.84rem; color: #9ca3af;">המר מראש את ציפיות השכר שלך לנטו בבנק כולל נקודות זיכוי ופנסיה.</div>
-          </div>
-          <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-            <a href="./general-calculator.html" style="text-decoration: none; background: #f7931a; color: #0b0e14; font-weight: 700; padding: 9px 16px; border-radius: 999px; font-size: 0.84rem;">מחשבון ברוטו לנטו</a>
-            <a href="./severance-pay.html" style="text-decoration: none; background: rgba(255,255,255,0.06); color: #f3f4f6; border: 1px solid rgba(255,255,255,0.12); padding: 9px 15px; border-radius: 999px; font-size: 0.84rem;">חישוב פיצויים</a>
-          </div>
-        `;
-      }
-    }
-
-    document.getElementById('btnScan').addEventListener('click', () => {
-      const cv = cvTextArea.value.trim().toLowerCase();
-      const job = document.getElementById('jobText').value.trim().toLowerCase();
-
-      if (!cv) {
-        alert('אנא העלו קובץ קורות חיים או הדביקו את הטקסט.');
-        return;
-      }
-
-      trackGaEvent('cv_scan_completed', {
-        input_method: uploadedFileType,
-        has_job_description: job ? 'yes' : 'no'
+    ['dragenter', 'dragover'].forEach(evt => {
+      dropzone.addEventListener(evt, e => {
+        e.preventDefault();
+        dropzone.classList.add('dragover');
       });
+    });
 
-      const resultBox = document.getElementById('resultBox');
-      const scoreVal = document.getElementById('scoreVal');
-      const scoreTitle = document.getElementById('scoreTitle');
-      const scoreDesc = document.getElementById('scoreDesc');
-      const keywordsList = document.getElementById('keywordsList');
+    ['dragleave', 'drop'].forEach(evt => {
+      dropzone.addEventListener(evt, e => {
+        e.preventDefault();
+        dropzone.classList.remove('dragover');
+      });
+    });
 
-      resultBox.style.display = 'block';
-      keywordsList.innerHTML = '';
+    dropzone.addEventListener('drop', e => {
+      const files = e.dataTransfer.files;
+      if (files && files.length > 0) {
+        handleFile(files[0]);
+      }
+    });
 
-      if (!job) {
-        const words = cv.split(/\s+/).length;
-        let score = 60;
-        const foundSections = [];
-        if (words > 120 && words < 750) score += 15;
-        if (cv.includes('ניסיון') || cv.includes('experience')) { score += 10; foundSections.push('ניסיון תעסוקתי'); }
-        if (cv.includes('השכלה') || cv.includes('education')) { score += 8; foundSections.push('השכלה'); }
-        if (cv.includes('כישורים') || cv.includes('מיומנויות') || cv.includes('skills')) { score += 5; foundSections.push('כישורים'); }
+    fileInput.addEventListener('change', e => {
+      if (e.target.files && e.target.files.length > 0) {
+        handleFile(e.target.files[0]);
+      }
+    });
 
-        score = Math.min(score, 96);
-        scoreVal.textContent = score + '%';
-        scoreVal.style.borderColor = '#f7931a';
-        scoreVal.style.color = '#f7931a';
-        scoreTitle.textContent = 'תוכן הטקסט קריא למערכות סינון (ציון מבנה כללי)';
-        scoreDesc.textContent = 'מערכות גיוס מצליחות לקרוא את הטקסט שלך בצורה חלקה. רוצה ציון התאמה ספציפי? הדבק גם את תיאור המשרה מהמודעה.';
+    async function extractPdfText(file) {
+      if (!window.pdfjsLib) {
+        throw new Error('ספריית PDF לא נטענה.');
+      }
+      if (window.pdfjsLib.GlobalWorkerOptions) {
+        window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+      }
+      const arrayBuffer = await file.arrayBuffer();
+      const pdf = await window.pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+      const pages = [];
+      for (let i = 1; i <= pdf.numPages; i++) {
+        const page = await pdf.getPage(i);
+        const content = await page.getTextContent();
+        const text = content.items.map(item => item.str || '').join(' ');
+        pages.push(text);
+      }
+      return pages.join('\n').trim();
+    }
 
-        if (foundSections.length > 0) {
-          foundSections.forEach(sec => {
-            const tag = document.createElement('span');
-            tag.style.cssText = 'background: rgba(247, 147, 26, 0.14); color: #f7931a; padding: 4px 10px; border-radius: 999px; font-size: 0.8rem;';
-            tag.textContent = '✓ ' + sec;
-            keywordsList.appendChild(tag);
-          });
+    async function extractDocxText(file) {
+      if (!window.mammoth) {
+        throw new Error('ספריית Word לא נטענה.');
+      }
+      const arrayBuffer = await file.arrayBuffer();
+      const result = await window.mammoth.extractRawText({ arrayBuffer });
+      return (result.value || '').trim();
+    }
+
+    async function handleFile(file) {
+      statusEl.textContent = `קורא את הקובץ ${file.name}...`;
+      const nameLower = file.name.toLowerCase();
+
+      try {
+        let extracted = '';
+        if (nameLower.endsWith('.docx')) {
+          extracted = await extractDocxText(file);
+        } else if (nameLower.endsWith('.pdf')) {
+          extracted = await extractPdfText(file);
         } else {
-          keywordsList.innerHTML = '<span style="color: #9ca3af;">טיפ: מומלץ להוסיף כותרות ברורות כמו "ניסיון תעסוקתי", "השכלה" ו"כישורים".</span>';
+          extracted = await file.text();
         }
 
-        showFormatAdviceIfNeeded();
-        renderSmartCvRecommendation(cv);
-        resultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        cvTextEl.value = extracted;
+        if (!extracted) {
+          statusEl.textContent = 'הקובץ נקרא, אך לא נמצא בו טקסט חי (ייתכן שמדובר ב-PDF סרוק כתמונה).';
+        } else {
+          statusEl.textContent = `הטקסט נטען (${extracted.length.toLocaleString('he-IL')} תווים). לוחצים על בדיקה או עורכים לפני הבדיקה.`;
+          analyzeCv();
+        }
+      } catch (err) {
+        statusEl.textContent = 'לא ניתן היה לקרוא את הקובץ אוטומטית. אפשר להעתיק ולהדביק את הטקסט ישירות לתיבה.';
+      }
+    }
+
+    function analyzeCv() {
+      const text = (cvTextEl.value || '').trim();
+      const job = (jobDescEl.value || '').trim();
+
+      if (!text) {
+        statusEl.textContent = 'העלו קובץ או הדביקו את טקסט קורות החיים כדי להתחיל.';
+        resultsEl.style.display = 'none';
         return;
       }
 
-      const stopWords = new Set(['את', 'של', 'על', 'עם', 'כל', 'או', 'לא', 'זה', 'כי', 'גם', 'רק', 'אם', 'מה', 'כדי', 'the', 'and', 'or', 'in', 'on', 'at', 'to', 'for', 'a', 'an']);
-      const jobWords = job.match(/[\u0590-\u05fe\w]{3,}/g) || [];
-      const meaningfulWords = [...new Set(jobWords.filter(w => !stopWords.has(w)))];
+      let score = 50;
+      const findings = [];
+      const words = text.split(/\s+/).filter(Boolean);
 
-      let matchCount = 0;
-      const matched = [];
+      if (words.length >= 150) {
+        score += 12;
+        findings.push(`אורך הטקסט סביר ומפורט (${words.length.toLocaleString('he-IL')} מילים).`);
+      } else {
+        score -= 10;
+        findings.push(`הטקסט קצר יחסית (${words.length.toLocaleString('he-IL')} מילים). כדאי לבדוק שלא חסרים פירוט תפקידים, ניסיון או כישורים.`);
+      }
 
-      meaningfulWords.forEach(word => {
-        if (cv.includes(word)) {
-          matchCount++;
-          matched.push(word);
+      const hasEmail = /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/i.test(text);
+      const hasPhone = /(\+?\d[\d\s\-()]{7,}\d)/.test(text);
+      if (hasEmail && hasPhone) {
+        score += 10;
+        findings.push('נמצאו פרטי קשר בסיסיים (אימייל וטלפון) בטקסט.');
+      } else {
+        score -= 10;
+        findings.push('חסר אימייל או מספר טלפון מזוהה בטקסט (וודאו שאינם בתוך תמונה או כותרת שלא נחלצה).');
+      }
+
+      const hasSections = /(ניסיון|experience|השכלה|education|כישורים|skills|פרויקטים|projects)/i.test(text);
+      if (hasSections) {
+        score += 10;
+        findings.push('זוהו כותרות או חלקים מקובלים בקורות חיים.');
+      } else {
+        findings.push('מומלץ לחלק את קורות החיים לכותרות ברורות כגון ניסיון תעסוקתי, השכלה וכישורים.');
+      }
+
+      const hasNumbers = /\d+%|\d+\s*(שנים|שנות|חודשים|years|yrs)/i.test(text);
+      if (hasNumbers) {
+        score += 8;
+        findings.push('יש שימוש בנתונים מספריים או משכי זמן לתיאור ניסיון והישגים.');
+      } else {
+        findings.push('כדאי להוסיף מספרי תקופות, היקפים או תוצאות מדידות לתיאור התפקידים.');
+      }
+
+      if (job) {
+        const jobTokens = Array.from(new Set(
+          job.toLowerCase()
+            .replace(/[^\u0590-\u05FFa-z0-9\s+#.]/g, ' ')
+            .split(/\s+/)
+            .filter(w => w.length >= 3)
+        ));
+        const cvLower = text.toLowerCase();
+        const matched = jobTokens.filter(tok => cvLower.includes(tok));
+        const ratio = jobTokens.length ? Math.round((matched.length / jobTokens.length) * 100) : 0;
+
+        if (ratio >= 45) {
+          score += 10;
+          findings.push(`התאמה טובה למילות מפתח מתיאור המשרה (${ratio}% חפיפה לפי מונחים מזוהים).`);
+        } else {
+          findings.push(`חפיפה חלקית למילות מפתח בתיאור המשרה (${ratio}%). כדאי לבדוק אם מונחים מרכזיים מהמודעה מופיעים בניסוח שלכם.`);
         }
-      });
-
-      const totalKeywords = Math.min(meaningfulWords.length, 30);
-      const matchScore = totalKeywords > 0 ? Math.round((matchCount / totalKeywords) * 100) : 50;
-      const finalScore = Math.min(Math.max(matchScore, 25), 98);
-
-      scoreVal.textContent = finalScore + '%';
-      if (finalScore >= 75) {
-        scoreVal.style.borderColor = '#f7931a';
-        scoreVal.style.color = '#f7931a';
-        scoreTitle.textContent = 'התאמה גבוהה למשרה, מוכן לשליחה';
-        scoreDesc.textContent = 'קורות החיים מכילים אחוז גבוה ממילות המפתח הנדרשות במודעה. הסיכוי לעבור את הסינון הראשוני מצוין.';
-      } else if (finalScore >= 50) {
-        scoreVal.style.borderColor = '#fbbf24';
-        scoreVal.style.color = '#fbbf24';
-        scoreTitle.textContent = 'התאמה טובה, אפשר לחדד עוד קצת';
-        scoreDesc.textContent = 'זוהו חלק ממילות המפתח, אבל כדאי לשלב עוד כמה מונחים מדויקים מתוך דרישות החובה של המשרה.';
-      } else {
-        scoreVal.style.borderColor = '#f87171';
-        scoreVal.style.color = '#f87171';
-        scoreTitle.textContent = 'התאמה נמוכה, המערכת עלולה לסנן אותך';
-        scoreDesc.textContent = 'רוב מילות המפתח מהמודעה חסרות בקובץ. מומלץ להתאים את הניסוחים בקורות החיים לדרישות התפקיד.';
       }
 
-      if (matched.length > 0) {
-        matched.slice(0, 15).forEach(kw => {
-          const tag = document.createElement('span');
-          tag.style.cssText = 'background: rgba(247, 147, 26, 0.14); color: #f7931a; padding: 4px 10px; border-radius: 999px; font-size: 0.8rem;';
-          tag.textContent = kw;
-          keywordsList.appendChild(tag);
-        });
-      } else {
-        keywordsList.innerHTML = '<span style="color: var(--muted);">לא זוהו מונחים חופפים מובהקים בין הקו"ח למשרה.</span>';
-      }
+      score = Math.max(10, Math.min(100, score));
+      scoreValueEl.textContent = `${score}/100`;
+      scoreSummaryEl.textContent = score >= 80
+        ? 'מבנה טוב וקריאות גבוהה יחסית'
+        : score >= 60
+          ? 'בסיס טוב עם מקום לשיפורי מבנה והתאמה'
+          : 'כדאי לחזק את המבנה, פרטי הקשר או פירוט התוכן';
 
-      showFormatAdviceIfNeeded();
-      renderSmartCvRecommendation(cv);
-      resultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    });
+      findingsListEl.innerHTML = findings.map(item => `<li>${item}</li>`).join('');
+      resultsEl.style.display = 'block';
+      statusEl.textContent = 'הבדיקה הושלמה.';
+    }
+
+    analyzeBtn.addEventListener('click', analyzeCv);
   </script>
 </body>
 </html>
