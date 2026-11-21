@@ -191,7 +191,7 @@ window.JOBNET_TAX_CONFIG = {
         calc: {
           tag: "הצעד הבא בקריירה",
           title: "רוצה לבדוק אם קורות החיים שלך מוכנים לשדרוג שכר?",
-          desc: "לפני ששולחים קורות חיים למעסיק הבא, בדוק תוך שניות איך הקובץ שלך עובר סינון אוטומטי (ATS).",
+          desc: "לפני ששולחים קורות חיים למעסיק הבא, בדוק תוך שניות איך הקובץ שלך עובר סינון אוטומטי מבוסס בינה מלאכותית.",
           primaryText: "לסריקת קורות חיים בחינם",
           primaryHref: "./index.html",
           secondaryText: "השוואה לשכר הייטק",
@@ -212,7 +212,7 @@ window.JOBNET_TAX_CONFIG = {
           desc: "בדקו כמה פיצויי פיטורים מגיעים לכם, מה פטור ממס ואיך להכין את קורות החיים לסיבוב הבא.",
           primaryText: "מחשבון פיצויי פיטורים",
           primaryHref: "./severance-pay.html",
-          secondaryText: "רענון קורות חיים ל-ATS",
+          secondaryText: "רענון קורות חיים לפני שליחה",
           secondaryHref: "./index.html"
         },
         severance: {
