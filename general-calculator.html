@@ -62,6 +62,85 @@
       flex-wrap: wrap;
       gap: 8px;
     }
+
+    /* אופטימיזציית רינדור לחלקים התחתונים בנייד */
+    .lazy-section {
+      content-visibility: auto;
+      contain-intrinsic-size: 600px;
+    }
+
+    /* עיצוב מאמר עומק (מגזין נקי ואוורירי ל-SEO) */
+    .editorial-article {
+      margin-top: 24px;
+      padding: 32px 28px;
+      line-height: 1.78;
+      color: #cbd5e1;
+    }
+    @media (max-width: 768px) {
+      .editorial-article {
+        padding: 24px 18px;
+      }
+    }
+    .editorial-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+      font-size: 0.8rem;
+      color: #8b92a5;
+    }
+    .editorial-tag {
+      background: rgba(247, 147, 26, 0.14);
+      color: #f7931a;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-weight: 700;
+    }
+    .editorial-article h2 {
+      font-size: 1.5rem;
+      color: #ffffff;
+      margin: 0 0 14px 0;
+      line-height: 1.35;
+    }
+    .editorial-article h3 {
+      font-size: 1.15rem;
+      color: #f3f4f6;
+      margin: 26px 0 10px 0;
+      padding-bottom: 6px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    }
+    .editorial-article p {
+      margin: 0 0 14px 0;
+      font-size: 0.94rem;
+      color: #b0b7c6;
+    }
+    .editorial-article ul {
+      margin: 0 0 18px 0;
+      padding-right: 20px;
+    }
+    .editorial-article li {
+      margin-bottom: 8px;
+      font-size: 0.93rem;
+      color: #b0b7c6;
+    }
+    .editorial-article strong {
+      color: #f3f4f6;
+    }
+    .editorial-article a.inline-link {
+      color: #f7931a;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .editorial-callout {
+      background: rgba(247, 147, 26, 0.06);
+      border-right: 3px solid #f7931a;
+      border-radius: 8px;
+      padding: 16px 18px;
+      margin: 20px 0;
+      font-size: 0.91rem;
+      color: #e2e8f0;
+    }
   </style>
 
   <script type="application/ld+json">
@@ -70,32 +149,22 @@
     "@graph": [
       {
         "@type": "WebApplication",
-        "name": "jobnet.vip מחשבון שכר ברוטו לנטו",
+        "name": "JobNet מחשבון שכר ברוטו לנטו",
         "url": "https://jobnet.vip/general-calculator",
         "applicationCategory": "FinanceApplication",
         "operatingSystem": "All",
         "description": "סימולטור חישוב שכר ברוטו לנטו לפי מדרגות מס הכנסה, ביטוח לאומי ודיני עבודה 2026."
       },
       {
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "מהן מדרגות מס הכנסה המעודכנות לשנת 2026?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "המדרגות החודשיות לשנת 2026 הן: 10% עד 7,010 ₪, 14% מ-7,011 עד 10,060 ₪, 20% מ-10,061 עד 19,000 ₪, 31% מ-19,001 עד 25,100 ₪, 35% מ-25,101 עד 46,690 ₪, 47% מעל 46,690 ₪, ומס יסף של 3% מעל 60,130 ₪."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "כמה שווה נקודת זיכוי בשנת 2026?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "שווי נקודת זיכוי ממס הכנסה בשנת 2026 עומד על 242 ₪ לחודש (2,904 ₪ בשנה). תושב ישראל זכאי ל-2.25 נקודות (544.5 ₪ לחודש) ותושבת זכאית ל-2.75 נקודות (665.5 ₪ לחודש)."
-            }
-          }
-        ]
+        "@type": "Article",
+        "headline": "איך לקרוא תלוש שכר בישראל בלי ללכת לאיבוד: מדרגות מס, נקודות זיכוי ועלות מעסיק",
+        "author": {
+          "@type": "Organization",
+          "name": "JobNet"
+        },
+        "datePublished": "2026-03-01",
+        "dateModified": "2026-11-21",
+        "description": "המדריך המלא להבנת תלוש השכר בישראל לשנת 2026: ההבדל בין ברוטו, נטו ועלות מעסיק, חישוב מדרגות מס הכנסה וניצול נקודות זיכוי."
       }
     ]
   }
@@ -104,6 +173,7 @@
 <body>
 
   <main class="main-grid no-print">
+    <!-- כרטיס הזנת נתונים -->
     <section class="card">
       <h2>הזנת נתוני שכר</h2>
 
@@ -165,6 +235,7 @@
       </div>
     </section>
 
+    <!-- תוצאות חישוב שכר -->
     <section class="card">
       <h2>תוצאות חישוב שכר נטו</h2>
 
@@ -180,7 +251,7 @@
       </div>
       <div class="breakdown-row">
         <span>שווי נקודות זיכוי ממס (<span id="txtCreditPoints">2.25</span> נק')</span>
-        <span class="val" id="valCreditDiscount" style="color: #10b981;">₪545-</span>
+        <span class="val" id="valCreditDiscount" style="color: #f7931a;">₪545-</span>
       </div>
       <div class="breakdown-row">
         <span>מס הכנסה בפועל לתשלום</span>
@@ -218,7 +289,8 @@
     </section>
   </main>
 
-  <div class="container no-print" style="max-width: 1060px; width: 100%; margin-top: 10px;">
+  <!-- טבלת מדרגות מס הכנסה 2026 -->
+  <div class="container no-print lazy-section" style="max-width: 1060px; width: 100%; margin-top: 10px;">
     <article class="card">
       <h2>מדרגות מס הכנסה מעודכנות לשנת 2026 (הכנסה חודשית)</h2>
       <p>להלן פירוט מדרגות המס החודשיות ושיעורי המס השולי בהתאם לתיקון החוק המעודכן לשנת 2026:</p>
@@ -289,7 +361,7 @@
       </div>
 
       <section class="faq-box">
-        <h3>❓ שאלות נפוצות בנושא שכר ומיסוי</h3>
+        <h3>שאלות נפוצות בנושא שכר ומיסוי</h3>
 
         <div class="faq-item">
           <h4>כיצד מחושב מס הכנסה ממשכורת חודשית?</h4>
@@ -301,6 +373,52 @@
           <p>על חלק השכר שעד 60% מהשכר הממוצע (7,522 ₪ לחודש) מנוכה שיעור מופחת של 3.5% (ביטוח לאומי + בריאות). על יתרת השכר מעבר לסכום זה ועד לתקרה החודשית (50,140 ₪) מנוכה שיעור מלא של 12%.</p>
         </div>
       </section>
+    </article>
+
+    <!-- מאמר עומק מקצועי לקידום וערך לגולשים -->
+    <article class="card editorial-article">
+      <div class="editorial-meta">
+        <span class="editorial-tag">מדריך עומק • שכר ותלוש</span>
+        <span>זמן קריאה: כ-4 דקות</span>
+        <span>•</span>
+        <span>מעודכן לשנת 2026</span>
+      </div>
+
+      <h2>איך לקרוא תלוש שכר בישראל בלי ללכת לאיבוד: ברוטו, נטו, נקודות זיכוי ועלות מעסיק</h2>
+
+      <p>
+        רוב השכירים בישראל מסתכלים בתלוש השכר על שתי שורות בלבד: השורה העליונה (הברוטו) והשורה התחתונה שנכנסת לחשבון הבנק (הנטו). אלא שבין שתי השורות האלה מסתתר עולם שלם של חישובים, תקרות והטבות מס — והבנה בסיסית שלהן יכולה לחסוך לכם אלפי שקלים בשנה, במיוחד כשאתם מנהלים משא ומתן על שכר או בודקים הצעת עבודה חדשה.
+      </p>
+
+      <h3>1. המיתוס של "קפיצת מדרגת מס"</h3>
+      <p>
+        אחת הטעויות הנפוצות ביותר בקרב עובדים היא החשש שהעלאת שכר קטנה תגרום לכך שכל המשכורת תמוסה באחוז גבוה יותר ותקטין את הנטו. בפועל, שיטת המס בישראל היא <strong>פרוגרסיבית (מדורגת)</strong>: אחוז המס הגבוה חל אך ורק על השקלים שנמצאים מעל רף המדרגה, ולא על השכר כולו.
+      </p>
+      <p>
+        לדוגמה, אם השכר שלכם עלה מ-10,000 ₪ ל-10,500 ₪, רק על ה-440 ₪ שמעל תקרת המדרגה השנייה (10,060 ₪) תשלמו 20% מס במקום 14%. לכן, העלאה בשכר הברוטו לעולם לא תקטין את השכר הנטו שלכם.
+      </p>
+
+      <h3>2. נקודות זיכוי: הכסף שחוזר אליכם ישירות</h3>
+      <p>
+        בעוד שמדרגות המס מחשבות את המס הגולמי, <strong>נקודות הזיכוי</strong> מקזזות שקל מול שקל מתוך המס שהייתם אמורים לשלם. בשנת 2026 כל נקודת זיכוי שווה <strong>242 ₪ בחודש</strong> (2,904 ₪ בשנה).
+      </p>
+      <ul>
+        <li><strong>נקודות בסיס:</strong> גבר תושב ישראל זכאי ל-2.25 נקודות (544.5 ₪ הנחה חודשית במס), ואישה זכאית ל-2.75 נקודות (665.5 ₪ הנחה חודשית).</li>
+        <li><strong>הורים לילדים:</strong> הורים לילדים מתחת לגיל 18 זכאים לנקודות זיכוי משמעותיות נוספות (במיוחד בגילאי לידה עד 5), שמקטינות דרמטית את חבות המס.</li>
+        <li><strong>תואר אקדמי, שירות צבאי/לאומי ויישוב מזכה:</strong> סיום תואר ראשון או תעודת מקצוע, שחרור משירות סדיר או מגורים ביישובים מזכים מעניקים נקודות נוספות שלעיתים נשכחות אם לא מעדכנים את טופס 101 בתחילת השנה.</li>
+      </ul>
+
+      <div class="editorial-callout">
+        <strong>טיפ זהב למשא ומתן:</strong> כשמעסיק מציע לכם "תוספת נסיעות", "אחזקת רכב" או "בונוס", זכרו שגם רכיבים אלו חייבים במס הכנסה ובביטוח לאומי (למעט פטורים נקודתיים). לעומת זאת, הפרשה ל<strong>קרן השתלמות</strong> (2.5% עובד ו-7.5% מעסיק) היא אחת ההטבות המשתלמות במשק, כי הרווחים בה פטורים ממס רווחי הון עד לתקרה הקבועה בחוק.
+      </div>
+
+      <h3>3. למה עלות המעסיק גבוהה בכ-20%–30% מהברוטו שלכם?</h3>
+      <p>
+        כאשר אתם מבקשים שכר ברוטו של 10,000 ₪, המעסיק מוציא בפועל כ-11,845 ₪ ומעלה. הפער הזה אינו הולך לאיבוד — רובו מופקד ישירות לקופות החיסכון שלכם: <strong>6.5% תגמולי מעסיק לפנסיה</strong> ו-<strong>6% (או 8.33%) לרכיב פיצויים</strong>, בתוספת דמי ביטוח לאומי חלק מעסיק.
+      </p>
+      <p>
+        עובדים בחוזים אישיים או בתעשיית הטכנולוגיה נהנים לרוב מהפרשות סוציאליות על מלוא השכר גם מעבר לשכר הממוצע במשק — תוכלו לבדוק את ההבדל המדויק ב<a href="./tech-salary.html" class="inline-link">מחשבון שכר הייטק</a>. אם אתם מרוויחים שכר שעתי או בודקים תנאי בסיס, עברו ל<a href="./minimum-wage.html" class="inline-link">מחשבון שכר מינימום</a>, ואם אתם לקראת שינוי תעסוקתי — אל תשכחו לבדוק את קורות החיים ב<a href="./index.html" class="inline-link">סורק ה-ATS</a> ולחשב את הזכויות שלכם ב<a href="./severance-pay.html" class="inline-link">מחשבון פיצויי פיטורים</a>.
+      </p>
     </article>
   </div>
 
