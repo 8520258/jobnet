@@ -1,6 +1,6 @@
 /* ==========================================================================
    jobnet.vip - Core Architecture, Smart Cross-Navigation & Tax Engine
-   Version: 4.3.2 (Global window.gtag Fix + Clean Typography + Smart Bottom Hub)
+   Version: 4.4.0 (Humanized Copy + Global window.gtag + Smart Bottom Hub)
    ========================================================================== */
 
 window.JOBNET_TAX_CONFIG = {
@@ -202,7 +202,7 @@ window.JOBNET_TAX_CONFIG = {
         cv: {
           tag: "מוכנים לשלב הבא לפני הראיון?",
           title: "יודעים כבר איזה שכר ברוטו לבקש בשיחת הסינון?",
-          desc: "המירו מראש את ציפיות השכר שלכם לנטו בבנק כולל מדרגות מס הכנסה, נקודות זיכוי ופנסיה — בלי לגלול למעלה.",
+          desc: "המירו מראש את ציפיות השכר שלכם לנטו בבנק כולל מדרגות מס הכנסה, נקודות זיכוי ופנסיה, בלי לגלול למעלה.",
           primaryText: "למחשבון שכר ברוטו-נטו",
           primaryHref: "./general-calculator.html",
           secondaryText: "מחשבון שכר הייטק",
@@ -211,7 +211,7 @@ window.JOBNET_TAX_CONFIG = {
         calc: {
           tag: "הצעד הבא בקריירה",
           title: "רוצה לבדוק אם קורות החיים שלך מוכנים לשדרוג שכר?",
-          desc: "לפני ששולחים קורות חיים למעסיק הבא, בדוק תוך שניות איך הקובץ שלך עובר סינון אוטומטי מבוסס בינה מלאכותית.",
+          desc: "לפני ששולחים קורות חיים למעסיק הבא, בדוק תוך שניות איך הקובץ שלך עובר סינון אוטומטי.",
           primaryText: "לסריקת קורות חיים בחינם",
           primaryHref: "./index.html",
           secondaryText: "השוואה לשכר הייטק",
@@ -465,7 +465,7 @@ window.JOBNET_TAX_CONFIG = {
             <a href="./index.html" style="color: var(--muted); text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#f7931a'" onmouseout="this.style.color='var(--muted)'">
               © ${currentYear} jobnet.vip. All rights reserved.
             </a>
-            <span style="opacity: 0.4; font-size: 0.75rem; margin-left: 6px;">v4.3.2</span>
+            <span style="opacity: 0.4; font-size: 0.75rem; margin-left: 6px;">v4.4</span>
           </div>
         </div>
       `;
