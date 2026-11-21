@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JobNet</title>
-  <meta name="description" content="בודקים את קורות החיים לפני ששולחים: העלאת קובץ PDF, Word או טקסט לבדיקת התאמה למערכות גיוס (ATS), לצד מדריך מלא למעבר סינון אוטומטי ומחשבוני שכר.">
+  <meta name="description" content="שולחים קורות חיים ולא חוזרים אליכם? בדקו בחינם איך מערכות הסינון מבוססות הבינה המלאכותית קוראות את הקובץ שלכם לפני השליחה, לצד מחשבוני שכר וזכויות עובדים.">
   <link rel="canonical" href="https://jobnet.vip/">
 
   <meta property="og:title" content="JobNet">
-  <meta property="og:description" content="בודקים את קורות החיים לפני ששולחים — ומחשבים שכר נטו, אופציות וזכויות עובדים במקום אחד.">
+  <meta property="og:description" content="בדקו איך מערכות הסינון קוראות את קורות החיים שלכם לפני השליחה — ומחשבים שכר נטו, אופציות וזכויות עובדים במקום אחד.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://jobnet.vip/">
 
@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 
   <link rel="stylesheet" href="./style.css">
-  <script src="./common.js?v=4.1.0" defer></script>
+  <script src="./common.js?v=4.2.0" defer></script>
 
   <style>
     .home-container {
@@ -33,16 +33,16 @@
     .hero-intro h2 {
       font-size: 1.95rem;
       font-weight: 700;
-      margin: 0 0 10px 0;
+      margin: 0 0 12px 0;
       color: #ffffff;
       letter-spacing: -0.2px;
     }
     .hero-intro p {
-      color: #9ca3af;
-      max-width: 560px;
+      color: #b0b7c6;
+      max-width: 650px;
       margin: 0 auto;
       font-size: 0.98rem;
-      line-height: 1.65;
+      line-height: 1.68;
     }
 
     .drop-zone {
@@ -171,6 +171,19 @@
       font-size: 1.65rem;
       font-weight: 800;
       margin: 0 auto 14px auto;
+    }
+    .format-warning-box {
+      display: none;
+      text-align: right;
+      background: rgba(247, 147, 26, 0.08);
+      border: 1px solid rgba(247, 147, 26, 0.35);
+      border-right: 4px solid #f7931a;
+      padding: 14px 16px;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      color: #f3f4f6;
+      margin-bottom: 16px;
+      line-height: 1.6;
     }
     .smart-cv-followup {
       margin-top: 20px;
@@ -373,15 +386,15 @@
     "@graph": [
       {
         "@type": "WebApplication",
-        "name": "JobNet - סורק קורות חיים ל-ATS ומחשבוני שכר",
+        "name": "JobNet - בדיקת קורות חיים ומחשבוני שכר",
         "url": "https://jobnet.vip/",
         "applicationCategory": "BusinessApplication",
         "operatingSystem": "All",
-        "description": "כלי חינמי לסריקת קורות חיים (PDF, Word, טקסט) מול מערכות סינון אוטומטיות (ATS) ומדריך מלא למעבר שלב הסינון הראשוני."
+        "description": "כלי חינמי לסריקת קורות חיים (Word, PDF, טקסט) מול מערכות סינון אוטומטיות מבוססות בינה מלאכותית ומדריך מלא למעבר שלב הסינון הראשוני."
       },
       {
         "@type": "Article",
-        "headline": "המדריך המלא למעבר סינון ATS: איך מערכות הגיוס באמת קוראות את קורות החיים שלכם",
+        "headline": "המדריך המלא למעבר סינון אוטומטי (ATS): איך מערכות הגיוס באמת קוראות את קורות החיים שלכם",
         "author": {
           "@type": "Organization",
           "name": "JobNet"
@@ -398,8 +411,8 @@
 
   <main class="home-container">
     <div class="hero-intro">
-      <h2>בודקים את קורות החיים לפני ששולחים</h2>
-      <p>העלו קובץ או הדביקו טקסט — ותוך שניות תראו אם מערכות הסינון (ATS) קוראות אותו נכון ומה כדאי לחדד.</p>
+      <h2>שולחים קורות חיים ולא חוזרים אליכם?</h2>
+      <p>לפני שאדם קורא את קורות החיים שלכם, הם עוברים סינון של מנגנון בינה מלאכותית. אם הקובץ לא מותאם טכנית, ייתכן שהוא בכלל לא יגיע למגייס בשר ודם והפסדתם את המשרה רק בגלל פורמט שגוי או מילים חסרות. בדקו אותו כאן תוך שניות:</p>
     </div>
 
     <section class="card" style="padding: 28px;">
@@ -407,7 +420,7 @@
         <input type="file" id="cvFileInput" accept=".pdf,.docx,.txt" style="display: none;">
         <span class="drop-zone-icon">📄</span>
         <div class="drop-zone-title">גררו לכאן קובץ קורות חיים, או לחצו לבחירה מהמחשב / מהנייד</div>
-        <div class="drop-zone-sub">PDF, Word (.docx) או טקסט • הקובץ נקרא אצלכם בדפדפן בלבד ולא נשמר בשום שרת</div>
+        <div class="drop-zone-sub">Word (.docx), PDF או טקסט • הקובץ נקרא אצלכם בדפדפן בלבד ולא נשמר בשום שרת</div>
         <div id="fileStatusPill" class="file-status-pill"></div>
       </div>
 
@@ -418,7 +431,7 @@
         </div>
         <div>
           <label for="jobText" class="ats-label">תיאור המשרה (אופציונלי — לבדיקת התאמה מדויקת):</label>
-          <textarea id="jobText" class="ats-textarea" placeholder="הדביקו כאן את דרישות המשרה מהמודעה. אם תleave ריק, נבצע בדיקת מבנה כללית..."></textarea>
+          <textarea id="jobText" class="ats-textarea" placeholder="הדביקו כאן את דרישות המשרה מהמודעה. אם תשאירו ריק, נבצע בדיקת מבנה כללית..."></textarea>
         </div>
       </div>
 
@@ -432,6 +445,9 @@
         <div id="scoreVal" class="score-circle">--</div>
         <h3 id="scoreTitle" style="margin: 0 0 8px 0; font-size: 1.2rem; color: #ffffff;">ציון התאמה מחושב</h3>
         <p id="scoreDesc" style="color: #9ca3af; font-size: 0.92rem; max-width: 580px; margin: 0 auto 18px auto; line-height: 1.6;"></p>
+
+        <!-- התראת פורמט חכמה (מופיעה אוטומטית אם הועלה PDF) -->
+        <div id="formatWarningBox" class="format-warning-box"></div>
         
         <div id="keywordsFound" style="text-align: right; background: rgba(0,0,0,0.25); padding: 14px 16px; border-radius: 10px; font-size: 0.86rem; color: #d1d5db;">
           <strong>מילות מפתח ומונחים שזוהו:</strong>
@@ -525,19 +541,19 @@
         <span>מעודכן לשנת 2026</span>
       </div>
 
-      <h2>המדריך המלא למעבר סינון ATS: איך מערכות הגיוס באמת קוראות את קורות החיים שלכם</h2>
+      <h2>המדריך המלא למעבר סינון אוטומטי (ATS): איך מערכות הגיוס באמת קוראות את קורות החיים שלכם</h2>
 
       <p>
         כמעט כל מועמד מכיר את התחושה: מצאתם משרה שמתאימה בדיוק לניסיון שלכם, השקעתם בעיצוב קורות החיים, לחצתם "שלח" — וקיבלתם מייל דחייה אוטומטי כעבור יומיים, או גרוע מכך, שקט מוחלט. ברוב המקרים הסיבה אינה חוסר התאמה מקצועית, אלא העובדה שקורות החיים שלכם מעולם לא הגיעו לעיניים אנושיות.
       </p>
 
       <p>
-        בישראל ובעולם, רוב הארגונים הבינוניים והגדולים — מחברות הייטק וסטארט-אפים ועד בנקים, חברות ביטוח וגופים ציבוריים — מנהלים את תהליכי הגיוס באמצעות תוכנות <strong>ATS (Applicant Tracking System)</strong> כגון Comeet, Greenhouse, Workday ו-Lever. התפקיד הראשון של המערכת הוא לקחת מאות קבצים שנשלחים לכל משרה, לפרק אותם לטקסט גולמי (תהליך שנקרא <em>Parsing</em>), ולדרג את המועמדים לפי מידת ההתאמה למודעה.
+        בישראל ובעולם, רוב הארגונים הבינוניים והגדולים — מחברות הייטק וסטארט-אפים ועד בנקים, חברות ביטוח וגופים ציבוריים — מנהלים את תהליכי הגיוס באמצעות תוכנות סינון אוטומטיות (<strong>ATS – Applicant Tracking System</strong>) כגון Comeet, Greenhouse, Workday ו-Lever. התפקיד הראשון של המערכת הוא לקחת מאות קבצים שנשלחים לכל משרה, לפרק אותם לטקסט גולמי, ולדרג את המועמדים לפי מידת ההתאמה למודעה.
       </p>
 
       <h3>איך נראה קובץ קורות החיים שלכם בעיני המחשב?</h3>
       <p>
-        כשרכזת גיוס פותחת קובץ Word או PDF, היא רואה כותרות, הדגשות, טורים מסודרים ואייקונים. מערכת סינון אוטומטית, לעומת זאת, מתרגמת את המסמך לרצף של טקסט שטוח ללא עיצוב. ברגע שהעיצוב מורכב מדי, האלגוריתם מבלבל בין תאריכים, מדלג על שורות שלמות, או שומר את השם שלכם תחת סעיף "השכלה".
+        כשרכזת גיוס פותחת קובץ Word, היא רואה כותרות, הדגשות ומבנה מסודר. מערכת סינון אוטומטית, לעומת זאת, מתרגמת את המסמך לרצף של טקסט שטוח ללא עיצוב. ברגע שהעיצוב מורכב מדי או שהקובץ נשמר כ-PDF מעוצב, האלגוריתם עלול לבלבל בין תאריכים, לדלג על שורות שלמות, או לא לקרוא את הקובץ כלל.
       </p>
 
       <div class="comparison-wrap">
@@ -552,8 +568,8 @@
           <tbody>
             <tr>
               <td><strong>פורמט הקובץ</strong></td>
-              <td>PDF שיוצא מתוכנות גרפיקה (Canva / Photoshop) ונשמר כתמונה ללא שכבת טקסט.</td>
-              <td>קובץ <strong>Word (.docx)</strong> תקני או PDF שיוצא ישירות מ-Word / Google Docs.</td>
+              <td>קובץ PDF (במיוחד כזה שיוצא מ-Canva או מתוכנות גרפיקה) שמקשה על חילוץ הטקסט.</td>
+              <td>קובץ <strong>Word (.docx)</strong> תקני ונקי — הפורמט האמין ביותר למערכות סינון.</td>
             </tr>
             <tr>
               <td><strong>מבנה העמוד</strong></td>
@@ -585,12 +601,12 @@
       </ul>
 
       <div class="editorial-callout">
-        <strong>טיפ של מגייסים:</strong> אל תשלחו את אותו קובץ זהה ל-30 משרות שונות. החזיקו קובץ בסיס מסודר, והקדישו 3 דקות להתאמת הכותרת הראשית (תחת השם שלכם) ו-3 שורות מפתח בניסיון התעסוקתי לפני כל שליחה. ההבדל באחוזי החזרה לראיונות הוא דרמטי.
+        <strong>טיפ של מגייסים:</strong> אל תשלחו את אותו קובץ זהה ל-30 משרות שונות. החזיקו קובץ Word בסיסי ומסודר, והקדישו 3 דקות להתאמת הכותרת הראשית (תחת השם שלכם) ו-3 שורות מפתח בניסיון התעסוקתי לפני כל שליחה. ההבדל באחוזי החזרה לראיונות הוא דרמטי.
       </div>
 
       <h3>השלב הבא אחרי שעברתם את הסינון: הכנה לשיחת השכר</h3>
       <p>
-        עברתם את מערכת ה-ATS וקיבלתם טלפון לתיאום ראיון? השאלה הראשונה שתעלה כבר בשיחת הסינון הטלפונית היא <em>"מה ציפיות השכר שלך?"</em>. מועמדים רבים נוקבים במספר ברוטו בלי לבדוק כמה באמת יישאר להם בבנק לאחר ניכויי מס הכנסה, ביטוח לאומי והפרשות לפנסיה.
+        עברתם את מערכת הסינון וקיבלתם טלפון לתיאום ראיון? השאלה הראשונה שתעלה כבר בשיחת הסינון הטלפונית היא <em>"מה ציפיות השכר שלך?"</em>. מועמדים רבים נוקבים במספר ברוטו בלי לבדוק כמה באמת יישאר להם בבנק לאחר ניכויי מס הכנסה, ביטוח לאומי והפרשות לפנסיה.
       </p>
       <p>
         לפני שאתם נכנסים לשיחה, מומלץ לבדוק מראש את המספרים ב<a href="./general-calculator.html" class="inline-link">מחשבון שכר ברוטו לנטו</a> שלנו. אם אתם מתראיינים לחברות טכנולוגיה, בדקו גם את המשמעות של תנאים סוציאליים מורחבים ב<a href="./tech-salary.html" class="inline-link">מחשבון שכר הייטק</a>, ואם ההצעה כוללת מרכיב הוני, חשבו את השווי האמיתי שלו ב<a href="./options-rsu.html" class="inline-link">מחשבון אופציות ו-RSU</a>. וכשאתם עוזבים מקום עבודה קיים לטובת ההזדמנות החדשה — אל תשכחו לוודא שכל הזכויות והכספים שלכם מוגנים באמצעות <a href="./severance-pay.html" class="inline-link">מחשבון פיצויי פיטורים</a>.
@@ -603,6 +619,7 @@
     const fileInput = document.getElementById('cvFileInput');
     const fileStatusPill = document.getElementById('fileStatusPill');
     const cvTextArea = document.getElementById('cvText');
+    let uploadedFileType = 'text';
 
     // טוען ספריות כבדות רק כשבאמת מעלים קובץ (חוסך ~1.2MB בטעינה ראשונית)
     function loadScriptOnce(src) {
@@ -632,10 +649,12 @@
 
       try {
         if (fileName.endsWith('.txt')) {
+          uploadedFileType = 'txt';
           const text = await file.text();
           cvTextArea.value = text.trim();
           showFileStatus('הקובץ נטען: ' + file.name);
         } else if (fileName.endsWith('.docx')) {
+          uploadedFileType = 'docx';
           await loadScriptOnce('https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js');
           const arrayBuffer = await file.arrayBuffer();
           const result = await mammoth.extractRawText({ arrayBuffer });
@@ -643,6 +662,7 @@
           if (!cvTextArea.value) throw new Error('לא נמצא טקסט קריא בקובץ.');
           showFileStatus('קובץ Word נטען: ' + file.name);
         } else if (fileName.endsWith('.pdf')) {
+          uploadedFileType = 'pdf';
           await loadScriptOnce('https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js');
           pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
           const arrayBuffer = await file.arrayBuffer();
@@ -656,12 +676,12 @@
           }
           cvTextArea.value = fullText.trim();
           if (!cvTextArea.value) {
-            showFileStatus('שים לב: קובץ ה-PDF הזה סרוק כתמונה ללא טקסט. מערכות ATS לא יצליחו לקרוא אותו.', true);
+            showFileStatus('שים לב: קובץ ה-PDF הזה סרוק כתמונה ללא טקסט. מערכות הסינון לא יצליחו לקרוא אותו — יש להמיר ל-Word (.docx).', true);
             return;
           }
-          showFileStatus('קובץ PDF נטען: ' + file.name);
+          showFileStatus('קובץ PDF נטען: ' + file.name + ' (מומלץ להמיר ל-Word לפני שליחה למעסיק)');
         } else {
-          showFileStatus('פורמט לא נתמך. אנא העלו PDF, Word (.docx) או TXT.', true);
+          showFileStatus('פורמט לא נתמך. אנא העלו Word (.docx), PDF או TXT.', true);
         }
       } catch (err) {
         showFileStatus(err.message || 'שגיאה בקריאת הקובץ — אפשר להדביק את הטקסט ידנית למטה.', true);
@@ -689,6 +709,16 @@
         handleFileUpload(e.dataTransfer.files[0]);
       }
     });
+
+    function showFormatAdviceIfNeeded() {
+      const box = document.getElementById('formatWarningBox');
+      if (uploadedFileType === 'pdf') {
+        box.style.display = 'block';
+        box.innerHTML = '<strong>המלצה קריטית לגבי פורמט הקובץ (PDF):</strong> העלית קובץ PDF. מערכות סינון אוטומטיות רבות מתקשות לפענח קבצי PDF (במיוחד כאלו שנוצרו בתוכנות עיצוב או כוללים טורים) ועלולות לפסול את המועמדות עוד לפני שמגייס ראה אותה. <strong>לשליחה בטוחה למעסיקים — שמרו ושלחו את קורות החיים כקובץ Word (.docx) תקני.</strong>';
+      } else {
+        box.style.display = 'none';
+      }
+    }
 
     function renderSmartCvRecommendation(cvLower) {
       const container = document.getElementById('smartCvFollowup');
@@ -753,7 +783,7 @@
         scoreVal.textContent = score + '%';
         scoreVal.style.borderColor = '#f7931a';
         scoreVal.style.color = '#f7931a';
-        scoreTitle.textContent = 'הקובץ קריא ותקין למערכות סינון (ציון מבנה כללי)';
+        scoreTitle.textContent = 'תוכן הטקסט קריא למערכות סינון (ציון מבנה כללי)';
         scoreDesc.textContent = 'מערכות גיוס מצליחות לקרוא את הטקסט שלך בצורה חלקה. רוצה ציון התאמה ספציפי? הדבק גם את תיאור המשרה מהמודעה.';
 
         if (foundSections.length > 0) {
@@ -767,6 +797,7 @@
           keywordsList.innerHTML = '<span style="color: #9ca3af;">טיפ: מומלץ להוסיף כותרות ברורות כמו "ניסיון תעסוקתי", "השכלה" ו"כישורים".</span>';
         }
 
+        showFormatAdviceIfNeeded();
         renderSmartCvRecommendation(cv);
         resultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         return;
@@ -804,7 +835,7 @@
       } else {
         scoreVal.style.borderColor = '#f87171';
         scoreVal.style.color = '#f87171';
-        scoreTitle.textContent = 'התאמה נמוכה — הבוט עלול לסנן אותך';
+        scoreTitle.textContent = 'התאמה נמוכה — המערכת עלולה לסנן אותך';
         scoreDesc.textContent = 'רוב מילות המפתח מהמודעה חסרות בקובץ. מומלץ להתאים את הניסוחים בקורות החיים לדרישות התפקיד.';
       }
 
@@ -819,6 +850,7 @@
         keywordsList.innerHTML = '<span style="color: var(--muted);">לא זוהו מונחים חופפים מובהקים בין הקו"ח למשרה.</span>';
       }
 
+      showFormatAdviceIfNeeded();
       renderSmartCvRecommendation(cv);
       resultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     });
