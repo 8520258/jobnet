@@ -1,6 +1,6 @@
 /* ==========================================================================
    jobnet.vip - Core Architecture, Smart Cross-Navigation & Tax Engine
-   Version: 4.3.1 (Clean Readable Typography + Evergreen Header Badge)
+   Version: 4.3.2 (Global window.gtag Fix + Clean Typography + Smart Bottom Hub)
    ========================================================================== */
 
 window.JOBNET_TAX_CONFIG = {
@@ -465,7 +465,7 @@ window.JOBNET_TAX_CONFIG = {
             <a href="./index.html" style="color: var(--muted); text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#f7931a'" onmouseout="this.style.color='var(--muted)'">
               © ${currentYear} jobnet.vip. All rights reserved.
             </a>
-            <span style="opacity: 0.4; font-size: 0.75rem; margin-left: 6px;">v4.3</span>
+            <span style="opacity: 0.4; font-size: 0.75rem; margin-left: 6px;">v4.3.2</span>
           </div>
         </div>
       `;
@@ -594,14 +594,14 @@ window.JOBNET_TAX_CONFIG = {
 
   try {
     const gaId = 'G-EKGZK9D1J6';
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { window.dataLayer.push(arguments); };
+    window.gtag('js', new Date());
+    window.gtag('config', gaId);
+
     const s = document.createElement('script');
     s.async = true;
     s.src = `https://www.googletagmanager.com/gtag/js?id=${gaId}`;
     document.head.appendChild(s);
-
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', gaId);
   } catch (e) {}
 })();
