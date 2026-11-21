@@ -13,7 +13,7 @@
   <meta property="og:url" content="https://jobnet.vip/">
 
   <link rel="stylesheet" href="./style.css">
-  <script src="./common.js" defer></script>
+  <script src="./common.js?v=3.9.4" defer></script>
 
   <style>
     .ats-container {
@@ -230,7 +230,6 @@
       keywordsList.innerHTML = '';
 
       if (!job) {
-        // בדיקת מבנה כללית כשאין משרה
         const words = cv.split(/\s+/).length;
         let score = 65;
         if (words > 150 && words < 700) score += 20;
@@ -242,7 +241,6 @@
         return;
       }
 
-      // חילוץ מילים מדרישות המשרה וסינון מילות קישור
       const stopWords = new Set(['את', 'של', 'על', 'עם', 'כל', 'או', 'לא', 'זה', 'כי', 'גם', 'רק', 'אם', 'מה', 'כדי', 'the', 'and', 'or', 'in', 'on', 'at', 'to', 'for', 'a', 'an']);
       const jobWords = job.match(/[\u0590-\u05fe\w]{3,}/g) || [];
       const meaningfulWords = [...new Set(jobWords.filter(w => !stopWords.has(w)))];
@@ -279,7 +277,6 @@
         scoreDesc.textContent = 'מרבית המונחים המופיעים במודעת הדרושים אינם מופיעים בקו"ח שלכם. הבוט עלול לדרג אתכם בתחתית רשימת המועמדים.';
       }
 
-      // הצגת מילות מפתח שנמצאו
       if (matched.length > 0) {
         matched.slice(0, 15).forEach(kw => {
           const tag = document.createElement('span');
