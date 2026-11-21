@@ -28,63 +28,85 @@
 
     .hero-intro {
       text-align: center;
-      padding: 14px 16px 28px 16px;
+      padding: 16px 16px 30px 16px;
     }
     .hero-intro h2 {
-      font-size: 1.95rem;
-      font-weight: 700;
-      margin: 0 0 12px 0;
+      font-size: 2.05rem;
+      font-weight: 800;
+      margin: 0 0 14px 0;
       color: #ffffff;
-      letter-spacing: -0.2px;
+      letter-spacing: -0.3px;
     }
-    .hero-intro p {
-      color: #b0b7c6;
-      max-width: 650px;
+    .hero-lead {
+      color: #e5e7eb;
+      max-width: 660px;
       margin: 0 auto;
-      font-size: 0.98rem;
-      line-height: 1.68;
+      font-size: 1.06rem;
+      line-height: 1.72;
+      font-weight: 400;
+    }
+    .hero-lead strong {
+      color: #ffffff;
+      font-weight: 700;
+    }
+    .hero-lead .hero-highlight {
+      color: #f7931a;
+      font-weight: 700;
     }
 
     .drop-zone {
-      border: 1px dashed rgba(255, 255, 255, 0.18);
-      background: rgba(255, 255, 255, 0.02);
-      border-radius: 12px;
-      padding: 26px 20px;
+      border: 1.5px dashed rgba(247, 147, 26, 0.32);
+      background: rgba(255, 255, 255, 0.025);
+      border-radius: 14px;
+      padding: 28px 20px;
       text-align: center;
       cursor: pointer;
-      transition: border-color 0.2s ease, background 0.2s ease;
-      margin-bottom: 22px;
+      transition: border-color 0.2s ease, background 0.2s ease, transform 0.15s ease;
+      margin-bottom: 24px;
     }
     .drop-zone:hover, .drop-zone.drag-over {
-      border-color: rgba(247, 147, 26, 0.6);
-      background: rgba(247, 147, 26, 0.05);
+      border-color: rgba(247, 147, 26, 0.75);
+      background: rgba(247, 147, 26, 0.06);
     }
     .drop-zone-icon {
-      font-size: 1.75rem;
-      margin-bottom: 8px;
+      font-size: 1.9rem;
+      margin-bottom: 10px;
       display: block;
-      opacity: 0.9;
     }
     .drop-zone-title {
-      font-size: 1rem;
-      font-weight: 600;
-      color: #f3f4f6;
-      margin-bottom: 5px;
+      font-size: 1.06rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 8px;
     }
-    .drop-zone-sub {
-      font-size: 0.83rem;
-      color: #8b92a5;
+    .drop-zone-formats {
+      font-size: 0.88rem;
+      color: #cbd5e1;
+      margin-bottom: 12px;
+    }
+    .privacy-trust-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      background: rgba(247, 147, 26, 0.11);
+      border: 1px solid rgba(247, 147, 26, 0.3);
+      color: #fcd34d;
+      padding: 6px 15px;
+      border-radius: 999px;
+      font-size: 0.84rem;
+      font-weight: 600;
     }
     .file-status-pill {
       display: none;
       margin-top: 12px;
-      background: rgba(247, 147, 26, 0.14);
+      background: rgba(247, 147, 26, 0.18);
       color: #f7931a;
-      border: 1px solid rgba(247, 147, 26, 0.3);
-      padding: 5px 14px;
+      border: 1px solid rgba(247, 147, 26, 0.4);
+      padding: 6px 16px;
       border-radius: 999px;
-      font-size: 0.82rem;
-      font-weight: 600;
+      font-size: 0.84rem;
+      font-weight: 700;
     }
 
     .ats-grid {
@@ -98,7 +120,10 @@
         grid-template-columns: 1fr;
       }
       .hero-intro h2 {
-        font-size: 1.55rem;
+        font-size: 1.62rem;
+      }
+      .hero-lead {
+        font-size: 0.98rem;
       }
     }
     .ats-label {
@@ -136,13 +161,13 @@
       background: #f7931a;
       color: #0b0e14;
       font-weight: 700;
-      font-size: 1rem;
-      padding: 13px 34px;
+      font-size: 1.02rem;
+      padding: 13px 36px;
       border: none;
       border-radius: 999px;
       cursor: pointer;
       transition: background 0.2s ease, transform 0.2s ease;
-      box-shadow: 0 4px 14px rgba(247, 147, 26, 0.2);
+      box-shadow: 0 4px 14px rgba(247, 147, 26, 0.22);
     }
     .btn-scan-clean:hover {
       background: #ffa333;
@@ -412,7 +437,10 @@
   <main class="home-container">
     <div class="hero-intro">
       <h2>שולחים קורות חיים ולא חוזרים אליכם?</h2>
-      <p>לפני שאדם קורא את קורות החיים שלכם, הם עוברים סינון של מנגנון בינה מלאכותית. אם הקובץ לא מותאם טכנית, ייתכן שהוא בכלל לא יגיע למגייס בשר ודם והפסדתם את המשרה רק בגלל פורמט שגוי או מילים חסרות. בדקו אותו כאן תוך שניות:</p>
+      <p class="hero-lead">
+        לפני שמגייס אנושי רואה את קורות החיים שלכם, <strong>מערכת סינון מבוססת בינה מלאכותית</strong> סורקת אותם. אם הקובץ לא מותאם טכנית — הוא נפסל אוטומטית והמשרה אובדת רק בגלל פורמט שגוי או מילים חסרות.
+        <span class="hero-highlight">בדקו כאן בחינם ותוך שניות איך המערכת קוראת את הקובץ שלכם:</span>
+      </p>
     </div>
 
     <section class="card" style="padding: 28px;">
@@ -420,7 +448,11 @@
         <input type="file" id="cvFileInput" accept=".pdf,.docx,.txt" style="display: none;">
         <span class="drop-zone-icon">📄</span>
         <div class="drop-zone-title">גררו לכאן קובץ קורות חיים, או לחצו לבחירה מהמחשב / מהנייד</div>
-        <div class="drop-zone-sub">Word (.docx), PDF או טקסט • הקובץ נקרא אצלכם בדפדפן בלבד ולא נשמר בשום שרת</div>
+        <div class="drop-zone-formats">תומך בקובצי <strong>Word (.docx)</strong>, PDF או טקסט</div>
+        <div class="privacy-trust-badge">
+          <span>🔒</span>
+          <span>100% פרטיות מלאה: הקובץ נסרק אצלכם בדפדפן בלבד ולעולם לא נשמר בשום שרת</span>
+        </div>
         <div id="fileStatusPill" class="file-status-pill"></div>
       </div>
 
@@ -621,6 +653,18 @@
     const cvTextArea = document.getElementById('cvText');
     let uploadedFileType = 'text';
 
+    // דיווח אירועים סטטיסטיים ל-Google Analytics 4 (ללא מידע אישי)
+    function trackGaEvent(eventName, params = {}) {
+      try {
+        window.dataLayer = window.dataLayer || [];
+        if (typeof window.gtag === 'function') {
+          window.gtag('event', eventName, params);
+        } else {
+          window.dataLayer.push(['event', eventName, params]);
+        }
+      } catch (e) {}
+    }
+
     // טוען ספריות כבדות רק כשבאמת מעלים קובץ (חוסך ~1.2MB בטעינה ראשונית)
     function loadScriptOnce(src) {
       return new Promise((resolve, reject) => {
@@ -637,9 +681,9 @@
     function showFileStatus(msg, isError = false) {
       fileStatusPill.style.display = 'inline-block';
       fileStatusPill.textContent = msg;
-      fileStatusPill.style.background = isError ? 'rgba(239, 68, 68, 0.15)' : 'rgba(247, 147, 26, 0.14)';
+      fileStatusPill.style.background = isError ? 'rgba(239, 68, 68, 0.15)' : 'rgba(247, 147, 26, 0.18)';
       fileStatusPill.style.color = isError ? '#f87171' : '#f7931a';
-      fileStatusPill.style.borderColor = isError ? 'rgba(239, 68, 68, 0.35)' : 'rgba(247, 147, 26, 0.3)';
+      fileStatusPill.style.borderColor = isError ? 'rgba(239, 68, 68, 0.35)' : 'rgba(247, 147, 26, 0.4)';
     }
 
     async function handleFileUpload(file) {
@@ -653,6 +697,7 @@
           const text = await file.text();
           cvTextArea.value = text.trim();
           showFileStatus('הקובץ נטען: ' + file.name);
+          trackGaEvent('cv_file_uploaded', { file_type: 'txt' });
         } else if (fileName.endsWith('.docx')) {
           uploadedFileType = 'docx';
           await loadScriptOnce('https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js');
@@ -661,6 +706,7 @@
           cvTextArea.value = (result.value || '').trim();
           if (!cvTextArea.value) throw new Error('לא נמצא טקסט קריא בקובץ.');
           showFileStatus('קובץ Word נטען: ' + file.name);
+          trackGaEvent('cv_file_uploaded', { file_type: 'docx' });
         } else if (fileName.endsWith('.pdf')) {
           uploadedFileType = 'pdf';
           await loadScriptOnce('https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js');
@@ -677,9 +723,11 @@
           cvTextArea.value = fullText.trim();
           if (!cvTextArea.value) {
             showFileStatus('שים לב: קובץ ה-PDF הזה סרוק כתמונה ללא טקסט. מערכות הסינון לא יצליחו לקרוא אותו — יש להמיר ל-Word (.docx).', true);
+            trackGaEvent('cv_file_uploaded', { file_type: 'pdf_image_only' });
             return;
           }
           showFileStatus('קובץ PDF נטען: ' + file.name + ' (מומלץ להמיר ל-Word לפני שליחה למעסיק)');
+          trackGaEvent('cv_file_uploaded', { file_type: 'pdf' });
         } else {
           showFileStatus('פורמט לא נתמך. אנא העלו Word (.docx), PDF או TXT.', true);
         }
@@ -760,6 +808,11 @@
         alert('אנא העלו קובץ קורות חיים או הדביקו את הטקסט.');
         return;
       }
+
+      trackGaEvent('cv_scan_completed', {
+        input_method: uploadedFileType,
+        has_job_description: job ? 'yes' : 'no'
+      });
 
       const resultBox = document.getElementById('resultBox');
       const scoreVal = document.getElementById('scoreVal');
