@@ -4,16 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JobNet</title>
-  <meta name="description" content="מחשבון שכר הייטק מעודכן לשנת 2026: חישוב שכר נטו, קרן השתלמות, הפרשות סוציאליות מלאות, שווי רכב צמוד ועלות מעביד כוללת לחברות טכנולוגיה.">
+  <meta name="description" content="מחשבון שכר הייטק: חישוב שכר נטו, קרן השתלמות, הפרשות סוציאליות, שווי רכב צמוד ועלות מעסיק לחברות טכנולוגיה.">
   <link rel="canonical" href="https://jobnet.vip/tech-salary">
 
   <meta property="og:title" content="JobNet">
-  <meta property="og:description" content="חישוב מדויק של שכר נטו ועלויות מעביד בהייטק לשנת 2026 לפי המדרגות החדשות.">
+  <meta property="og:description" content="חישוב שכר נטו ועלויות מעסיק בהייטק לפי מדרגות המס.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://jobnet.vip/tech-salary">
 
   <link rel="stylesheet" href="./style.css">
-  <script src="./common.js?v=4.1.0" defer></script>
+  <script src="./common.js?v=4.4.0" defer></script>
 
   <style>
     .table-container {
@@ -39,14 +39,10 @@
       flex-wrap: wrap;
       gap: 8px;
     }
-
-    /* אופטימיזציית רינדור לחלקים התחתונים בנייד */
     .lazy-section {
       content-visibility: auto;
       contain-intrinsic-size: 600px;
     }
-
-    /* עיצוב מאמר עומק (מגזין נקי ואוורירי ל-SEO) */
     .editorial-article {
       padding: 32px 28px;
       line-height: 1.78;
@@ -129,7 +125,7 @@
         "url": "https://jobnet.vip/tech-salary",
         "applicationCategory": "FinanceApplication",
         "operatingSystem": "All",
-        "description": "סימולטור שכר הייטק, קרנות השתלמות, שווי רכב ועלות מעביד לשנת 2026."
+        "description": "מחשבון שכר הייטק, קרנות השתלמות, שווי רכב ועלות מעסיק לפי מדרגות המס."
       },
       {
         "@type": "Article",
@@ -140,7 +136,7 @@
         },
         "datePublished": "2026-03-01",
         "dateModified": "2026-11-21",
-        "description": "המדריך המלא להבנת חבילת השכר בהייטק הישראלי לשנת 2026: חלוקת שכר בסיס ושעות גלובליות, הטבות מס בקרן השתלמות ושווי שימוש ברכב."
+        "description": "מדריך להבנת חבילת השכר בהייטק בישראל: חלוקת שכר בסיס ושעות גלובליות, הטבות מס בקרן השתלמות ושווי שימוש ברכב."
       }
     ]
   }
@@ -149,7 +145,6 @@
 <body>
 
   <main class="main-grid no-print">
-    <!-- כרטיס הזנת נתונים -->
     <section class="card">
       <h2>הגדרות שכר ותנאים בהייטק</h2>
 
@@ -163,7 +158,7 @@
 
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
         <div class="field">
-          <label for="techGender">מין העובד/ת</label>
+          <label for="techGender">מין העובד או העובדת</label>
           <select id="techGender">
             <option value="male" selected>גבר (2.25 נק')</option>
             <option value="female">אישה (2.75 נק')</option>
@@ -187,12 +182,12 @@
         <div class="field">
           <label for="techPensionRate">הפרשת עובד לפנסיה</label>
           <select id="techPensionRate">
-            <option value="0.06" selected>6.0% (סטנדרט)</option>
+            <option value="0.06" selected>6.0% (רגיל)</option>
             <option value="0.07">7.0% (מוגדל)</option>
           </select>
         </div>
         <div class="field">
-          <label for="techStudyFund">קרן השתלמות (עובד 2.5% | מעביד 7.5%)</label>
+          <label for="techStudyFund">קרן השתלמות (עובד 2.5% | מעסיק 7.5%)</label>
           <select id="techStudyFund">
             <option value="yes" selected>כן (כולל עד התקרה)</option>
             <option value="no">ללא קרן השתלמות</option>
@@ -201,7 +196,6 @@
       </div>
     </section>
 
-    <!-- תוצאות חישוב שכר הייטק -->
     <section class="card">
       <h2>סיכום נטו ועלויות שכר הייטק</h2>
 
@@ -212,7 +206,7 @@
       </div>
 
       <div class="breakdown-row">
-        <span>מס הכנסה בפועל (לאחר זיכויים)</span>
+        <span>מס הכנסה בפועל (אחרי זיכויים)</span>
         <span class="val deduction" id="techValTax">₪6,402-</span>
       </div>
       <div class="breakdown-row">
@@ -264,7 +258,7 @@
             </tr>
             <tr style="font-weight: 700; background: rgba(247, 147, 26, 0.08);">
               <td>סך עלות מעסיק חודשית</td>
-              <td>—</td>
+              <td>-</td>
               <td style="color: var(--accent);" id="techValTotalCost">₪41,273</td>
             </tr>
           </tbody>
@@ -278,11 +272,10 @@
     </section>
   </main>
 
-  <!-- מאמר עומק מקצועי לקידום וערך לגולשים -->
   <div class="container no-print lazy-section" style="max-width: 1060px; width: 100%; margin-top: 10px;">
     <article class="card editorial-article">
       <div class="editorial-meta">
-        <span class="editorial-tag">מדריך עומק • חוזי הייטק</span>
+        <span class="editorial-tag">חוזי הייטק</span>
         <span>זמן קריאה: כ-4 דקות</span>
         <span>•</span>
         <span>מעודכן לשנת 2026</span>
@@ -291,36 +284,36 @@
       <h2>חוזה עבודה בהייטק: שעות נוספות גלובליות, קרן השתלמות מעל התקרה וסעיף 14</h2>
 
       <p>
-        כשמקבלים הצעת שכר בחברת טכנולוגיה, המספר המרכזי שמופיע בראש העמוד הוא שכר הברוטו החודשי — אך השווי האמיתי של החבילה נקבע בשורות הקטנות של החוזה. בהייטק הישראלי נהוגים תנאים סוציאליים מורחבים שחורגים משמעותית מהמינימום הקבוע בחוק, והבנה שלהם תעזור לכם להעריך נכון את ההצעה ולנהל משא ומתן חכם.
+        כשמקבלים הצעת שכר בחברת טכנולוגיה, המספר הבולט הוא שכר הברוטו החודשי, אבל התמונה המלאה תלויה גם בתנאים שמופיעים בחוזה. בהייטק נהוגות לעיתים הפרשות ותנאים שמעבר למינימום שבחוק, וכדאי להכיר אותם לפני שחותמים או מתמקחים על השכר.
       </p>
 
-      <h3>1. פיצול השכר לבסיס + שעות נוספות גלובליות</h3>
+      <h3>1. פיצול השכר לבסיס ושעות נוספות גלובליות</h3>
       <p>
-        בחוזים רבים בהייטק, השכר המוסכם (למשל 32,000 ₪) מחולק בתלוש לשני רכיבים: <strong>שכר יסוד</strong> (כ-75%–80%) ו<strong>תוספת שעות נוספות גלובליות</strong> (כ-20%–25%). החלוקה הזו חוקית ומקובלת כדי למנוע צורך בדיווח שעתי מדוקדק, אך חשוב לוודא סעיף קריטי אחד בחוזה:
+        בחוזים רבים בהייטק, השכר (למשל 32,000 ₪) מחולק בתלוש לשני חלקים: <strong>שכר יסוד</strong> (לרוב סביב 75% עד 80%) ו<strong>תוספת שעות נוספות גלובליות</strong> (סביב 20% עד 25%). חלוקה כזו נפוצה כדי לא לנהל רישום שעתי פרטני, וחשוב לבדוק סעיף אחד בחוזה:
       </p>
       <ul>
-        <li><strong>הפרשות סוציאליות על 100% מהשכר:</strong> ודאו שההפרשות לפנסיה (6.5% + 8.33% פיצויים) ולקרן השתלמות (7.5%) מחושבות על <strong>מלוא השכר הכולל</strong> — ולא רק על שכר היסוד. הפרש של 20% בבסיס ההפרשה שווה עשרות אלפי שקלים לאורך השנים.</li>
+        <li><strong>הפרשות סוציאליות על כל השכר:</strong> כדאי לבדוק שהפנסיה (6.5% תגמולי מעסיק ו-8.33% פיצויים) וקרן ההשתלמות (7.5%) מופרשות על <strong>כל השכר הכולל</strong> ולא רק על שכר היסוד, כי הבדל של 20% בבסיס מצטבר לסכום משמעותי לאורך זמן.</li>
       </ul>
 
       <h3>2. קרן השתלמות מעל התקרה: איך זה עובד?</h3>
       <p>
-        המדינה מעניקה פטור ממס על הפקדות מעסיק לקרן השתלמות (7.5%) עד לתקרת שכר חודשית של <strong>15,712 ₪</strong>. כאשר השכר שלכם בהייטק גבוה מתקרה זו, החברות פועלות באחת משתי דרכים:
+        הפקדות מעסיק לקרן השתלמות (7.5%) פטורות ממס עד תקרת שכר חודשית של <strong>15,712 ₪</strong>. כשהשכר גבוה מתקרה זו, החברות נוהגות בדרך כלל באחת משתי דרכים:
       </p>
       <ul>
-        <li><strong>הפרשה מוגבלת לתקרה:</strong> המעסיק מפריש 7.5% רק עד 15,712 ₪ (כ-1,178 ₪ בחודש), כך שאין זקיפת מס נוספת בתלוש.</li>
-        <li><strong>הפרשה על מלוא השכר (הסטנדרט המקובל בהייטק):</strong> המעסיק מפריש 7.5% על כל השכר (למשל 2,400 ₪ בשכר של 32,000 ₪). הסכום שמעל התקרה נחשב כהטבה חייבת במס ("שווי קרן השתלמות"), אך אתם עדיין מרוויחים חיסכון הוני משמעותי שהמעסיק מממן ברובו.</li>
+        <li><strong>הפרשה עד התקרה:</strong> המעסיק מפריש 7.5% רק עד 15,712 ₪ (כ-1,178 ₪ לחודש), בלי זקיפת מס נוספת בתלוש.</li>
+        <li><strong>הפרשה על כל השכר (נפוץ בהייטק):</strong> המעסיק מפריש 7.5% על כל השכר (למשל 2,400 ₪ בשכר של 32,000 ₪). הסכום שמעל התקרה נזקף כהכנסה חייבת במס בתלוש, ובמקביל מתווסף חיסכון לקרן.</li>
       </ul>
 
       <div class="editorial-callout">
-        <strong>שווי שימוש ברכב ליסינג:</strong> אם אתם שוקלים לקחת רכב חברה, זכרו ששווי השימוש החודשי (כ-2.48% ממחיר המחירון של הרכב) מתווסף לברוטו לצורכי מס הכנסה וביטוח לאומי. בשכר הייטק שנמצא במדרגות מס של 35%–47%, רכב צמוד עשוי להפחית את הנטו בבנק ב-2,500 עד 4,000 ₪ בחודש (כולל ויתור על עלות הליסינג מהברוטו).
+        <strong>שווי שימוש ברכב ליסינג:</strong> אם לוקחים רכב חברה, שווי השימוש החודשי (סביב 2.48% ממחיר המחירון של הרכב) מתווסף לברוטו לצורכי מס הכנסה וביטוח לאומי. במדרגות מס גבוהות (35% עד 47%), רכב צמוד יחד עם ויתור על עלות הליסינג מהברוטו יכול להקטין את הנטו בבנק בכמה אלפי שקלים בחודש.
       </div>
 
-      <h3>3. סעיף 14 והשלמת החבילה עם אופציות או RSU</h3>
+      <h3>3. סעיף 14, אופציות ו-RSU</h3>
       <p>
-        כמעט כל חוזי ההייטק כוללים החלה מלאה של <strong>סעיף 14 לחוק פיצויי פיטורים</strong>, שבמסגרתו המעסיק מפקיד מדי חודש 8.33% לקופת הפיצויים. המשמעות היא שהכסף שייך לכם גם אם תחליטו להתפטר מיוזמתכם בעתיד — תוכלו לבדוק את הצבירה והכללים ב<a href="./severance-pay.html" class="inline-link">מחשבון פיצויי פיטורים</a>.
+        בחוזי הייטק רבים חל <strong>סעיף 14 לחוק פיצויי פיטורים</strong> בהפרשה מלאה של 8.33% לחודש, כך שהכסף שנצבר בקופה שייך לעובד גם אם עזב ביוזמתו. אפשר לבדוק את הכללים והחישוב ב<a href="./severance-pay.html" class="inline-link">מחשבון פיצויי פיטורים</a>.
       </p>
       <p>
-        בנוסף, חלק מרכזי מהתגמול בחברות טכנולוגיה מגיע בצורת מניות חסומות או אופציות לעובדים. לפני חתימה על החוזה, כדאי לחשב כמה באמת יישאר לכם ביד לאחר מס רווחי הון ב<a href="./options-rsu.html" class="inline-link">מחשבון אופציות ו-RSU</a>. ואם אתם עדיין בשלב שליחת קורות החיים למשרות טק — ודאו שהקובץ שלכם מותאם למילות המפתח של התעשייה דרך <a href="./index.html" class="inline-link">סורק קורות החיים</a> בעמוד הבית.
+        בחלק מהחברות מציעים גם אופציות או מניות RSU כחלק מחבילת התגמול, ואפשר לבדוק את השווי המשוער שלהן ב<a href="./options-rsu.html" class="inline-link">מחשבון אופציות ו-RSU</a>. אם אתם בתהליך חיפוש עבודה, כדאי לבדוק גם את קורות החיים ב<a href="./index.html" class="inline-link">סורק קורות החיים</a> בעמוד הבית.
       </p>
     </article>
   </div>
@@ -387,8 +380,8 @@
       const costSeverance = gross * 0.0833;
       const costStudyFund = hasStudyFund ? (gross * 0.075) : 0;
       const btlEmployerGross = Math.min(gross, BTL_MAX_CEILING);
-      const costBtlEmployer = btlEmployerGross <= BTL_LOW_THRESHOLD ? 
-        (btlEmployerGross * 0.0355) : 
+      const costBtlEmployer = btlEmployerGross <= BTL_LOW_THRESHOLD ?
+        (btlEmployerGross * 0.0355) :
         ((BTL_LOW_THRESHOLD * 0.0355) + ((btlEmployerGross - BTL_LOW_THRESHOLD) * 0.076));
 
       const totalEmployerAdditions = costPension + costSeverance + costStudyFund + costBtlEmployer;
