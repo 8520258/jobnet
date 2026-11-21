@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JobNet</title>
-  <meta name="description" content="בודקים את קורות החיים לפני ששולחים: העלאת קובץ PDF, Word או טקסט לבדיקת התאמה למערכות גיוס (ATS), לצד מחשבוני שכר נטו, הייטק, אופציות ופיצויים.">
+  <meta name="description" content="בודקים את קורות החיים לפני ששולחים: העלאת קובץ PDF, Word או טקסט לבדיקת התאמה למערכות גיוס (ATS), לצד מדריך מלא למעבר סינון אוטומטי ומחשבוני שכר.">
   <link rel="canonical" href="https://jobnet.vip/">
 
   <meta property="og:title" content="JobNet">
@@ -12,12 +12,12 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://jobnet.vip/">
 
+  <!-- הכנת חיבור מוקדם ל-CDN רק למקרה של העלאת קבצים -->
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+
   <link rel="stylesheet" href="./style.css">
   <script src="./common.js?v=4.1.0" defer></script>
-
-  <!-- ספריות צד-לקוח לקריאת PDF ו-Word אצל הגולש במכשיר -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js" defer></script>
 
   <style>
     .home-container {
@@ -26,7 +26,6 @@
       width: 100%;
     }
 
-    /* פתיחה קלה ואוורירית */
     .hero-intro {
       text-align: center;
       padding: 14px 16px 28px 16px;
@@ -46,7 +45,6 @@
       line-height: 1.65;
     }
 
-    /* אזור העלאה נקי ושקט בהשראת Bitcoin.com */
     .drop-zone {
       border: 1px dashed rgba(255, 255, 255, 0.18);
       background: rgba(255, 255, 255, 0.02);
@@ -54,7 +52,7 @@
       padding: 26px 20px;
       text-align: center;
       cursor: pointer;
-      transition: all 0.22s ease;
+      transition: border-color 0.2s ease, background 0.2s ease;
       margin-bottom: 22px;
     }
     .drop-zone:hover, .drop-zone.drag-over {
@@ -130,7 +128,6 @@
       border-color: rgba(247, 147, 26, 0.65);
     }
 
-    /* כפתור ראשי מעודן ומאוזן */
     .btn-scan-clean {
       display: inline-flex;
       align-items: center;
@@ -144,16 +141,14 @@
       border: none;
       border-radius: 999px;
       cursor: pointer;
-      transition: all 0.2s ease;
+      transition: background 0.2s ease, transform 0.2s ease;
       box-shadow: 0 4px 14px rgba(247, 147, 26, 0.2);
     }
     .btn-scan-clean:hover {
       background: #ffa333;
       transform: translateY(-1px);
-      box-shadow: 0 6px 20px rgba(247, 147, 26, 0.3);
     }
 
-    /* תיבת תוצאות שקטה ונקייה */
     .score-box {
       display: none;
       background: rgba(255, 255, 255, 0.02);
@@ -191,7 +186,12 @@
       gap: 14px;
     }
 
-    /* גריד הכלים של האתר */
+    /* אופטימיזציית רינדור לחלקים התחתונים של העמוד בנייד */
+    .tools-hub, .editorial-article {
+      content-visibility: auto;
+      contain-intrinsic-size: 600px;
+    }
+
     .tools-hub {
       margin-top: 36px;
     }
@@ -221,7 +221,7 @@
       border: 1px solid rgba(255, 255, 255, 0.07);
       border-radius: 12px;
       padding: 20px;
-      transition: all 0.2s ease;
+      transition: border-color 0.2s ease, background 0.2s ease;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -229,7 +229,6 @@
     .tool-tile:hover {
       border-color: rgba(247, 147, 26, 0.45);
       background: rgba(255, 255, 255, 0.035);
-      transform: translateY(-2px);
     }
     .tool-tile-top {
       display: flex;
@@ -266,44 +265,144 @@
       color: #f7931a;
     }
 
-    /* הסבר קצר ואוורירי */
-    .ats-factors {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 16px;
-      margin-top: 16px;
+    .editorial-article {
+      margin-top: 38px;
+      padding: 32px 28px;
+      line-height: 1.78;
+      color: #cbd5e1;
     }
-    .factor-card {
-      background: rgba(255, 255, 255, 0.015);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 10px;
-      padding: 18px;
+    @media (max-width: 768px) {
+      .editorial-article {
+        padding: 24px 18px;
+      }
     }
-    .factor-card h4 {
-      margin: 0 0 6px 0;
-      font-size: 0.95rem;
+    .editorial-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+      font-size: 0.8rem;
+      color: #8b92a5;
+    }
+    .editorial-tag {
+      background: rgba(247, 147, 26, 0.14);
+      color: #f7931a;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-weight: 700;
+    }
+    .editorial-article h2 {
+      font-size: 1.55rem;
+      color: #ffffff;
+      margin: 0 0 14px 0;
+      line-height: 1.35;
+    }
+    .editorial-article h3 {
+      font-size: 1.18rem;
+      color: #f3f4f6;
+      margin: 28px 0 10px 0;
+      padding-bottom: 6px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    }
+    .editorial-article p {
+      margin: 0 0 14px 0;
+      font-size: 0.94rem;
+      color: #b0b7c6;
+    }
+    .editorial-article ul {
+      margin: 0 0 18px 0;
+      padding-right: 20px;
+    }
+    .editorial-article li {
+      margin-bottom: 8px;
+      font-size: 0.93rem;
+      color: #b0b7c6;
+    }
+    .editorial-article strong {
       color: #f3f4f6;
     }
-    .factor-card p {
-      font-size: 0.85rem;
-      color: #8b92a5;
-      line-height: 1.6;
-      margin: 0;
+    .editorial-article a.inline-link {
+      color: #f7931a;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .editorial-callout {
+      background: rgba(247, 147, 26, 0.06);
+      border-right: 3px solid #f7931a;
+      border-radius: 8px;
+      padding: 16px 18px;
+      margin: 20px 0;
+      font-size: 0.91rem;
+      color: #e2e8f0;
+    }
+    .comparison-wrap {
+      width: 100%;
+      overflow-x: auto;
+      margin: 18px 0;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+    }
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 520px;
+      font-size: 0.88rem;
+    }
+    .comparison-table th {
+      background: rgba(255, 255, 255, 0.04);
+      color: #ffffff;
+      text-align: right;
+      padding: 12px 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .comparison-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      color: #b0b7c6;
+      vertical-align: top;
+    }
+    .comparison-table tr:last-child td {
+      border-bottom: none;
     }
   </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "JobNet - סורק קורות חיים ל-ATS ומחשבוני שכר",
+        "url": "https://jobnet.vip/",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "All",
+        "description": "כלי חינמי לסריקת קורות חיים (PDF, Word, טקסט) מול מערכות סינון אוטומטיות (ATS) ומדריך מלא למעבר שלב הסינון הראשוני."
+      },
+      {
+        "@type": "Article",
+        "headline": "המדריך המלא למעבר סינון ATS: איך מערכות הגיוס באמת קוראות את קורות החיים שלכם",
+        "author": {
+          "@type": "Organization",
+          "name": "JobNet"
+        },
+        "datePublished": "2026-03-01",
+        "dateModified": "2026-11-21",
+        "description": "מדריך מעשי לכתיבת קורות חיים שעוברים מערכות סינון אוטומטיות (ATS) בישראל, כולל מבנה נכון, מילות מפתח והכנה למשא ומתן על השכר."
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
   <main class="home-container">
-    <!-- פתיחה רגועה ובגובה העיניים -->
     <div class="hero-intro">
       <h2>בודקים את קורות החיים לפני ששולחים</h2>
       <p>העלו קובץ או הדביקו טקסט — ותוך שניות תראו אם מערכות הסינון (ATS) קוראות אותו נכון ומה כדאי לחדד.</p>
     </div>
 
-    <!-- כלי סריקת קורות חיים -->
     <section class="card" style="padding: 28px;">
-      <!-- אזור גרירה / העלאת קובץ -->
       <div id="dropZone" class="drop-zone" role="button" tabindex="0" aria-label="העלאת קובץ קורות חיים">
         <input type="file" id="cvFileInput" accept=".pdf,.docx,.txt" style="display: none;">
         <span class="drop-zone-icon">📄</span>
@@ -329,7 +428,6 @@
         </button>
       </div>
 
-      <!-- תיבת תוצאות -->
       <div id="resultBox" class="score-box">
         <div id="scoreVal" class="score-circle">--</div>
         <h3 id="scoreTitle" style="margin: 0 0 8px 0; font-size: 1.2rem; color: #ffffff;">ציון התאמה מחושב</h3>
@@ -340,12 +438,10 @@
           <div id="keywordsList" style="margin-top: 8px; display: flex; flex-wrap: wrap; gap: 6px;"></div>
         </div>
 
-        <!-- המלצה חכמה להמשך -->
         <div id="smartCvFollowup" class="smart-cv-followup"></div>
       </div>
     </section>
 
-    <!-- גריד ניווט נקי לכל כלי האתר -->
     <section class="tools-hub">
       <div class="tools-hub-header">
         <h3>כל הכלים לשכר ולזכויות שלך</h3>
@@ -421,24 +517,85 @@
       </div>
     </section>
 
-    <!-- הסבר תמציתי -->
-    <section class="card" style="margin-top: 28px; padding: 24px;">
-      <h3 style="margin: 0 0 6px 0; font-size: 1.1rem; color: #ffffff;">3 דברים שגורמים למערכות סינון לפסול קורות חיים</h3>
-      <div class="ats-factors">
-        <div class="factor-card">
-          <h4>1. קובץ מעוצב מדי (Canva / תמונה)</h4>
-          <p>כשהטקסט שמור כשכבה גרפית, המערכת מקבלת דף ריק. קובץ Word (.docx) או PDF סטנדרטי נקראים ב-100%.</p>
-        </div>
-        <div class="factor-card">
-          <h4>2. טבלאות ועמודות כפולות</h4>
-          <p>חלוקה לשני טורים או כוכביות דירוג מבלבלת את סדר הקריאה של הבוט. מבנה טורי נקי תמיד מנצח.</p>
-        </div>
-        <div class="factor-card">
-          <h4>3. חוסר במילות מפתח מהמודעה</h4>
-          <p>המערכת מחפשת התאמה למונחים המדויקים שמופיעים בדרישות המשרה. שילוב טבעי שלהם מקפיץ את הדירוג.</p>
-        </div>
+    <article class="card editorial-article">
+      <div class="editorial-meta">
+        <span class="editorial-tag">מדריך עומק • קריירה וגיוס</span>
+        <span>זמן קריאה: כ-4 דקות</span>
+        <span>•</span>
+        <span>מעודכן לשנת 2026</span>
       </div>
-    </section>
+
+      <h2>המדריך המלא למעבר סינון ATS: איך מערכות הגיוס באמת קוראות את קורות החיים שלכם</h2>
+
+      <p>
+        כמעט כל מועמד מכיר את התחושה: מצאתם משרה שמתאימה בדיוק לניסיון שלכם, השקעתם בעיצוב קורות החיים, לחצתם "שלח" — וקיבלתם מייל דחייה אוטומטי כעבור יומיים, או גרוע מכך, שקט מוחלט. ברוב המקרים הסיבה אינה חוסר התאמה מקצועית, אלא העובדה שקורות החיים שלכם מעולם לא הגיעו לעיניים אנושיות.
+      </p>
+
+      <p>
+        בישראל ובעולם, רוב הארגונים הבינוניים והגדולים — מחברות הייטק וסטארט-אפים ועד בנקים, חברות ביטוח וגופים ציבוריים — מנהלים את תהליכי הגיוס באמצעות תוכנות <strong>ATS (Applicant Tracking System)</strong> כגון Comeet, Greenhouse, Workday ו-Lever. התפקיד הראשון של המערכת הוא לקחת מאות קבצים שנשלחים לכל משרה, לפרק אותם לטקסט גולמי (תהליך שנקרא <em>Parsing</em>), ולדרג את המועמדים לפי מידת ההתאמה למודעה.
+      </p>
+
+      <h3>איך נראה קובץ קורות החיים שלכם בעיני המחשב?</h3>
+      <p>
+        כשרכזת גיוס פותחת קובץ Word או PDF, היא רואה כותרות, הדגשות, טורים מסודרים ואייקונים. מערכת סינון אוטומטית, לעומת זאת, מתרגמת את המסמך לרצף של טקסט שטוח ללא עיצוב. ברגע שהעיצוב מורכב מדי, האלגוריתם מבלבל בין תאריכים, מדלג על שורות שלמות, או שומר את השם שלכם תחת סעיף "השכלה".
+      </p>
+
+      <div class="comparison-wrap">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>רכיב בקורות החיים</th>
+              <th>מה עלול להכשיל את הסינון</th>
+              <th>איך נכון לכתוב כדי לעבור חלק</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>פורמט הקובץ</strong></td>
+              <td>PDF שיוצא מתוכנות גרפיקה (Canva / Photoshop) ונשמר כתמונה ללא שכבת טקסט.</td>
+              <td>קובץ <strong>Word (.docx)</strong> תקני או PDF שיוצא ישירות מ-Word / Google Docs.</td>
+            </tr>
+            <tr>
+              <td><strong>מבנה העמוד</strong></td>
+              <td>חלוקה לשני טורים (עמודת צד צרה + עמודה ראשית) או טבלאות נסתרות.</td>
+              <td>מבנה טורי אחד מלמעלה למטה, עם כותרות אחידות ומרווחים ברורים.</td>
+            </tr>
+            <tr>
+              <td><strong>דירוג מיומנויות</strong></td>
+              <td>סרגלי התקדמות גרפיים, כוכבים או עיגולים (למשל "אנגלית: 4 מתוך 5 כוכבים").</td>
+              <td>טקסט מפורש וברור: <em>"אנגלית – רמת שפת אם"</em>, <em>"Excel – שליטה מתקדמת"</em>.</td>
+            </tr>
+            <tr>
+              <td><strong>תאריכי העסקה</strong></td>
+              <td>כתיבה לא אחידה כמו "קיץ 2023" או הסתרת חודשים.</td>
+              <td>פורמט מספרי אחיד מימין או משמאל: <strong>03/2023 – היום</strong> (או 2023–2026).</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>סוד מילות המפתח: לא להעמיס, אלא לדייק</h3>
+      <p>
+        מערכות גיוס מודרניות מחפשות התאמה סמנטית ומדויקת בין דרישות המשרה לבין הניסיון שמתואר בקובץ. אם במודעה כתוב <em>"ניסיון בניהול תקציבי שיווק ובקרת ביצועים"</em> ובקורות החיים שלכם כתוב רק <em>"אחריות על פעילות הדיגיטל"</em>, המערכת עלולה לתת לכם ציון התאמה נמוך — אפילו אם עשיתם בדיוק את העבודה הזו.
+      </p>
+      <ul>
+        <li><strong>אמצו את השפה של המודעה:</strong> עברו על 4–5 דרישות החובה הראשונות במשרה וודאו שהביטויים המדויקים מופיעים באופן טבעי תחת הניסיון התעסוקתי או בסעיף הכישורים.</li>
+        <li><strong>שלבו ראשי תיבות וגם שם מלא:</strong> כתבו למשל <em>"קידום אתרים אורגני (SEO)"</em> או <em>"ניהול קשרי לקוחות (CRM)"</em> כדי לתפוס את שני סוגי החיפוש.</li>
+        <li><strong>הימנעו מהעתקה עיוורת:</strong> אל תדביקו רשימת מילים נסתרת בלבן. מערכות גיוס מזהות זאת מיד ופסולות מועמדים על מניפולציה.</li>
+      </ul>
+
+      <div class="editorial-callout">
+        <strong>טיפ של מגייסים:</strong> אל תשלחו את אותו קובץ זהה ל-30 משרות שונות. החזיקו קובץ בסיס מסודר, והקדישו 3 דקות להתאמת הכותרת הראשית (תחת השם שלכם) ו-3 שורות מפתח בניסיון התעסוקתי לפני כל שליחה. ההבדל באחוזי החזרה לראיונות הוא דרמטי.
+      </div>
+
+      <h3>השלב הבא אחרי שעברתם את הסינון: הכנה לשיחת השכר</h3>
+      <p>
+        עברתם את מערכת ה-ATS וקיבלתם טלפון לתיאום ראיון? השאלה הראשונה שתעלה כבר בשיחת הסינון הטלפונית היא <em>"מה ציפיות השכר שלך?"</em>. מועמדים רבים נוקבים במספר ברוטו בלי לבדוק כמה באמת יישאר להם בבנק לאחר ניכויי מס הכנסה, ביטוח לאומי והפרשות לפנסיה.
+      </p>
+      <p>
+        לפני שאתם נכנסים לשיחה, מומלץ לבדוק מראש את המספרים ב<a href="./general-calculator.html" class="inline-link">מחשבון שכר ברוטו לנטו</a> שלנו. אם אתם מתראיינים לחברות טכנולוגיה, בדקו גם את המשמעות של תנאים סוציאליים מורחבים ב<a href="./tech-salary.html" class="inline-link">מחשבון שכר הייטק</a>, ואם ההצעה כוללת מרכיב הוני, חשבו את השווי האמיתי שלו ב<a href="./options-rsu.html" class="inline-link">מחשבון אופציות ו-RSU</a>. וכשאתם עוזבים מקום עבודה קיים לטובת ההזדמנות החדשה — אל תשכחו לוודא שכל הזכויות והכספים שלכם מוגנים באמצעות <a href="./severance-pay.html" class="inline-link">מחשבון פיצויי פיטורים</a>.
+      </p>
+    </article>
   </main>
 
   <script>
@@ -446,6 +603,19 @@
     const fileInput = document.getElementById('cvFileInput');
     const fileStatusPill = document.getElementById('fileStatusPill');
     const cvTextArea = document.getElementById('cvText');
+
+    // טוען ספריות כבדות רק כשבאמת מעלים קובץ (חוסך ~1.2MB בטעינה ראשונית)
+    function loadScriptOnce(src) {
+      return new Promise((resolve, reject) => {
+        if (document.querySelector(`script[src="${src}"]`)) return resolve();
+        const s = document.createElement('script');
+        s.src = src;
+        s.async = true;
+        s.onload = resolve;
+        s.onerror = () => reject(new Error('שגיאה בטעינת רכיב קריאת הקובץ — בדקו חיבור לרשת או הדביקו טקסט ידנית.'));
+        document.head.appendChild(s);
+      });
+    }
 
     function showFileStatus(msg, isError = false) {
       fileStatusPill.style.display = 'inline-block';
@@ -466,18 +636,14 @@
           cvTextArea.value = text.trim();
           showFileStatus('הקובץ נטען: ' + file.name);
         } else if (fileName.endsWith('.docx')) {
-          if (typeof mammoth === 'undefined') {
-            throw new Error('ספריית Word עדיין נטענת, נסו שוב בעוד רגע.');
-          }
+          await loadScriptOnce('https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js');
           const arrayBuffer = await file.arrayBuffer();
           const result = await mammoth.extractRawText({ arrayBuffer });
           cvTextArea.value = (result.value || '').trim();
           if (!cvTextArea.value) throw new Error('לא נמצא טקסט קריא בקובץ.');
           showFileStatus('קובץ Word נטען: ' + file.name);
         } else if (fileName.endsWith('.pdf')) {
-          if (typeof pdfjsLib === 'undefined') {
-            throw new Error('ספריית PDF עדיין נטענת, נסו שוב בעוד רגע.');
-          }
+          await loadScriptOnce('https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js');
           pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
           const arrayBuffer = await file.arrayBuffer();
           const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
