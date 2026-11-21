@@ -1,6 +1,6 @@
 /* ==========================================================================
    jobnet.vip - Core Architecture & Central Tax Engine
-   Version: 3.9.3 (JobNet Title, CV ATS First in Nav & Mobile Bulletproof)
+   Version: 3.9.4 (CV ATS Home, JobNet Title & Clean Routing)
    ========================================================================== */
 
 window.JOBNET_TAX_CONFIG = {
@@ -27,10 +27,8 @@ window.JOBNET_TAX_CONFIG = {
   // 1. הזרקת אייקון לשונית (Favicon SVG) וכותרת (Title) באופן אוטומטי
   function setupMetaAndFavicon() {
     try {
-      // עדכון כותרת הלשונית ל-JobNet בלבד
       document.title = "JobNet";
 
-      // בדיקה אם קיים כבר Favicon
       let favicon = document.querySelector('link[rel="icon"], link[rel="shortcut icon"]');
       if (!favicon) {
         favicon = document.createElement('link');
@@ -38,15 +36,15 @@ window.JOBNET_TAX_CONFIG = {
         document.head.appendChild(favicon);
       }
       favicon.type = 'image/svg+xml';
-      
-      // אייקון SVG מעוצב בגווני האתר (רקע כהה עם אייקון גרף/מטבע כתום זוהר)
       favicon.href = `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="%230b0e14" stroke="%23f7931a" stroke-width="4"/><path d="M28 68 L28 50 M42 68 L42 36 M58 68 L58 42 M72 68 L72 26" stroke="%23f7931a" stroke-width="7" stroke-linecap="round"/><circle cx="72" cy="26" r="5" fill="%23ffffff"/></svg>`;
     } catch (e) {}
   }
 
-  // 2. הסרת .html בטוחה ללא תקיעת הדפדפן
+  // 2. הפניית קישור ישן cv-ats לעמוד הבית והסרת .html
   try {
-    if (window.location.pathname.endsWith('.html')) {
+    if (window.location.pathname.includes('cv-ats')) {
+      window.location.replace('./');
+    } else if (window.location.pathname.endsWith('.html')) {
       const cleanPath = window.location.pathname.replace(/\.html$/, '');
       window.history.replaceState(null, '', cleanPath + window.location.search + window.location.hash);
     }
@@ -55,13 +53,13 @@ window.JOBNET_TAX_CONFIG = {
   function getActiveSlug() {
     try {
       const path = (window.location.pathname || '').toLowerCase();
+      if (path.includes('general-calculator')) return 'calc';
       if (path.includes('options-rsu')) return 'options';
       if (path.includes('severance-pay')) return 'severance';
       if (path.includes('tech-salary')) return 'tech';
       if (path.includes('minimum-wage')) return 'min';
-      if (path.includes('cv-ats')) return 'cv';
       if (path.includes('guides')) return 'guides';
-      if (path.endsWith('/') || path.endsWith('index') || path === '') return 'calc';
+      if (path.endsWith('/') || path.endsWith('index') || path === '') return 'cv';
     } catch (e) {}
     return '';
   }
@@ -149,11 +147,11 @@ window.JOBNET_TAX_CONFIG = {
         <p style="margin-top: 6px;">סימולטורים פיננסיים, חישוב שכר נטו, אופציות RSU, פיצויי פיטורים וזכויות עובדים</p>
         
         <nav class="sub-nav">
-          <a href="./cv-ats.html" class="${slug === 'cv' ? 'active' : ''}">
+          <a href="./index.html" class="${slug === 'cv' ? 'active' : ''}">
             <span class="nav-icon" style="background: rgba(0, 230, 153, 0.2); color: #00e699;">🤖</span>
             <span>סריקת קו"ח</span>
           </a>
-          <a href="./index.html" class="${slug === 'calc' ? 'active' : ''}">
+          <a href="./general-calculator.html" class="${slug === 'calc' ? 'active' : ''}">
             <span class="nav-icon" style="background: rgba(247, 147, 26, 0.2); color: #f7931a;">📊</span>
             <span>מחשבון כללי</span>
           </a>
