@@ -1,6 +1,6 @@
 /* ==========================================================================
    jobnet.vip - Core Architecture & Central Tax Engine
-   Version: 3.9.2 (Favicon, Dynamic Title & Mobile Bulletproof)
+   Version: 3.9.3 (JobNet Title, CV ATS First in Nav & Mobile Bulletproof)
    ========================================================================== */
 
 window.JOBNET_TAX_CONFIG = {
@@ -27,8 +27,8 @@ window.JOBNET_TAX_CONFIG = {
   // 1. הזרקת אייקון לשונית (Favicon SVG) וכותרת (Title) באופן אוטומטי
   function setupMetaAndFavicon() {
     try {
-      // עדכון כותרת הלשונית (מוצגת במעבר עכבר)
-      document.title = "jobnet.vip | מחשבוני שכר וזכויות עובדים";
+      // עדכון כותרת הלשונית ל-JobNet בלבד
+      document.title = "JobNet";
 
       // בדיקה אם קיים כבר Favicon
       let favicon = document.querySelector('link[rel="icon"], link[rel="shortcut icon"]');
@@ -149,6 +149,10 @@ window.JOBNET_TAX_CONFIG = {
         <p style="margin-top: 6px;">סימולטורים פיננסיים, חישוב שכר נטו, אופציות RSU, פיצויי פיטורים וזכויות עובדים</p>
         
         <nav class="sub-nav">
+          <a href="./cv-ats.html" class="${slug === 'cv' ? 'active' : ''}">
+            <span class="nav-icon" style="background: rgba(0, 230, 153, 0.2); color: #00e699;">🤖</span>
+            <span>סריקת קו"ח</span>
+          </a>
           <a href="./index.html" class="${slug === 'calc' ? 'active' : ''}">
             <span class="nav-icon" style="background: rgba(247, 147, 26, 0.2); color: #f7931a;">📊</span>
             <span>מחשבון כללי</span>
@@ -168,10 +172,6 @@ window.JOBNET_TAX_CONFIG = {
           <a href="./minimum-wage.html" class="${slug === 'min' ? 'active' : ''}">
             <span class="nav-icon" style="background: rgba(255, 85, 0, 0.2); color: #ff5500;">⏱️</span>
             <span>שכר מינימום</span>
-          </a>
-          <a href="./cv-ats.html" class="${slug === 'cv' ? 'active' : ''}">
-            <span class="nav-icon" style="background: rgba(0, 230, 153, 0.2); color: #00e699;">🤖</span>
-            <span>סריקת קו"ח</span>
           </a>
         </nav>
       `;
