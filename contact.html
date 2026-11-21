@@ -3,17 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>יצירת קשר עם צוות המיזם | jobnet.vip</title>
-  <meta name="description" content="צרו קשר עם צוות jobnet.vip להצעות, שאלות מקצועיות, הצעות לשיתופי פעולה ודיוק סימולטורים פיננסיים.">
+  <title>יצירת קשר | jobnet.vip</title>
+  <meta name="description" content="צרו קשר לגבי jobnet.vip: הצעות לשיפור, שאלות על חישובי שכר, דיווח על תקלות או שיתופי פעולה.">
   <link rel="canonical" href="https://jobnet.vip/contact">
 
   <meta property="og:title" content="יצירת קשר | jobnet.vip">
-  <meta property="og:description" content="פנייה לצוות הפיתוח והתוכן של jobnet.vip.">
+  <meta property="og:description" content="פנייה ישירה בנושא הכלים והמחשבונים ב-jobnet.vip.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://jobnet.vip/contact">
 
   <link rel="stylesheet" href="./style.css">
-  <script src="./common.js" defer></script>
+  <script src="./common.js?v=4.4.0" defer></script>
 
   <style>
     .contact-container {
@@ -66,7 +66,7 @@
   {
     "@context": "https://schema.org",
     "@type": "ContactPage",
-    "name": "יצירת קשר עם צוות jobnet.vip",
+    "name": "יצירת קשר | jobnet.vip",
     "url": "https://jobnet.vip/contact"
   }
   </script>
@@ -76,40 +76,40 @@
   <main class="contact-container no-print">
     <section class="card">
       <h2 style="display: flex; align-items: center; justify-content: center; gap: 8px;">
-        <span>📬</span> יצירת קשר עם צוות המיזם
+        <span>📬</span> יצירת קשר
       </h2>
       <p style="text-align: center; color: var(--muted); margin-top: -6px; margin-bottom: 24px; font-size: 0.92rem;">
-        יש לכם שאלה מקצועית, הערה לגבי סימולציות השכר או הצעה לשיפור הכלים? נשמח לשמוע מכם.
+        יש לכם שאלה, הערה על חישוב שכר או רעיון לשיפור האתר? כתבו כאן ונחזור אליכם.
       </p>
 
       <form id="contactForm">
         <div class="field">
-          <label for="senderName">שם מלא:</label>
+          <label for="senderName">שם:</label>
           <input type="text" id="senderName" name="name" required placeholder="השם שלכם">
         </div>
 
         <div class="field">
-          <label for="senderEmail">כתובת אימייל לתשובה:</label>
+          <label for="senderEmail">אימייל לתשובה:</label>
           <input type="email" id="senderEmail" name="email" required placeholder="name@example.com">
         </div>
 
         <div class="field">
           <label for="subjectSelect">נושא הפנייה:</label>
           <select id="subjectSelect" name="subject">
-            <option value="משוב / דיוק חישוב שכר" selected>משוב / דיוק חישוב שכר ומסים</option>
-            <option value="הצעת שיתוף פעולה / הטמעה">הצעת שיתוף פעולה / הטמעה</option>
-            <option value="דיווח על תקלה טכנית">דיווח על תקלה טכנית באתר</option>
-            <option value="שאלה כללית בנושא דיני עבודה">שאלה כללית בנושא דיני עבודה</option>
+            <option value="משוב / דיוק חישוב שכר" selected>דיוק חישוב שכר ומסים</option>
+            <option value="הצעת שיתוף פעולה / הטמעה">שיתוף פעולה או הטמעה</option>
+            <option value="דיווח על תקלה טכנית">תקלה טכנית באתר</option>
+            <option value="שאלה כללית בנושא דיני עבודה">שאלה על זכויות עובדים</option>
           </select>
         </div>
 
         <div class="field">
-          <label for="messageText">תוכן ההודעה:</label>
-          <textarea id="messageText" name="message" required placeholder="כתבו כאן את פנייתכם בפירוט..."></textarea>
+          <label for="messageText">ההודעה:</label>
+          <textarea id="messageText" name="message" required placeholder="כתבו כאן את ההודעה..."></textarea>
         </div>
 
         <button type="submit" id="btnSubmit" class="btn-primary" style="width: 100%; margin-top: 10px; padding: 13px; font-size: 1.05rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
-          <span>📨</span> שלח הודעה
+          <span>📨</span> שליחת הודעה
         </button>
 
         <div id="statusMsg" class="form-status"></div>
@@ -118,8 +118,6 @@
   </main>
 
   <script>
-    // כתובת ה-Web App של Google Apps Script לשליחת המייל
-    // אם יש לך כתובת Deployment ספציפית ב-Apps Script, עדכן אותה כאן:
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwYOUR_DEPLOYMENT_ID/exec';
 
     const form = document.getElementById('contactForm');
@@ -130,7 +128,7 @@
       e.preventDefault();
 
       btnSubmit.disabled = true;
-      btnSubmit.innerHTML = '<span>⏳</span> שולח הודעה...';
+      btnSubmit.innerHTML = '<span>⏳</span> שולח...';
       statusMsg.className = 'form-status';
       statusMsg.style.display = 'none';
 
@@ -142,26 +140,24 @@
       };
 
       try {
-        // שליחה אל ה-Web App של Google
-        const response = await fetch(SCRIPT_URL, {
+        await fetch(SCRIPT_URL, {
           method: 'POST',
-          mode: 'no-cors', // מאפשר שליחה תקינה ל-Google Script ללא חסימות CORS
+          mode: 'no-cors',
           headers: {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify(data)
         });
 
-        // הצלחה
         statusMsg.className = 'form-status success';
-        statusMsg.textContent = '✅ הודעתך נשלחה בהצלחה! צוות האתר ישיב בהקדם לכתובת המייל שציינת.';
+        statusMsg.textContent = '✅ ההודעה נשלחה. נשיב בהקדם לכתובת המייל שציינת.';
         form.reset();
       } catch (err) {
         statusMsg.className = 'form-status error';
-        statusMsg.textContent = '⚠️ אירעה שגיאה בשליחת הטופס. אנא פנו ישירות לכתובת המייל של האתר.';
+        statusMsg.textContent = '⚠️ לא הצלחנו לשלוח את הטופס כרגע. אפשר לפנות ישירות במייל.';
       } finally {
         btnSubmit.disabled = false;
-        btnSubmit.innerHTML = '<span>📨</span> שלח הודעה';
+        btnSubmit.innerHTML = '<span>📨</span> שליחת הודעה';
       }
     });
   </script>
