@@ -1,6 +1,6 @@
 /* ==========================================================================
    jobnet.vip - Core Architecture, Smart Cross-Navigation & Tax Engine
-   Version: 4.1.0 (Clean Bitcoin.com Inspired Palette, No Neon Green)
+   Version: 4.2.0 (Clean Bitcoin.com Inspired Palette + Smart Bottom Hub)
    ========================================================================== */
 
 window.JOBNET_TAX_CONFIG = {
@@ -56,10 +56,10 @@ window.JOBNET_TAX_CONFIG = {
       if (path.includes('severance-pay')) return 'severance';
       if (path.includes('tech-salary')) return 'tech';
       if (path.includes('minimum-wage')) return 'min';
-      if (path.includes('guides')) return 'guides';
+      if (path.includes('guides') || path.includes('tax-credits') || path.includes('study-fund') || path.includes('employer-cost') || path.includes('tax-refund')) return 'guides';
       if (path.endsWith('/') || path.endsWith('index') || path === '') return 'cv';
     } catch (e) {}
-    return '';
+    return 'other';
   }
 
   function buildHeader() {
@@ -176,14 +176,22 @@ window.JOBNET_TAX_CONFIG = {
   function buildSmartNextStep() {
     try {
       const slug = getActiveSlug();
-      if (!slug || slug === 'cv') return;
       if (document.querySelector('.smart-next-step')) return;
 
       const recommendations = {
+        cv: {
+          tag: "מוכנים לשלב הבא לפני הראיון?",
+          title: "יודעים כבר איזה שכר ברוטו לבקש בשיחת הסינון?",
+          desc: "המירו מראש את ציפיות השכר שלכם לנטו בבנק כולל מדרגות מס 2026, נקודות זיכוי ופנסיה — בלי לגלול למעלה.",
+          primaryText: "למחשבון שכר ברוטו-נטו",
+          primaryHref: "./general-calculator.html",
+          secondaryText: "מחשבון שכר הייטק",
+          secondaryHref: "./tech-salary.html"
+        },
         calc: {
           tag: "הצעד הבא בקריירה",
-          title: "רוצה לבדוק אם השכר שלך תואם למה שמחפשים בשוק?",
-          desc: "אם אתה מתכונן לראיון או חושב על שדרוג במקום חדש, בדוק תוך שניות איך קורות החיים שלך עוברים סינון אוטומטי.",
+          title: "רוצה לבדוק אם קורות החיים שלך מוכנים לשדרוג שכר?",
+          desc: "לפני ששולחים קורות חיים למעסיק הבא, בדוק תוך שניות איך הקובץ שלך עובר סינון אוטומטי (ATS).",
           primaryText: "לסריקת קורות חיים בחינם",
           primaryHref: "./index.html",
           secondaryText: "השוואה לשכר הייטק",
@@ -233,25 +241,154 @@ window.JOBNET_TAX_CONFIG = {
           primaryHref: "./index.html",
           secondaryText: "מחשבון שכר כללי",
           secondaryHref: "./general-calculator.html"
+        },
+        other: {
+          tag: "כלי JobNet לשירותך",
+          title: "רוצים לבדוק קורות חיים או לחשב שכר נטו?",
+          desc: "כל הסימולטורים המעודכנים לשנת 2026 זמינים לשימוש חופשי וללא הרשמה.",
+          primaryText: "סריקת קורות חיים",
+          primaryHref: "./index.html",
+          secondaryText: "מחשבון שכר ברוטו-נטו",
+          secondaryHref: "./general-calculator.html"
         }
       };
 
-      const rec = recommendations[slug];
-      if (!rec) return;
+      const rec = recommendations[slug] || recommendations.other;
+
+      const allTools = [
+        { slug: 'cv', icon: '📄', label: 'סריקת קו"ח', href: './index.html' },
+        { slug: 'calc', icon: '📊', label: 'ברוטו לנטו', href: './general-calculator.html' },
+        { slug: 'tech', icon: '⚡', label: 'שכר הייטק', href: './tech-salary.html' },
+        { slug: 'options', icon: '📈', label: 'אופציות ו-RSU', href: './options-rsu.html' },
+        { slug: 'severance', icon: '🛡️', label: 'פיצויי פיטורים', href: './severance-pay.html' },
+        { slug: 'min', icon: '⏱️', label: 'שכר מינימום', href: './minimum-wage.html' },
+        { slug: 'guides', icon: '📚', label: 'מדריכים וזכויות', href: './guides.html' }
+      ];
+
+      const quickLinksHtml = allTools
+        .filter(t => t.slug !== slug)
+        .map(t => `<a href="${t.href}" class="bottom-pill-link"><span>${t.icon}</span><span>${t.label}</span></a>`)
+        .join('');
 
       const box = document.createElement('section');
       box.className = 'smart-next-step no-print';
-      box.style.cssText = 'max-width: 1060px; width: calc(100% - 32px); margin: 28px auto 10px auto; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 22px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px; box-sizing: border-box;';
-
       box.innerHTML = `
-        <div style="flex: 1 1 320px;">
-          <span style="display: inline-block; font-size: 0.74rem; font-weight: 700; color: #f7931a; background: rgba(247, 147, 26, 0.14); padding: 3px 10px; border-radius: 999px; margin-bottom: 8px;">${rec.tag}</span>
-          <h3 style="margin: 0 0 6px 0; font-size: 1.12rem; color: #ffffff;">${rec.title}</h3>
-          <p style="margin: 0; font-size: 0.87rem; color: #8b92a5; line-height: 1.55;">${rec.desc}</p>
+        <style>
+          .smart-next-step {
+            max-width: 980px;
+            width: calc(100% - 32px);
+            margin: 28px auto 14px auto;
+            background: linear-gradient(180deg, rgba(247, 147, 26, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+            border: 1px solid rgba(247, 147, 26, 0.25);
+            border-radius: 16px;
+            padding: 24px 24px 20px 24px;
+            box-sizing: border-box;
+          }
+          .sns-top {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+          }
+          .sns-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+          }
+          .sns-btn-primary {
+            text-decoration: none;
+            background: #f7931a;
+            color: #0b0e14;
+            font-weight: 700;
+            padding: 10px 20px;
+            border-radius: 999px;
+            font-size: 0.88rem;
+            white-space: nowrap;
+            transition: opacity 0.2s;
+          }
+          .sns-btn-primary:hover { opacity: 0.92; }
+          .sns-btn-sec {
+            text-decoration: none;
+            background: rgba(255, 255, 255, 0.06);
+            color: #f3f4f6;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            font-weight: 600;
+            padding: 10px 18px;
+            border-radius: 999px;
+            font-size: 0.86rem;
+            white-space: nowrap;
+            transition: border-color 0.2s;
+          }
+          .sns-btn-sec:hover { border-color: rgba(247, 147, 26, 0.5); }
+          .sns-bottom-nav {
+            margin-top: 18px;
+            padding-top: 14px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+          }
+          .sns-pills-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+          }
+          .bottom-pill-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            text-decoration: none;
+            background: rgba(0, 0, 0, 0.28);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #d1d5db;
+            padding: 6px 12px;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            transition: all 0.2s ease;
+          }
+          .bottom-pill-link:hover {
+            border-color: #f7931a;
+            color: #ffffff;
+            background: rgba(247, 147, 26, 0.1);
+          }
+          .sns-back-top {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            color: #9ca3af;
+            padding: 6px 13px;
+            border-radius: 999px;
+            font-size: 0.78rem;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.2s ease;
+          }
+          .sns-back-top:hover {
+            color: #f7931a;
+            border-color: #f7931a;
+          }
+        </style>
+
+        <div class="sns-top">
+          <div style="flex: 1 1 320px;">
+            <span style="display: inline-block; font-size: 0.74rem; font-weight: 700; color: #f7931a; background: rgba(247, 147, 26, 0.15); padding: 3px 10px; border-radius: 999px; margin-bottom: 8px;">${rec.tag}</span>
+            <h3 style="margin: 0 0 6px 0; font-size: 1.14rem; color: #ffffff;">${rec.title}</h3>
+            <p style="margin: 0; font-size: 0.88rem; color: #9ca3af; line-height: 1.55;">${rec.desc}</p>
+          </div>
+          <div class="sns-actions">
+            <a href="${rec.primaryHref}" class="sns-btn-primary">${rec.primaryText} ←</a>
+            <a href="${rec.secondaryHref}" class="sns-btn-sec">${rec.secondaryText}</a>
+          </div>
         </div>
-        <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-          <a href="${rec.primaryHref}" style="text-decoration: none; background: #f7931a; color: #0b0e14; font-weight: 700; padding: 10px 20px; border-radius: 999px; font-size: 0.88rem; white-space: nowrap;">${rec.primaryText}</a>
-          <a href="${rec.secondaryHref}" style="text-decoration: none; background: rgba(255,255,255,0.05); color: #f3f4f6; border: 1px solid rgba(255,255,255,0.12); font-weight: 600; padding: 10px 18px; border-radius: 999px; font-size: 0.86rem; white-space: nowrap;">${rec.secondaryText}</a>
+
+        <div class="sns-bottom-nav">
+          <div class="sns-pills-row">
+            ${quickLinksHtml}
+          </div>
+          <button type="button" class="sns-back-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">חזרה למעלה ↑</button>
         </div>
       `;
 
@@ -307,7 +444,7 @@ window.JOBNET_TAX_CONFIG = {
             <a href="./index.html" style="color: var(--muted); text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#f7931a'" onmouseout="this.style.color='var(--muted)'">
               © 2026 jobnet.vip. All rights reserved.
             </a>
-            <span style="opacity: 0.4; font-size: 0.75rem; margin-left: 6px;">v4.1</span>
+            <span style="opacity: 0.4; font-size: 0.75rem; margin-left: 6px;">v4.2</span>
           </div>
         </div>
       `;
