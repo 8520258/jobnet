@@ -3,31 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>מדריך החזרי מס לשכירים: מתי מגיע לכם כסף בחזרה? | jobnet.vip</title>
-  <meta name="description" content="מדריך מעודכן להחזרי מס לשכירים: בדיקת זכאות, סיבות נפוצות להחזר מס (החלפת עבודה, אבטלה, ילדים, תרומות סעיף 46), אופן הגשת הבקשה וזכאות עד 6 שנים לאחור.">
+  <title>JobNet</title>
+  <meta name="description" content="מדריך מעודכן להחזרי מס לשכירים לשנת 2026: בדיקת זכאות, סיבות נפוצות להחזר מס (החלפת עבודה, אבטלה, ילדים, תרומות סעיף 46), אופן הגשת הבקשה וזכאות עד 6 שנים לאחור.">
   <link rel="canonical" href="https://jobnet.vip/tax-refund">
 
-  <meta property="og:title" content="מדריך החזרי מס לשכירים: בדיקת זכאות | jobnet.vip">
+  <meta property="og:title" content="JobNet">
   <meta property="og:description" content="מתי מגיע לכם כסף בחזרה מרשות המסים? כל הסיבות, הזכויות ושלבי הגשת בקשה להחזר מס.">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://jobnet.vip/tax-refund">
 
   <link rel="stylesheet" href="./style.css">
-  <script src="./common.js" defer></script>
+  <script src="./common.js?v=4.1.0" defer></script>
 
   <style>
     .article-layout {
-      max-width: 860px;
+      max-width: 880px;
       margin: 0 auto;
-      line-height: 1.7;
+      line-height: 1.75;
     }
     .article-layout h1 {
-      font-size: 1.8rem;
+      font-size: 1.75rem;
       margin-bottom: 8px;
       color: #fff;
     }
     .article-meta {
-      font-size: 0.85rem;
+      font-size: 0.84rem;
       color: var(--muted);
       margin-bottom: 24px;
       padding-bottom: 12px;
@@ -37,19 +37,13 @@
       flex-wrap: wrap;
     }
     .article-layout h2 {
-      font-size: 1.3rem;
+      font-size: 1.25rem;
       color: var(--accent);
-      margin-top: 32px;
+      margin-top: 30px;
       margin-bottom: 12px;
     }
-    .article-layout h3 {
-      font-size: 1.05rem;
-      color: #f3f4f6;
-      margin-top: 20px;
-      margin-bottom: 8px;
-    }
     .article-layout p, .article-layout li {
-      color: #d1d5db;
+      color: #cbd5e1;
       font-size: 0.95rem;
     }
     .article-layout ul {
@@ -57,36 +51,46 @@
       margin-bottom: 18px;
     }
     .article-layout li {
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
     .highlight-card {
       background: rgba(247, 147, 26, 0.06);
-      border-right: 4px solid var(--accent);
+      border-right: 3px solid var(--accent);
       border-radius: 8px;
       padding: 16px 20px;
-      margin: 24px 0;
+      margin: 22px 0;
+      color: #e2e8f0;
     }
     .cta-banner {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid var(--card-border);
+      background: rgba(255, 255, 255, 0.025);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 12px;
-      padding: 20px;
-      margin-top: 36px;
+      padding: 22px;
+      margin-top: 34px;
       text-align: center;
     }
     .cta-btn {
       display: inline-block;
-      margin-top: 12px;
+      margin: 12px 6px 0 6px;
       padding: 10px 24px;
       background: var(--accent);
       color: #0b0e14;
       font-weight: 700;
       border-radius: 999px;
       text-decoration: none;
-      transition: opacity 0.2s;
+      font-size: 0.9rem;
     }
-    .cta-btn:hover {
-      opacity: 0.9;
+    .cta-btn-sec {
+      display: inline-block;
+      margin: 12px 6px 0 6px;
+      padding: 10px 22px;
+      background: rgba(255, 255, 255, 0.06);
+      color: #f3f4f6;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      font-weight: 600;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 0.88rem;
     }
     .table-container {
       width: 100%;
@@ -109,7 +113,7 @@
     "description": "הסבר מקיף על חישוב מס שנתי לעומת חודשי, עילות נפוצות להחזרי מס, וכיצד מגישים דוח מקוון.",
     "publisher": {
       "@type": "Organization",
-      "name": "jobnet.vip"
+      "name": "JobNet"
     }
   }
   </script>
@@ -117,12 +121,12 @@
 <body>
 
   <main class="container article-layout">
-    <article class="card">
+    <article class="card" style="padding: 28px;">
       <h1>מדריך החזרי מס לשכירים: מתי מגיע לכם כסף בחזרה?</h1>
       <div class="article-meta">
-        <span>🕒 סטטוס: מבוסס על תקנות פקודת מס הכנסה</span>
-        <span>⚖️ מקור: סעיף 160 לפקודת מס הכנסה (החזר מס תוך 6 שנים)</span>
-        <span>⏱️ זמן קריאה: 4 דקות</span>
+        <span>סטטוס: מבוסס על תקנות פקודת מס הכנסה (2026)</span>
+        <span>מקור: סעיף 160 לפקודת מס הכנסה (החזר מס תוך 6 שנים)</span>
+        <span>זמן קריאה: 4 דקות</span>
       </div>
 
       <div class="highlight-card">
@@ -178,7 +182,8 @@
       <div class="cta-banner">
         <h3 style="margin: 0; color: #fff;">רוצים לבדוק את חישוב המס המדויק שלכם?</h3>
         <p style="margin: 8px 0 0 0; color: var(--muted);">בדקו במחשבון השכר כמה מס הכנסה באמת אמור לרדת מהמשכורת לפי נקודות הזיכוי שברשותכם.</p>
-        <a href="./index.html" class="cta-btn">מעבר למחשבון שכר ובדיקת מס ➔</a>
+        <a href="./general-calculator.html" class="cta-btn">מחשבון שכר ובדיקת מס ←</a>
+        <a href="./tax-credits.html" class="cta-btn-sec">מדריך נקודות זיכוי ←</a>
       </div>
     </article>
   </main>
