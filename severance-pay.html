@@ -3,17 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>מחשבון פיצויי פיטורים וסעיף 14: חישוב זכאות ופטור ממס | jobnet.vip</title>
+  <title>JobNet</title>
   <meta name="description" content="מחשבון פיצויי פיטורים מעודכן: חישוב פיצויים לפי ותק, השלמת פיצויים לפי סעיף 14, תקרת פטור ממס הכנסה (סעיף 9(7א)) וסכום נטו לתשלום.">
   <link rel="canonical" href="https://jobnet.vip/severance-pay">
 
-  <meta property="og:title" content="מחשבון פיצויי פיטורים וסעיף 14 | jobnet.vip">
+  <meta property="og:title" content="JobNet">
   <meta property="og:description" content="חישוב גובה פיצויי הפיטורים, זכאות לפי סעיף 14 ותקרת הפטור ממס.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://jobnet.vip/severance-pay">
 
   <link rel="stylesheet" href="./style.css">
-  <script src="./common.js" defer></script>
+  <script src="./common.js?v=4.1.0" defer></script>
 
   <style>
     .source-meta {
@@ -27,17 +27,106 @@
       flex-wrap: wrap;
       gap: 8px;
     }
+    .lazy-section {
+      content-visibility: auto;
+      contain-intrinsic-size: 600px;
+    }
+    .editorial-article {
+      padding: 32px 28px;
+      line-height: 1.78;
+      color: #cbd5e1;
+    }
+    @media (max-width: 768px) {
+      .editorial-article {
+        padding: 24px 18px;
+      }
+    }
+    .editorial-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+      font-size: 0.8rem;
+      color: #8b92a5;
+    }
+    .editorial-tag {
+      background: rgba(247, 147, 26, 0.14);
+      color: #f7931a;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-weight: 700;
+    }
+    .editorial-article h2 {
+      font-size: 1.5rem;
+      color: #ffffff;
+      margin: 0 0 14px 0;
+      line-height: 1.35;
+    }
+    .editorial-article h3 {
+      font-size: 1.15rem;
+      color: #f3f4f6;
+      margin: 26px 0 10px 0;
+      padding-bottom: 6px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    }
+    .editorial-article p {
+      margin: 0 0 14px 0;
+      font-size: 0.94rem;
+      color: #b0b7c6;
+    }
+    .editorial-article ul {
+      margin: 0 0 18px 0;
+      padding-right: 20px;
+    }
+    .editorial-article li {
+      margin-bottom: 8px;
+      font-size: 0.93rem;
+      color: #b0b7c6;
+    }
+    .editorial-article strong {
+      color: #f3f4f6;
+    }
+    .editorial-article a.inline-link {
+      color: #f7931a;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .editorial-callout {
+      background: rgba(247, 147, 26, 0.06);
+      border-right: 3px solid #f7931a;
+      border-radius: 8px;
+      padding: 16px 18px;
+      margin: 20px 0;
+      font-size: 0.91rem;
+      color: #e2e8f0;
+    }
   </style>
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "jobnet.vip מחשבון פיצויי פיטורים",
-    "url": "https://jobnet.vip/severance-pay",
-    "applicationCategory": "FinanceApplication",
-    "operatingSystem": "All",
-    "description": "סימולטור לחישוב פיצויי פיטורים, תקרת פטור ממס וזכאות לפי סעיף 14."
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "JobNet מחשבון פיצויי פיטורים",
+        "url": "https://jobnet.vip/severance-pay",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "All",
+        "description": "סימולטור לחישוב פיצויי פיטורים, תקרת פטור ממס וזכאות לפי סעיף 14."
+      },
+      {
+        "@type": "Article",
+        "headline": "פיצויי פיטורים והתפטרות בדין מפוטר: חישוב, תקרות פטור ממס וטעויות שעולות אלפי שקלים",
+        "author": {
+          "@type": "Organization",
+          "name": "JobNet"
+        },
+        "datePublished": "2026-03-01",
+        "dateModified": "2026-11-21",
+        "description": "המדריך המלא לפיצויי פיטורים וסיום העסקה בישראל: סעיף 14, תקרת פטור ממס הכנסה, טופס 161 והתפטרות בדין מפוטר."
+      }
+    ]
   }
   </script>
 </head>
@@ -105,7 +194,7 @@
       </div>
       <div class="breakdown-row">
         <span>חלק הפיצויים הפטור ממס</span>
-        <span class="val" id="valExemptAmount" style="color: #10b981;">₪48,125</span>
+        <span class="val" id="valExemptAmount" style="color: #f7931a;">₪48,125</span>
       </div>
       <div class="breakdown-row">
         <span>חלק הפיצויים החייב במס שולי</span>
@@ -119,18 +208,47 @@
     </section>
   </main>
 
-  <div class="container no-print" style="max-width: 1060px; width: 100%; margin-top: 10px;">
-    <article class="card">
-      <h2>כללי מפתח בפיצויי פיטורים ומיסוי כספי סיום עבודה</h2>
+  <!-- מאמר עומק מקצועי לקידום וערך לגולשים -->
+  <div class="container no-print lazy-section" style="max-width: 1060px; width: 100%; margin-top: 10px;">
+    <article class="card editorial-article">
+      <div class="editorial-meta">
+        <span class="editorial-tag">מדריך עומק • סיום העסקה וזכויות</span>
+        <span>זמן קריאה: כ-4 דקות</span>
+        <span>•</span>
+        <span>מעודכן לשנת 2026</span>
+      </div>
 
-      <h3>1. מהי הנוסחה הבסיסית לחישוב פיצויים?</h3>
-      <p>לפי חוק פיצויי פיטורים, גובה הפיצויים הבסיסי מחושב כמכפלה של <strong>שכר הברוטו החודשי האחרון במספר שנות העבודה</strong> אצל אותו מעסיק (כולל חלק יחסי עבור חודשי עבודה נוספים).</p>
+      <h2>פיצויי פיטורים והתפטרות בדין מפוטר: חישוב, תקרות פטור ממס וטעויות שעולות אלפי שקלים</h2>
 
-      <h3>2. משמעות סעיף 14 לחוק</h3>
-      <p>כאשר חל סעיף 14 והמעסיק הפריש 8.33% לקופת הפיצויים מדי חודש, הכספים שנצברו בקופה שייכים לעובד במלואם – גם אם העובד <strong>התפטר מרצונו</strong>. אם הופרשו 6% בלבד והעובד פוטר, המעסיק נדרש לבצע השלמת פיצויים של 2.33% לשנה לפי השכר האחרון.</p>
+      <p>
+        סיום עבודה — בין אם בעקבות פיטורים ובין אם ביוזמתכם לקראת מעבר לתפקיד חדש — הוא נקודת זמן קריטית שבה מתקבלות החלטות פיננסיות שמשפיעות על החיסכון הפנסיוני שלכם לעשרות שנים קדימה. הבנת הכללים של חוק פיצויי פיטורים, סעיף 14 ותקרות המס תבטיח שלא תשאירו כסף על השולחן.
+      </p>
 
-      <h3>3. תקרת הפטור ממס (סעיף 9(7א))</h3>
-      <p>מענק פרישה ופיצויים פטורים ממס הכנסה עד לגובה המשכורת החודשית האחרונה לכל שנת ותק, אך לא יותר מ-<strong>13,750 ₪ לכל שנת עבודה</strong> (או חלק יחסי לחודשים). כל סכום שמתקבל מעבר לתקרה זו חייב במס הכנסה לפי המס השולי של העובד (או בפריסת מס קדימה/אחורה לפי סעיף 8(ג)).</p>
+      <h3>1. איך מחשבים פיצויים ומה ההבדל כשחל סעיף 14?</h3>
+      <p>
+        לפי הדין הכללי, עובד שהשלים שנת עבודה אחת לפחות ופוטר זכאי לפיצויים בגובה <strong>המשכורת הקובעת האחרונה כפול מספר שנות העבודה</strong> (כולל חלק יחסי עבור חודשים). אלא שבעשור האחרון, ברוב מוחלט של מקומות העבודה בישראל חל <strong>סעיף 14 לחוק פיצויי פיטורים</strong>:
+      </p>
+      <ul>
+        <li><strong>כאשר חל סעיף 14 מלא (8.33% בחודש):</strong> המעסיק הפקיד מדי חודש לקופת הפיצויים 8.33% משכרכם. הכסף הצבור בקופה שייך לכם בכל מצב — גם אם <strong>התפטרתם מרצונכם</strong> — והמעסיק אינו נדרש להשלים הפרשים בגין עליות שכר שהיו לאורך השנים.</li>
+        <li><strong>כאשר הופקדו רק 6% לפיצויים (פנסיית חובה):</strong> אם פוטרתם, המעסיק חייב לשלם לכם השלמת פיצויים של 2.33% לכל שנת ותק לפי השכר האחרון (או להשלים את הפער בין היתרה בקופה לבין משכורת אחרונה כפול הוותק).</li>
+      </ul>
+
+      <h3>2. מתי התפטרות מזכה בפיצויי פיטורים מלאים?</h3>
+      <p>
+        גם אם לא חל עליכם סעיף 14 מלא, החוק מכיר במספר מצבים של <strong>"התפטרות בדין מפוטר"</strong> המזכים בפיצויים מלאים: התפטרות לצורך טיפול בילד בתוך 9 חודשים מיום הלידה, מעבר דירה ליישוב חקלאי או אזור פיתוח בתנאים הקבועים בחוק, הרעה מוחשית בתנאי העבודה, או מצב בריאותי שאינו מאפשר להמשיך בתפקיד.
+      </p>
+
+      <div class="editorial-callout">
+        <strong>טעות יקרה שכדאי להימנע ממנה:</strong> משיכת כספי הפיצויים במזומן בעת עזיבת עבודה מקטינה את קצבת הפנסיה העתידית שלכם בכ-35% עד 40% ועלולה לפגוע בפטור ממס בגיל פרישה. אם אינכם זקוקים לכסף בדחיפות, השארתו בקופה תחת "רצף קצבה" שומרת על הכסף מושקע ופטור ממס.
+      </div>
+
+      <h3>3. תקרת הפטור ממס (סעיף 9(7א)) וטופס 161</h3>
+      <p>
+        המדינה מעניקה פטור ממס הכנסה על פיצויי פיטורים עד לתקרה של <strong>13,750 ₪ לכל שנת עבודה</strong> (או המשכורת האחרונה, הנמוך מביניהם). אם משכורתכם גבוהה מתקרה זו, החלק העודף חייב במס הכנסה שולי — אלא אם תבחרו להשאיר את הכסף ברצף קצבה או לבצע פריסת מס באמצעות טופס 161 החדש.
+      </p>
+      <p>
+        עוזבים תפקיד ומתכננים את הצעד הבא? בדקו את שכר הנטו המצופה בתפקיד הבא ב<a href="./general-calculator.html" class="inline-link">מחשבון שכר ברוטו לנטו</a> (או ב<a href="./tech-salary.html" class="inline-link">מחשבון שכר הייטק</a>), וודאו שקורות החיים המעודכנים שלכם עוברים חלק את מערכות הגיוס ב<a href="./index.html" class="inline-link">סורק ה-ATS</a>.
+      </p>
     </article>
   </div>
 
@@ -149,13 +267,11 @@
       let grossSeverance = 0;
 
       if (reason === 'resigned' && clause14 === 'no') {
-        // התפטרות ללא סעיף 14 - אין זכאות בדין הכללי
         grossSeverance = 0;
       } else {
         grossSeverance = salary * totalTenureYears;
       }
 
-      // תקרת פטור לפי סעיף 9(7א): המינימום בין השכר לתקרה, כפול הוותק
       const maxExemptAllowed = EXEMPT_CAP_PER_YEAR * totalTenureYears;
       const actualExempt = Math.min(grossSeverance, maxExemptAllowed);
       const taxableAmount = Math.max(0, grossSeverance - actualExempt);
